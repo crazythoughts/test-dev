@@ -1,5 +1,4 @@
-<%@ taglib prefix="c" 
-           uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div>
 	<c:choose>
 		<c:when test="${sessionScope.AdminLogin==true}">
@@ -26,6 +25,6 @@
 		</c:otherwise>
 	</c:choose>
 	<form action="../com/kjjcsoft/controllers/Logout" method="post">
-<input type="Submit" value="Logout"/>
-</form>
+		<input type="Submit" value="Logout" />
+	</form>
 </div>

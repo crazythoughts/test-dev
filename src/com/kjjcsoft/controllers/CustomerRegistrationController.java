@@ -119,6 +119,7 @@ public class CustomerRegistrationController extends HttpServlet {
 			if (request.getParameter("g_temp_extra")!=null) {
 				customer.setgTempExtraInfo(request.getParameter("g_temp_extra"));
 			}
+			
 		}
 			
 	}

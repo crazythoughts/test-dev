@@ -27,13 +27,12 @@ public class ImagePlacer {
 //	MAXIMUM SIZE OF THE REQUEST THAT CAN COME IN
 	private static final int MAX_REQUEST_SIZE= 1024*1024*50;
 	
-	private String errorMsg; //error msg if the condition are not met during the process
-	
 //	<==========fuction block for uploading the photos and finger prints of the customer during registration
-	public String customerFileUp(HttpServletRequest request){
+	public String[] customerFileUp(HttpServletRequest request){
+		String[] retPath= new String[2];
 		if (!ServletFileUpload.isMultipartContent(request)) {
-			errorMsg="No files";
-			return errorMsg;
+			retPath[0]="No files";
+			return retPath;
 		}
 		DiskFileItemFactory factory= new DiskFileItemFactory();
 		factory.setSizeThreshold(MEMORY_THRESHOLD);
@@ -44,6 +43,8 @@ public class ImagePlacer {
 		upload.setFileSizeMax(MAX_FILE_SIZE);
 //		size for the request(upload file + form data)
 		upload.setSizeMax(MAX_REQUEST_SIZE);
+		String photoUpPath= System.getProperty("user.dir")+File.separator+UPLOAD_DIRECTORY;
+		String fingerUpPath=System.getProperty("user.dir")+File.separator+UPLOAD_DIRECTORY_FINGER;
 		try{
 			List<FileItem> formItems = upload.parseRequest(request);
 			if (formItems!= null && formItems.size()>0) {
@@ -54,12 +55,26 @@ public class ImagePlacer {
 						String fieldName=fi.getFieldName();
 						if (fieldName=="upload_photo") {
 							String fileName=fi.getName();
-							
+							String filePath=photoUpPath+File.separator+fileName;
+							File storeFile=new File(filePath);
+							//save the photo on upload directory
+							fi.write(storeFile);
+							retPath[0]=filePath;
+						}
+						if (fieldName.equals("upload_fingerprints")) {
+							String fileName=fi.getName();
+							String filePath=fingerUpPath+File.separator+fileName;
+							File storeFile=new File(filePath);
+							fi.write(storeFile);
+							retPath[1]=filePath;
 						}
 					}
 					
 				}
 			}
+		}catch(Exception ex){
+			System.out.println(ex);
 		}
+		return retPath;
 	}
 }

@@ -3,6 +3,8 @@
  */
 package com.kjjcsoft.model;
 import java.io.*;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -42,5 +44,22 @@ public class ImagePlacer {
 		upload.setFileSizeMax(MAX_FILE_SIZE);
 //		size for the request(upload file + form data)
 		upload.setSizeMax(MAX_REQUEST_SIZE);
+		try{
+			List<FileItem> formItems = upload.parseRequest(request);
+			if (formItems!= null && formItems.size()>0) {
+				Iterator i =formItems.iterator();
+				while (i.hasNext()) {
+					FileItem fi=(FileItem)i.next();
+					if(!fi.isFormField()){
+						String fieldName=fi.getFieldName();
+						if (fieldName=="upload_photo") {
+							String fileName=fi.getName();
+							
+						}
+					}
+					
+				}
+			}
+		}
 	}
 }

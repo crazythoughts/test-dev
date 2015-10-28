@@ -29,6 +29,7 @@ public class ImagePlacer {
 	
 //	<==========fuction block for uploading the photos and finger prints of the customer during registration
 	public String[] customerFileUp(HttpServletRequest request){
+		File phFile, fpFile;
 		String[] retPath= new String[2];
 		if (!ServletFileUpload.isMultipartContent(request)) {
 			retPath[0]="No files";
@@ -46,7 +47,7 @@ public class ImagePlacer {
 		String photoUpPath= System.getProperty("user.dir")+File.separator+UPLOAD_DIRECTORY;
 		String fingerUpPath=System.getProperty("user.dir")+File.separator+UPLOAD_DIRECTORY_FINGER;
 		try{
-			List<FileItem> formItems = upload.parseRequest(request);
+			List formItems = upload.parseRequest(request);
 			if (formItems!= null && formItems.size()>0) {
 				Iterator i =formItems.iterator();
 				while (i.hasNext()) {
@@ -55,21 +56,28 @@ public class ImagePlacer {
 						String fieldName=fi.getFieldName();
 						if (fieldName=="upload_photo") {
 							String fileName=fi.getName();
-							String filePath=photoUpPath+File.separator+fileName;
-							File storeFile=new File(filePath);
-							//save the photo on upload directory
-							fi.write(storeFile);
-							retPath[0]=filePath;
+							if (fileName.lastIndexOf("\\")>0) {
+								phFile=new File(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")));
+								retPath[0]=photoUpPath+fileName.substring(fileName.lastIndexOf("\\"));
+							}
+							else{
+								phFile=new File(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
+								retPath[0]=photoUpPath+fileName.substring(fileName.lastIndexOf("\\")+1);
+							}
+							fi.write(phFile);
 						}
 						if (fieldName.equals("upload_fingerprints")) {
 							String fileName=fi.getName();
-							String filePath=fingerUpPath+File.separator+fileName;
-							File storeFile=new File(filePath);
-							fi.write(storeFile);
-							retPath[1]=filePath;
+							if (fileName.lastIndexOf("\\")>0) {
+								fpFile=new File(fingerUpPath+fileName.substring(fileName.lastIndexOf("\\")));
+								retPath[1]=fingerUpPath+fileName.substring(fileName.lastIndexOf("\\"));
+							}else{
+								fpFile=new File(fingerUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
+								retPath[1]=fingerUpPath+fileName.substring(fileName.lastIndexOf("\\")+1);
+							}
+							fi.write(fpFile);
 						}
-					}
-					
+					}					
 				}
 			}
 		}catch(Exception ex){

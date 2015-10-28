@@ -3,6 +3,7 @@ package com.kjjcsoft.controllers;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kjjcsoft.bean.CustomerBean;
+import com.kjjcsoft.bean.RetrivedUserBean;
+import com.kjjcsoft.model.ImagePlacer;
 
 /**
  * Servlet implementation class CustomerRegistrationController
@@ -31,13 +34,17 @@ public class CustomerRegistrationController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RetrivedUserBean sesUser=new RetrivedUserBean();
 		CustomerBean customer=new CustomerBean();
+		String[] retPath=new String[2];
+		Date dt=new Date();
+		ImagePlacer formImgP=new ImagePlacer();
 		SimpleDateFormat sdf= new SimpleDateFormat("YYYY/MM/dd");
 		customer.setCustomerName(request.getParameter("fullname"));
 		try {
-			customer.setDob(sdf.parse(request.getParameter("dob")));
+			customer.setDob(sdf.parse(request.getParameter("dob",0)));
 		} catch (ParseException e) {
-			e.printStackTrace();
+			System.out.println(e);
 		}
 		customer.setGender(request.getParameter("sex"));
 		customer.setMaritalStatus(request.getParameter("marital_status"));
@@ -119,9 +126,17 @@ public class CustomerRegistrationController extends HttpServlet {
 			if (request.getParameter("g_temp_extra")!=null) {
 				customer.setgTempExtraInfo(request.getParameter("g_temp_extra"));
 			}
-			
 		}
-			
+		retPath=formImgP.customerFileUp(request);
+		if (retPath[0].equals("No files")) {
+			//redirect
+		}else{
+			customer.setPhotoPath(retPath[0]);
+			customer.setFinderPrintPath(retPath[1]);
+		}
+		sesUser=(RetrivedUserBean)(request.getSession().getAttribute("Userinfo"));
+		customer.setEntryBy(sesUser.getUser_id());
+		customer.setjDate(dt);
 	}
 
 }

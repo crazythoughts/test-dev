@@ -19,7 +19,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class ImagePlacer {
 //	UPLOAD DIRECTORIES FOR THE UPLOADED FILES
 	private static final String UPLOAD_DIRECTORY="customer_photos";
-	private static final String UPLOAD_DIRECTORY_FINGER="customrer_fp";
+	private static final String UPLOAD_DIRECTORY_FINGER="customer_fp";
 //	THRESH HOLD MEMORY DEFINED
 	private static final int MEMORY_THRESHOLD=1024*1024*3;
 //	MAXIMUM SIZE OF THE FILE THAT CAN BE UPLOADED
@@ -54,7 +54,7 @@ public class ImagePlacer {
 					FileItem fi=(FileItem)i.next();
 					if(!fi.isFormField()){
 						String fieldName=fi.getFieldName();
-						if (fieldName=="upload_photo") {
+						if (fieldName.equals("upload_photo")) {
 							String fileName=fi.getName();
 							if (fileName.lastIndexOf("\\")>0) {
 								phFile=new File(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")));

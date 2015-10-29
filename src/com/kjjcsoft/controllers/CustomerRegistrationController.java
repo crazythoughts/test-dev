@@ -1,7 +1,7 @@
 package com.kjjcsoft.controllers;
 
 import java.io.IOException;
-import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -38,12 +38,17 @@ public class CustomerRegistrationController extends HttpServlet {
 		CustomerBean customer=new CustomerBean();
 		String[] retPath=new String[2];
 		Date dt=new Date();
+		Date dobd=new Date();
+		String strDare = null;
+		ParsePosition pos = new ParsePosition(0);
 		ImagePlacer formImgP=new ImagePlacer();
-		SimpleDateFormat sdf= new SimpleDateFormat("YYYY/MM/dd");
+		SimpleDateFormat sdf= new SimpleDateFormat("yyyy.MM.dd");
 		customer.setCustomerName(request.getParameter("fullname"));
+		/*System.out.println(customer.getCustomerName());*/
+		strDare= request.getParameter("dob");
 		try {
-			customer.setDob(sdf.parse(request.getParameter("dob")));
-		} catch (ParseException e) {
+			dobd=sdf.parse(strDare,pos);
+		} catch (NullPointerException e) {
 			System.out.println(e);
 		}
 		customer.setGender(request.getParameter("sex"));

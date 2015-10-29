@@ -42,7 +42,7 @@ public class CustomerRegistrationController extends HttpServlet {
 		SimpleDateFormat sdf= new SimpleDateFormat("YYYY/MM/dd");
 		customer.setCustomerName(request.getParameter("fullname"));
 		try {
-			customer.setDob(sdf.parse(request.getParameter("dob",0)));
+			customer.setDob(sdf.parse(request.getParameter("dob")));
 		} catch (ParseException e) {
 			System.out.println(e);
 		}

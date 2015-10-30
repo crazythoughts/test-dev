@@ -1,9 +1,12 @@
 package com.kjjcsoft.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,9 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 import com.kjjcsoft.bean.CustomerBean;
 import com.kjjcsoft.bean.RetrivedUserBean;
-import com.kjjcsoft.model.ImagePlacer;
+import static com.kjjcsoft.controllers.DirectoryProvider.*;
 
 /**
  * Servlet implementation class CustomerRegistrationController
@@ -34,114 +41,109 @@ public class CustomerRegistrationController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RetrivedUserBean sesUser=new RetrivedUserBean();
+//		declaration part for the required propertise
+		String realPath=getServletContext().getRealPath("");
+		String contentType=request.getContentType();
 		CustomerBean customer=new CustomerBean();
-		String[] retPath=new String[2];
-		Date dt=new Date();
-		Date dobd=new Date();
-		String strDare = null;
-		ParsePosition pos = new ParsePosition(0);
-		ImagePlacer formImgP=new ImagePlacer();
-		SimpleDateFormat sdf= new SimpleDateFormat("yyyy.MM.dd");
-		customer.setCustomerName(request.getParameter("fullname"));
-		/*System.out.println(customer.getCustomerName());*/
-		strDare= request.getParameter("dob");
-		try {
-			dobd=sdf.parse(strDare,pos);
-		} catch (NullPointerException e) {
-			System.out.println(e);
-		}
-		customer.setGender(request.getParameter("sex"));
-		customer.setMaritalStatus(request.getParameter("marital_status"));
-		if (customer.getMaritalStatus()=="Married") {
-			customer.setSpouseName(request.getParameter("spouse_name"));			
-		}
-		customer.setOccupation(request.getParameter("occupation"));
-		if (request.getParameter("cellnumber_first")!=null) {
-			customer.setCellNumberFirst(request.getParameter("cellnumber_first"));			
-		}
-		if (request.getParameter("cellnumber_second")!=null) {
-			customer.setCellNumberSecond(request.getParameter("cellnumber_second"));
-		}
-		if (request.getParameter("landline")!=null) {
-			customer.setLandLine(request.getParameter("landline"));
-		}
-		customer.setPermDistrict(request.getParameter("perm_dist"));
-		customer.setPermVdcMunicipality(request.getParameter("perm_vdc_mp"));
-		if (request.getParameter("perm_extra")!=null) {
-			customer.setPermExtrainfo(request.getParameter("perm_extra"));
-		}
-		customer.setTempDistrict(request.getParameter("temp_dist"));
-		customer.setTempVdcMunicipality(request.getParameter("temp_vdc_mp"));
-		if (request.getParameter("temp_extra")!=null) {
-			customer.setTempExtrainfo(request.getParameter("temp_extra"));
-		}
-		customer.setFathersName(request.getParameter("fathers_name"));
-		if (request.getParameter("grandfathers_name")!=null) {
-			customer.setFathersName(request.getParameter("grandfathers_name"));
-		}
-		if (request.getParameter("father_in_law_name")!=null) {
-			customer.setFatherInLawsName(request.getParameter("father_in_law_name"));
-		}
-		customer.setNomineesName(request.getParameter("nominee_name"));
-		if (request.getParameter("nominee_cell_fist")!=null) {
-			customer.setnCellNumberFirst(request.getParameter("nominee_cell_first"));
-		}
-		if (request.getParameter("nominee_cell_second")!=null) {
-			customer.setnCellNumberSecond(request.getParameter("nominee_cell_second"));
-		}
-		if (request.getParameter("nominee_landline")!=null) {
-			customer.setnLandLine(request.getParameter("nominee_landline"));
-		}
-		if (request.getParameter("nominee_email")!=null) {
-			customer.setnEmailId(request.getParameter("nominee_email"));
-		}
-		customer.setnPermDistrict(request.getParameter("n_perm_dist"));
-		customer.setnPermVdcMunicipality(request.getParameter("n_perm_vdc_mp"));
-		if (request.getParameter("n_perm_extra")!=null) {
-			customer.setnPermExtraInfo(request.getParameter("n_perm_extra"));
-		}
-		customer.setnTempDistrict(request.getParameter("n_temp_dist"));
-		customer.setnTempVdcMunicipality(request.getParameter("n_temp_vdc_mp"));
-		if (request.getParameter("n_temp_extra")!=null) {
-			customer.setnTempExtraInfo(request.getParameter("n_temp_extra"));
-		}
-		if (customer.getCustomerAge()<16) {
-			customer.setGuardianName(request.getParameter("guardian_name"));
-			customer.setgRelation(request.getParameter("guardian_relation"));
-			if (request.getParameter("guardian_cell_first")!=null) {
-				customer.setgCellNumberFirst(request.getParameter("guardian_cell_first"));
+		String photoUpPath;
+		String fingerPrintUpPath;
+		File customerFile=null, fingerprintFile=null;
+		SimpleDateFormat sdf= new SimpleDateFormat("YYYY/MM/dd");
+		/*Starting to process the data from the form*/
+		if (contentType.indexOf("multipart/form-data")>=0) {
+			/*creating a factory for disk-based file items*/
+			DiskFileItemFactory factory = new DiskFileItemFactory();
+			/*Defining the threshhold size of the file that will be kept in memory*/
+			factory.setSizeThreshold(MEMORY_THRESHOLD);
+			/*defining directory to temporary store file which are larger than the threshhold memory*/
+			factory.setRepository(new File(realPath+TMP));
+			/*creating a file upload handler*/
+			ServletFileUpload upload= new ServletFileUpload(factory);
+			/*defining the maximum size of the file that can be uploaded to the form*/
+			upload.setFileSizeMax(MAX_FILE_SIZE);
+			/*defining the maximum size of the request(form-data+upload file)*/
+			upload.setFileSizeMax(MAX_REQUEST_SIZE);
+			/*defining the path for the directory to upload the customer photo*/
+			photoUpPath=realPath+PHOTO_UPLOAD_DIRECTORY;
+			/*defining the path for the directory to upload the finger print of the customers*/
+			fingerPrintUpPath=realPath+FINGER_PRINT_UPLOAD_DIRECTORY;
+			try{
+				//parse the request objects content to extract the file data
+				List<FileItem> formItems = upload.parseRequest(request);
+				Iterator<FileItem> itr = formItems.iterator();
+				while (itr.hasNext()) {
+					FileItem item = (FileItem) itr.next();
+					if (item.isFormField()) {
+						String fieldName=item.getFieldName();
+						String fieldValue=item.getString();
+						switch (fieldName){
+						case "fullname":
+							if (fieldValue==null) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+							} else{
+								customer.setCustomerName(fieldValue);
+							}
+							break;
+						case "dob":
+							if (fieldValue == null) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+							} else {
+								customer.setDob(sdf.parse(fieldValue));
+							}
+							break;
+						case "sex":
+							if (fieldValue == null) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+							} else {
+								customer.setGender(fieldValue);
+							}
+							break;
+						case "marital_status":
+							if (fieldValue == null) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+							} else {
+								customer.setGender(fieldValue);
+							}
+							break;
+						}
+					}
+					if (!item.isFormField()) {
+						String fieldName=item.getFieldName();
+						if (fieldName.equals("upload_photo")) {
+							String fileName=item.getName();
+							String mimeType = getServletContext().getMimeType(fileName);
+							if (mimeType.startsWith("image/")) {
+								if (fileName.lastIndexOf("\\")>0) {
+									customerFile = new File(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")));
+								} else {
+									customerFile = new File(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
+								}
+							} else {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+							}
+							item.write(customerFile);
+						}
+						if (fieldName.equals("upload_fingerprints")) {
+							String fileName=item.getName();
+							String mimeType = getServletContext().getMimeType(fileName);
+							if (mimeType.startsWith("image/")) {
+								if (fileName.lastIndexOf("\\")>0) {
+									customerFile = new File(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")));
+								} else {
+									customerFile = new File(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
+								}
+							} else {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+							}
+							item.write(fingerprintFile);
+						}
+					}
+				}
+			} catch(Exception ex){
+				System.out.println(ex);
 			}
-			if (request.getParameter("guardian_cell_second")!=null) {
-				customer.setgCellNumberSecond(request.getParameter("guardian_cell_second"));
-			}
-			if (request.getParameter("guardian_landline")!=null) {
-				customer.setgLandLine(request.getParameter("guardian_landline"));
-			}
-			if (request.getParameter("guardian_email")!=null) {
-				customer.setgEmailId(request.getParameter("guardian_email"));
-			}
-			customer.setgPermDistrict(request.getParameter("g_perm_dist"));
-			customer.setgPermVdcMunicipality(request.getParameter("g_perm_vdc_mp"));
-			if (request.getParameter("g_perm_extra")!=null) {
-				customer.setgPermExtraInfo(request.getParameter("g_perm_extra"));
-			}
-			customer.setgTempDistrict(request.getParameter("g_temp_district"));
-			customer.setgTempVdcMunicipality(request.getParameter("g_temp_vdc_mp"));
-			if (request.getParameter("g_temp_extra")!=null) {
-				customer.setgTempExtraInfo(request.getParameter("g_temp_extra"));
-			}
 		}
-		retPath=formImgP.customerFileUp(request);
-		if (retPath[0].equals("No files")) {
-			//redirect
-		}else{
-			customer.setPhotoPath(retPath[0]);
-			customer.setFinderPrintPath(retPath[1]);
-		}
-		sesUser=(RetrivedUserBean)(request.getSession().getAttribute("Userinfo"));
-		customer.setEntryBy(sesUser.getUser_id());
-		customer.setjDate(dt);
+		
 	}
 
 }

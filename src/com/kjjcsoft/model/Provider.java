@@ -8,8 +8,8 @@ package com.kjjcsoft.model;
  *
  */
 public interface Provider {
-String DRIVER="com.mysql.jdbc.Driver";
-String CONNECTION_URL="jdbc:mysql://localhost/kjjcsoft_db";
-String USERNAME="root";
-String PASSWORD="";
+final String DRIVER="com.mysql.jdbc.Driver";
+final String CONNECTION_URL="jdbc:mysql://localhost/kjjcsoft_db";
+final String USERNAME="root";
+final String PASSWORD="";
 }

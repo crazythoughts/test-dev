@@ -35,6 +35,9 @@
 				<label for="upload_photo">Upload Photo:</label>
 				<input type="file" name="upload_photo"/>
 				<br>
+				<label for="age">Age</label>
+				<input type="text" name="age">
+				<br>
 				<label for="dob">Date of birth</label>
 				<input type="text" name="dob"/>
 				<br>
@@ -47,7 +50,7 @@
 				<input type="radio" name="marital_status" value="Married"/>Married
 				<br>
 				<label for="spouse_name">Spouse Name:</label>
-				<input type="" name="" placeholder="Spouse Name"/>
+				<input type="text" name="spouse_name" placeholder="Spouse Name"/>
 				<br>
 				<label for="occupation">Occupation</label>
 				<input type="text" name="occupation" placeholder="Occupation"/>
@@ -61,12 +64,15 @@
 				<label for="landline">Landline</label>
 				<input type="text" name="landline" placeholder="01XXXXXXXX"/>
 				<br>
+				<label for="customer_email">Email</label>
+				<input type="text" name="customer_email"/>
+				<br>
 				<fieldset>
 					<legend>Permanent Address</legend>
 					<label for="perm_dist">District</label>
 					<input type="text" name="perm_dist" placeholder="District"/>
 					<label for="perm_vdc_mp">VDC/Municipality</label>
-					<input type="text" name="per_vdc_mp" placeholder="VDC/Municipality"/>
+					<input type="text" name="perm_vdc_mp" placeholder="VDC/Municipality"/>
 					<label for="perm_other">Other Information</label>
 					<input type="text" name="perm_other" placeholder=""/>
 				</fieldset>
@@ -108,7 +114,7 @@
 						<label for="n_perm_dist">District</label>
 						<input type="text" name="n_perm_dist" placeholder="District"/>
 						<label for="n_perm_vdc_mp">VDC/Municipality</label>
-						<input type="text" name="n_per_vdc_mp" placeholder="VDC/Municipality"/>
+						<input type="text" name="n_perm_vdc_mp" placeholder="VDC/Municipality"/>
 						<label for="n_perm_other">Other Information</label>
 						<input type="text" name="n_perm_other" placeholder=""/>
 					</fieldset>
@@ -137,7 +143,7 @@
 					<input type="type" name="guardian_cell_second" placeholder="98XXXXXXXX"/>
 					<br>
 					<label for="guardian_landline">Landline</label>
-					<input type="text" name="nominee_landline" placeholder="01XXXXXXXX"/>
+					<input type="text" name="guardian_landline" placeholder="01XXXXXXXX"/>
 					<br>
 					<label for="guardian_email">Email</label>
 					<input type="text" name="guardian_email" placeholder="example@example.com"/>
@@ -146,7 +152,7 @@
 						<label for="g_perm_dist">District</label>
 						<input type="text" name="g_perm_dist" placeholder="District"/>
 						<label for="g_perm_vdc_mp">VDC/Municipality</label>
-						<input type="text" name="g_per_vdc_mp" placeholder="VDC/Municipality"/>
+						<input type="text" name="g_perm_vdc_mp" placeholder="VDC/Municipality"/>
 						<label for="g_perm_other">Other Information</label>
 						<input type="text" name="g_perm_other" placeholder=""/>
 					</fieldset>

@@ -2,7 +2,6 @@ package com.kjjcsoft.controllers;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -20,6 +19,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.kjjcsoft.bean.CustomerBean;
 import com.kjjcsoft.bean.RetrivedUserBean;
+import com.kjjcsoft.model.DBFunctions;
+
 import static com.kjjcsoft.controllers.DirectoryProvider.*;
 
 /**
@@ -45,8 +46,12 @@ public class CustomerRegistrationController extends HttpServlet {
 		String realPath=getServletContext().getRealPath("");
 		String contentType=request.getContentType();
 		CustomerBean customer=new CustomerBean();
+		RetrivedUserBean ses_usr=new RetrivedUserBean();
+		ses_usr=(RetrivedUserBean)request.getSession().getAttribute("Userinfo");
+		DBFunctions func=new DBFunctions();
 		String photoUpPath;
 		String fingerPrintUpPath;
+		Date dt= new Date();
 		File customerFile=null, fingerprintFile=null;
 		SimpleDateFormat sdf= new SimpleDateFormat("YYYY/MM/dd");
 		/*Starting to process the data from the form*/
@@ -77,32 +82,430 @@ public class CustomerRegistrationController extends HttpServlet {
 						String fieldName=item.getFieldName();
 						String fieldValue=item.getString();
 						switch (fieldName){
-						case "fullname":
-							if (fieldValue==null) {
+						case "account_type":
+							if (fieldValue.equals("")) {
 								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								customer.setAccountType(fieldValue);
+							}
+							break;
+						case "fullname":
+							if (fieldValue.equals("")) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
 							} else{
 								customer.setCustomerName(fieldValue);
 							}
 							break;
-						case "dob":
-							if (fieldValue == null) {
+						case "age":
+							if (fieldValue.equals("")) {
 								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								customer.setCustomerAge(Integer.parseInt(fieldValue));
+							}
+							break;
+						case "dob":
+							if (fieldValue.equals("")) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
 							} else {
 								customer.setDob(sdf.parse(fieldValue));
 							}
 							break;
 						case "sex":
-							if (fieldValue == null) {
+							if (fieldValue.equals("")) {
 								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
 							} else {
 								customer.setGender(fieldValue);
 							}
 							break;
 						case "marital_status":
-							if (fieldValue == null) {
+							if (fieldValue.equals("")) {
 								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
 							} else {
-								customer.setGender(fieldValue);
+								customer.setMaritalStatus(fieldValue);
+							}
+							break;
+						case "spouse_name":
+							if (customer.getMaritalStatus().equals("Married")) {
+								if (fieldValue.equals("")) {
+									response.sendRedirect("../../../view/customer_registration.jsp");
+									return;
+								}else{
+									customer.setSpouseName(fieldValue);
+								}
+							}else{
+								customer.setSpouseName("");
+							}
+							break;
+						case "occupation":
+							if (fieldValue.equals("")) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								customer.setOccupation(fieldValue);
+							}
+							break;
+						case "cellnumber_first":
+							if (fieldValue.equals("")) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								customer.setCellNumberFirst(fieldValue);
+							}
+							break;
+						case "cellnumber_second":
+							if (fieldValue.equals("")) {
+								customer.setCellNumberSecond("");
+							} else {
+								customer.setCellNumberSecond(fieldValue);
+							}
+							break;
+						case "landline":
+							if (fieldValue.equals("")) {
+								customer.setLandLine("");
+							} else {
+								customer.setLandLine(fieldValue);
+							}
+							break;
+						case "customer_email":
+							if (fieldValue.equals("")) {
+								customer.setEmailId("");
+							} else {
+								customer.setEmailId(fieldValue);
+							}
+							break;
+						case "perm_dist":
+							if (fieldValue.equals("")) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								customer.setPermDistrict(fieldValue);
+							}
+							break;
+						case "perm_vdc_mp":
+							if (fieldValue.equals("")) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								customer.setPermVdcMunicipality(fieldValue);
+							}
+							break;
+						case "perm_other":
+							if (fieldValue.equals("")) {
+								customer.setPermExtrainfo("");
+							} else {
+								customer.setPermExtrainfo(fieldValue);
+							}
+							break;
+						case "temp_dist":
+							if (fieldValue.equals("")) {
+								customer.setTempDistrict("");
+							} else {
+								customer.setTempDistrict(fieldValue);
+							}
+							break;
+						case "temp_vdc_mp":
+							if (fieldValue.equals("")) {
+								customer.setTempVdcMunicipality("");
+							} else {
+								customer.setTempVdcMunicipality(fieldValue);
+							}
+							break;
+						case "temp_other":
+							if (fieldValue.equals("")) {
+								customer.setTempExtrainfo("");
+							} else {
+								customer.setTempExtrainfo(fieldValue);
+							}
+							break;
+						case "fathers_name":
+							if (fieldValue.equals("")) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								customer.setFathersName(fieldValue);
+							}
+							break;
+						case "grandfathers_name":
+							if (customer.getGender().equals("Male")) {
+								if (fieldValue.equals("")) {
+									response.sendRedirect("../../../view/customer_registration.jsp");
+									return;
+								} else {
+									customer.setGrandFathersName(fieldValue);
+								}
+							} else {
+								if (fieldValue.equals("")) {
+									customer.setGrandFathersName("");
+								} else{
+									customer.setGrandFathersName(fieldValue);
+								}
+							}
+							break;
+						case "father_in_law_name":
+							if(customer.getGender().equals("Female") && customer.getMaritalStatus().equals("Married")){
+								if (customer.getGrandFathersName().equals("") && fieldValue.equals("")) {
+									response.sendRedirect("../../../view/customer_registration.jsp");
+									return;
+								} else {
+									customer.setFatherInLawsName(fieldValue);
+								}
+							} else {
+								if (fieldValue.equals("")) {
+									customer.setFatherInLawsName("");
+								} else {
+									customer.setFatherInLawsName(fieldValue);
+								}
+							}
+							break;
+						case "nominee_name":
+							if (fieldValue.equals("")) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								customer.setNomineesName(fieldValue);
+							}
+							break;
+						case "nominee_cell_first":
+							if (fieldValue.equals("")) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								customer.setnCellNumberFirst(fieldValue);
+							}
+							break;
+						case "nominee_cell_second":
+							if (fieldValue.equals("")) {
+								customer.setnCellNumberSecond("");
+							} else {
+								customer.setnCellNumberSecond(fieldValue);
+							}
+							break;
+						case "nominee_landline":
+							if (fieldValue.equals("")) {
+								customer.setnLandLine("");
+							} else {
+								customer.setnLandLine(fieldValue);
+							}
+							break;
+						case "nominee_email":
+							if (fieldValue.equals("")) {
+								customer.setnEmailId("");
+							} else {
+								customer.setnEmailId(fieldValue);
+							}
+							break;
+						case "n_perm_dist":
+							if (fieldValue.equals("")) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								customer.setnPermDistrict(fieldValue);
+							}
+							break;
+						case "n_perm_vdc_mp":
+							if (fieldValue.equals("")) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								customer.setnPermVdcMunicipality(fieldValue);
+							}
+							break;
+						case "n_perm_other":
+							if (fieldValue.equals("")) {
+								customer.setnPermExtraInfo("");
+							} else {
+								customer.setnPermExtraInfo(fieldValue);
+							}
+							break;
+						case "n_temp_dist":
+							if (fieldValue.equals("")) {
+								customer.setnTempDistrict("");
+							} else {
+								customer.setnTempDistrict(fieldValue);
+							}
+							break;
+						case "n_temp_vdc_mp":
+							if (fieldValue.equals("")) {
+								customer.setnTempVdcMunicipality("");
+							} else {
+								customer.setnTempVdcMunicipality(fieldValue);
+							}
+							break;
+						case "n_temp_other":
+							if (fieldValue.equals("")) {
+								customer.setnTempExtraInfo("");
+							} else {
+								customer.setnTempExtraInfo(fieldValue);
+							}
+							break;
+						case "guardian_name":
+							if (customer.getCustomerAge()<16) {
+								if (fieldValue.equals("")) {
+									response.sendRedirect("../../../view/customer_registration.jsp");
+									return;
+								} else {
+									customer.setGuardianName(fieldValue);
+								}
+							} else {
+								customer.setGuardianName("");
+							}
+							break;
+						case "guardian_relation":
+							if (customer.getCustomerAge()<16) {
+								if (fieldValue.equals("")) {
+									response.sendRedirect("../../../view/customer_registration.jsp");
+									return;
+								} else {
+									customer.setgRelation(fieldValue);
+								}
+							} else {
+								customer.setgRelation("");
+							}
+							break;
+						case "guardian_cell_first":
+							if (customer.getCustomerAge()<16) {
+								if (fieldValue.equals("")) {
+									response.sendRedirect("../../../view/customer_registration.jsp");
+									return;
+								} else {
+									customer.setgCellNumberFirst(fieldValue);
+								}
+							} else {
+								customer.setgCellNumberFirst("");
+							}
+							break;
+						case "guardian_cell_second":
+							if (customer.getCustomerAge()<16) {
+								if (fieldValue.equals("")) {
+									customer.setgCellNumberSecond("");
+								} else {
+									customer.setgCellNumberSecond(fieldValue);
+								}
+							} else {
+								customer.setgCellNumberSecond("");
+							}
+							break;
+						case "guardian_landline":
+							if (customer.getCustomerAge()<16) {
+								if (fieldValue.equals("")) {
+									customer.setgLandLine("");
+								} else {
+									customer.setgLandLine(fieldValue);
+								}
+							} else {
+								customer.setgLandLine("");
+							}
+							break;
+						case "guardian_email":
+							if (customer.getCustomerAge()<16) {
+								if (fieldValue.equals("")) {
+									customer.setgEmailId("");
+								} else {
+									customer.setgEmailId(fieldValue);
+								}
+							} else {
+								customer.setgEmailId("");
+							}
+							break;
+						case "g_perm_dist":
+							if (customer.getCustomerAge()<16) {
+								if (fieldValue.equals("")) {
+									response.sendRedirect("../../../view/customer_registration.jsp");
+									return;
+								} else {
+									customer.setgPermDistrict(fieldValue);
+								}
+							} else {
+								customer.setgPermDistrict("");
+							}
+							break;
+						case "g_perm_vdc_mp":
+							if (customer.getCustomerAge()<16) {
+								if (fieldValue.equals("")) {
+									response.sendRedirect("../../../view/customer_registration.jsp");
+									return;
+								} else {
+									customer.setgPermVdcMunicipality(fieldValue);
+								}
+							} else {
+								customer.setgPermVdcMunicipality("");
+							}
+							break;
+						case "g_perm_other":
+							if (customer.getCustomerAge()<16) {
+								if (fieldValue.equals("")) {
+									response.sendRedirect("../../../view/customer_registration.jsp");
+									return;
+								} else {
+									customer.setgPermExtraInfo(fieldValue);
+								}
+							} else {
+								customer.setgPermExtraInfo("");
+							}
+							break;
+						case "g_temp_dist":
+							if (customer.getCustomerAge()<16) {
+								if (fieldValue.equals("")) {
+									customer.setgTempDistrict("");
+								} else {
+									customer.setgTempDistrict(fieldValue);
+								}
+							} else {
+								customer.setgTempDistrict("");
+							}
+							break;
+						case "g_temp_vdc_mp":
+							if (customer.getCustomerAge()<16) {
+								if (fieldValue.equals("")) {
+									customer.setgTempVdcMunicipality("");
+								} else {
+									customer.setgTempVdcMunicipality(fieldValue);
+								}
+							} else {
+								customer.setgTempVdcMunicipality("");
+							}
+							break;
+						case "g_temp_other":
+							if (customer.getCustomerAge()<16) {
+								if (fieldValue.equals("")) {
+									customer.setgTempExtraInfo("");
+								} else {
+									customer.setgTempExtraInfo(fieldValue);
+								}
+							} else {
+								customer.setgTempExtraInfo("");
+							}
+							break;
+						case "interest_rate":
+							break;
+						case "starting_amount":
+							break;
+						case "creation_date":
+							if (fieldValue.equals("")) {
+								customer.setjDate(dt);
+							} else {
+								customer.setjDate(sdf.parse(fieldValue));
+							}
+							break;
+						case "reffered_by":
+							if (fieldValue.equals("")) {
+								customer.setRefferedBy("");
+							} else {
+								customer.setRefferedBy(fieldValue);
+							}
+							break;
+						case "approved_by":
+							if (fieldValue.equals("")) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								customer.setApprovedBy(fieldValue);
 							}
 							break;
 						}
@@ -110,32 +513,48 @@ public class CustomerRegistrationController extends HttpServlet {
 					if (!item.isFormField()) {
 						String fieldName=item.getFieldName();
 						if (fieldName.equals("upload_photo")) {
-							String fileName=item.getName();
-							String mimeType = getServletContext().getMimeType(fileName);
-							if (mimeType.startsWith("image/")) {
-								if (fileName.lastIndexOf("\\")>0) {
-									customerFile = new File(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")));
-								} else {
-									customerFile = new File(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
-								}
-							} else {
+							if(item.getName().equals("")){
 								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								String fileName=item.getName();
+								String mimeType = getServletContext().getMimeType(fileName);
+								if (mimeType.startsWith("image/")) {
+									if (fileName.lastIndexOf("\\")>0) {
+										customerFile = new File(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")));
+										customer.setPhotoPath(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")));
+									} else {
+										customerFile = new File(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
+										customer.setPhotoPath(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
+									}
+								} else {
+									response.sendRedirect("../../../view/customer_registration.jsp");
+									return;
+								}
+								item.write(customerFile);
 							}
-							item.write(customerFile);
 						}
 						if (fieldName.equals("upload_fingerprints")) {
-							String fileName=item.getName();
-							String mimeType = getServletContext().getMimeType(fileName);
-							if (mimeType.startsWith("image/")) {
-								if (fileName.lastIndexOf("\\")>0) {
-									customerFile = new File(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")));
-								} else {
-									customerFile = new File(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
-								}
-							} else {
+							if(item.getName().equals("")){
 								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								String fileName=item.getName();
+								String mimeType = getServletContext().getMimeType(fileName);
+								if (mimeType.startsWith("image/")) {
+									if (fileName.lastIndexOf("\\")>0) {
+										fingerprintFile = new File(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")));
+										customer.setFinderPrintPath(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")));
+									} else {
+										fingerprintFile = new File(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
+										customer.setFinderPrintPath(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
+									}
+								} else {
+									response.sendRedirect("../../../view/customer_registration.jsp");
+									return;
+								}
+								item.write(fingerprintFile);
 							}
-							item.write(fingerprintFile);
 						}
 					}
 				}
@@ -143,7 +562,8 @@ public class CustomerRegistrationController extends HttpServlet {
 				System.out.println(ex);
 			}
 		}
-		
+		customer.setEntryBy(ses_usr.getUser_id());
+		func.createCustomer(customer);
 	}
 
 }

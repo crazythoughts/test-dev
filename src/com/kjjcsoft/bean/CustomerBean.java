@@ -58,6 +58,7 @@ public class CustomerBean {
 	private Date jDate=new Date();
 	private String refferedBy;
 	private int entryBy;
+	private String approvedBy;
 	private String accountType;
 	
 	public String getCustomerName() {
@@ -354,4 +355,11 @@ public class CustomerBean {
 	public void setAccountType(String accountType) {
 		this.accountType = accountType;
 	}
+	public String getApprovedBy() {
+		return approvedBy;
+	}
+	public void setApprovedBy(String approvedBy) {
+		this.approvedBy = approvedBy;
+	}
+	
 }

@@ -4,10 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 <title>Customer List</title>
 </head>
 <body>
 	<jsp:include page="sidebar.jsp" />
 	<jsp:include page="customer_header.jsp" />
+	<jsp:include page="footer.jsp"/>
 </body>
 </html>

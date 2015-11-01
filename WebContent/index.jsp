@@ -5,18 +5,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="" type="text/css" />
+<link rel="stylesheet" href="view/css/style.css" type="text/css" />
 <title>Login Page</title>
 </head>
 <body>
-	<form action="com/kjjcsoft/controllers/UserLogin" method="post">
-		<label for="username"> Username </label> <input type="text"
+<section id="loginpage">
+<div class="soft-logo">KJJC Soft</div>
+<div class="login">
+	<div class="login-title">LOGIN</div>
+	<form class="kform" action="com/kjjcsoft/controllers/UserLogin" method="post">
+	<div>
+		<!-- <label for="username"> Username </label> --> <input type="text"
 			placeholder="Username" name="username" class="username_input"
-			required /> <label for="password"> Password </label> <input
+			required /> 
+	</div>
+	<div>
+			<!-- <label for="password"> Password </label>  --><input
 			type="password" placeholder="*********" name="password"
-			class="password_input" required /> <input type="submit" name="login"
+			class="password_input" required /> 
+	</div>
+	<div class="submit">
+			<input type="submit" name="login"
 			value="Login" />
+	</div>
 	</form>
+</div>
+</section>
 	<c:choose>
 		<c:when test="${sessionScope.error == true }">
 				Username or password error.

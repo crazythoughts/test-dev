@@ -17,5 +17,6 @@
 		<br>User Status: <br>User Type:
 		<c:out value="${sessionScope.Userinfo.getRole()}"></c:out>
 	</div>
+	<jsp:include page="footer.jsp"/>
 </body>
 </html>

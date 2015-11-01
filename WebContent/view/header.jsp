@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="css/style.css" type="text/css"/>
 <c:choose>
 	<c:when test="${sessionScope.AdminLogin==true}">
 		<title>Administrator Logged in</title>

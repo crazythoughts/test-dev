@@ -10,6 +10,7 @@ import java.util.Date;
  *
  */
 public class CustomerBean {
+	private int customerId;
 	private String customerName;
 	private int customerAge;
 	private String gender;
@@ -24,6 +25,8 @@ public class CustomerBean {
 	private String cellNumberSecond;
 	private String landLine;
 	private String emailId;
+	private String citizenShipNo;
+	private String nationality;
 	private String maritalStatus;
 	private String spouseName;
 	private String occupation;
@@ -60,6 +63,8 @@ public class CustomerBean {
 	private int entryBy;
 	private String approvedBy;
 	private String accountType;
+	private float interest;
+	private double startingAmount;
 	
 	public String getCustomerName() {
 		return customerName;
@@ -361,5 +366,35 @@ public class CustomerBean {
 	public void setApprovedBy(String approvedBy) {
 		this.approvedBy = approvedBy;
 	}
+	public float getInterest() {
+		return interest;
+	}
+	public void setInterest(float interest) {
+		this.interest = interest;
+	}
+	public String getCitizenShipNo() {
+		return citizenShipNo;
+	}
+	public void setCitizenShipNo(String citizenShipNo) {
+		this.citizenShipNo = citizenShipNo;
+	}
+	public String getNationality() {
+		return nationality;
+	}
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+	public double getStartingAmount() {
+		return startingAmount;
+	}
+	public void setStartingAmount(double startingAmount) {
+		this.startingAmount = startingAmount;
+	}
+	public int getCustomerId() {
+		return customerId;
+	}
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}	
 	
 }

@@ -19,8 +19,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.kjjcsoft.bean.CustomerBean;
 import com.kjjcsoft.bean.RetrivedUserBean;
-import com.kjjcsoft.model.DBFunctions;
-
+import com.kjjcsoft.model.Customer;
 import static com.kjjcsoft.controllers.DirectoryProvider.*;
 
 /**
@@ -46,9 +45,10 @@ public class CustomerRegistrationController extends HttpServlet {
 		String realPath=getServletContext().getRealPath("");
 		String contentType=request.getContentType();
 		CustomerBean customer=new CustomerBean();
+		CustomerBean customerDetail= new CustomerBean();
 		RetrivedUserBean ses_usr=new RetrivedUserBean();
 		ses_usr=(RetrivedUserBean)request.getSession().getAttribute("Userinfo");
-		DBFunctions func=new DBFunctions();
+		Customer newCustomer= new Customer();
 		String photoUpPath;
 		String fingerPrintUpPath;
 		Date dt= new Date();
@@ -120,6 +120,22 @@ public class CustomerRegistrationController extends HttpServlet {
 								return;
 							} else {
 								customer.setGender(fieldValue);
+							}
+							break;
+						case "nationality":
+							if (fieldValue.equals("")) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								customer.setNationality(fieldValue);
+							}
+							break;
+						case "citizenship_no":
+							if (fieldValue.equals("")) {
+								response.sendRedirect("../../../view/customer_registration.jsp");
+								return;
+							} else {
+								customer.setCitizenShipNo(fieldValue);
 							}
 							break;
 						case "marital_status":
@@ -483,8 +499,18 @@ public class CustomerRegistrationController extends HttpServlet {
 							}
 							break;
 						case "interest_rate":
+							if (fieldValue.equals("")) {
+								customer.setInterest(10);
+							} else {
+								customer.setInterest(Float.parseFloat(fieldValue));
+							}
 							break;
 						case "starting_amount":
+							if (fieldValue.equals("")) {
+								customer.setStartingAmount(0);
+							} else {
+								customer.setStartingAmount(Double.parseDouble(fieldValue));
+							}
 							break;
 						case "creation_date":
 							if (fieldValue.equals("")) {
@@ -563,7 +589,14 @@ public class CustomerRegistrationController extends HttpServlet {
 			}
 		}
 		customer.setEntryBy(ses_usr.getUser_id());
-		func.createCustomer(customer);
+		if(newCustomer.registerCustomer(customer)){
+			customerDetail=newCustomer.lastInsertion();
+			if (customer.getAccountType().equals("ds")) {
+				if (newCustomer.createAccount(customerDetail.getCustomerId(), customer.getInterest(), customer.getEntryBy())) {
+					
+				}
+			}
+		}
 	}
 
 }

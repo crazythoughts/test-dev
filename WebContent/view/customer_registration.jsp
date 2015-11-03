@@ -46,6 +46,12 @@
 				<input type="radio" name="sex" value="Male"/>Male
 				<input type="radio" name="sex" value="Female"/>Female
 				<br>
+				<label for="nationality">Nationality</label>
+				<input type="text" name="nationality" placeholder="nationality"/>
+				<br>
+				<label for="citizenship_no">Citizenship number:</label>
+				<input type="text" name="citizenship_no" placeholder=""/>
+				<br>
 				<label for="marital_status">Marital Status:</label>
 				<input type="radio" name="marital_status" value="Single"/>Single
 				<input type="radio" name="marital_status" value="Married"/>Married

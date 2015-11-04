@@ -82,14 +82,6 @@ public class CustomerRegistrationController extends HttpServlet {
 						String fieldName=item.getFieldName();
 						String fieldValue=item.getString();
 						switch (fieldName){
-						case "account_type":
-							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
-								return;
-							} else {
-								customer.setAccountType(fieldValue);
-							}
-							break;
 						case "fullname":
 							if (fieldValue.equals("")) {
 								response.sendRedirect("../../../view/customer_registration.jsp");
@@ -498,20 +490,6 @@ public class CustomerRegistrationController extends HttpServlet {
 								customer.setgTempExtraInfo("");
 							}
 							break;
-						case "interest_rate":
-							if (fieldValue.equals("")) {
-								customer.setInterest(10);
-							} else {
-								customer.setInterest(Float.parseFloat(fieldValue));
-							}
-							break;
-						case "starting_amount":
-							if (fieldValue.equals("")) {
-								customer.setStartingAmount(0);
-							} else {
-								customer.setStartingAmount(Double.parseDouble(fieldValue));
-							}
-							break;
 						case "creation_date":
 							if (fieldValue.equals("")) {
 								customer.setjDate(dt);
@@ -547,10 +525,10 @@ public class CustomerRegistrationController extends HttpServlet {
 								String mimeType = getServletContext().getMimeType(fileName);
 								if (mimeType.startsWith("image/")) {
 									if (fileName.lastIndexOf("\\")>0) {
-										customerFile = new File(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")));
-										customer.setPhotoPath(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")));
+										customerFile = new File(photoUpPath+File.separator+fileName.substring(fileName.lastIndexOf("\\")));
+										customer.setPhotoPath(photoUpPath+File.separator+fileName.substring(fileName.lastIndexOf("\\")));
 									} else {
-										customerFile = new File(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
+										customerFile = new File(photoUpPath+File.separator+fileName.substring(fileName.lastIndexOf("\\")+1));
 										customer.setPhotoPath(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
 									}
 								} else {
@@ -591,11 +569,8 @@ public class CustomerRegistrationController extends HttpServlet {
 		customer.setEntryBy(ses_usr.getUser_id());
 		if(newCustomer.registerCustomer(customer)){
 			customerDetail=newCustomer.lastInsertion();
-			if (customer.getAccountType().equals("ds")) {
-				if (newCustomer.createAccount(customerDetail.getCustomerId(), customer.getInterest(), customer.getEntryBy())) {
-					
-				}
-			}
+			request.getSession().setAttribute("newCustomer", customerDetail);
+			response.sendRedirect("../../../view/customer_registered.jsp");
 		}
 	}
 

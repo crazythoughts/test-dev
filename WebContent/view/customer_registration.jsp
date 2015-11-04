@@ -1,8 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<c:choose>
+	<c:when test="${sessionScope.loggedIn !=true }">
+		<c:redirect url="../index.jsp"/>
+	</c:when>
+</c:choose>
 <html>
 <head>
+<META Http-Equiv="Cache-Control" Content="no-cache">
+<META Http-Equiv="Pragma" Content="no-cache">
+<META Http-Equiv="Expires" Content="0"> 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <title>Customer Registration</title>
@@ -16,20 +25,6 @@
 		<div>
 			<h3>Customer Registration</h3>
 			<form action="../com/kjjcsoft/controllers/CustomerRegistration" method="post" enctype="multipart/form-data">
-				<label for="account_type">Account Type</label>
-				<select name="account_type">
-					<optgroup label="Saving Accounts">
-						<option value="ds">Daily Savings</option>
-						<option value="ms">Monthly Savings</option>
-						<option value="fds">Fixed Deposit Savings</option>
-						<option value="cfd">Cummulative Fixed Deposit</option>
-					</optgroup>
-					<optgroup label="Loan Accounts">
-						<option value="bl">Bussiness Loan</option>
-						<option value="al">Agricultural Loan</option>
-					</optgroup>
-				</select>
-				<br>
 				<label for="fullname">Fullname:</label>
 				<input type="text" placeholder="Fullname" name="fullname"/>
 				<br>
@@ -175,12 +170,6 @@
 				</fieldset>
 				<label for="upload_fingerprints">Upload Finger Prints:</label>
 				<input type="file" name="upload_fingerprints"/>
-				<br>
-				<label for="interest_rate">Interest Rate</label>
-				<input type="text" name="interest_rate" placeholder="%"/>
-				<br>
-				<label for="starting_amount">Starting Deposit Rs:</label>
-				<input type="text" name="starting_amount" placeholder="$$$$$"/>
 				<br>
 				<label for="creation_date">Account Creation Date</label>
 				<input type="text" name="creation_date" placeholder="YYYY/mm/dd"/>

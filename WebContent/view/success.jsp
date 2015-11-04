@@ -1,5 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:choose>
+<c:when test="${sessionScope.loggedIn !=true }">
+	<c:redirect url="../index.jsp"/>
+</c:when>
+</c:choose>
 <jsp:include page="header.jsp" />
 <body>
 	<jsp:include page="sidebar.jsp" />

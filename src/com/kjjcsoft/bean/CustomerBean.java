@@ -62,9 +62,6 @@ public class CustomerBean {
 	private String refferedBy;
 	private int entryBy;
 	private String approvedBy;
-	private String accountType;
-	private float interest;
-	private double startingAmount;
 	
 	public String getCustomerName() {
 		return customerName;
@@ -354,23 +351,11 @@ public class CustomerBean {
 	public void setEntryBy(int entryBy) {
 		this.entryBy = entryBy;
 	}
-	public String getAccountType() {
-		return accountType;
-	}
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
-	}
 	public String getApprovedBy() {
 		return approvedBy;
 	}
 	public void setApprovedBy(String approvedBy) {
 		this.approvedBy = approvedBy;
-	}
-	public float getInterest() {
-		return interest;
-	}
-	public void setInterest(float interest) {
-		this.interest = interest;
 	}
 	public String getCitizenShipNo() {
 		return citizenShipNo;
@@ -383,12 +368,6 @@ public class CustomerBean {
 	}
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
-	}
-	public double getStartingAmount() {
-		return startingAmount;
-	}
-	public void setStartingAmount(double startingAmount) {
-		this.startingAmount = startingAmount;
 	}
 	public int getCustomerId() {
 		return customerId;

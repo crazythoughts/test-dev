@@ -48,6 +48,7 @@ public class UserLoginController extends HttpServlet {
 			r_user=retrive_user.getUserInfo(usr);
 			session.setAttribute("Userinfo",r_user );
 			if (r_user.getRole().equals("Administrator")) {
+				session.setAttribute("loggedIn", true);
 				session.setAttribute("AdminLogin", true);
 				System.out.println(session.getAttribute("AdminLogin"));
 			} else {

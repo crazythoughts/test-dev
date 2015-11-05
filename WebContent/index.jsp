@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="view/css/style.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/view/css/style.css" type="text/css" />
 <title>Login Page</title>
 </head>
 <body>
@@ -13,15 +13,15 @@
 <div class="soft-logo">KJJC Soft</div>
 <div class="login">
 	<div class="login-title">LOGIN</div>
-	<form class="kform" action="com/kjjcsoft/controllers/UserLogin" method="post">
+	<form class="kform" action="/KJJCSoft/com/kjjcsoft/controllers/UserLogin" method="post">
 	<div>
 		<!-- <label for="username"> Username </label> --> <input type="text"
 			placeholder="Username" name="username" class="username_input"
-			required /> 
+			required "/> 
 	</div>
 	<div>
 			<!-- <label for="password"> Password </label>  --><input
-			type="password" placeholder="*********" name="password"
+			type="password" name="password"
 			class="password_input" required /> 
 	</div>
 	<div class="submit">
@@ -29,8 +29,6 @@
 			value="Login" />
 	</div>
 	</form>
-</div>
-</section>
 	<c:choose>
 		<c:when test="${sessionScope.error == true }">
 				Username or password error.
@@ -39,5 +37,7 @@
 		<c:otherwise>
 		</c:otherwise>
 	</c:choose>
+</div>
+</section>
 </body>
 </html>

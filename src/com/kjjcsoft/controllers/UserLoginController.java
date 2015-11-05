@@ -3,6 +3,7 @@ package com.kjjcsoft.controllers;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +44,8 @@ public class UserLoginController extends HttpServlet {
 		}
 		if (ret_result==false) {
 			session.setAttribute("error", true);
-            response.sendRedirect("../../../index.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("../../../index.jsp");
+            rd.forward(request, response);
 		} else {
 			r_user=retrive_user.getUserInfo(usr);
 			session.setAttribute("Userinfo",r_user );

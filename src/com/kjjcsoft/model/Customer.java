@@ -7,8 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
-
 import com.kjjcsoft.bean.CustomerBean;
 
 /**
@@ -98,35 +96,6 @@ public class Customer {
 		}
 			return customerCreated;
 	}
-	public boolean createAccount(int id, float interest, int entryBy){
-		boolean accountCreated = false;
-		Date dt= new Date();
-		try{
-			con=ConnectionProvider.getConnection();
-			ps=con.prepareStatement("INSERT into tbl_daily_savings (customer_id, interest_rate, creation_date, entry_by) VALUES (?,?,?,?)");
-			ps.setInt(1, id);
-			ps.setFloat(2, interest);
-			ps.setDate(3, DBFunctions.convertToSqlDate(dt));
-			ps.setInt(4, entryBy);
-			ps.executeUpdate();
-			accountCreated = true;
-		}catch(SQLException ex){
-			accountCreated=false;
-			ex.printStackTrace();
-		}finally{
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			try {
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return accountCreated;
-	}
 	public CustomerBean lastInsertion(){
 		CustomerBean lastInsertedCustomer= new CustomerBean();
 		try {
@@ -190,5 +159,42 @@ public class Customer {
 			e.printStackTrace();
 		}
 		return lastInsertedCustomer;
+	}
+	public String checkIfExists(int ID){
+		String retMsg;
+		try{
+			con=ConnectionProvider.getConnection();
+			ps=con.prepareStatement("SELECT customer_name FROM tbl_customer WHERE customer_id=?");
+			ps.setInt(1, ID);
+			rs=ps.executeQuery();
+			if (rs.next()) {
+				retMsg=rs.getString("customer_name");
+			} else {
+				retMsg="No Match";
+			}
+		} catch (SQLException ex){
+			retMsg="error";
+			ex.printStackTrace();
+		} finally{
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return retMsg;
 	}
 }

@@ -42,7 +42,8 @@ public class CustomerRegistrationController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		declaration part for the required propertise
-		String realPath=getServletContext().getRealPath("");
+		/*String realPath=getServletContext().getRealPath("");*/
+		String relativeUploadPath=getServletConfig().getServletContext().getRealPath("/")+"upload/";
 		String contentType=request.getContentType();
 		CustomerBean customer=new CustomerBean();
 		CustomerBean customerDetail= new CustomerBean();
@@ -61,7 +62,7 @@ public class CustomerRegistrationController extends HttpServlet {
 			/*Defining the threshhold size of the file that will be kept in memory*/
 			factory.setSizeThreshold(MEMORY_THRESHOLD);
 			/*defining directory to temporary store file which are larger than the threshhold memory*/
-			factory.setRepository(new File(realPath+TMP));
+			factory.setRepository(new File(relativeUploadPath+TMP));
 			/*creating a file upload handler*/
 			ServletFileUpload upload= new ServletFileUpload(factory);
 			/*defining the maximum size of the file that can be uploaded to the form*/
@@ -69,9 +70,9 @@ public class CustomerRegistrationController extends HttpServlet {
 			/*defining the maximum size of the request(form-data+upload file)*/
 			upload.setFileSizeMax(MAX_REQUEST_SIZE);
 			/*defining the path for the directory to upload the customer photo*/
-			photoUpPath=realPath+PHOTO_UPLOAD_DIRECTORY;
+			photoUpPath=relativeUploadPath+PHOTO_UPLOAD_DIRECTORY;
 			/*defining the path for the directory to upload the finger print of the customers*/
-			fingerPrintUpPath=realPath+FINGER_PRINT_UPLOAD_DIRECTORY;
+			fingerPrintUpPath=relativeUploadPath+FINGER_PRINT_UPLOAD_DIRECTORY;
 			try{
 				//parse the request objects content to extract the file data
 				List<FileItem> formItems = upload.parseRequest(request);
@@ -525,11 +526,11 @@ public class CustomerRegistrationController extends HttpServlet {
 								String mimeType = getServletContext().getMimeType(fileName);
 								if (mimeType.startsWith("image/")) {
 									if (fileName.lastIndexOf("\\")>0) {
-										customerFile = new File(photoUpPath+File.separator+fileName.substring(fileName.lastIndexOf("\\")));
-										customer.setPhotoPath(photoUpPath+File.separator+fileName.substring(fileName.lastIndexOf("\\")));
+										customerFile = new File(photoUpPath+File.separator+fileName.substring(fileName.lastIndexOf("\\")+1));
+										customer.setPhotoPath(PHOTO_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
 									} else {
 										customerFile = new File(photoUpPath+File.separator+fileName.substring(fileName.lastIndexOf("\\")+1));
-										customer.setPhotoPath(photoUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
+										customer.setPhotoPath(PHOTO_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
 									}
 								} else {
 									response.sendRedirect("../../../view/customer_registration.jsp");
@@ -547,11 +548,11 @@ public class CustomerRegistrationController extends HttpServlet {
 								String mimeType = getServletContext().getMimeType(fileName);
 								if (mimeType.startsWith("image/")) {
 									if (fileName.lastIndexOf("\\")>0) {
-										fingerprintFile = new File(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")));
-										customer.setFinderPrintPath(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")));
+										fingerprintFile = new File(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
+										customer.setFinderPrintPath(FINGER_PRINT_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
 									} else {
 										fingerprintFile = new File(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
-										customer.setFinderPrintPath(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
+										customer.setFinderPrintPath(FINGER_PRINT_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
 									}
 								} else {
 									response.sendRedirect("../../../view/customer_registration.jsp");
@@ -569,6 +570,7 @@ public class CustomerRegistrationController extends HttpServlet {
 		customer.setEntryBy(ses_usr.getUser_id());
 		if(newCustomer.registerCustomer(customer)){
 			customerDetail=newCustomer.lastInsertion();
+			request.getSession().setAttribute("Id", customerDetail.getCustomerId());
 			request.getSession().setAttribute("newCustomer", customerDetail);
 			response.sendRedirect("../../../view/customer_registered.jsp");
 		}

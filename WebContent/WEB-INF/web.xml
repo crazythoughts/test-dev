@@ -28,4 +28,12 @@
     <servlet-name>CustomerRegistration</servlet-name>
     <url-pattern>/com/kjjcsoft/controllers/CustomerRegistration</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>DailySavings</servlet-name>
+  	<servlet-class>com.kjjcsoft.controllers.AccountCreationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>DailySavings</servlet-name>
+  	<url-pattern>/com/kjjcsoft/controllers/AccountCreation</url-pattern>
+  </servlet-mapping>
 </web-app>

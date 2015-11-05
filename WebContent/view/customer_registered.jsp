@@ -8,8 +8,9 @@
 <title>Customer Registered Successfully</title>
 </head>
 <body>
+	<jsp:include page="sidebar.jsp"/>
 	<b>Customer registered successfully!</b>
-	<img src="<c:out value="${sessionScope.newCustomer.getPhotoPath()}"/>" height="50px" width="50px"/>
+	<img src="<c:out value="../upload/${sessionScope.newCustomer.getPhotoPath()}"/>" height="50px" width="50px"/>
 	Customer ID: <c:out value="${sessionScope.newCustomer.getCustomerId()}"/>
 	Name : <c:out value="${sessionScope.newCustomer.getCustomerName()}"/>
 	Age : <c:out value="${sessionScope.newCustomer.getCustomerAge()}"/>
@@ -80,12 +81,16 @@
 	Reffered By : <c:out value="${sessionScope.newCustomer.getRefferedBy()}"/>
 	Approved By : <c:out value="${sessionScope.newCustomer.getApprovedBy()}"/>
 	<c:out value="${sessionScope.newCustomer.getFinderPrintPath()}"/>
-	Finger Prints : <img src="<c:out value="${sessionScope.newCustomer.getFinderPrintPath()}"/>" height="100px" width="100px"/>
+	Finger Prints : <img src="../upload/<c:out value="${sessionScope.newCustomer.getFinderPrintPath()}"/>" height="100px" width="100px"/>
 	<c:remove var="newCustomer" scope="session"/>
 	<b>Open Saving Account</b>
 	<a href=""><input type="button" value="Daily Savings"></a>
 	<a href=""><input type="button" value="Monthly Savings"></a>
 	<a href=""><input type="button" value="Fixed Deposit"></a>
 	<a href=""><input type="button" value="Continious Fixed Deposit"></a>
+	<b>Loan Account</b>
+	<a href=""><input type="button" value="Bussiness Loan"></a>
+	<a href=""><input type="button" value="Agricultural Loan"></a>
+	<jsp:include page="footer.jsp"/>
 </body>
 </html>

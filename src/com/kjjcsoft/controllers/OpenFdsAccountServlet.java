@@ -57,31 +57,36 @@ public class OpenFdsAccountServlet extends HttpServlet {
 		if (request.getParameter("create")!=null) {
 			if (request.getParameter("customer_id").equals("")) {
 				rd.forward(request, response);
+				return;
 			} else {
 				creationInfo.setCustomerId(Integer.parseInt(request.getParameter("customer_id")));
 			}
 			if (request.getParameter("interest_rate").equals("")) {
-				rd.forward(request, response);
+				creationInfo.setInterestRate(10.5f);
 			} else {
 				creationInfo.setInterestRate(Float.parseFloat(request.getParameter("interest_rate")));
 			}
 			if (request.getParameter("fd_amount").equals("")) {
 				rd.forward(request, response);
+				return;
 			} else {
 				creationInfo.setFixedDepositAmount(Double.parseDouble(request.getParameter("fd_amount")));
 			}
 			if (request.getParameter("maturity_period").equals("")) {
 				rd.forward(request, response);
+				return;
 			} else {
 				creationInfo.setYears(Integer.parseInt(request.getParameter("maturity_period")));
 			}
 			if (request.getParameter("account_type").equals("")) {
 				rd.forward(request, response);
+				return;
 			} else {
 				creationInfo.setAccountType(request.getParameter("account_type"));
 			}
 			if (request.getParameter("approved_by").equals("")) {
 				rd.forward(request, response);
+				return;
 			} else {
 				creationInfo.setApprovedBy(request.getParameter("approved_by"));
 			}

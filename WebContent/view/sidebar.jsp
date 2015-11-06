@@ -6,7 +6,7 @@
 				<li>Manage Profile</li>
 				<li>Manage User</li>
 				<li>Employee Registration</li>
-				<li><a href="customer_list.jsp">Customer</a></li>
+				<li><a href="/KJJCSoft/view/customer_list.jsp">Customer</a></li>
 				<li>Accounts</li>
 				<li>Transactions</li>
 				<li>Reports</li>
@@ -16,7 +16,7 @@
 		<c:otherwise>
 			<ul>
 				<li>Manage Profile</li>
-				<li><a href="customer_list.jsp">Customer</a></li>
+				<li><a href="/KJJCSoft/view/customer_list.jsp">Customer</a></li>
 				<li>Accounts</li>
 				<li>Transactions</li>
 				<li>Reports</li>

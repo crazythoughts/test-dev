@@ -8,6 +8,7 @@
 <title>Successful</title>
 </head>
 <body>
+<jsp:include page="sidebar.jsp"/>
 <c:choose>
 	<c:when test="${sessionScope.fdsAcInfo.getAccountId()!=0}">
 	Fixed Deposit Account created successfully!
@@ -30,7 +31,7 @@
 		</c:choose>
 	</c:when>
 	<c:when test="${sessionScope.fdsAcInfo.getAccountId()==0}">
-	<c:remove var="dsAcNumber" scope="session"/>
+	<c:remove var="fdsAcInfo" scope="session"/>
 		Something went wrong. The account for the customer was not created. Please try again from Accounts
 		<c:choose>
 			<c:when test="${sessionScope.accessedFromCustomer==true}">

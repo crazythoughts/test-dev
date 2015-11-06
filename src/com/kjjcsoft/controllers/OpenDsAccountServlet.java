@@ -50,17 +50,20 @@ public class OpenDsAccountServlet extends HttpServlet {
 				rd.forward(request, response);
 			} else {
 				request.setAttribute("cName", cNamefDb);
+				request.getSession().setAttribute("cName", cNamefDb);
 				rd.forward(request, response);
 			}
 		}
 		if (request.getParameter("create") != null) {
 			if (request.getParameter("customer_id").equals("")) {
 				rd.forward(request, response);
+				return;
 			} else {
 				creationInfo.setCustomerId(Integer.parseInt(request.getParameter("customer_id")));
 			}
 			if (request.getParameter("account_type").equals("")) {
 				rd.forward(request, response);
+				return;
 			} else {
 				creationInfo.setAccountType(request.getParameter("account_type"));
 			}
@@ -71,16 +74,17 @@ public class OpenDsAccountServlet extends HttpServlet {
 			}
 			if (request.getParameter("approved_by").equals("")) {
 				rd.forward(request, response);
+				return;
 			} else {
 				creationInfo.setApprovedBy(request.getParameter("approved_by"));
 			}
 			creationInfo.setEntryBy(ses_usr.getUser_id());
 			if(dsAccount.createDsAccount(creationInfo)){
-				int acnum=dsAccount.retLastDsAcCreated(creationInfo.getCustomerId());
+				AccountBean recBean=dsAccount.retLastDsAcCreated(creationInfo.getCustomerId());
 				/*if (!request.getParameter("starting_amount".equals(""))) {
 					
 				}*/
-				request.getSession().setAttribute("dsAcNumber", acnum);
+				request.getSession().setAttribute("dsAcInfo", recBean);
 				response.sendRedirect("/KJJCSoft/view/ds_ac_created.jsp");
 			}
 		}

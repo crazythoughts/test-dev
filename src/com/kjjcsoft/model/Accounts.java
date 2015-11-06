@@ -57,20 +57,21 @@ public class Accounts {
 		}
 		return accountCreated;
 	}
-	public int retLastDsAcCreated(int customer_id){
-		int dsAccountNumber=0;
+	public AccountBean retLastDsAcCreated(int customer_id){
+		AccountBean retBean = new AccountBean();
 		try{
 			con=ConnectionProvider.getConnection();
-			ps=con.prepareStatement("SELECT ds_id from tbl_daily_savings WHERE customer_id=? ORDER BY ds_id DESC LIMIT 1");
+			ps=con.prepareStatement("SELECT ds_id, customer_id, interest_rate from tbl_daily_savings WHERE customer_id=? ORDER BY ds_id DESC LIMIT 1");
 			ps.setInt(1, customer_id);
 			rs=ps.executeQuery();
 			if (rs.next()) {
-				dsAccountNumber=rs.getInt("ds_id");
+				retBean.setAccountId(rs.getInt("ds_id"));
 			} else {
-				dsAccountNumber=0;
+				retBean.setAccountId(0);
 			}
 		} catch (SQLException ex){
-			ex.getStackTrace();
+			retBean.setAccountId(0);
+			ex.printStackTrace();
 		}
 		 finally {
 				try {
@@ -92,7 +93,7 @@ public class Accounts {
 					e.printStackTrace();
 				}
 			}
-		return dsAccountNumber;
+		return retBean;
 	}
 	public boolean createMsAccount(AccountBean newMsAc){
 		boolean accountCreated = false;
@@ -124,20 +125,23 @@ public class Accounts {
 		}
 		return accountCreated;
 	}
-	public int retLastMsAcCreated(int customer_id){
-		int msAccountNumber=0;
+	public AccountBean retLastMsAcCreated(int customer_id){
+		AccountBean retBean = new AccountBean();
 		try{
 			con=ConnectionProvider.getConnection();
-			ps=con.prepareStatement("SELECT ms_id from tbl_monthly_savings WHERE customer_id=? ORDER BY ms_id DESC LIMIT 1");
+			ps=con.prepareStatement("SELECT ms_id, customer_id, interest_rate from tbl_monthly_savings WHERE customer_id=? ORDER BY ms_id DESC LIMIT 1");
 			ps.setInt(1, customer_id);
 			rs=ps.executeQuery();
 			if (rs.next()) {
-				msAccountNumber=rs.getInt("ms_id");
+				retBean.setAccountId(rs.getInt("ms_id"));
+				retBean.setCustomerId(rs.getInt("customer_id"));
+				retBean.setInterestRate(rs.getFloat("interest_rate"));
 			} else {
-				msAccountNumber=0;
+				retBean.setAccountId(0);
 			}
 		} catch (SQLException ex){
-			ex.getStackTrace();
+			retBean.setAccountId(0);
+			ex.printStackTrace();
 		} finally {
 			try {
 				rs.close();
@@ -158,7 +162,7 @@ public class Accounts {
 				e.printStackTrace();
 			}
 		}
-		return msAccountNumber;
+		return retBean;
 	}
 	public boolean createFdsAccount(AccountBean newFdsAc){
 		boolean accountCreated=false;
@@ -180,7 +184,7 @@ public class Accounts {
 			accountCreated=true;
 		} catch(SQLException ex) {
 			accountCreated=false;
-			ex.getStackTrace();
+			ex.printStackTrace();
 		} finally {
 			try {
 				ps.close();
@@ -214,7 +218,84 @@ public class Accounts {
 				retBean.setAccountId(0);
 			}
 		} catch (SQLException ex){
-			ex.getStackTrace();
+			retBean.setAccountId(0);
+			ex.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return retBean;
+	}
+	public boolean createCfdAccount(AccountBean newCfdAc){
+		boolean accountCreated = false;
+		Date dt= new Date();
+		Calendar cd = Calendar.getInstance();
+		cd.add(Calendar.YEAR, newCfdAc.getYears());
+		Date mDt = cd.getTime();
+		try{
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement("INSERT INTO tbl_c_fixed_deposit (customer_id, interest_rate, maturity_date, creation_date, approved_by, entry_by) VALUES (?,?,?,?,?,?)");
+			ps.setInt(1, newCfdAc.getCustomerId());
+			ps.setFloat(2, newCfdAc.getInterestRate());
+			ps.setDate(3, DBFunctions.convertToSqlDate(mDt));
+			ps.setDate(4, DBFunctions.convertToSqlDate(dt));
+			ps.setString(5, newCfdAc.getApprovedBy());
+			ps.setInt(6, newCfdAc.getEntryBy());
+			ps.executeUpdate();
+			accountCreated = true;
+		} catch (SQLException ex){
+			accountCreated = false;
+			ex.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return accountCreated;
+	}
+	public AccountBean retLastCfdAcCreated(int customer_id){
+		AccountBean retBean = new AccountBean();
+		try{
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement("SELECT cfd_id, customer_id, interest_rate, maturity_date FROM tbl_c_fixed_deposit WHERE customer_id=? ORDER BY cfd_id DESC LIMIT 1");
+			ps.setInt(1, customer_id);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				retBean.setAccountId(rs.getInt("cfd_id"));
+				retBean.setCustomerId(rs.getInt("customer_id"));
+				retBean.setInterestRate(rs.getFloat("interest_rate"));
+				retBean.setMaturityPeriod(rs.getDate("maturity_date"));
+			} else {
+				retBean.setAccountId(0);
+			}
+		} catch (SQLException ex){
+			retBean.setAccountId(0);
+			ex.printStackTrace();
 		} finally {
 			try {
 				rs.close();

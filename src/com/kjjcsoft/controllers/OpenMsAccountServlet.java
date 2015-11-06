@@ -50,6 +50,7 @@ public class OpenMsAccountServlet extends HttpServlet {
 				rd.forward(request, response);
 			} else {
 				request.setAttribute("cName", cNamefDb);
+				request.getSession().setAttribute("cName", cNamefDb);
 				rd.forward(request, response);
 			}
 		}
@@ -76,11 +77,11 @@ public class OpenMsAccountServlet extends HttpServlet {
 			}
 			creationInfo.setEntryBy(ses_usr.getUser_id());
 			if(msAccount.createMsAccount(creationInfo)){
-				int acnum=msAccount.retLastMsAcCreated(creationInfo.getCustomerId());
+				AccountBean recBean =msAccount.retLastMsAcCreated(creationInfo.getCustomerId());
 				/*if (!request.getParameter("starting_amount".equals(""))) {
 					
 				}*/
-				request.getSession().setAttribute("msAcNumber", acnum);
+				request.getSession().setAttribute("msAcInfo", recBean);
 				response.sendRedirect("/KJJCSoft/view/ms_ac_created.jsp");
 			}
 		}

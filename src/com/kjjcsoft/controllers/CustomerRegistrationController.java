@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -55,6 +56,7 @@ public class CustomerRegistrationController extends HttpServlet {
 		Date dt= new Date();
 		File customerFile=null, fingerprintFile=null;
 		SimpleDateFormat sdf= new SimpleDateFormat("YYYY/MM/dd");
+		RequestDispatcher rd = request.getRequestDispatcher("/view/customer_registration.jsp");
 		/*Starting to process the data from the form*/
 		if (contentType.indexOf("multipart/form-data")>=0) {
 			/*creating a factory for disk-based file items*/
@@ -85,7 +87,8 @@ public class CustomerRegistrationController extends HttpServlet {
 						switch (fieldName){
 						case "fullname":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								request.setAttribute("errorMsg", "No Name Here");
+								rd.forward(request, response);
 								return;
 							} else{
 								customer.setCustomerName(fieldValue);
@@ -93,7 +96,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "age":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setCustomerAge(Integer.parseInt(fieldValue));
@@ -101,7 +104,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "dob":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setDob(sdf.parse(fieldValue));
@@ -109,7 +112,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "sex":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setGender(fieldValue);
@@ -117,7 +120,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "nationality":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setNationality(fieldValue);
@@ -125,7 +128,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "citizenship_no":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setCitizenShipNo(fieldValue);
@@ -133,7 +136,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "marital_status":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setMaritalStatus(fieldValue);
@@ -142,7 +145,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "spouse_name":
 							if (customer.getMaritalStatus().equals("Married")) {
 								if (fieldValue.equals("")) {
-									response.sendRedirect("../../../view/customer_registration.jsp");
+									rd.forward(request, response);
 									return;
 								}else{
 									customer.setSpouseName(fieldValue);
@@ -153,7 +156,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "occupation":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setOccupation(fieldValue);
@@ -161,7 +164,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "cellnumber_first":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setCellNumberFirst(fieldValue);
@@ -190,7 +193,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "perm_dist":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setPermDistrict(fieldValue);
@@ -198,7 +201,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "perm_vdc_mp":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setPermVdcMunicipality(fieldValue);
@@ -234,7 +237,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "fathers_name":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setFathersName(fieldValue);
@@ -243,7 +246,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "grandfathers_name":
 							if (customer.getGender().equals("Male")) {
 								if (fieldValue.equals("")) {
-									response.sendRedirect("../../../view/customer_registration.jsp");
+									rd.forward(request, response);
 									return;
 								} else {
 									customer.setGrandFathersName(fieldValue);
@@ -259,7 +262,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "father_in_law_name":
 							if(customer.getGender().equals("Female") && customer.getMaritalStatus().equals("Married")){
 								if (customer.getGrandFathersName().equals("") && fieldValue.equals("")) {
-									response.sendRedirect("../../../view/customer_registration.jsp");
+									rd.forward(request, response);
 									return;
 								} else {
 									customer.setFatherInLawsName(fieldValue);
@@ -274,7 +277,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "nominee_name":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setNomineesName(fieldValue);
@@ -282,7 +285,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "nominee_cell_first":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setnCellNumberFirst(fieldValue);
@@ -311,7 +314,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "n_perm_dist":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setnPermDistrict(fieldValue);
@@ -319,7 +322,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "n_perm_vdc_mp":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setnPermVdcMunicipality(fieldValue);
@@ -356,7 +359,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "guardian_name":
 							if (customer.getCustomerAge()<16) {
 								if (fieldValue.equals("")) {
-									response.sendRedirect("../../../view/customer_registration.jsp");
+									rd.forward(request, response);
 									return;
 								} else {
 									customer.setGuardianName(fieldValue);
@@ -368,7 +371,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "guardian_relation":
 							if (customer.getCustomerAge()<16) {
 								if (fieldValue.equals("")) {
-									response.sendRedirect("../../../view/customer_registration.jsp");
+									rd.forward(request, response);
 									return;
 								} else {
 									customer.setgRelation(fieldValue);
@@ -380,7 +383,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "guardian_cell_first":
 							if (customer.getCustomerAge()<16) {
 								if (fieldValue.equals("")) {
-									response.sendRedirect("../../../view/customer_registration.jsp");
+									rd.forward(request, response);
 									return;
 								} else {
 									customer.setgCellNumberFirst(fieldValue);
@@ -425,7 +428,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "g_perm_dist":
 							if (customer.getCustomerAge()<16) {
 								if (fieldValue.equals("")) {
-									response.sendRedirect("../../../view/customer_registration.jsp");
+									rd.forward(request, response);
 									return;
 								} else {
 									customer.setgPermDistrict(fieldValue);
@@ -437,7 +440,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "g_perm_vdc_mp":
 							if (customer.getCustomerAge()<16) {
 								if (fieldValue.equals("")) {
-									response.sendRedirect("../../../view/customer_registration.jsp");
+									rd.forward(request, response);
 									return;
 								} else {
 									customer.setgPermVdcMunicipality(fieldValue);
@@ -449,7 +452,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "g_perm_other":
 							if (customer.getCustomerAge()<16) {
 								if (fieldValue.equals("")) {
-									response.sendRedirect("../../../view/customer_registration.jsp");
+									rd.forward(request, response);
 									return;
 								} else {
 									customer.setgPermExtraInfo(fieldValue);
@@ -507,7 +510,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "approved_by":
 							if (fieldValue.equals("")) {
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								customer.setApprovedBy(fieldValue);
@@ -519,7 +522,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						String fieldName=item.getFieldName();
 						if (fieldName.equals("upload_photo")) {
 							if(item.getName().equals("")){
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								String fileName=item.getName();
@@ -533,7 +536,7 @@ public class CustomerRegistrationController extends HttpServlet {
 										customer.setPhotoPath(PHOTO_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
 									}
 								} else {
-									response.sendRedirect("../../../view/customer_registration.jsp");
+									rd.forward(request, response);
 									return;
 								}
 								item.write(customerFile);
@@ -541,7 +544,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						}
 						if (fieldName.equals("upload_fingerprints")) {
 							if(item.getName().equals("")){
-								response.sendRedirect("../../../view/customer_registration.jsp");
+								rd.forward(request, response);
 								return;
 							} else {
 								String fileName=item.getName();
@@ -555,7 +558,7 @@ public class CustomerRegistrationController extends HttpServlet {
 										customer.setFinderPrintPath(FINGER_PRINT_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
 									}
 								} else {
-									response.sendRedirect("../../../view/customer_registration.jsp");
+									rd.forward(request, response);
 									return;
 								}
 								item.write(fingerprintFile);
@@ -573,7 +576,7 @@ public class CustomerRegistrationController extends HttpServlet {
 			request.getSession().setAttribute("Id", customerDetail.getCustomerId());
 			request.getSession().setAttribute("newCustomer", customerDetail);
 			request.getSession().setAttribute("accessedFromCustomer", true);
-			response.sendRedirect("../../../view/customer_registered.jsp");
+			response.sendRedirect("/KJJCSoft/view/customer_registered.jsp");
 		}
 	}
 

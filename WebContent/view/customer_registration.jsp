@@ -9,11 +9,8 @@
 </c:choose>
 <html>
 <head>
-<META Http-Equiv="Cache-Control" Content="no-cache">
-<META Http-Equiv="Pragma" Content="no-cache">
-<META Http-Equiv="Expires" Content="0"> 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="/KJJCSoft/view/css/style.css">
 <title>Customer Registration</title>
 </head>
 <body>
@@ -24,9 +21,9 @@
 		<jsp:include page="customer_header.jsp"/>
 		<div>
 			<h3>Customer Registration</h3>
-			<form action="../com/kjjcsoft/controllers/CustomerRegistration" method="post" enctype="multipart/form-data">
+			<form action="/KJJCSoft/com/kjjcsoft/controllers/CustomerRegistration" method="post" enctype="multipart/form-data">
 				<label for="fullname">Fullname:</label>
-				<input type="text" placeholder="Fullname" name="fullname"/>
+				<input type="text" placeholder="Fullname" name="fullname" value="${request.getParameter("fullname")}"/>
 				<br>
 				<label for="upload_photo">Upload Photo:</label>
 				<input type="file" name="upload_photo"/>
@@ -179,6 +176,8 @@
 				<label for="approved_by">Approved By:</label>
 				<input type="text" name="approved_by" placeholder="John Doe"/>
 				<br>
+				<c:out value="${requestScope.errorMsg}"/>
+				<c:remove var="errorMsg" scope="request"/>
 				<input type="submit" value="Save"/>
 			</form>
 		</div>

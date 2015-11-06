@@ -5,16 +5,40 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Successful!</title>
+<c:choose>
+	<c:when test="${sessionScope.msAcInfo.getAccountId()==0 or sessionScope.msAcInfo.getAccountId() == null }">
+		<title>Error!</title>
+	</c:when>
+	<c:otherwise>
+		<title>Successful!</title>
+	</c:otherwise>
+</c:choose>
 </head>
 <body>
-	<jsp:include page="sidebar.jsp"/>
+<jsp:include page="sidebar.jsp"/>
+<c:choose>
+	<c:when test="${sessionScope.msAcInfo.getAccountId()!=0 and sessionScope.msAcInfo.getAccountId() != null}">
+	Fixed Deposit Account created successfully!
+	Account number : <c:out value="${sessionScope.msAcInfo.getAccountId()}"/>
+	Account holders ID : <c:out value="${sessionScope.msAcInfo.getCustomerId()}"/>
+	Account Holder's Name: <c:out value="${sessionScope.cName}"/>
+	<c:remove var="cName" scope="session"/>
+	Deposited Amount : 
+	Interest Rate : <c:out value="${sessionScope.msAcInfo.getInterestRate()}"/>
+	<c:remove var="msAcInfo" scope="session"/>
 	<c:choose>
-		<c:when test="${sessionScope.msAcNumber!=0 }">
-		Monthly saving account created successfully!
-		Account number : <c:out value="${sessionScope.msAcNumber }"/>
-		<c:remove var="msAcNumber" scope="session"/>
-		Please note down the account number!
+			<c:when test="${sessionScope.accessedFromCustomer==true}">
+				<a href="/KJJCSoft/view/customer_list.jsp"><input type="button" name="" value="Ok"></a>
+				<c:remove var="accessedFromCustomer" scope="session"/>
+			</c:when>
+			<c:otherwise>
+				<a href="/KJJCSoft/view/accounts.jsp"><input type="button" name="" value="Ok"></a>
+			</c:otherwise>
+		</c:choose>
+	</c:when>
+	<c:when test="${sessionScope.msAcInfo.getAccountId()==0 or sessionScope.msAcInfo.getAccountId() == null }">
+	<c:remove var="msAcInfo" scope="session"/>
+		Something went wrong. The account for the customer was not created. Please try again from Accounts
 		<c:choose>
 			<c:when test="${sessionScope.accessedFromCustomer==true}">
 				<a href="/KJJCSoft/view/customer_list.jsp"><input type="button" name="" value="Ok"></a>
@@ -24,20 +48,7 @@
 				<a href="/KJJCSoft/view/accounts.jsp"><input type="button" name="" value="Ok"></a>
 			</c:otherwise>
 		</c:choose>
-		</c:when>
-		<c:when test="${sessionScope.msAcNumber==0 }">
-		<c:remove var="msAcNumber" scope="session"/>
-		Something went wrong. The account for the customer was not created. Please try again from Accounts.
-		<c:choose>
-			<c:when test="${sessionScope.accessedFromCustomer==true}">
-				<a href="/KJJCSoft/view/customer_list.jsp"><input type="button" name="" value="Ok"></a>
-				<c:remove var="accessedFromCustomer" scope="session"/>
-			</c:when>
-			<c:otherwise>
-				<a href="/KJJCSoft/view/accounts.jsp"><input type="button" name="" value="Ok"></a>
-			</c:otherwise>
-		</c:choose>
-		</c:when>
-	</c:choose>
+	</c:when>
+</c:choose>
 </body>
 </html>

@@ -10,7 +10,7 @@ import java.util.Date;
  *
  */
 public class AccountBean {
-	private String accountId;
+	private int accountId;
 	private int customerId;
 	private String accountType;
 	private float interestRate;
@@ -21,11 +21,11 @@ public class AccountBean {
 	private Date creationDate = new Date();
 	private double fixedDepositAmount;
 
-	public String getAccountId() {
+	public int getAccountId() {
 		return accountId;
 	}
 
-	public void setAccountId(String accountId) {
+	public void setAccountId(int accountId) {
 		this.accountId = accountId;
 	}
 

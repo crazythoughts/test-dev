@@ -10,6 +10,7 @@
 <body>
 	<jsp:include page="sidebar.jsp"/>
 	<b>Customer registered successfully!</b>
+	<br>
 	<img src="<c:out value="../upload/${sessionScope.newCustomer.getPhotoPath()}"/>" height="50px" width="50px"/>
 	Customer ID: <c:out value="${sessionScope.newCustomer.getCustomerId()}"/>
 	Name : <c:out value="${sessionScope.newCustomer.getCustomerName()}"/>
@@ -84,10 +85,10 @@
 	Finger Prints : <img src="../upload/<c:out value="${sessionScope.newCustomer.getFinderPrintPath()}"/>" height="100px" width="100px"/>
 	<c:remove var="newCustomer" scope="session"/>
 	<b>Open Saving Account</b>
-	<a href=""><input type="button" value="Daily Savings"></a>
-	<a href=""><input type="button" value="Monthly Savings"></a>
-	<a href=""><input type="button" value="Fixed Deposit"></a>
-	<a href=""><input type="button" value="Continious Fixed Deposit"></a>
+	<a href="/KJJCSoft/view/open_ds_account.jsp"><input type="button" value="Daily Savings"></a>
+	<a href="/KJJCSoft/view/open_ms_account.jsp"><input type="button" value="Monthly Savings"></a>
+	<a href="/KJJCSoft/view/open_fds_account.jsp"><input type="button" value="Fixed Deposit"></a>
+	<a href="/KJJCSoft/view/open_cfd_account.jsp"><input type="button" value="Continious Fixed Deposit"></a>
 	<b>Loan Account</b>
 	<a href=""><input type="button" value="Bussiness Loan"></a>
 	<a href=""><input type="button" value="Agricultural Loan"></a>

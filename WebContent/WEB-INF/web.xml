@@ -29,11 +29,35 @@
     <url-pattern>/com/kjjcsoft/controllers/CustomerRegistration</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>DailySavings</servlet-name>
-  	<servlet-class>com.kjjcsoft.controllers.AccountCreationServlet</servlet-class>
+    <servlet-name>DailySavings</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.OpenDsAccountServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>DailySavings</servlet-name>
-  	<url-pattern>/com/kjjcsoft/controllers/AccountCreation</url-pattern>
+    <servlet-name>DailySavings</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/OpenDsAccount</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>MonthlySavings</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.OpenMsAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MonthlySavings</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/OpenMsAccount</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>FixedDepositSavings</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.OpenFdsAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FixedDepositSavings</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/OpenFdsAccount</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CFixedDepositSavings</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.OpenCfdAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CFixedDepositSavings</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/OpenCfdAccount</url-pattern>
   </servlet-mapping>
 </web-app>

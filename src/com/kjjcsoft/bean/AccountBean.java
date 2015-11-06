@@ -15,8 +15,11 @@ public class AccountBean {
 	private String accountType;
 	private float interestRate;
 	private String approvedBy;
+	private int entryBy;
 	private int years;
-	private Date maturityPeriod=new Date();
+	private Date maturityPeriod = new Date();
+	private Date creationDate = new Date();
+	private double fixedDepositAmount;
 
 	public String getAccountId() {
 		return accountId;
@@ -72,6 +75,30 @@ public class AccountBean {
 
 	public void setMaturityPeriod(Date maturityPeriod) {
 		this.maturityPeriod = maturityPeriod;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public double getFixedDepositAmount() {
+		return fixedDepositAmount;
+	}
+
+	public void setFixedDepositAmount(double fixedDepositAmount) {
+		this.fixedDepositAmount = fixedDepositAmount;
+	}
+
+	public int getEntryBy() {
+		return entryBy;
+	}
+
+	public void setEntryBy(int entryBy) {
+		this.entryBy = entryBy;
 	}
 
 }

@@ -572,6 +572,7 @@ public class CustomerRegistrationController extends HttpServlet {
 			customerDetail=newCustomer.lastInsertion();
 			request.getSession().setAttribute("Id", customerDetail.getCustomerId());
 			request.getSession().setAttribute("newCustomer", customerDetail);
+			request.getSession().setAttribute("accessedFromCustomer", true);
 			response.sendRedirect("../../../view/customer_registered.jsp");
 		}
 	}

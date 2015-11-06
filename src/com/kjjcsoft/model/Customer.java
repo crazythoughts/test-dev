@@ -154,6 +154,8 @@ public class Customer {
 				lastInsertedCustomer.setjDate(rs.getDate("customer_joined_date"));
 				lastInsertedCustomer.setRefferedBy(rs.getString("customer_refferedby"));
 				lastInsertedCustomer.setEntryBy(rs.getInt("entry_by"));
+			} else {
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

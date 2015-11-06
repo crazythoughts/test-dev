@@ -24,7 +24,7 @@
 			</ul>
 		</c:otherwise>
 	</c:choose>
-	<form action="../com/kjjcsoft/controllers/Logout" method="post">
+	<form action="/KJJCSoft/com/kjjcsoft/controllers/Logout" method="post">
 		<input type="Submit" value="Logout" />
 	</form>
 </div>

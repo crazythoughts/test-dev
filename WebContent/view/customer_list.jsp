@@ -16,7 +16,9 @@
 </head>
 <body>
 	<jsp:include page="sidebar.jsp" />
+	<div class="customer-menu f-right">
 	<jsp:include page="customer_header.jsp" />
+	</div>
 	<jsp:include page="footer.jsp"/>
 </body>
 </html>

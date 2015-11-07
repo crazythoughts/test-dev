@@ -1,22 +1,52 @@
 /*********** css start   ***/
 body{
-	background:#ccc;
+	background:#ccc url("../images/money-img.png") no-repeat;
 	position: relative;
+	margin:0;
+}
+ul{
+	padding:0;
+	margin:0;
+}
+.clearfix:after { 
+  content: "."; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden; 
+}
+.clearfix { 
+  display: inline-block;  
+}
+* html .clearfix {  
+  height: 1%;  
+} /* Hides from IE-mac \*/
+.clearfix {  
+  display: block;  
+}
+.f-left{
+	float:left;
+}
+.f-right{
+	float:right;
 }
 .login {
+    border: 1px solid #fff;
     height: 200px;
     left: 50%;
     margin-left: -250px;
-    margin-top: 259px;
+    margin-top: 150px;
+    padding: 20px;
     position: absolute;
     top: 50%;
     width: 500px;
 }
-
 .login-title {
+    border-bottom: 2px dotted #fff;
     font-family: sans-serif;
-    font-size: 40px;
+    font-size: 25px;
     margin: 0 0 20px;
+    padding-bottom: 10px;
     text-align: center;
 }
 .soft-logo {
@@ -36,3 +66,32 @@ body{
     padding: 10px;
     width: 100%;
 }
+.submit input {
+    border-radius: 10px;
+    height: 40px;
+    line-height: 20px;
+    margin: 0;
+    width: 150px;
+}
+
+.submit {
+    text-align: center;
+}
+/*sidebar css start*/
+.sidebar {
+    background: #c0e8d1 none repeat scroll 0 0;
+    height: 100%;
+    position: fixed;
+    width: 20%;
+}
+.sidebar ul li {
+    box-sizing: border-box;
+    font-size: 20px;
+    padding: 10px;
+    list-style:none;
+}
+
+
+
+
+/*sidebar css end*/

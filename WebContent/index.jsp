@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/view/css/style.css" type="text/css" />
 <title>Login Page</title>
 </head>
-<body>
+<body class="loginpage01 clearfix">
 <section id="loginpage">
 <div class="soft-logo">KJJC Soft</div>
 <div class="login">

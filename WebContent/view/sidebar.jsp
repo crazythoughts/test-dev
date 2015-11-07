@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div>
+<div class="sidebar f-left clearfix">
 	<c:choose>
 		<c:when test="${sessionScope.AdminLogin==true}">
 			<ul>
@@ -25,6 +25,8 @@
 		</c:otherwise>
 	</c:choose>
 	<form action="/KJJCSoft/com/kjjcsoft/controllers/Logout" method="post">
+		<div class="submit">
 		<input type="Submit" value="Logout" />
+		</div>
 	</form>
 </div>

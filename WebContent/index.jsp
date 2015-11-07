@@ -31,7 +31,9 @@
 	</form>
 	<c:choose>
 		<c:when test="${requestScope.error == true }">
-				Username or password error.
+		<div class="login-error"> 
+		Username or password error.
+		</div>
 				<c:remove var="error" scope="request" />
 		</c:when>
 		<c:otherwise>

@@ -14,12 +14,11 @@
 <title>Customer Registration</title>
 </head>
 <body>
-	<div>
 		<jsp:include page="sidebar.jsp"/>
+		<div class="main-contain clearfix ">
+			<div class="customer-menu">
+		<jsp:include page="customer_header.jsp" />
 	</div>
-	<div>
-		<jsp:include page="customer_header.jsp"/>
-		<div>
 			<h3>Customer Registration</h3>
 			<form action="/KJJCSoft/com/kjjcsoft/controllers/CustomerRegistration" method="post" enctype="multipart/form-data">
 				<label for="fullname">Fullname:</label>
@@ -234,8 +233,7 @@
 				<c:remove var="errorMsg" scope="request"/>
 				<input type="submit" value="Save"/>
 			</form>
-		</div>
+		<jsp:include page="footer.jsp"/>
 	</div>
-	<jsp:include page="footer.jsp"/>
 </body>
 </html>

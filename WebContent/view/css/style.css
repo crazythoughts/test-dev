@@ -69,14 +69,55 @@ ul{
 .submit input {
     border-radius: 10px;
     height: 40px;
-    line-height: 20px;
     margin: 0;
     width: 150px;
+    cursor:pointer;
+    line-height:0;
 }
-
+.submit > input:hover {
+    background: #777;
+    color: #fff;
+}
 .submit {
     text-align: center;
 }
+/* costumer registration css start */
+.customer-menu {
+    background: #ddd none repeat scroll 0 0;
+}
+.customer-menu ul {
+    text-align: center;
+}
+.customer-menu ul li {
+    display: inline-block;
+    padding: 10px;
+}
+
+.customer-menu ul li:first-child a {
+    border-left: 1px solid;
+    padding-left: 20px;
+}
+.customer-menu ul li a {
+    border-right: 1px solid;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    padding-right: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.customer-menu ul li a:hover {
+    text-decoration: underline;
+}
+.main-contain{
+	width: 80%;
+	float:right;
+}
+/* costumer registration css end */
+
+
 /*sidebar css start*/
 .sidebar {
     background: #c0e8d1 none repeat scroll 0 0;
@@ -95,3 +136,7 @@ ul{
 
 
 /*sidebar css end*/
+.footer {
+    background: #ebebeb none repeat scroll 0 0;
+    padding: 10px 20px;
+}

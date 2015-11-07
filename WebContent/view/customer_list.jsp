@@ -16,9 +16,11 @@
 </head>
 <body>
 	<jsp:include page="sidebar.jsp" />
-	<div class="customer-menu f-right">
-	<jsp:include page="customer_header.jsp" />
+	<div class="main-contain clearfix"> 
+	<div class="customer-menu">
+		<jsp:include page="customer_header.jsp" />
 	</div>
 	<jsp:include page="footer.jsp"/>
+	</div>
 </body>
 </html>

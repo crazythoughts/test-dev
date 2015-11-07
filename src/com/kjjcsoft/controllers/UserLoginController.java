@@ -43,8 +43,8 @@ public class UserLoginController extends HttpServlet {
 			e.printStackTrace();
 		}
 		if (ret_result==false) {
-			session.setAttribute("error", true);
-			RequestDispatcher rd = request.getRequestDispatcher("../../../index.jsp");
+			request.setAttribute("error", true);
+			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
             rd.forward(request, response);
 		} else {
 			r_user=retrive_user.getUserInfo(usr);
@@ -56,7 +56,7 @@ public class UserLoginController extends HttpServlet {
 			} else {
 				session.setAttribute("AdminLogin", false);
 			}
-			response.sendRedirect("../../../view/success.jsp");
+			response.sendRedirect("/KJJCSoft/view/success.jsp");
 		}		
 	}
 

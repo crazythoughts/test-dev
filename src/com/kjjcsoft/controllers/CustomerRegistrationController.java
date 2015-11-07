@@ -87,7 +87,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						switch (fieldName){
 						case "fullname":
 							if (fieldValue.equals("")) {
-								request.setAttribute("errorMsg", "No Name Here");
+								request.setAttribute("errorfn", "*Name is required");
 								rd.forward(request, response);
 								return;
 							} else{
@@ -96,6 +96,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "age":
 							if (fieldValue.equals("")) {
+								request.setAttribute("errora", "*Age is required");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -104,6 +105,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "dob":
 							if (fieldValue.equals("")) {
+								request.setAttribute("errordob", "*Date of birth is required");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -111,7 +113,8 @@ public class CustomerRegistrationController extends HttpServlet {
 							}
 							break;
 						case "sex":
-							if (fieldValue.equals("")) {
+							if (fieldValue.equals("") || fieldValue==null) {
+								request.setAttribute("errorg", "*Gender is required");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -120,6 +123,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "nationality":
 							if (fieldValue.equals("")) {
+								request.setAttribute("errorn", "*Nationality is required");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -127,15 +131,21 @@ public class CustomerRegistrationController extends HttpServlet {
 							}
 							break;
 						case "citizenship_no":
-							if (fieldValue.equals("")) {
-								rd.forward(request, response);
-								return;
+							if (customer.getCustomerAge()>15 && customer.getNationality().equals("Nepali")) {
+								if (fieldValue.equals("")) {
+									request.setAttribute("errorcs", "*Citizenship number is required");
+									rd.forward(request, response);
+									return;
+								} else {
+									customer.setCitizenShipNo(fieldValue);
+								}								
 							} else {
-								customer.setCitizenShipNo(fieldValue);
+								customer.setCitizenShipNo("");
 							}
 							break;
 						case "marital_status":
-							if (fieldValue.equals("")) {
+							if (fieldValue.equals("") || fieldValue == null) {
+								request.setAttribute("errorms", "*Marital Status is required");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -145,6 +155,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "spouse_name":
 							if (customer.getMaritalStatus().equals("Married")) {
 								if (fieldValue.equals("")) {
+									request.setAttribute("errorsn", "*Spouse name is required");
 									rd.forward(request, response);
 									return;
 								}else{
@@ -156,6 +167,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "occupation":
 							if (fieldValue.equals("")) {
+								request.setAttribute("erroro", "*Occupation is required");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -164,8 +176,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "cellnumber_first":
 							if (fieldValue.equals("")) {
-								rd.forward(request, response);
-								return;
+								customer.setCellNumberFirst("");
 							} else {
 								customer.setCellNumberFirst(fieldValue);
 							}
@@ -193,6 +204,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "perm_dist":
 							if (fieldValue.equals("")) {
+								request.setAttribute("errorpd", "*District is required");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -201,6 +213,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "perm_vdc_mp":
 							if (fieldValue.equals("")) {
+								request.setAttribute("errorpvm", "*VDC or Municipality required");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -237,6 +250,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "fathers_name":
 							if (fieldValue.equals("")) {
+								request.setAttribute("errorf", "*Father's name is required");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -246,6 +260,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "grandfathers_name":
 							if (customer.getGender().equals("Male")) {
 								if (fieldValue.equals("")) {
+									request.setAttribute("errorgfn", "*Grandfather's name is required");
 									rd.forward(request, response);
 									return;
 								} else {
@@ -262,6 +277,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "father_in_law_name":
 							if(customer.getGender().equals("Female") && customer.getMaritalStatus().equals("Married")){
 								if (customer.getGrandFathersName().equals("") && fieldValue.equals("")) {
+									request.setAttribute("errorfln", "*Father-in-law's name is required");
 									rd.forward(request, response);
 									return;
 								} else {
@@ -277,6 +293,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "nominee_name":
 							if (fieldValue.equals("")) {
+								request.setAttribute("errornn", "*Nominee's name is required");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -285,8 +302,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "nominee_cell_first":
 							if (fieldValue.equals("")) {
-								rd.forward(request, response);
-								return;
+								customer.setnCellNumberFirst("");
 							} else {
 								customer.setnCellNumberFirst(fieldValue);
 							}
@@ -314,6 +330,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "n_perm_dist":
 							if (fieldValue.equals("")) {
+								request.setAttribute("errornpd", "*District is required");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -322,6 +339,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "n_perm_vdc_mp":
 							if (fieldValue.equals("")) {
+								request.setAttribute("errornpvm", "*VDC or Municipality required");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -359,6 +377,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "guardian_name":
 							if (customer.getCustomerAge()<16) {
 								if (fieldValue.equals("")) {
+									request.setAttribute("errorgn", "*Guardian name is required");
 									rd.forward(request, response);
 									return;
 								} else {
@@ -371,6 +390,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "guardian_relation":
 							if (customer.getCustomerAge()<16) {
 								if (fieldValue.equals("")) {
+									request.setAttribute("errorgr", "*Relation is required");
 									rd.forward(request, response);
 									return;
 								} else {
@@ -383,8 +403,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "guardian_cell_first":
 							if (customer.getCustomerAge()<16) {
 								if (fieldValue.equals("")) {
-									rd.forward(request, response);
-									return;
+									customer.setgCellNumberFirst("");
 								} else {
 									customer.setgCellNumberFirst(fieldValue);
 								}
@@ -428,6 +447,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "g_perm_dist":
 							if (customer.getCustomerAge()<16) {
 								if (fieldValue.equals("")) {
+									request.setAttribute("errorgpd", "*District is required");
 									rd.forward(request, response);
 									return;
 								} else {
@@ -440,6 +460,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						case "g_perm_vdc_mp":
 							if (customer.getCustomerAge()<16) {
 								if (fieldValue.equals("")) {
+									request.setAttribute("errorgpvm", "*VDC or Municipality is required");
 									rd.forward(request, response);
 									return;
 								} else {
@@ -450,16 +471,11 @@ public class CustomerRegistrationController extends HttpServlet {
 							}
 							break;
 						case "g_perm_other":
-							if (customer.getCustomerAge()<16) {
 								if (fieldValue.equals("")) {
-									rd.forward(request, response);
-									return;
+									customer.setgPermExtraInfo("");
 								} else {
 									customer.setgPermExtraInfo(fieldValue);
 								}
-							} else {
-								customer.setgPermExtraInfo("");
-							}
 							break;
 						case "g_temp_dist":
 							if (customer.getCustomerAge()<16) {
@@ -510,6 +526,7 @@ public class CustomerRegistrationController extends HttpServlet {
 							break;
 						case "approved_by":
 							if (fieldValue.equals("")) {
+								request.setAttribute("errorapb", "*Approved by is required");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -522,6 +539,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						String fieldName=item.getFieldName();
 						if (fieldName.equals("upload_photo")) {
 							if(item.getName().equals("")){
+								request.setAttribute("errorp", "*No files Selected");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -536,6 +554,7 @@ public class CustomerRegistrationController extends HttpServlet {
 										customer.setPhotoPath(PHOTO_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
 									}
 								} else {
+									request.setAttribute("errorp", "*Selected file is not an image file");
 									rd.forward(request, response);
 									return;
 								}
@@ -544,6 +563,7 @@ public class CustomerRegistrationController extends HttpServlet {
 						}
 						if (fieldName.equals("upload_fingerprints")) {
 							if(item.getName().equals("")){
+								request.setAttribute("errorfp", "*No files selected");
 								rd.forward(request, response);
 								return;
 							} else {
@@ -558,6 +578,7 @@ public class CustomerRegistrationController extends HttpServlet {
 										customer.setFinderPrintPath(FINGER_PRINT_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
 									}
 								} else {
+									request.setAttribute("errorfp", "*Selected file is not an image file");
 									rd.forward(request, response);
 									return;
 								}
@@ -569,6 +590,21 @@ public class CustomerRegistrationController extends HttpServlet {
 			} catch(Exception ex){
 				System.out.println(ex);
 			}
+		}
+		if (customer.getCellNumberFirst().equals("") && customer.getCellNumberSecond().equals("") && customer.getLandLine().equals("")) {
+			request.setAttribute("errorcn", "*Atleast one contact number is required");
+			rd.forward(request, response);
+			return;
+		}
+		if (customer.getnCellNumberFirst().equals("") && customer.getnCellNumberSecond().equals("") && customer.getnLandLine().equals("")) {
+			request.setAttribute("errorncn", "*Atleast one contact number is required");
+			rd.forward(request, response);
+			return;
+		}
+		if (customer.getCustomerAge()<16 && customer.getgCellNumberFirst().equals("") && customer.getgCellNumberSecond().equals("") && customer.getgLandLine().equals("")) {
+			request.setAttribute("errorgcn", "*Atleast once contact number is required");
+			rd.forward(request, response);
+			return;
 		}
 		customer.setEntryBy(ses_usr.getUser_id());
 		if(newCustomer.registerCustomer(customer)){

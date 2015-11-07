@@ -30,9 +30,9 @@
 	</div>
 	</form>
 	<c:choose>
-		<c:when test="${sessionScope.error == true }">
+		<c:when test="${requestScope.error == true }">
 				Username or password error.
-				<c:remove var="error" scope="session" />
+				<c:remove var="error" scope="request" />
 		</c:when>
 		<c:otherwise>
 		</c:otherwise>

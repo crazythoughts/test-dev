@@ -300,6 +300,15 @@ public class CustomerRegistrationController extends HttpServlet {
 								customer.setNomineesName(fieldValue);
 							}
 							break;
+						case "nominee_relation":
+							if (fieldValue.equals("")) {
+								request.setAttribute("errornr", "*Nominee's relation is required");
+								rd.forward(request, response);
+								return;
+							} else {
+								customer.setNomineeRelation(fieldValue);
+							}
+							break;
 						case "nominee_cell_first":
 							if (fieldValue.equals("")) {
 								customer.setnCellNumberFirst("");

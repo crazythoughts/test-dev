@@ -60,4 +60,12 @@
     <servlet-name>CFixedDepositSavings</servlet-name>
     <url-pattern>/com/kjjcsoft/controllers/OpenCfdAccount</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>FrontController</servlet-name>
+  	<servlet-class>com.kjjcsoft.controllers.FrontControllerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>FrontController</servlet-name>
+  	<url-pattern>/com/kjjcsoft/controllers/FrontController</url-pattern>
+  </servlet-mapping>
 </web-app>

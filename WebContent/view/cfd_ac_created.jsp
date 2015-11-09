@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="/KJJCSoft/view/css/style.css" type="text/css"/>
 <c:choose>
 	<c:when test="${sessionScope.cfdAcInfo.getAccountId()==0 or sessionScope.cfdAcInfo.getAccountId() == null }">
 		<title>Error!</title>
@@ -51,5 +52,6 @@
 		</c:choose>
 	</c:when>
 </c:choose>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

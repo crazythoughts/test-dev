@@ -76,6 +76,7 @@ public class OpenMsAccountServlet extends HttpServlet {
 				creationInfo.setApprovedBy(request.getParameter("approved_by"));
 			}
 			creationInfo.setEntryBy(ses_usr.getUser_id());
+			request.getSession().removeAttribute("Id");
 			if(msAccount.createMsAccount(creationInfo)){
 				AccountBean recBean =msAccount.retLastMsAcCreated(creationInfo.getCustomerId());
 				/*if (!request.getParameter("starting_amount".equals(""))) {

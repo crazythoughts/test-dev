@@ -85,6 +85,7 @@ public class OpenCfdAccountServlet extends HttpServlet {
 				creationInfo.setApprovedBy(request.getParameter("approved_by"));
 			}
 			creationInfo.setEntryBy(ses_usr.getUser_id());
+			request.getSession().removeAttribute("Id");
 			if (cfdAccount.createCfdAccount(creationInfo)) {
 				AccountBean recBean = cfdAccount.retLastCfdAcCreated(creationInfo.getCustomerId());
 				request.getSession().setAttribute("cfdAcInfo", recBean);

@@ -5,10 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="/KJJCSoft/view/css/style.css" type="text/css"/>
 <title>Customer Registered Successfully</title>
 </head>
 <body>
 	<jsp:include page="sidebar.jsp"/>
+	<div class="main-contain clearfix"/>
 	<b>Customer registered successfully!</b>
 	<br>
 	<img src="<c:out value="../upload/${sessionScope.newCustomer.getPhotoPath()}"/>" height="50px" width="50px"/>
@@ -43,6 +45,7 @@
 	Father-in-law's Name : <c:out value="${sessionScope.newCustomer.getFatherInLawsName()}"/>
 	<b>Nominee Information</b>
 	Nominee's Name : <c:out value="${sessionScope.newCustomer.getNomineesName()}"/>
+	Relation : <c:out value="${sessionScope.newCustomer.getNomineeRelation()}"/>
 	<fieldset>
 		<legend>Permanent Address</legend>
 		District : <c:out value="${sessionScope.newCustomer.getnPermDistrict()}"/>
@@ -93,5 +96,6 @@
 	<a href=""><input type="button" value="Bussiness Loan"></a>
 	<a href=""><input type="button" value="Agricultural Loan"></a>
 	<jsp:include page="footer.jsp"/>
+	</div>
 </body>
 </html>

@@ -1,3 +1,8 @@
 <div class="footer clearfix">
-Powered by : KJJCSoft
+<div class="">
+	Powered by : KJJCSoft
+</div>
+<div class="">
+	Version 1.0
+</div>
 </div>

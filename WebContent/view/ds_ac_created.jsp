@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="/KJJCSoft/view/css/style.css" type="text/css"/>
 <c:choose>
 	<c:when test="${sessionScope.dsAcInfo.getAccountId()==0 or sessionScope.dsAcInfo.getAccountId() == null }">
 		<title>Error!</title>
@@ -16,9 +17,10 @@
 </head>
 <body>
 <jsp:include page="sidebar.jsp"/>
+<div class="main-contain clearfix">
 <c:choose>
 	<c:when test="${sessionScope.dsAcInfo.getAccountId()!=0 and sessionScope.dsAcInfo.getAccountId() != null}">
-	Fixed Deposit Account created successfully!
+	Daily Savings Account created successfully!
 	Account number : <c:out value="${sessionScope.dsAcInfo.getAccountId()}"/>
 	Account holders ID : <c:out value="${sessionScope.dsAcInfo.getCustomerId()}"/>
 	Account Holder's Name: <c:out value="${sessionScope.cName}"/>
@@ -50,5 +52,7 @@
 		</c:choose>
 	</c:when>
 </c:choose>
+<jsp:include page="footer.jsp"/>
+</div>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <ul>
-	<li><a href="customer_list.jsp">Customer List</a></li>
+	<li><a href="/KJJCSoft/com/kjjcsoft/controllers/FrontController">Customer List</a></li>
 	<li><a href="manage_customer.jsp">Manage Customer</a></li>
 	<li><a href="customer_registration.jsp">Add Customer</a></li>
 </ul>

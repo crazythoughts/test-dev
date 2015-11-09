@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="/KJJCSoft/view/css/style.css" type="text/css"/>
 <title>Continuous Fixed Deposit</title>
 </head>
 <body>
@@ -14,7 +15,6 @@
 		<c:choose>
 			<c:when test="${sessionScope.Id!=null }">
 				<input type="text" name="customer_id" value="<c:out value="${sessionScope.Id }"/>"/>
-				<c:remove var="Id" scope="session"/>
 			</c:when>
 			<c:otherwise>
 				<input type="text" name="customer_id" value="<c:out value="${param.customer_id}"/>"/>
@@ -34,6 +34,6 @@
 		<input type="text" name="approved_by" placeholder="John Doe" />
 		<input type="submit" value="Create" name="create"/>
 	</form>
-	
+	<jsp:include page="footer.jsp"/>	
 </body>
 </html>

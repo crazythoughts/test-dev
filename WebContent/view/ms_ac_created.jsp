@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="/KJJCSoft/view/css/style.css" type="text/css"/>
 <c:choose>
 	<c:when test="${sessionScope.msAcInfo.getAccountId()==0 or sessionScope.msAcInfo.getAccountId() == null }">
 		<title>Error!</title>
@@ -18,7 +19,7 @@
 <jsp:include page="sidebar.jsp"/>
 <c:choose>
 	<c:when test="${sessionScope.msAcInfo.getAccountId()!=0 and sessionScope.msAcInfo.getAccountId() != null}">
-	Fixed Deposit Account created successfully!
+	Monthly Savings Account created successfully!
 	Account number : <c:out value="${sessionScope.msAcInfo.getAccountId()}"/>
 	Account holders ID : <c:out value="${sessionScope.msAcInfo.getCustomerId()}"/>
 	Account Holder's Name: <c:out value="${sessionScope.cName}"/>
@@ -50,5 +51,6 @@
 		</c:choose>
 	</c:when>
 </c:choose>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

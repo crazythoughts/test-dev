@@ -91,6 +91,7 @@ public class OpenFdsAccountServlet extends HttpServlet {
 				creationInfo.setApprovedBy(request.getParameter("approved_by"));
 			}
 			creationInfo.setEntryBy(ses_usr.getUser_id());
+			request.getSession().removeAttribute("Id");
 			if (fdsAccount.createFdsAccount(creationInfo)) {
 				AccountBean recBean= fdsAccount.retLastFdsAcCreated(creationInfo.getCustomerId());
 				request.getSession().setAttribute("fdsAcInfo", recBean);

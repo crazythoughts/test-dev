@@ -5,22 +5,47 @@
 			<ul>
 				<li>Manage Profile</li>
 				<li>Manage User</li>
-				<li>Employee Registration</li>
-				<li><a href="/KJJCSoft/view/customer_list.jsp">Customer</a></li>
-				<li>Accounts</li>
-				<li>Transactions</li>
+				<li>Employee</li>
+				<li>Customer
+					<ul>
+					<li><a href="/KJJCSoft/view/customer_registration.jsp">Manage Customer</a></li>
+					<li><a href="/KJJCSoft/com/kjjcsoft/controllers/FrontController">All Customers</a></li>
+					</ul>
+				</li>
+				<li>Accounts
+					<ul>
+						<li>Manage Accounts</li>
+						<li>Saving Accounts</li>
+						<li>Loan Accounts</li>
+					</ul>
+				</li>
+				<li>Transactions
+					<ul>
+						<li>Collector</li>
+						<li>Office</li>
+					</ul>
+				</li>
 				<li>Reports</li>
-				<li>Customer Search</li>
 			</ul>
 		</c:when>
 		<c:otherwise>
 			<ul>
 				<li>Manage Profile</li>
 				<li><a href="/KJJCSoft/view/customer_list.jsp">Customer</a></li>
-				<li>Accounts</li>
-				<li>Transactions</li>
+				<li>Accounts
+					<ul>
+						<li>Manage Accounts</li>
+						<li>Saving Accounts</li>
+						<li>Loan Accounts</li>
+					</ul>
+				</li>
+
+				<li>Transactions
+					<ul>
+						<li>Collector</li>
+						<li>Office</li>
+					</ul></li>
 				<li>Reports</li>
-				<li>Customer Search</li>
 			</ul>
 		</c:otherwise>
 	</c:choose>

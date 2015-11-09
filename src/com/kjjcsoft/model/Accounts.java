@@ -7,8 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -66,6 +64,8 @@ public class Accounts {
 			rs=ps.executeQuery();
 			if (rs.next()) {
 				retBean.setAccountId(rs.getInt("ds_id"));
+				retBean.setCustomerId(rs.getInt("customer_id"));
+				retBean.setInterestRate(rs.getFloat("interest_rate"));
 			} else {
 				retBean.setAccountId(0);
 			}

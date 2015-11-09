@@ -14,11 +14,12 @@
 <title>Customer Registration</title>
 </head>
 <body>
+<div class="container">
 		<jsp:include page="sidebar.jsp"/>
 		<div class="main-contain clearfix ">
 			<div class="customer-menu">
-		<jsp:include page="customer_header.jsp" />
-	</div>
+				<jsp:include page="customer_header.jsp" />
+			</div>
 			<h3>Customer Registration</h3>
 			<form action="/KJJCSoft/com/kjjcsoft/controllers/CustomerRegistration" method="post" enctype="multipart/form-data">
 				<label for="fullname">Fullname:</label>
@@ -130,6 +131,11 @@
 					<c:out value="${requestScope.errornn}"/>
 					<c:remove var="errornn" scope="request"/>
 					<br>
+					<label for ="nominee_relation">Relation</label>
+					<input type="text" name="nominee_relation"/>
+					<c:out value="${requestScope.errornr }"/>
+					<c:remove var="errornr" scope="request"/>
+					<br>
 					<label for="nominee_cell_first">Mobile 1:</label>
 					<input type="text" name="nominee_cell_first" placeholder="98XXXXXXXX"/>
 					<c:out value="${requestScope.errorncn }"/>
@@ -235,5 +241,6 @@
 			</form>
 		<jsp:include page="footer.jsp"/>
 	</div>
+</div>
 </body>
 </html>

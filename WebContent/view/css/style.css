@@ -1,6 +1,9 @@
 /*********** css start   ***/
+*{
+	box-sizing: border-box;
+}
 body{
-	background:#ccc url("../images/money-img.png") no-repeat;
+	background:#ccc ;/* url("../images/money-img.png") no-repeat; */
 	position: relative;
 	margin:0;
 }
@@ -10,6 +13,16 @@ ul{
 }
 #sucessfulLogger{
 	margin: 0px;
+}
+.home-img{
+	height:40px;
+	width:40px;
+	border-radius:50%;
+}
+.success-profile-img{
+	height : 150px;
+	width : 150px;
+	border-radius : 50%;
 }
 .clearfix:after { 
   content: "."; 
@@ -115,8 +128,16 @@ ul{
     text-decoration: underline;
 }
 .main-contain{
-	width: 80%;
+	width: 85%;
 	float:right;
+}
+.main-contain-content{
+	padding : 0px 18px;
+	content : "";
+}
+.alert-info{
+	margin: 14px 0;
+	display: block;
 }
 /* costumer registration css end */
 
@@ -126,11 +147,11 @@ ul{
     background: #c0e8d1 none repeat scroll 0 0;
     height: 100%;
     position: fixed;
-    width: 20%;
+    width: 15%;
 }
 .sidebar ul li {
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: 15px;
     padding: 10px;
     list-style:none;
 }
@@ -139,7 +160,125 @@ ul{
 
 
 /*sidebar css end*/
+/* footer css start  */
 .footer {
     background: #ebebeb none repeat scroll 0 0;
     padding: 10px 20px;
+}
+/* footer css end */
+/* inside main containers header css */
+.main-contain-header{
+	background : #aaa none repeat scroll 0 0;
+	padding : 12px 18px;
+	border-bottom: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
+}
+.to-right {
+	float:right;
+}
+.main-contain-header h1{
+	padding : 0px;
+	margin : 16px 0px;
+	line-height : 28px;
+	font-size : 25px;
+}
+ul > li.orange {
+    background: none repeat scroll 0 0 #F8A31F;
+}
+ul > li.green {
+    background: none repeat scroll 0 0 #339933;
+}
+.stats {
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.stats > li {
+    float: left;
+    margin-right: 15px;
+    padding: 10px;
+}
+.stats > li:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+.stats > li:last-child {
+    margin-right: 0;
+}
+.stats > li i {
+    color: #FFFFFF;
+    float: left;
+    font-size: 30px;
+    margin: 5px 0;
+}
+.stats > li .details {
+    margin-left: 50px;
+}
+.stats > li .details:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+.stats > li .details span {
+    color: #FFFFFF;
+    display: block;
+    font-size: 11px;
+}
+.stats > li .details span.big {
+    font-size: 16px;
+}
+/* inside main container header end */
+/* navigation path start*/
+.nav-show{
+	list-style : none;
+	padding : 5px 18px;
+	background : #aaa none repeat scroll 0 0;
+	border-left: 1px solid #cccccc;
+	border-top : 1px solid #cccccc;
+	border-bottom : 1px solid #cccccc;
+}
+.nav-show li{
+	display : inline-block;
+}
+.divider{
+	color : #ddd;
+	padding : 0px 5px;
+}
+.nav-show li:active{
+	color: #ddd;
+}
+/* navigation path end */
+
+.customer-list tr td{
+	text-align: right;
+}
+/*  */
+.account-information{
+	width : 300px;
+	border : 1px solid;
+}
+.user-info-container{
+	margin: 10px 0 0;
+}
+.profile-pic{
+	margin : 10px 0;
+}
+.user-info{
+	width: 100%;
+	margin:10px 0px;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+.user-info tr td, .user-info tr th{
+	text-align: left;
+	padding: 8px;
+	line-height: 20px;
+	vertical-align: top;
+	border-style: none;
+}
+.user-info tbody tr:nth-child(2n+1) td, .user-info tbody tr:nth-child(2n+1) th {
+    background-color: #f9f9f9;
 }

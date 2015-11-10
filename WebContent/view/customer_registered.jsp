@@ -10,7 +10,7 @@
 </head>
 <body>
 	<jsp:include page="sidebar.jsp"/>
-	<div class="main-contain clearfix"/>
+	<div class="main-contain clearfix">
 	<b>Customer registered successfully!</b>
 	<br>
 	<img src="<c:out value="../upload/${sessionScope.newCustomer.getPhotoPath()}"/>" height="50px" width="50px"/>

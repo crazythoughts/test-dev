@@ -24,7 +24,6 @@ public class LogoutController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.getSession().invalidate();
-		System.out.println(request.getSession().getAttribute("AdminLogin"));
 		response.sendRedirect("../../../index.jsp");
 	}
 

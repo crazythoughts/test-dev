@@ -20,7 +20,6 @@ public class AuthenticateUser {
 			while(rs.next()){
 				if ((rs.getString("password").equals(digested_pwd)) && (rs.getBoolean("user_enabled")!=false)) {
 					result=true;
-					System.out.println(rs.getBoolean("user_enabled"));
 				} else {
 					result=false;
 				}

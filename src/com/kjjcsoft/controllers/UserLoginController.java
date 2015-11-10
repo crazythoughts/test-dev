@@ -48,15 +48,16 @@ public class UserLoginController extends HttpServlet {
             rd.forward(request, response);
 		} else {
 			r_user=retrive_user.getUserInfo(usr);
+			retrive_user.insertUserLog(r_user.getEmployee_id());
 			session.setAttribute("Userinfo",r_user );
 			session.setAttribute("loggedIn", true);
+			session.setAttribute("initLogin",true);
 			if (r_user.getRole().equals("Administrator")) {
 				session.setAttribute("AdminLogin", true);
-				System.out.println(session.getAttribute("AdminLogin"));
 			} else {
 				session.setAttribute("AdminLogin", false);
 			}
-			response.sendRedirect("/KJJCSoft/view/success.jsp");
+			response.sendRedirect("/KJJCSoft/view/home.jsp");
 		}		
 	}
 

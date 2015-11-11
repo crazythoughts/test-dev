@@ -1,9 +1,6 @@
 /*********** css start   ***/
-*{
-	box-sizing: border-box;
-}
 body{
-	background:#ccc ;/* url("../images/money-img.png") no-repeat; */
+	background:#ccc ; /* url("../images/money-img.png") no-repeat; */
 	position: relative;
 	margin:0;
 }
@@ -239,6 +236,7 @@ ul > li.green {
 	border-left: 1px solid #cccccc;
 	border-top : 1px solid #cccccc;
 	border-bottom : 1px solid #cccccc;
+	margin-bottom:10px;
 }
 .nav-show li{
 	display : inline-block;
@@ -255,10 +253,11 @@ ul > li.green {
 .customer-list tr td{
 	text-align: right;
 }
-/*  */
+/* home */
 .account-information{
-	width : 300px;
+	width : 48%;
 	border : 1px solid;
+	float: left;
 }
 .user-info-container{
 	margin: 10px 0 0;
@@ -282,3 +281,39 @@ ul > li.green {
 .user-info tbody tr:nth-child(2n+1) td, .user-info tbody tr:nth-child(2n+1) th {
     background-color: #f9f9f9;
 }
+/* home end */
+/* account information */
+
+.myLogs{
+    border: 1px solid;
+    float: left;
+    margin-left: 3.7%;
+    min-height: 402px;
+    max-height: 402px;
+    width: 48%;
+}
+.log-table-container{
+	height: 100%;
+    margin: 10px 0 0;
+    max-height: 350px;
+    overflow-y: scroll;
+}
+.log-table{
+	width: 100%;
+	margin: 10px 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+.log-table tr td, .log-table tr th{
+	text-align: left;
+	padding: 8px;
+	line-height: 20px;
+	vertical-align: top;
+	border-style: none;
+}
+.log-table tbody tr:nth-child(2n+1) td, .log-table tbody tr:nth-child(2n+1) th{
+	background-color: #f9f9f9;
+}
+/* account information end */
+
+

@@ -9,6 +9,7 @@ public class RetrivedUserBean {
 	private boolean user_enabled;
 	private String employeePhotoPath;
 	private String lastLogin;
+	private String currentLogin;
 
 	public String getName() {
 		return name;
@@ -73,5 +74,13 @@ public class RetrivedUserBean {
 	public void setLastLogin(String lastLogin) {
 		this.lastLogin = lastLogin;
 	}
-	
+
+	public String getCurrentLogin() {
+		return currentLogin;
+	}
+
+	public void setCurrentLogin(String currentLogin) {
+		this.currentLogin = currentLogin;
+	}
+
 }

@@ -1,24 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<c:choose>
-	<c:when test="${sessionScope.loggedIn !=true }">
-		<c:redirect url="../index.jsp"/>
-	</c:when>
-</c:choose>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="/KJJCSoft/view/css/style.css" type="text/css"/>
 <link href="/KJJCSoft/view/fonts/font-awesome/css/font-awesome.css" type="text/css" rel="stylesheet">
-<title>Customer List</title>
+<title>KJJCSoft</title>
 </head>
 <body>
 <c:set var="now" value="<%=new java.util.Date()%>"/>
 <div class="container">
-<div style="background : white; width : 100 %" >
+	<div style="background : white; width : 100 %" >
 		<div style="width : 15%;">
 			KJJCSoft
 		</div>
@@ -33,7 +28,7 @@
 					<li>Dashboard
 						<ul>
 							<li><a href="/KJJCSoft/view/home.jsp">Main</a></li>
-							<li>Manage Profile</li>
+							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/AccountInformation">My Account</a></li>
 							<li>Manage User</li>
 						</ul>
 					</li>
@@ -97,8 +92,8 @@
 			</div>
 		</form>
 	</div>
-	<div class="main-contain clearfix">
-	<div class="main-contain-header clearfix">
+		<div class="main-contain clearfix">
+		<div class="main-contain-header clearfix">
 			<div class="to-right">
 			<ul class="stats">
                     <li class="green">
@@ -124,50 +119,47 @@
                     </li>
                 </ul>
 			</div>
-                <h1 class="page-def">All Customers</h1>
+                <h1 class="page-def">Change Password</h1>
 		</div>
 		<ul class="nav-show">
 			<li class="main-page">Dashboard<span class="divider">></span></li>
-			<li class="">Customer<span class="divider">></span></li>
-			<li class="path-active">All Customers</li>
+			<li class="">Home<span class="divider">></span></li>
+			<li class="">My Account<span class="divider">></span></li>
+			<li class="active">Change Password</li>
 		</ul>
-		<table class="customer-list">
-			<tr>
-				<th>Customer ID</th>
-				<th>Name</th>
-				<th>Age</th>
-				<th>Gender</th>
-				<th>CitizenShip No</th>
-				<th>Address</th>
-				<th>Cell Number</th>
-				<th>Marital Status</th>
-				<th>Occupation</th>
-				<th>Father's Name</th>
-				<th>Joined On</th>
-				<th>Reffered By</th>
-				<th>Entry By</th>
-			</tr>
-			<c:forEach items="${customerAll}" var="member">
-				<tr>
-					<td>${member.customerId}</td>
-					<td>${member.customerName}</td>
-					<td>${member.customerAge}</td>
-					<td>${member.gender}</td>
-					<td>${member.citizenShipNo}</td>
-					<td>${member.permVdcMunicipality}</td>
-					<td>${member.cellNumberFirst}</td>
-					<td>${member.maritalStatus}</td>
-					<td>${member.occupation}</td>
-					<td>${member.fathersName}</td>
-					<td>${member.jDate}</td>
-					<td>${member.refferedBy}</td>
-					<td>${member.entryBy}</td>
-				</tr>
-			</c:forEach>
-		</table>
-		<c:remove var="customerAll" scope="request"/>
-	<jsp:include page="footer.jsp"/>
+		<div class="main-contain-content clearfix">
+			<c:if test="${successMsg != null}">
+				<div class="alert-info">
+					<c:out value="${successMsg}"/>
+				</div>
+			</c:if>
+			<c:remove var="successMsg" scope="request"/>
+		<ul class="list-my-account">
+			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/AccountInformation">Summary</a></li>
+			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/ChangePassword">Change Password</a></li>
+		</ul>
+		<div class="all-content">
+		<div class="form-wrapper">
+			<form method="post" action="/KJJCSoft/com/kjjcsoft/controllers/ChangePassword">
+				<label for="old_password">Old Password</label>
+				<input type="text" name="old_password"/>
+				<c:out value="${requestScope.errorOld}"/>
+				<c:remove var="errorOld" scope="request"/>
+				<label for="new_password">New Password</label>
+				<input type="text" name="new_password"/>
+				<c:out value="${requestScope.errorNewPwd}"/>
+				<c:remove var="errorNewPwd" scope="request"/>
+				<label for="repeat_password">Repeat New Password</label>
+				<input type="text" name="repeat_password"/>
+				<c:out value="${requestScope.errorRepPwd}"/>
+				<c:remove var="errorRepPwd" scope="request"/>
+				<input type="submit" value="Change"/>
+			</form>
+		</div>
+		</div>
 	</div>
-	</div>
+</div>
+</div>
+
 </body>
 </html>

@@ -2,6 +2,8 @@ package com.kjjcsoft.controllers;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -47,7 +49,10 @@ public class UserLoginController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
             rd.forward(request, response);
 		} else {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date dt = new Date();
 			r_user=retrive_user.getUserInfo(usr);
+			r_user.setCurrentLogin(sdf.format(dt));
 			retrive_user.insertUserLog(r_user.getEmployee_id());
 			session.setAttribute("Userinfo",r_user );
 			session.setAttribute("loggedIn", true);

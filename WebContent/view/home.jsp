@@ -33,7 +33,7 @@
 					<li>Dashboard
 						<ul>
 							<li><a href="/KJJCSoft/view/home.jsp">Main</a></li>
-							<li>Manage Profile</li>
+							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/AccountInformation">My Account</a></li>
 							<li>Manage User</li>
 						</ul>
 					</li>
@@ -131,17 +131,19 @@
 			<li class="active">Home</li>
 		</ul>
 		<div class="main-contain-content clearfix">
-		<div class="alert-info">
 			<c:choose>
 				<c:when test="${sessionScope.initLogin==true}">
-					Welcome to dummy company dashboard. You have logged in successfully
+					<div class="alert-info">
+						Welcome to dashboard. You have logged in successfully
+					</div>
 					<c:remove var="initLogin" scope="session"/>
 				</c:when>
 				<c:otherwise>
-				&nbsp;
+					<div class="alert-info">
+						Welcome to dashboard.
+					</div>
 				</c:otherwise>
 			</c:choose>
-		</div>
 		<div class="all-content">
 			<div class="account-information">
 			<p>User Information</p>
@@ -164,6 +166,25 @@
 						<c:if test="${sessionScope.Userinfo.isUser_enabled() == true }">
 						Active
 						</c:if>
+					</td>
+				</tr>
+				<tr>
+					<th>Last Login</th>
+					<td>
+						<c:choose>
+							<c:when test="${empty sessionScope.Userinfo.getLastLogin()}">
+								<c:out value="${sessionScope.Userinfo.getCurrentLogin()}"/>
+							</c:when>
+							<c:otherwise>
+								<c:out value="${sessionScope.Userinfo.getLastLogin()}"/>
+							</c:otherwise>
+						</c:choose>
+					</td>
+				</tr>
+				<tr>
+					<th>Current Login</th>
+					<td>
+						<c:out value="${sessionScope.Userinfo.getCurrentLogin()}"/>
 					</td>
 				</tr>
 				</table>

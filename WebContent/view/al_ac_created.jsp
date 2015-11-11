@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <c:choose>
-	<c:when test="${sessionScope.alAcInfo.getAccountId()==0or sessionScope.alAcInfo.getAccountId()==null }">
+	<c:when test="${sessionScope.alAcInfo.getAccountId()==0 or sessionScope.alAcInfo.getAccountId()==null }">
 	<title>Error!</title>
 	</c:when>
 	<c:otherwise>

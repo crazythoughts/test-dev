@@ -61,11 +61,27 @@
     <url-pattern>/com/kjjcsoft/controllers/OpenCfdAccount</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>FrontController</servlet-name>
-  	<servlet-class>com.kjjcsoft.controllers.FrontControllerServlet</servlet-class>
+    <servlet-name>FrontController</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.FrontControllerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>FrontController</servlet-name>
-  	<url-pattern>/com/kjjcsoft/controllers/FrontController</url-pattern>
+    <servlet-name>FrontController</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/FrontController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AccountInformation</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.AccountInformationController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AccountInformation</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/AccountInformation</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>ChangePassword</servlet-name>
+  	<servlet-class>com.kjjcsoft.controllers.ChangePasswordController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ChangePassword</servlet-name>
+  	<url-pattern>/com/kjjcsoft/controllers/ChangePassword</url-pattern>
   </servlet-mapping>
 </web-app>

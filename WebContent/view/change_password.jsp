@@ -142,15 +142,15 @@
 		<div class="form-wrapper">
 			<form method="post" action="/KJJCSoft/com/kjjcsoft/controllers/ChangePassword">
 				<label for="old_password">Old Password</label>
-				<input type="text" name="old_password"/>
+				<input type="password" name="old_password" value=""/>
 				<c:out value="${requestScope.errorOld}"/>
 				<c:remove var="errorOld" scope="request"/>
 				<label for="new_password">New Password</label>
-				<input type="text" name="new_password"/>
+				<input type="password" name="new_password"/>
 				<c:out value="${requestScope.errorNewPwd}"/>
 				<c:remove var="errorNewPwd" scope="request"/>
 				<label for="repeat_password">Repeat New Password</label>
-				<input type="text" name="repeat_password"/>
+				<input type="password" name="repeat_password"/>
 				<c:out value="${requestScope.errorRepPwd}"/>
 				<c:remove var="errorRepPwd" scope="request"/>
 				<input type="submit" value="Change"/>
@@ -158,6 +158,7 @@
 		</div>
 		</div>
 	</div>
+	<jsp:include page="footer.jsp"/>
 </div>
 </div>
 

@@ -77,11 +77,35 @@
     <url-pattern>/com/kjjcsoft/controllers/AccountInformation</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>ChangePassword</servlet-name>
-  	<servlet-class>com.kjjcsoft.controllers.ChangePasswordController</servlet-class>
+    <servlet-name>ChangePassword</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.ChangePasswordController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>ChangePassword</servlet-name>
-  	<url-pattern>/com/kjjcsoft/controllers/ChangePassword</url-pattern>
+    <servlet-name>ChangePassword</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/ChangePassword</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Users</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.UsersController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Users</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/users</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AddUser</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.AddUserController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddUser</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/adduser</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>UserSearch</servlet-name>
+  	<servlet-class>com.kjjcsoft.controllers.UserSearchController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UserSearch</servlet-name>
+  	<url-pattern>/com/kjjcsoft/controllers/usersearch</url-pattern>
   </servlet-mapping>
 </web-app>

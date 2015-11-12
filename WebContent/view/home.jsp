@@ -34,7 +34,7 @@
 						<ul>
 							<li><a href="/KJJCSoft/view/home.jsp">Main</a></li>
 							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/AccountInformation">My Account</a></li>
-							<li>Manage User</li>
+							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/users">Users</a></li>
 						</ul>
 					</li>
 					<li>Employee</li>

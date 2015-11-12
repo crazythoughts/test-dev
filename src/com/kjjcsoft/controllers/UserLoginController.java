@@ -53,7 +53,7 @@ public class UserLoginController extends HttpServlet {
 			Date dt = new Date();
 			r_user=retrive_user.getUserInfo(usr);
 			r_user.setCurrentLogin(sdf.format(dt));
-			retrive_user.insertUserLog(r_user.getEmployee_id());
+			retrive_user.insertUserLog(r_user.getUser_id());
 			session.setAttribute("Userinfo",r_user );
 			session.setAttribute("loggedIn", true);
 			session.setAttribute("initLogin",true);

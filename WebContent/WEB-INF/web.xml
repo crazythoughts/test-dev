@@ -26,7 +26,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>CustomerRegistration</servlet-name>
-    <url-pattern>/com/kjjcsoft/controllers/CustomerRegistration</url-pattern>
+    <url-pattern>/com/kjjcsoft/controllers/registration</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>DailySavings</servlet-name>
@@ -61,12 +61,12 @@
     <url-pattern>/com/kjjcsoft/controllers/OpenCfdAccount</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>FrontController</servlet-name>
-    <servlet-class>com.kjjcsoft.controllers.FrontControllerServlet</servlet-class>
+    <servlet-name>CustomerList</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.CustomerList</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>FrontController</servlet-name>
-    <url-pattern>/com/kjjcsoft/controllers/FrontController</url-pattern>
+    <servlet-name>CustomerList</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/customers</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>AccountInformation</servlet-name>

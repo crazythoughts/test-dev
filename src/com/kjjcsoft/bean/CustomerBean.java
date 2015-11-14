@@ -3,7 +3,10 @@
  */
 package com.kjjcsoft.bean;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.apache.commons.lang3.text.WordUtils;
 
 /**
  * @author Niroj Stha
@@ -12,9 +15,9 @@ import java.util.Date;
 public class CustomerBean {
 	private int customerId;
 	private String customerName;
-	private int customerAge;
+	private String customerAge;
 	private String gender;
-	private Date dob = new Date();
+	private String dob;
 	private String permDistrict;
 	private String permVdcMunicipality;
 	private String permExtrainfo;
@@ -58,8 +61,8 @@ public class CustomerBean {
 	private String gLandLine;
 	private String gEmailId;
 	private String photoPath;
-	private String finderPrintPath;
-	private Date jDate = new Date();
+	private String fingerPrintPath;
+	private String jDate;
 	private String refferedBy;
 	private int entryBy;
 	private String approvedBy;
@@ -72,11 +75,11 @@ public class CustomerBean {
 		this.customerName = customerName;
 	}
 
-	public int getCustomerAge() {
+	public String getCustomerAge() {
 		return customerAge;
 	}
 
-	public void setCustomerAge(int customerAge) {
+	public void setCustomerAge(String customerAge) {
 		this.customerAge = customerAge;
 	}
 
@@ -88,11 +91,11 @@ public class CustomerBean {
 		this.gender = gender;
 	}
 
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 
@@ -416,19 +419,19 @@ public class CustomerBean {
 		this.photoPath = photoPath;
 	}
 
-	public String getFinderPrintPath() {
-		return finderPrintPath;
+	public String getFingerPrintPath() {
+		return fingerPrintPath;
 	}
 
-	public void setFinderPrintPath(String finderPrintPath) {
-		this.finderPrintPath = finderPrintPath;
+	public void setFingerPrintPath(String fingerPrintPath) {
+		this.fingerPrintPath = fingerPrintPath;
 	}
 
-	public Date getjDate() {
+	public String getjDate() {
 		return jDate;
 	}
 
-	public void setjDate(Date jDate) {
+	public void setjDate(String jDate) {
 		this.jDate = jDate;
 	}
 
@@ -488,4 +491,635 @@ public class CustomerBean {
 		this.nomineeRelation = nomineeRelation;
 	}
 
+	public int validateData() {
+		if (validateCustomerName() > 0) {
+			return validateCustomerName();
+		} else if (validateCustomerAge() > 0) {
+			return validateCustomerAge();
+		} else if (validatedob() > 0) {
+			return validatedob();
+		} else if (validateGender()>0) {
+			return validateGender();
+		} else if (condition) {
+			
+		} else {
+
+		}
+	}
+
+	public int validateCustomerName() {
+		customerName = customerName.replaceAll("\\s+", " ").trim();
+		customerName = WordUtils.capitalizeFully(customerName);
+		if (customerName.length() < 1) {
+			return 11;
+		} else if (customerName.matches(".*\\W+.*")) {
+			return 12;
+		} else {
+			return 0;
+		}
+	}
+
+	public int validateCustomerAge() {
+		customerAge = customerAge.replaceAll("\\s+", " ").trim();
+		if (customerAge.length() < 1) {
+			return 21;
+		} else if (customerAge.matches("\\d{3}")) {
+			return 0;
+		} else {
+			return 22;
+		}
+	}
+
+	public int validatedob() {
+		dob = dob.replaceAll("\\s+", " ").trim();
+		if (dob.matches("\\d{3}/^(0?[1-9]|1[012])$/^([012]?[1-9]|3[01])$")) {
+			return 0;
+		} else if (dob.length() < 1) {
+			return 31;
+		} else {
+			return 32;
+		}
+	}
+
+	public int validateGender() {
+		gender = gender.replaceAll("\\s+", " ").trim();
+		if (gender.length() < 1 || gender == null) {
+			return 41;
+		} else {
+			return 0;
+		}
+	}
+
+	public int validateNationality() {
+		nationality = nationality.replaceAll("\\s+", " ").trim();
+		if (nationality.matches("^\\d+.*") || nationality.matches("^\\W+.*")) {
+			return 52;
+		} else if (nationality.length() < 0) {
+			return 51;
+		} else {
+			return 0;
+		}
+	}
+
+	public int validateCitizenshipNo() {
+		citizenShipNo = citizenShipNo.replaceAll("\\s+", " ").trim();
+		if (nationality.equals("Nepali") && citizenShipNo.matches("^\\d+") || citizenShipNo.matches("^\\d+/\\d+")) {
+			return 0;
+		} else if (!nationality.equals("Nepali") && (citizenShipNo.length() < 1 || citizenShipNo == null)) {
+			citizenShipNo = "";
+			return 0;
+		} else if (nationality.equals("Nepali") && citizenShipNo.length() < 1) {
+			return 61;
+		} else {
+			return 62;
+		}
+	}
+
+	public int validateMaritalStatus() {
+		if (maritalStatus.length() < 1 || maritalStatus == null) {
+			return 71;
+		} else {
+			return 0;
+		}
+	}
+
+	public int validateSpouseName() {
+		spouseName = spouseName.replaceAll("\\s+", " ").trim();
+		if (maritalStatus.equals("Married") && spouseName.length() < 1) {
+			return 81;
+		} else
+			if (maritalStatus.equals("Married") && (spouseName.matches("^\\d+.*") || spouseName.matches("^\\W+.*"))) {
+			return 82;
+		} else if (maritalStatus.equals("Married") && spouseName.matches("^\\w+.*")) {
+			return 0;
+		} else {
+			spouseName = "";
+			return 0;
+		}
+	}
+
+	public int validateOccupation() {
+		occupation = occupation.replaceAll("\\s+", " ").trim();
+		if (occupation.length() < 1) {
+			return 91;
+		} else if (occupation.matches("^\\d+.*") || occupation.matches("^\\W+.*")) {
+			return 92;
+		} else {
+			return 0;
+		}
+	}
+
+	public int validateCellOne() {
+		cellNumberFirst = cellNumberFirst.replaceAll("\\s+", " ").trim();
+		if (cellNumberFirst.matches("\\d*") && cellNumberFirst.length() < 11) {
+			return 0;
+		} else if (cellNumberFirst.length() < 2) {
+			cellNumberFirst = "";
+			return 0;
+		} else {
+			return 101;
+		}
+	}
+
+	public int validateCellTwo() {
+		cellNumberSecond = cellNumberSecond.replaceAll("\\s+", " ").trim();
+		if (cellNumberSecond.matches("\\d*") && cellNumberSecond.length() < 11) {
+			return 0;
+		} else if (cellNumberSecond.length() < 2) {
+			cellNumberSecond = "";
+			return 0;
+		} else {
+			return 111;
+		}
+	}
+
+	public int validateLandLine() {
+		landLine = landLine.replaceAll("\\s+", " ").trim();
+		if (landLine.matches("\\d*") && landLine.length() < 11) {
+			return 0;
+		} else if (landLine.length() < 2) {
+			landLine = "";
+			return 0;
+		} else {
+			return 121;
+		}
+	}
+
+	public int anyNumber() {
+		if (cellNumberFirst.equals("") && cellNumberSecond.equals("") && landLine.equals("")) {
+			return 131;
+		} else {
+			return 0;
+		}
+	}
+
+	public int validateEmail() {
+		emailId = emailId.replaceAll("\\s+", " ").trim();
+		if (emailId.matches("\\w+@\\w+\\.com")) {
+			return 0;
+		} else if (emailId.length() < 1) {
+			emailId = "";
+			return 0;
+		} else {
+			return 141;
+		}
+	}
+
+	public int validateDistrictPerm() {
+		permDistrict = permDistrict.replaceAll("\\s+", " ").trim();
+		permDistrict = WordUtils.capitalizeFully(permDistrict);
+		if (permDistrict.length() < 1) {
+			return 151;
+		} else if (permDistrict.matches("\\w+")) {
+			return 0;
+		} else {
+			return 152;
+		}
+	}
+
+	public int validateVMpPerm() {
+		permVdcMunicipality = permVdcMunicipality.replaceAll("\\s+", " ").trim();
+		permVdcMunicipality = WordUtils.capitalizeFully(permVdcMunicipality);
+		if (permVdcMunicipality.matches("([^\\W]+\\s?-{1}\\s?[^\\W]*|[^\\W]+)")) {
+			return 0;
+		} else if (permVdcMunicipality.length() < 1) {
+			return 161;
+		} else {
+			return 162;
+		}
+	}
+
+	public int validatePermExtra() {
+		permExtrainfo = permExtrainfo.replaceAll("\\s+", " ").trim();
+		permExtrainfo = WordUtils.capitalizeFully(permExtrainfo);
+		if (permExtrainfo.length() < 1) {
+			permExtrainfo = "";
+			return 0;
+		} else if (permExtrainfo.matches("[^\\W]+")) {
+			return 0;
+		} else {
+			return 171;
+		}
+	}
+
+	public int validateTempDistrict() {
+		tempDistrict = tempDistrict.replaceAll("\\s+", " ").trim();
+		tempDistrict = WordUtils.capitalizeFully(tempDistrict);
+		if (tempDistrict.length() < 1) {
+			tempDistrict = "";
+			return 0;
+		} else if (tempDistrict.matches("\\w+")) {
+			return 0;
+		} else {
+			return 181;
+		}
+	}
+
+	public int validateTempVMp() {
+		tempVdcMunicipality = tempVdcMunicipality.replaceAll("\\s+", " ").trim();
+		tempVdcMunicipality = WordUtils.capitalizeFully(tempVdcMunicipality);
+		if (tempVdcMunicipality.matches("([^\\W]+\\s?-{1}\\s?[^\\W]*|[^\\W]+)")) {
+			return 0;
+		} else if (tempVdcMunicipality.length() < 1 && tempDistrict.length() < 1) {
+			tempVdcMunicipality = "";
+			return 0;
+		} else {
+			return 192;
+		}
+	}
+
+	public int validateTempExtra() {
+		tempExtrainfo = tempExtrainfo.replaceAll("\\s+", " ").trim();
+		tempExtrainfo = WordUtils.capitalizeFully(tempExtrainfo);
+		if (tempExtrainfo.length() < 1 && tempVdcMunicipality.length() < 1 && tempDistrict.length() < 1) {
+			tempExtrainfo = "";
+			return 0;
+		} else if (tempExtrainfo.matches("[^\\W]+")) {
+			return 0;
+		} else {
+			return 201;
+		}
+	}
+
+	public int validateFName() {
+		fathersName = fathersName.replaceAll("\\s+", " ").trim();
+		fathersName = WordUtils.capitalizeFully(fathersName);
+		if (fathersName.length() < 1) {
+			return 211;
+		} else if (fathersName.matches(".*\\W+.*")) {
+			return 212;
+		} else {
+			return 0;
+		}
+	}
+
+	public int validateGFName() {
+		grandFathersName = grandFathersName.replaceAll("\\s+", " ").trim();
+		grandFathersName = WordUtils.capitalizeFully(grandFathersName);
+		if ((grandFathersName.length() < 1 && gender.equals("Male"))||(grandFathersName.length()<1 && gender.equals("Female")&& maritalStatus.equals("Single"))) {
+			return 221;
+		} else if (grandFathersName.length()<1 && gender.equals("Female") && maritalStatus.equals("Married")) {
+			grandFathersName = "";
+			return 0;
+		} else if (grandFathersName.matches(".*\\W+.*")) {
+			return 222;
+		} else {
+			return 0;
+		}
+	}
+	public int validateFLName(){
+		fatherInLawsName = fatherInLawsName.replaceAll("\\s+", " ").trim();
+		fatherInLawsName = WordUtils.capitalizeFully(fatherInLawsName);
+		if (fatherInLawsName.length()<1 && gender.equals("Female") && maritalStatus.equals("Married")) {
+			return 231;
+		} else if (fatherInLawsName.length()<1 && gender.equals("Male")) {
+			fatherInLawsName = "";
+			return 0;
+		} else if (fatherInLawsName.matches(".*\\W+.*")) {
+			return 232;
+		} else {
+			return 0;
+		}
+	}
+	public int validateNomineeName(){
+		nomineesName = nomineesName.replaceAll("\\s+", " ").trim();
+		nomineesName = WordUtils.capitalizeFully(nomineesName);
+		if (nomineesName.length() < 1) {
+			return 241;
+		} else if (nomineesName.matches(".*\\W+.*")) {
+			return 242;
+		} else {
+			return 0;
+		}
+	}
+	public int validateNomineeRelation(){
+		nomineeRelation = nomineeRelation.replaceAll("\\s+", " ").trim();
+		if (nomineeRelation.length() < 1) {
+			return 251;
+		} else if (nomineeRelation.matches(".*\\W+.*")) {
+			return 252;
+		} else {
+			return 0;
+		}
+	}
+	public int validateNCellOne() {
+		nCellNumberFirst = nCellNumberFirst.replaceAll("\\s+", " ").trim();
+		if (nCellNumberFirst.matches("\\d*") && nCellNumberFirst.length() < 11) {
+			return 0;
+		} else if (nCellNumberFirst.length() < 1) {
+			nCellNumberFirst = "";
+			return 0;
+		} else {
+			return 261;
+		}
+	}
+
+	public int validateNCellTwo() {
+		nCellNumberSecond = nCellNumberSecond.replaceAll("\\s+", " ").trim();
+		if (nCellNumberSecond.matches("\\d*") && nCellNumberSecond.length() < 11) {
+			return 0;
+		} else if (nCellNumberSecond.length() < 2) {
+			nCellNumberSecond = "";
+			return 0;
+		} else {
+			return 271;
+		}
+	}
+
+	public int validateNLandLine() {
+		nLandLine = nLandLine.replaceAll("\\s+", " ").trim();
+		if (nLandLine.matches("\\d*") && nLandLine.length() < 11) {
+			return 0;
+		} else if (nLandLine.length() < 2) {
+			nLandLine = "";
+			return 0;
+		} else {
+			return 281;
+		}
+	}
+
+	public int anyNNumber() {
+		if (nCellNumberFirst.equals("") && nCellNumberSecond.equals("") && nLandLine.equals("")) {
+			return 291;
+		} else {
+			return 0;
+		}
+	}
+
+	public int validateNEmail() {
+		nEmailId = nEmailId.replaceAll("\\s+", " ").trim();
+		if (nEmailId.matches("\\w+@\\w+\\.com")) {
+			return 0;
+		} else if (nEmailId.length() < 1) {
+			nEmailId = "";
+			return 0;
+		} else {
+			return 301;
+		}
+	}
+
+	public int validateNDistrictPerm() {
+		nPermDistrict = nPermDistrict.replaceAll("\\s+", " ").trim();
+		nPermDistrict = WordUtils.capitalizeFully(nPermDistrict);
+		if (nPermDistrict.length() < 1) {
+			return 311;
+		} else if (nPermDistrict.matches("\\w+")) {
+			return 0;
+		} else {
+			return 312;
+		}
+	}
+
+	public int validateNVMpPerm() {
+		nPermVdcMunicipality = nPermVdcMunicipality.replaceAll("\\s+", " ").trim();
+		nPermVdcMunicipality = WordUtils.capitalizeFully(nPermVdcMunicipality);
+		if (nPermVdcMunicipality.matches("([^\\W]+\\s?-{1}\\s?[^\\W]*|[^\\W]+)")) {
+			return 0;
+		} else if (nPermVdcMunicipality.length() < 1) {
+			return 321;
+		} else {
+			return 322;
+		}
+	}
+
+	public int validateNPermExtra() {
+		nPermExtraInfo = nPermExtraInfo.replaceAll("\\s+", " ").trim();
+		nPermExtraInfo = WordUtils.capitalizeFully(nPermExtraInfo);
+		if (nPermExtraInfo.length() < 1) {
+			nPermExtraInfo = "";
+			return 0;
+		} else if (nPermExtraInfo.matches("[^\\W]+")) {
+			return 0;
+		} else {
+			return 331;
+		}
+	}
+
+	public int validateNTempDistrict() {
+		nTempDistrict = nTempDistrict.replaceAll("\\s+", " ").trim();
+		nTempDistrict = WordUtils.capitalizeFully(nTempDistrict);
+		if (nTempDistrict.length() < 1) {
+			nTempDistrict = "";
+			return 0;
+		} else if (nTempDistrict.matches("\\w+")) {
+			return 0;
+		} else {
+			return 341;
+		}
+	}
+
+	public int validateNTempVMp() {
+		nTempVdcMunicipality = nTempVdcMunicipality.replaceAll("\\s+", " ").trim();
+		nTempVdcMunicipality = WordUtils.capitalizeFully(nTempVdcMunicipality);
+		if (nTempVdcMunicipality.matches("([^\\W]+\\s?-{1}\\s?[^\\W]*|[^\\W]+)")) {
+			return 0;
+		} else if (nTempVdcMunicipality.length() < 1 && nTempDistrict.length() < 1) {
+			nTempVdcMunicipality = "";
+			return 0;
+		} else {
+			return 351;
+		}
+	}
+
+	public int validateNTempExtra() {
+		nTempExtraInfo = nTempExtraInfo.replaceAll("\\s+", " ").trim();
+		nTempExtraInfo = WordUtils.capitalizeFully(nTempExtraInfo);
+		if (nTempExtraInfo.length() < 1 && nTempVdcMunicipality.length() < 1 && nTempDistrict.length() < 1) {
+			nTempExtraInfo = "";
+			return 0;
+		} else if (nTempExtraInfo.matches("[^\\W]+")) {
+			return 0;
+		} else {
+			return 361;
+		}
+	}
+	public int validateGuardianName(){
+		guardianName = guardianName.replaceAll("\\s+", " ").trim();
+		guardianName = WordUtils.capitalizeFully(guardianName);
+		if (guardianName.length() < 1) {
+			return 3711;
+		} else if (guardianName.matches(".*\\W+.*")) {
+			return 372;
+		} else {
+			return 0;
+		}
+	}
+	public int validateGuardianRelation(){
+		gRelation = gRelation.replaceAll("\\s+", " ").trim();
+		if (gRelation.length() < 1) {
+			return 381;
+		} else if (gRelation.matches(".*\\W+.*")) {
+			return 382;
+		} else {
+			return 0;
+		}
+	}
+	public int validateGCellOne() {
+		gCellNumberFirst = gCellNumberFirst.replaceAll("\\s+", " ").trim();
+		if (gCellNumberFirst.matches("\\d*") && gCellNumberFirst.length() < 11) {
+			return 0;
+		} else if (gCellNumberFirst.length() < 1) {
+			gCellNumberFirst = "";
+			return 0;
+		} else {
+			return 391;
+		}
+	}
+
+	public int validateGCellTwo() {
+		gCellNumberSecond = gCellNumberSecond.replaceAll("\\s+", " ").trim();
+		if (gCellNumberSecond.matches("\\d*") && gCellNumberSecond.length() < 11) {
+			return 0;
+		} else if (gCellNumberSecond.length() < 2) {
+			gCellNumberSecond = "";
+			return 0;
+		} else {
+			return 401;
+		}
+	}
+
+	public int validateGLandLine() {
+		gLandLine = gLandLine.replaceAll("\\s+", " ").trim();
+		if (gLandLine.matches("\\d*") && gLandLine.length() < 11) {
+			return 0;
+		} else if (gLandLine.length() < 2) {
+			gLandLine = "";
+			return 0;
+		} else {
+			return 411;
+		}
+	}
+
+	public int anyGNumber() {
+		if (gCellNumberFirst.equals("") && gCellNumberSecond.equals("") && gLandLine.equals("")) {
+			return 421;
+		} else {
+			return 0;
+		}
+	}
+
+	public int validateGEmail() {
+		gEmailId = gEmailId.replaceAll("\\s+", " ").trim();
+		if (gEmailId.matches("\\w+@\\w+\\.com")) {
+			return 0;
+		} else if (gEmailId.length() < 1) {
+			gEmailId = "";
+			return 0;
+		} else {
+			return 431;
+		}
+	}
+
+	public int validateGDistrictPerm() {
+		gPermDistrict = gPermDistrict.replaceAll("\\s+", " ").trim();
+		gPermDistrict = WordUtils.capitalizeFully(gPermDistrict);
+		if (gPermDistrict.length() < 1) {
+			return 311;
+		} else if (gPermDistrict.matches("\\w+")) {
+			return 0;
+		} else {
+			return 442;
+		}
+	}
+
+	public int validateGVMpPerm() {
+		gPermVdcMunicipality = gPermVdcMunicipality.replaceAll("\\s+", " ").trim();
+		gPermVdcMunicipality = WordUtils.capitalizeFully(gPermVdcMunicipality);
+		if (gPermVdcMunicipality.matches("([^\\W]+\\s?-{1}\\s?[^\\W]*|[^\\W]+)")) {
+			return 0;
+		} else if (gPermVdcMunicipality.length() < 1) {
+			return 451;
+		} else {
+			return 452;
+		}
+	}
+
+	public int validateGPermExtra() {
+		gPermExtraInfo = gPermExtraInfo.replaceAll("\\s+", " ").trim();
+		gPermExtraInfo = WordUtils.capitalizeFully(gPermExtraInfo);
+		if (gPermExtraInfo.length() < 1) {
+			gPermExtraInfo = "";
+			return 0;
+		} else if (gPermExtraInfo.matches("[^\\W]+")) {
+			return 0;
+		} else {
+			return 461;
+		}
+	}
+
+	public int validateGTempDistrict() {
+		gTempDistrict = gTempDistrict.replaceAll("\\s+", " ").trim();
+		gTempDistrict = WordUtils.capitalizeFully(gTempDistrict);
+		if (gTempDistrict.length() < 1) {
+			gTempDistrict = "";
+			return 0;
+		} else if (gTempDistrict.matches("\\w+")) {
+			return 0;
+		} else {
+			return 471;
+		}
+	}
+
+	public int validateGTempVMp() {
+		gTempVdcMunicipality = gTempVdcMunicipality.replaceAll("\\s+", " ").trim();
+		gTempVdcMunicipality = WordUtils.capitalizeFully(gTempVdcMunicipality);
+		if (gTempVdcMunicipality.matches("([^\\W]+\\s?-{1}\\s?[^\\W]*|[^\\W]+)")) {
+			return 0;
+		} else if (gTempVdcMunicipality.length() < 1 && gTempDistrict.length() < 1) {
+			gTempVdcMunicipality = "";
+			return 0;
+		} else {
+			return 481;
+		}
+	}
+
+	public int validateGTempExtra() {
+		gTempExtraInfo = gTempExtraInfo.replaceAll("\\s+", " ").trim();
+		gTempExtraInfo = WordUtils.capitalizeFully(gTempExtraInfo);
+		if (gTempExtraInfo.length() < 1 && gTempVdcMunicipality.length() < 1 && gTempDistrict.length() < 1) {
+			gTempExtraInfo = "";
+			return 0;
+		} else if (gTempExtraInfo.matches("[^\\W]+")) {
+			return 0;
+		} else {
+			return 491;
+		}
+	}
+	public int validateAcCreation(){
+		jDate = jDate.replaceAll("\\s+", " ").trim();
+		if(jDate.length()<1){
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+			Date dt= new Date();
+			jDate = sdf.format(dt);
+			return 0;
+		} else if(jDate.matches("\\d{3}/^(0?[1-9]|1[012])$/^([012]?[1-9]|3[01])$")){
+			return 0;
+		} else {
+			return 501;
+		}
+	}
+	public int validateReferredBy(){
+		refferedBy = refferedBy.replaceAll("\\s+", " ").trim();
+		refferedBy = WordUtils.capitalizeFully(refferedBy);
+		if (refferedBy.length() < 1) {
+			refferedBy = "";
+			return 0;
+		} else if (refferedBy.matches(".*\\W+.*")) {
+			return 511;
+		} else {
+			return 0;
+		}
+	}
+	public int validateApprovedBy(){
+		approvedBy = approvedBy.replaceAll("\\s+", " ").trim();
+		approvedBy = WordUtils.capitalizeFully(approvedBy);
+		if (approvedBy.length() < 1) {
+			return 521;
+		} else if (approvedBy.matches(".*\\W+.*")) {
+			return 522;
+		} else {
+			return 0;
+		}
+	}
+	
 }

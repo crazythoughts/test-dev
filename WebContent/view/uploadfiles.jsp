@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:choose>
-<c:when test="${sessionScope.loggedIn !=true }">
-	<c:redirect url="../index.jsp"/>
-</c:when>
+	<c:when test="${sessionScope.loggedIn !=true }">
+		<c:redirect url="../index.jsp"/>
+	</c:when>
 </c:choose>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="/KJJCSoft/view/css/style.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/KJJCSoft/view/css/style.css">
 <link href="/KJJCSoft/view/fonts/font-awesome/css/font-awesome.css" type="text/css" rel="stylesheet">
-<title>KJJCSoft</title>
+<title>Customer Registration</title>
 </head>
 <body>
 <c:set var="now" value="<%=new java.util.Date()%>"/>
@@ -40,7 +40,7 @@
 					<li>Employee</li>
 					<li>Customer
 						<ul>
-						<li><a href="/KJJCSoft/view/customer_registration.jsp">Manage Customer</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Manage Customer</a></li>
 						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
 						</ul>
 					</li>
@@ -70,8 +70,8 @@
 					<li>Employee</li>
 					<li>Customer
 						<ul>
-						<li><a href="/KJJCSoft/view/customer_registration.jsp">Manage Customer</a></li>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/FrontController">All Customers</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Manage Customer</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
 						</ul>
 					</li>
 					<li>Accounts
@@ -131,69 +131,22 @@
 			<li class="active">Home</li>
 		</ul>
 		<div class="main-contain-content clearfix">
-			<c:choose>
-				<c:when test="${sessionScope.initLogin==true}">
-					<div class="alert-info">
-						Welcome to dashboard. You have logged in successfully
-					</div>
-					<c:remove var="initLogin" scope="session"/>
-				</c:when>
-				<c:otherwise>
-					<div class="alert-info">
-						Welcome to dashboard.
-					</div>
-				</c:otherwise>
-			</c:choose>
-		<div class="all-content">
-			<div class="account-information">
-			<p>User Information</p>
-			<div class="profile-pic">
-				<img alt="User profile picture" src="/KJJCSoft/upload/${sessionScope.Userinfo.getEmployeePhotoPath()}" class="success-profile-img">
-			</div>
-			<div class="user-info-container">
-				<table class="user-info">
-				<tr>
-					<th>Name</th>
-					<td><c:out value="${sessionScope.Userinfo.getName()}"/></td>
-				</tr>
-				<tr>
-					<th>User Type</th>
-					<td><c:out value="${sessionScope.Userinfo.getRole()}"/></td>
-				</tr>
-				<tr>
-					<th>User Status</th>
-					<td>
-						<c:if test="${sessionScope.Userinfo.isUser_enabled() == true }">
-						Active
-						</c:if>
-					</td>
-				</tr>
-				<tr>
-					<th>Last Login</th>
-					<td>
-						<c:choose>
-							<c:when test="${empty sessionScope.Userinfo.getLastLogin()}">
-								<c:out value="${sessionScope.Userinfo.getCurrentLogin()}"/>
-							</c:when>
-							<c:otherwise>
-								<c:out value="${sessionScope.Userinfo.getLastLogin()}"/>
-							</c:otherwise>
-						</c:choose>
-					</td>
-				</tr>
-				<tr>
-					<th>Current Login</th>
-					<td>
-						<c:out value="${sessionScope.Userinfo.getCurrentLogin()}"/>
-					</td>
-				</tr>
-				</table>
-			</div>
+			<div class="all-content">
+				<div class="form-container">
+					<form method="post" enctype="multipart/form-data">
+						<label for="upload_photo">Upload Photo:</label>
+						<input type="file" name="upload_photo"/>
+						<c:out value="${requestScope.errorp}"/>
+						<c:remove var="errorp" scope="request"/>
+						<label for="upload_fingerprints">Upload Finger Prints:</label>
+						<input type="file" name="upload_fingerprints"/>
+						<c:out value="${requestScope.errorfp }"/>
+						<c:remove var="errorfp" scope="request"/>
+					</form>
+				</div>
 			</div>
 		</div>
-		</div>
-		<jsp:include page="footer.jsp"/>
-</div>
+	</div>
 </div>
 </body>
 </html>

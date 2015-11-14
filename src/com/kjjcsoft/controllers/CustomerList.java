@@ -16,14 +16,14 @@ import com.kjjcsoft.model.Customer;
 /**
  * Servlet implementation class FrontControllerServlet
  */
-@WebServlet(description = "for fetching all the customer data", urlPatterns = { "/FrontController" })
-public class FrontControllerServlet extends HttpServlet {
+@WebServlet(description = "for fetching all the customer data", urlPatterns = { "/customers" })
+public class CustomerList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FrontControllerServlet() {
+    public CustomerList() {
         super();
         // TODO Auto-generated constructor stub
     }

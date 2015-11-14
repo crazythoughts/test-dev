@@ -30,7 +30,7 @@ public class Customer {
 			con=ConnectionProvider.getConnection();
 			ps=con.prepareStatement("INSERT into tbl_customer (customer_name, customer_age, customer_gender, customer_dob, customer_nationality, customer_citizenshipno, customer_perm_district, customer_perm_vdc_municipality, customer_perm_extrainfo, customer_temp_district, customer_temp_vdc_municipality, customer_temp_extrainfo, customer_cell_number_first, customer_cell_number_second, customer_landline, customer_email, customer_marital_status, customer_spouse_name, customer_occupation, customer_father_name, customer_grandfather_name, customer_father_in_law_name, nominee_name, nominee_relation, nominee_perm_district, nominee_perm_vdc_municipality, nominee_perm_extrainfo, nominee_temp_district, nominee_temp_vdc_municipality, nominee_temp_extrainfo, nominee_cell_number_first, nominee_cell_number_second, nominee_landline, nominee_email, guardian_name, guardian_relation, guardian_perm_district, guardian_perm_vdc_municipality, guardian_perm_extrainfo, guardian_temp_district, guardian_temp_vdc_municipality, guardian_temp_extrainfo, guardian_cell_number_one, guardian_cell_number_second, guardian_landline, guardian_email, customer_photo, customer_thumb_print, customer_joined_date, customer_refferedby, customer_approved_by, entry_by) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
 			ps.setString(1, paramIn.getCustomerName());
-			ps.setInt(2, paramIn.getCustomerAge());
+			ps.setString(2, paramIn.getCustomerAge());
 			ps.setString(3, paramIn.getGender());
 			ps.setDate(4, DBFunctions.convertToSqlDate(paramIn.getDob()));
 			ps.setString(5, paramIn.getNationality());
@@ -76,7 +76,7 @@ public class Customer {
 			ps.setString(45, paramIn.getgLandLine());
 			ps.setString(46, paramIn.getgEmailId());
 			ps.setString(47, paramIn.getPhotoPath());
-			ps.setString(48, paramIn.getFinderPrintPath());
+			ps.setString(48, paramIn.getFingerPrintPath());
 			ps.setDate(49, DBFunctions.convertToSqlDate(paramIn.getjDate()));
 			ps.setString(50, paramIn.getRefferedBy());
 			ps.setString(51, paramIn.getApprovedBy());
@@ -109,7 +109,7 @@ public class Customer {
 			if (rs.next()) {
 				lastInsertedCustomer.setCustomerId(rs.getInt("customer_id"));
 				lastInsertedCustomer.setCustomerName(rs.getString("customer_name"));
-				lastInsertedCustomer.setCustomerAge(rs.getInt("customer_age"));
+				lastInsertedCustomer.setCustomerAge(rs.getString("customer_age"));
 				lastInsertedCustomer.setGender(rs.getString("customer_gender"));
 				lastInsertedCustomer.setDob(rs.getDate("customer_dob"));
 				lastInsertedCustomer.setNationality(rs.getString("customer_nationality"));
@@ -155,7 +155,7 @@ public class Customer {
 				lastInsertedCustomer.setgLandLine(rs.getString("guardian_landline"));
 				lastInsertedCustomer.setgEmailId(rs.getString("guardian_email"));
 				lastInsertedCustomer.setPhotoPath(rs.getString("customer_photo"));
-				lastInsertedCustomer.setFinderPrintPath(rs.getString("customer_thumb_print"));
+				lastInsertedCustomer.setFingerPrintPath(rs.getString("customer_thumb_print"));
 				lastInsertedCustomer.setjDate(rs.getDate("customer_joined_date"));
 				lastInsertedCustomer.setRefferedBy(rs.getString("customer_refferedby"));
 				lastInsertedCustomer.setApprovedBy(rs.getString("customer_approved_by"));
@@ -216,7 +216,7 @@ public class Customer {
 				CustomerBean storeInfo = new CustomerBean();
 				storeInfo.setCustomerId(rs.getInt("customer_id"));
 				storeInfo.setCustomerName(rs.getString("customer_name"));
-				storeInfo.setCustomerAge(rs.getInt("customer_age"));
+				storeInfo.setCustomerAge(rs.getString("customer_age"));
 				storeInfo.setGender(rs.getString("customer_gender"));
 				storeInfo.setCitizenShipNo(rs.getString("customer_citizenshipno"));
 				storeInfo.setPermVdcMunicipality(rs.getString("customer_perm_vdc_municipality"));

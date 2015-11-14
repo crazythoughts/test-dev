@@ -18,7 +18,7 @@
 <body>
 <c:set var="now" value="<%=new java.util.Date()%>"/>
 <div class="container">
-<div style="background : white; width : 100 %" >
+	<div style="background : white; width : 100 %" >
 		<div style="width : 15%;">
 			KJJCSoft
 		</div>
@@ -33,15 +33,15 @@
 					<li>Dashboard
 						<ul>
 							<li><a href="/KJJCSoft/view/home.jsp">Main</a></li>
-							<li>Manage Profile</li>
-							<li>Manage User</li>
+							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/AccountInformation">My Account</a></li>
+							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/users">Users</a></li>
 						</ul>
 					</li>
 					<li>Employee</li>
 					<li>Customer
 						<ul>
-						<li><a href="/KJJCSoft/view/customer_registration.jsp">Manage Customer</a></li>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/FrontController">All Customers</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Manage Customer</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
 						</ul>
 					</li>
 					<li>Accounts
@@ -70,8 +70,8 @@
 					<li>Employee</li>
 					<li>Customer
 						<ul>
-						<li><a href="/KJJCSoft/view/customer_registration.jsp">Manage Customer</a></li>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/FrontController">All Customers</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Manage Customer</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
 						</ul>
 					</li>
 					<li>Accounts
@@ -97,8 +97,8 @@
 			</div>
 		</form>
 	</div>
-		<div class="main-contain clearfix ">
-			<div class="main-contain-header clearfix">
+		<div class="main-contain clearfix">
+		<div class="main-contain-header clearfix">
 			<div class="to-right">
 			<ul class="stats">
                     <li class="green">
@@ -124,24 +124,18 @@
                     </li>
                 </ul>
 			</div>
-                <h1 class="page-def"> Customer Registration</h1>
+                <h1 class="page-def">Dashboard</h1>
 		</div>
 		<ul class="nav-show">
 			<li class="main-page">Dashboard<span class="divider">></span></li>
-			<li class="">Customer<span class="divider">></span></li>
-			<li class="path-active">Customer Registration
+			<li class="active">Home</li>
 		</ul>
 			<h3>Customer Registration</h3>
-			<form action="/KJJCSoft/com/kjjcsoft/controllers/CustomerRegistration" method="post" enctype="multipart/form-data">
-				<label for="fullname">Fullname:</label>
-				<input type="text" placeholder="Fullname" name="fullname"/>
+			<form action="/KJJCSoft/com/kjjcsoft/controllers/registration" method="post">
+				<label for="fullname">Full Name:</label>
+				<input type="text" name="fullname"/>
 				<c:out value="${requestScope.errorfn}"/>
 				<c:remove var="errorfn" scope="request"/>
-				<br>
-				<label for="upload_photo">Upload Photo:</label>
-				<input type="file" name="upload_photo"/>
-				<c:out value="${requestScope.errorp}"/>
-				<c:remove var="errorp" scope="request"/>
 				<br>
 				<label for="age">Age</label>
 				<input type="text" name="age">
@@ -160,12 +154,12 @@
 				<c:remove var="errorg" scope="request"/>
 				<br>
 				<label for="nationality">Nationality</label>
-				<input type="text" name="nationality" placeholder="nationality"/>
+				<input type="text" name="nationality" />
 				<c:out value="${requestScope.errorn }"/>
 				<c:remove var="errorn" scope="request"/>
 				<br>
 				<label for="citizenship_no">Citizenship number:</label>
-				<input type="text" name="citizenship_no" placeholder=""/>
+				<input type="text" name="citizenship_no" />
 				<c:out value="${requestScope.errorcs }"/>
 				<c:remove var="errorcs" scope="request"/>
 				<br>
@@ -176,25 +170,25 @@
 				<c:remove var="errorms" scope="request"/>
 				<br>
 				<label for="spouse_name">Spouse Name:</label>
-				<input type="text" name="spouse_name" placeholder="Spouse Name"/>
+				<input type="text" name="spouse_name" />
 				<c:out value="${requestScope.errorsn }"/>
 				<c:remove var="errorsn" scope="request"/>
 				<br>
 				<label for="occupation">Occupation</label>
-				<input type="text" name="occupation" placeholder="Occupation"/>
+				<input type="text" name="occupation" />
 				<c:out value="${requestScope.erroro }"/>
 				<c:remove var="erroro" scope="request"/>
 				<br>
 				<label for="cellnumber_first">Mobile 1:</label>
-				<input type="text" name="cellnumber_first" placeholder="eg. 98XXXXXXXX" />
+				<input type="text" name="cellnumber_first"  />
 				<c:out value="${requestScope.errorcn}"/>
 				<c:remove var="errorcn" scope="request"/>
 				<br>
 				<label for="cellnumber_second">Mobile 2:</label>
-				<input type="text" name="cellnumber_second" placeholder="eg. 98XXXXXXXX"/>
+				<input type="text" name="cellnumber_second" />
 				<br>
 				<label for="landline">Landline</label>
-				<input type="text" name="landline" placeholder="01XXXXXXXX"/>
+				<input type="text" name="landline" />
 				<br>
 				<label for="customer_email">Email</label>
 				<input type="text" name="customer_email"/>
@@ -202,43 +196,43 @@
 				<fieldset>
 					<legend>Permanent Address</legend>
 					<label for="perm_dist">District</label>
-					<input type="text" name="perm_dist" placeholder="District"/>
+					<input type="text" name="perm_dist" />
 					<c:out value="${requestScope.errorpd }"/>
 					<c:remove var="errorpd" scope="request"/>
 					<label for="perm_vdc_mp">VDC/Municipality</label>
-					<input type="text" name="perm_vdc_mp" placeholder="VDC/Municipality"/>
+					<input type="text" name="perm_vdc_mp" />
 					<c:out value="${requestScope.errorpvm }"/>
 					<c:remove var="errorpvm" scope="request"/>
 					<label for="perm_other">Other Information</label>
-					<input type="text" name="perm_other" placeholder=""/>
+					<input type="text" name="perm_other" />
 				</fieldset>
 				<fieldset>
 					<legend>Temporary Address</legend>
 					<label for="temp_dist">District</label>
-					<input type="text" name="temp_dist" placeholder="District"/>
+					<input type="text" name="temp_dist" />
 					<label for="temp_vdc_mp">VDC/Municipality</label>
-					<input type="text" name="temp_vdc_mp" placeholder="VDC/Municipality"/>
+					<input type="text" name="temp_vdc_mp" />
 					<label for="temp_other">Other Information</label>
-					<input type="text" name="temp_other" placeholder=""/>
+					<input type="text" name="temp_other" />
 				</fieldset>
 				<label for="fathers_name">Father's Name:</label>
-				<input type="text" name="fathers_name" placeholder="Father's Name"/>
+				<input type="text" name="fathers_name" />
 				<c:out value="${requestScope.errorf }"/>
 				<c:remove var="errorf" scope="request"/>
 				<br>
 				<label for="grandfathers_name">Grandfather's Name</label>
-				<input type="text" name="grandfathers_name" placeholder="Grandfather's Name"/>
+				<input type="text" name="grandfathers_name" />
 				<c:out value="${requestScope.errorgfn }"/>
 				<c:remove var="errorgfn" scope="request"/>
 				<br>
 				<label for="father_in_law_name">Father-in-Law's Name</label>
-				<input type="text" name="father_in_law_name" placeholder="Father-in-Law"/>
+				<input type="text" name="father_in_law_name" />
 				<c:out value="${requestScope.errorfln }"/>
 				<c:remove var="errorfln" scope="request"/>
 				<fieldset>
 					<legend>Nominee</legend>
 					<label for="nominee_name">Nominee's Name</label>
-					<input type="text" name="nominee_name" placeholder="Nominee Name"/>
+					<input type="text" name="nominee_name" />
 					<c:out value="${requestScope.errornn}"/>
 					<c:remove var="errornn" scope="request"/>
 					<br>
@@ -248,107 +242,102 @@
 					<c:remove var="errornr" scope="request"/>
 					<br>
 					<label for="nominee_cell_first">Mobile 1:</label>
-					<input type="text" name="nominee_cell_first" placeholder="98XXXXXXXX"/>
+					<input type="text" name="nominee_cell_first" />
 					<c:out value="${requestScope.errorncn }"/>
 					<c:remove var="errorncn" scope="request"/>
 					<br>
 					<label for="nominee_cell_second">Mobile 2:</label>
-					<input type="text" name="nominee_cell_second" placeholder="98XXXXXXXX"/>
+					<input type="text" name="nominee_cell_second" />
 					<br>
 					<label for="nominee_landline">Landline</label>
-					<input type="text" name="nominee_landline" placeholder="01XXXXXXXX"/>
+					<input type="text" name="nominee_landline" />
 					<br>
 					<label for="nominee_email">Email:</label>
-					<input type="text" name="nominee_email" placeholder="Email"/>
+					<input type="text" name="nominee_email" />
 					<fieldset>
 						<legend>Permanent Address</legend>
 						<label for="n_perm_dist">District</label>
-						<input type="text" name="n_perm_dist" placeholder="District"/>
+						<input type="text" name="n_perm_dist" />
 						<c:out value="${requestScope.errornpd }"/>
 						<c:remove var="errornpd" scope="request"/>
 						<label for="n_perm_vdc_mp">VDC/Municipality</label>
-						<input type="text" name="n_perm_vdc_mp" placeholder="VDC/Municipality"/>
+						<input type="text" name="n_perm_vdc_mp" />
 						<c:out value="${requestScope.errornpvm }"/>
 						<c:remove var="errornpvm" scope="request"/>
 						<label for="n_perm_other">Other Information</label>
-						<input type="text" name="n_perm_other" placeholder=""/>
+						<input type="text" name="n_perm_other" />
 					</fieldset>
 					<fieldset>
 						<legend>Temporary Address</legend>
 						<label for="n_temp_dist">District</label>
-						<input type="text" name="n_temp_dist" placeholder="District"/>
+						<input type="text" name="n_temp_dist" />
 						<label for="n_temp_vdc_mp">VDC/Municipality</label>
-						<input type="text" name="n_temp_vdc_mp" placeholder="VDC/Municipality"/>
+						<input type="text" name="n_temp_vdc_mp" />
 						<label for="n_temp_other">Other Information</label>
-						<input type="text" name="n_temp_other" placeholder=""/>
+						<input type="text" name="n_temp_other" />
 					</fieldset>
 				</fieldset>
 				<fieldset>
 					<legend>For Under Age</legend>
 					<label for="guardian_name">Guardian Name</label>
-					<input type="text" name="guardian_name" placeholder="Guardian Name"/>
+					<input type="text" name="guardian_name" />
 					<c:out value="${requestScope.errorgn }"/>
 					<c:remove var="errorgn" scope="request"/>
 					<br>
 					<label for="guardian_relation">Relation</label>
-					<input type="text" name="guardian_relation" placeholder="Relation"/>
+					<input type="text" name="guardian_relation" />
 					<c:out value="${requestScope.errorgr }"/>
 					<c:remove var="errorgr" scope="request"/>
 					<br>
 					<label for="guardian_cell_first">Mobile 1:</label>
-					<input type="text" name="guardian_cell_first" placeholder="98XXXXXXXX"/>
+					<input type="text" name="guardian_cell_first" />
 					<c:out value="${requestScope.errorgcn }"/>
 					<c:remove var="errorgcn" scope="request"/>
 					<br>
 					<label for="guardian_cell_second">Mobile 2:</label>
-					<input type="type" name="guardian_cell_second" placeholder="98XXXXXXXX"/>
+					<input type="type" name="guardian_cell_second" />
 					<br>
 					<label for="guardian_landline">Landline</label>
-					<input type="text" name="guardian_landline" placeholder="01XXXXXXXX"/>
+					<input type="text" name="guardian_landline" />
 					<br>
 					<label for="guardian_email">Email</label>
-					<input type="text" name="guardian_email" placeholder="example@example.com"/>
+					<input type="text" name="guardian_email" />
 					<fieldset>
 						<legend>Permanent Address</legend>
 						<label for="g_perm_dist">District</label>
-						<input type="text" name="g_perm_dist" placeholder="District"/>
+						<input type="text" name="g_perm_dist" />
 						<c:out value="${requestScope.errorgpd }"/>
 						<c:remove var="errorgpd" scope="request"/>
 						<label for="g_perm_vdc_mp">VDC/Municipality</label>
-						<input type="text" name="g_perm_vdc_mp" placeholder="VDC/Municipality"/>
+						<input type="text" name="g_perm_vdc_mp" />
 						<c:out value="${requestScope.errorgpvm }"/>
 						<c:remove var="errorgpvm" scope="request"/>
 						<label for="g_perm_other">Other Information</label>
-						<input type="text" name="g_perm_other" placeholder=""/>
+						<input type="text" name="g_perm_other" />
 					</fieldset>
 					<fieldset>
 						<legend>Temporary Address</legend>
 						<label for="g_temp_dist">District</label>
-						<input type="text" name="g_temp_dist" placeholder="District"/>
+						<input type="text" name="g_temp_dist" />
 						<label for="g_temp_vdc_mp">VDC/Municipality</label>
-						<input type="text" name="g_temp_vdc_mp" placeholder="VDC/Municipality"/>
+						<input type="text" name="g_temp_vdc_mp" />
 						<label for="g_temp_other">Other Information</label>
-						<input type="text" name="g_temp_other" placeholder=""/>
+						<input type="text" name="g_temp_other" />
 					</fieldset>
 				</fieldset>
-				<label for="upload_fingerprints">Upload Finger Prints:</label>
-				<input type="file" name="upload_fingerprints"/>
-				<c:out value="${requestScope.errorfp }"/>
-				<c:remove var="errorfp" scope="request"/>
-				<br>
 				<label for="creation_date">Account Creation Date</label>
-				<input type="text" name="creation_date" placeholder="YYYY/mm/dd"/>
+				<input type="text" name="creation_date" />
 				<br>
 				<label for="reffered_by">Reffered By:</label>
-				<input type="text" name="reffered_by" placeholder="John Doe"/>
+				<input type="text" name="reffered_by" />
 				<label for="approved_by">Approved By:</label>
-				<input type="text" name="approved_by" placeholder="John Doe"/>
+				<input type="text" name="approved_by" />
 				<c:out value="${requestScope.errorapb }"/>
 				<c:remove var="errorapb" scope="request"/>
 				<br>
 				<c:out value="${requestScope.errorMsg}"/>
 				<c:remove var="errorMsg" scope="request"/>
-				<input type="submit" value="Save"/>
+				<input type="submit" value="Save" name="normField"/>
 			</form>
 		<jsp:include page="footer.jsp"/>
 	</div>

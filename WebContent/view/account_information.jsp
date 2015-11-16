@@ -14,12 +14,7 @@
 <c:set var="now" value="<%=new java.util.Date()%>"/>
 <div class="container">
 	<div style="background : white; width : 100 %" >
-		<div style="width : 15%;">
-			KJJCSoft
-		</div>
-		<div style="width :85%;">
-			<a href="/KJJCSoft/view/home.jsp"><img alt="User profile picture" src="/KJJCSoft/upload/${sessionScope.Userinfo.getEmployeePhotoPath()}" class="home-img"></a>
-		</div>
+		<jsp:include page="header.jsp"/>
 	</div>
 	<div class="sidebar f-left clearfix">
 		<c:choose>
@@ -35,8 +30,8 @@
 					<li>Employee</li>
 					<li>Customer
 						<ul>
-						<li><a href="/KJJCSoft/view/customer_registration.jsp">Manage Customer</a></li>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/FrontController">All Customers</a></li>
+						<li><a href="//KJJCSoft/com/kjjcsoft/controllers/registration">Manage Customer</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
 						</ul>
 					</li>
 					<li>Accounts
@@ -65,8 +60,8 @@
 					<li>Employee</li>
 					<li>Customer
 						<ul>
-						<li><a href="/KJJCSoft/view/customer_registration.jsp">Manage Customer</a></li>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/FrontController">All Customers</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Manage Customer</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
 						</ul>
 					</li>
 					<li>Accounts

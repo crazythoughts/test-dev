@@ -133,33 +133,33 @@
 			<h3>Customer Registration</h3>
 			<form action="/KJJCSoft/com/kjjcsoft/controllers/registration" method="post">
 				<label for="fullname">Full Name:</label>
-				<input type="text" name="fullname"/>
+				<input type="text" name="fullname" value="${param.fullname}"/>
 				<c:out value="${requestScope.errorfn}"/>
 				<c:remove var="errorfn" scope="request"/>
 				<br>
 				<label for="age">Age</label>
-				<input type="text" name="age">
+				<input type="text" name="age" value = "${param.age}">
 				<c:out value="${requestScope.errora}"/>
 				<c:remove var="errora" scope="request"/>
 				<br>
 				<label for="dob">Date of birth</label>
-				<input type="text" name="dob"/>
+				<input type="text" name="dob" value = "${param.dob}"/>
 				<c:out value="${requestScope.errordob }"/>
 				<c:remove var="errordob" scope="request"/>
 				<br>
-				<label for="sex">Sex :</label>
-				<input type="radio" name="sex" value="Male" checked/>Male
-				<input type="radio" name="sex" value="Female"/>Female
+				<label for="gender">Gender :</label>
+				<input type="radio" name="gender" value="Male" checked/>Male
+				<input type="radio" name="gender" value="Female"/>Female
 				<c:out value="${requestScope.errorg }"/>
 				<c:remove var="errorg" scope="request"/>
 				<br>
 				<label for="nationality">Nationality</label>
-				<input type="text" name="nationality" />
+				<input type="text" name="nationality" value ="${param.nationality}"/>
 				<c:out value="${requestScope.errorn }"/>
 				<c:remove var="errorn" scope="request"/>
 				<br>
 				<label for="citizenship_no">Citizenship number:</label>
-				<input type="text" name="citizenship_no" />
+				<input type="text" name="citizenship_no" value="${param.citizenship_no}" />
 				<c:out value="${requestScope.errorcs }"/>
 				<c:remove var="errorcs" scope="request"/>
 				<br>
@@ -170,173 +170,217 @@
 				<c:remove var="errorms" scope="request"/>
 				<br>
 				<label for="spouse_name">Spouse Name:</label>
-				<input type="text" name="spouse_name" />
+				<input type="text" name="spouse_name" value="${param.spouse_name}"/>
 				<c:out value="${requestScope.errorsn }"/>
 				<c:remove var="errorsn" scope="request"/>
 				<br>
 				<label for="occupation">Occupation</label>
-				<input type="text" name="occupation" />
+				<input type="text" name="occupation" value="${param.occupation}"/>
 				<c:out value="${requestScope.erroro }"/>
 				<c:remove var="erroro" scope="request"/>
 				<br>
 				<label for="cellnumber_first">Mobile 1:</label>
-				<input type="text" name="cellnumber_first"  />
+				<input type="text" name="cellnumber_first" value="${param.cellnumber_first}" />
 				<c:out value="${requestScope.errorcn}"/>
 				<c:remove var="errorcn" scope="request"/>
 				<br>
 				<label for="cellnumber_second">Mobile 2:</label>
-				<input type="text" name="cellnumber_second" />
+				<input type="text" name="cellnumber_second" value="${param.cellnumber_second}"/>
+				<c:out value="${requestScope.errorcs}"/>
+				<c:remove var="errorcs" scope="request"/>
 				<br>
 				<label for="landline">Landline</label>
-				<input type="text" name="landline" />
+				<input type="text" name="landline" value="${param.landline}" />
+				<c:out value="${requestScope.errorll}"/>
+				<c:remove var="errorll" scope="request"/>
 				<br>
 				<label for="customer_email">Email</label>
-				<input type="text" name="customer_email"/>
+				<input type="text" name="customer_email" value="${param.customer_email}"/>
+				<c:out value="${requestScope.erroreid}"/>
+				<c:remove var="erroreid" scope="request"/>
 				<br>
 				<fieldset>
 					<legend>Permanent Address</legend>
 					<label for="perm_dist">District</label>
-					<input type="text" name="perm_dist" />
+					<input type="text" name="perm_dist" value="${param.perm_dist}" />
 					<c:out value="${requestScope.errorpd }"/>
 					<c:remove var="errorpd" scope="request"/>
 					<label for="perm_vdc_mp">VDC/Municipality</label>
-					<input type="text" name="perm_vdc_mp" />
+					<input type="text" name="perm_vdc_mp" value="${param.perm_vdc_mp}"/>
 					<c:out value="${requestScope.errorpvm }"/>
 					<c:remove var="errorpvm" scope="request"/>
 					<label for="perm_other">Other Information</label>
-					<input type="text" name="perm_other" />
+					<input type="text" name="perm_other" value="${param.perm_other }"/>
+					<c:out value="${requestScope.errorpe}"/>
+					<c:remove var="errorpe" scope="request"/>
 				</fieldset>
 				<fieldset>
 					<legend>Temporary Address</legend>
 					<label for="temp_dist">District</label>
-					<input type="text" name="temp_dist" />
+					<input type="text" name="temp_dist" value="${param.temp_dist}"/>
+					<c:out value="${requestScope.errortd}"/>
+					<c:remove var="errortd" scope="request"/>
 					<label for="temp_vdc_mp">VDC/Municipality</label>
-					<input type="text" name="temp_vdc_mp" />
+					<input type="text" name="temp_vdc_mp" value="${param.temp_vdc_mp}"/>
+					<c:out value="${requestScope.errortvm}"/>
+					<c:remove var="errortvm" scope="request"/>
 					<label for="temp_other">Other Information</label>
-					<input type="text" name="temp_other" />
+					<input type="text" name="temp_other" value="${param.temp_other}"/>
+					<c:out value="${requestScope.errorte}"/>
+					<c:remove var="errorte" scope="request"/>
 				</fieldset>
 				<label for="fathers_name">Father's Name:</label>
-				<input type="text" name="fathers_name" />
+				<input type="text" name="fathers_name"  value="${param.fathers_name}"/>
 				<c:out value="${requestScope.errorf }"/>
 				<c:remove var="errorf" scope="request"/>
 				<br>
 				<label for="grandfathers_name">Grandfather's Name</label>
-				<input type="text" name="grandfathers_name" />
+				<input type="text" name="grandfathers_name" value="${param.grandfathers_name}" />
 				<c:out value="${requestScope.errorgfn }"/>
 				<c:remove var="errorgfn" scope="request"/>
 				<br>
 				<label for="father_in_law_name">Father-in-Law's Name</label>
-				<input type="text" name="father_in_law_name" />
+				<input type="text" name="father_in_law_name" value="${param.father_in_law_name}"/>
 				<c:out value="${requestScope.errorfln }"/>
 				<c:remove var="errorfln" scope="request"/>
 				<fieldset>
 					<legend>Nominee</legend>
 					<label for="nominee_name">Nominee's Name</label>
-					<input type="text" name="nominee_name" />
+					<input type="text" name="nominee_name" value="${param.nominee_name}"/>
 					<c:out value="${requestScope.errornn}"/>
 					<c:remove var="errornn" scope="request"/>
 					<br>
 					<label for ="nominee_relation">Relation</label>
-					<input type="text" name="nominee_relation"/>
+					<input type="text" name="nominee_relation" value="${param.nominee_relation}"/>
 					<c:out value="${requestScope.errornr }"/>
 					<c:remove var="errornr" scope="request"/>
 					<br>
 					<label for="nominee_cell_first">Mobile 1:</label>
-					<input type="text" name="nominee_cell_first" />
-					<c:out value="${requestScope.errorncn }"/>
+					<input type="text" name="nominee_cell_first" value="${param.nominee_cell_first}"/>
+					<c:out value="${requestScope.errorncf }"/>
 					<c:remove var="errorncn" scope="request"/>
 					<br>
 					<label for="nominee_cell_second">Mobile 2:</label>
-					<input type="text" name="nominee_cell_second" />
+					<input type="text" name="nominee_cell_second" value="${param.nominee_cell_seconnd}" />
+					<c:out value="${requestScope.errorncs }"/>
+					<c:remove var="errorncs" scope="request"/>
 					<br>
 					<label for="nominee_landline">Landline</label>
-					<input type="text" name="nominee_landline" />
+					<input type="text" name="nominee_landline" value="${param.nominee_landline}" />
+					<c:out value="${requestScope.errornll }"/>
+					<c:remove var="errornll" scope="request"/>
 					<br>
 					<label for="nominee_email">Email:</label>
-					<input type="text" name="nominee_email" />
+					<input type="text" name="nominee_email" value="${param.nominee_email}"/>
+					<c:out value="${requestScope.errorneid }"/>
+					<c:remove var="errorneid" scope="request"/>					
 					<fieldset>
 						<legend>Permanent Address</legend>
 						<label for="n_perm_dist">District</label>
-						<input type="text" name="n_perm_dist" />
+						<input type="text" name="n_perm_dist" value="${param.n_perm_dist}"/>
 						<c:out value="${requestScope.errornpd }"/>
 						<c:remove var="errornpd" scope="request"/>
 						<label for="n_perm_vdc_mp">VDC/Municipality</label>
-						<input type="text" name="n_perm_vdc_mp" />
+						<input type="text" name="n_perm_vdc_mp" value="${param.n_perm_vdc_mp}"/>
 						<c:out value="${requestScope.errornpvm }"/>
 						<c:remove var="errornpvm" scope="request"/>
 						<label for="n_perm_other">Other Information</label>
-						<input type="text" name="n_perm_other" />
+						<input type="text" name="n_perm_other" value="${param.n_perm_other}"/>
+						<c:out value="${requestScope.errornpe }"/>
+						<c:remove var="errornpe" scope="request"/>
 					</fieldset>
 					<fieldset>
 						<legend>Temporary Address</legend>
 						<label for="n_temp_dist">District</label>
-						<input type="text" name="n_temp_dist" />
+						<input type="text" name="n_temp_dist" value="${param.n_temp_dist}" />
+						<c:out value="${requestScope.errorntd }"/>
+						<c:remove var="errorntd" scope="request"/>
 						<label for="n_temp_vdc_mp">VDC/Municipality</label>
-						<input type="text" name="n_temp_vdc_mp" />
+						<input type="text" name="n_temp_vdc_mp" value="${param.n_temp_vdc_mp}"/>
+						<c:out value="${requestScope.errorntvm }"/>
+						<c:remove var="errorntvm" scope="request"/>
 						<label for="n_temp_other">Other Information</label>
-						<input type="text" name="n_temp_other" />
+						<input type="text" name="n_temp_other" value="${param.n_temp_other}"/>
+						<c:out value="${requestScope.errornte}"/>
+						<c:remove var="errornte" scope="request"/>
 					</fieldset>
 				</fieldset>
 				<fieldset>
 					<legend>For Under Age</legend>
 					<label for="guardian_name">Guardian Name</label>
-					<input type="text" name="guardian_name" />
+					<input type="text" name="guardian_name" value="${param.guardian_name}"/>
 					<c:out value="${requestScope.errorgn }"/>
 					<c:remove var="errorgn" scope="request"/>
 					<br>
 					<label for="guardian_relation">Relation</label>
-					<input type="text" name="guardian_relation" />
+					<input type="text" name="guardian_relation" value="${param.guardian_relation}" />
 					<c:out value="${requestScope.errorgr }"/>
 					<c:remove var="errorgr" scope="request"/>
 					<br>
 					<label for="guardian_cell_first">Mobile 1:</label>
-					<input type="text" name="guardian_cell_first" />
-					<c:out value="${requestScope.errorgcn }"/>
-					<c:remove var="errorgcn" scope="request"/>
+					<input type="text" name="guardian_cell_first" value="${param.guardian_cell_first}" />
+					<c:out value="${requestScope.errorgcf }"/>
+					<c:remove var="errorgcf" scope="request"/>
 					<br>
 					<label for="guardian_cell_second">Mobile 2:</label>
-					<input type="type" name="guardian_cell_second" />
+					<input type="text" name="guardian_cell_second" value="${param.guardian_cell_second}"/>
+					<c:out value="${requestScope.errorgcs }"/>
+					<c:remove var="errorgcs" scope="request"/>
 					<br>
 					<label for="guardian_landline">Landline</label>
-					<input type="text" name="guardian_landline" />
+					<input type="text" name="guardian_landline" value="${param.guardian_landline}"/>
+					<c:out value="${requestScope.errorgll }"/>
+					<c:remove var="errorgll" scope="request"/>
 					<br>
 					<label for="guardian_email">Email</label>
-					<input type="text" name="guardian_email" />
+					<input type="text" name="guardian_email" value="${param.guardian_email}" />
+					<c:out value="${requestScope.errorgeid }"/>
+					<c:remove var="errorgeid" scope="request"/>
 					<fieldset>
 						<legend>Permanent Address</legend>
 						<label for="g_perm_dist">District</label>
-						<input type="text" name="g_perm_dist" />
+						<input type="text" name="g_perm_dist" value="${param.g_perm_dist}" />
 						<c:out value="${requestScope.errorgpd }"/>
 						<c:remove var="errorgpd" scope="request"/>
 						<label for="g_perm_vdc_mp">VDC/Municipality</label>
-						<input type="text" name="g_perm_vdc_mp" />
+						<input type="text" name="g_perm_vdc_mp" value="${param.g_perm_vdc_mp}" />
 						<c:out value="${requestScope.errorgpvm }"/>
 						<c:remove var="errorgpvm" scope="request"/>
 						<label for="g_perm_other">Other Information</label>
-						<input type="text" name="g_perm_other" />
+						<input type="text" name="g_perm_other" value="${param.g_perm_other}"/>
+						<c:out value="${requestScope.errorgpe }"/>
+					<c:remove var="errorgpe" scope="request"/>
 					</fieldset>
 					<fieldset>
 						<legend>Temporary Address</legend>
 						<label for="g_temp_dist">District</label>
-						<input type="text" name="g_temp_dist" />
+						<input type="text" name="g_temp_dist" value="${param.g_temp_dist}"/>
+						<c:out value="${requestScope.errorgtd}"/>
+					<c:remove var="errorgtd" scope="request"/>
 						<label for="g_temp_vdc_mp">VDC/Municipality</label>
-						<input type="text" name="g_temp_vdc_mp" />
+						<input type="text" name="g_temp_vdc_mp" value="${param.g_temp_vdc_mp}"/>
+						<c:out value="${requestScope.errorgtvm }"/>
+						<c:remove var="errorgtvm" scope="request"/>
 						<label for="g_temp_other">Other Information</label>
-						<input type="text" name="g_temp_other" />
+						<input type="text" name="g_temp_other" value="${param.g_temp_other }"/>
+						<c:out value="${requestScope.errorgte }"/>
+						<c:remove var="errorgte" scope="request"/>
 					</fieldset>
 				</fieldset>
 				<label for="creation_date">Account Creation Date</label>
-				<input type="text" name="creation_date" />
+				<input type="text" name="creation_date" value="${param.creation_date}" />
+				<c:out value="${requestScope.errorcd }"/>
+				<c:remove var="errorcd" scope="request"/>
 				<br>
 				<label for="reffered_by">Reffered By:</label>
-				<input type="text" name="reffered_by" />
+				<input type="text" name="reffered_by" value="${param.reffered_by}"/>
+				<c:out value="${requestScope.errorrb }"/>
+				<c:remove var="errorrb" scope="request"/>
 				<label for="approved_by">Approved By:</label>
-				<input type="text" name="approved_by" />
+				<input type="text" name="approved_by" value="${param.approved_by}"/>
 				<c:out value="${requestScope.errorapb }"/>
 				<c:remove var="errorapb" scope="request"/>
 				<br>
-				<c:out value="${requestScope.errorMsg}"/>
-				<c:remove var="errorMsg" scope="request"/>
 				<input type="submit" value="Save" name="normField"/>
 			</form>
 		<jsp:include page="footer.jsp"/>

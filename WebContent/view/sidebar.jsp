@@ -8,7 +8,7 @@
 				<li>Employee</li>
 				<li>Customer
 					<ul>
-					<li><a href="/KJJCSoft/view/customer_registration.jsp">Manage Customer</a></li>
+					<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customer_registration.jsp">Manage Customer</a></li>
 					<li><a href="/KJJCSoft/com/kjjcsoft/controllers/FrontController">All Customers</a></li>
 					</ul>
 				</li>

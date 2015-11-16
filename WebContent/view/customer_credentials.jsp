@@ -19,12 +19,7 @@
 <c:set var="now" value="<%=new java.util.Date()%>"/>
 <div class="container">
 	<div style="background : white; width : 100 %" >
-		<div style="width : 15%;">
-			KJJCSoft
-		</div>
-		<div style="width :85%;">
-			<a href="/KJJCSoft/view/home.jsp"><img alt="User profile picture" src="/KJJCSoft/upload/${sessionScope.Userinfo.getEmployeePhotoPath()}" class="home-img"></a>
-		</div>
+		<jsp:include page="header.jsp"/>
 	</div>
 	<div class="sidebar f-left clearfix">
 		<c:choose>
@@ -133,7 +128,7 @@
 		<div class="main-contain-content clearfix">
 			<div class="all-content">
 				<div class="form-container">
-					<form method="post" enctype="multipart/form-data">
+					<form method="post" enctype="multipart/form-data" action ="/KJJCSoft/com/kjjcsoft/controllers/customeruploads">
 						<label for="upload_photo">Upload Photo:</label>
 						<input type="file" name="upload_photo"/>
 						<c:out value="${requestScope.errorp}"/>
@@ -142,6 +137,7 @@
 						<input type="file" name="upload_fingerprints"/>
 						<c:out value="${requestScope.errorfp }"/>
 						<c:remove var="errorfp" scope="request"/>
+						<c:input type="submit" value="Upload" name="upload-files"
 					</form>
 				</div>
 			</div>

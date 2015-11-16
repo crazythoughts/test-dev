@@ -101,11 +101,27 @@
     <url-pattern>/com/kjjcsoft/controllers/adduser</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>UserSearch</servlet-name>
-  	<servlet-class>com.kjjcsoft.controllers.UserSearchController</servlet-class>
+    <servlet-name>UserSearch</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.UserSearchController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>UserSearch</servlet-name>
-  	<url-pattern>/com/kjjcsoft/controllers/usersearch</url-pattern>
+    <servlet-name>UserSearch</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/usersearch</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CustomerCredentialUploads</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.CustomerRegUploadController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerCredentialUploads</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/customeruploads</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>RegisteredCustomer</servlet-name>
+  	<servlet-class>com.kjjcsoft.controllers.CustomerRegisteredController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>RegisteredCustomer</servlet-name>
+  	<url-pattern>/com/kjjcsoft/controllers/registered</url-pattern>
   </servlet-mapping>
 </web-app>

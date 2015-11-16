@@ -10,6 +10,7 @@
 </head>
 <body>
 	<jsp:include page="sidebar.jsp"/>
+	<jsp:include page="header.jsp"/>
 	<div class="main-contain clearfix">
 	<b>Customer registered successfully!</b>
 	<br>

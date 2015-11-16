@@ -1,8 +1,12 @@
 /*********** css start   ***/
 body{
-	background:#ccc ; /* url("../images/money-img.png") no-repeat; */
+	background:#fafafa; /* url("../images/money-img.png") no-repeat; */
 	position: relative;
 	margin:0;
+	color:#333;
+}
+* {
+    box-sizing: border-box;
 }
 ul{
 	padding:0;
@@ -44,51 +48,74 @@ ul{
 	float:right;
 }
 .login {
-    border: 1px solid #fff;
-    height: 220px;
+    background: #fff;
+    border: 1px solid #ccc;
     left: 50%;
-    margin-left: -250px;
-    margin-top: 150px;
-    padding: 20px;
+    margin-left: -200px;
+    margin-top: 140px;
     position: absolute;
     top: 50%;
-    width: 500px;
+    width: 400px;
+      -moz-box-shadow: 0px 0px 1px rgba(68,68,68,0.6);
+  -webkit-box-shadow: 0px 0px 1px rgba(68,68,68,0.6);
+  box-shadow: 0px 0px 1px rgba(68,68,68,0.6);
+  border-radius:10px;
 }
-.login-title {
-    border-bottom: 2px dotted #fff;
-    font-family: sans-serif;
-    font-size: 25px;
-    margin: 0 0 20px;
-    padding-bottom: 10px;
+.login-error {
+    border: 1px solid #f00;
+    color: #f00;
+    margin: 0 10px 10px;
+    padding: 5px 20px;
     text-align: center;
 }
-.soft-logo {
-    border-bottom: 2px solid;
-    color: #f0f0e8;
-    display: inline;
-    font-size: 40px;
-    padding: 0 0 10px;
+.kform {
+    padding: 10px;
 }
-
-.kform input {
-    border: medium none;
+.kform label {
+    font-family: sans-serif;
+    font-size: 14px;
+}
+.login-title {
+    background:-moz-linear-gradient(center bottom , #efefef 0%, #fafafa 100%) repeat scroll 0 0;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 1px 1px white inset;
+    color: #333;
+    font-family: sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    text-align: left;
+}
+.soft-logo {
+    background:-moz-linear-gradient(center bottom , #4d5b76 0%, #6f80a1 100%) repeat scroll 0 0;
     box-sizing: border-box;
-    font-size: 20px;
+    color: #f0f0e8;
+    font-size: 24px;
+    padding: 10px 20px;
+    width: 100%;
+}
+.kform input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555;
+    font-size: 16px;
     height: 40px;
-    margin: 0 0 10px;
+    margin: 5px 0 10px;
     padding: 10px;
     width: 100%;
 }
 .submit input {
+    background: #414959 none repeat scroll 0 0;
+    border: medium none;
     border-radius: 10px;
-    height: 40px;
+    color: #fff;
+    cursor: pointer;
     margin: 0;
-    width: 150px;
-    cursor:pointer;
-    line-height:0;
+    padding: 0;
+    width: 100px;
 }
 .submit > input:hover {
-    background: #777;
+    background: #3276b1 none repeat scroll 0 0;
     color: #fff;
 }
 .submit {

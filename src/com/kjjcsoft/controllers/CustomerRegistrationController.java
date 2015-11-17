@@ -1,12 +1,27 @@
 package com.kjjcsoft.controllers;
 
+import static com.kjjcsoft.controllers.DirectoryProvider.FINGER_PRINT_UPLOAD_DIRECTORY;
+import static com.kjjcsoft.controllers.DirectoryProvider.MAX_FILE_SIZE;
+import static com.kjjcsoft.controllers.DirectoryProvider.MAX_REQUEST_SIZE;
+import static com.kjjcsoft.controllers.DirectoryProvider.MEMORY_THRESHOLD;
+import static com.kjjcsoft.controllers.DirectoryProvider.PHOTO_UPLOAD_DIRECTORY;
+import static com.kjjcsoft.controllers.DirectoryProvider.TMP;
+
+import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.kjjcsoft.bean.CustomerBean;
 import com.kjjcsoft.bean.RetrivedUserBean;
@@ -18,8 +33,8 @@ import com.kjjcsoft.model.Customer;
 @WebServlet(description = "for registering the customer to the database", urlPatterns = { "/registration" })
 public class CustomerRegistrationController extends HttpServlet {
 	private boolean customerRegistered = false;
+	private boolean filesuploaded = false;
 	private static final long serialVersionUID = 1L;
-       
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -33,11 +48,13 @@ public class CustomerRegistrationController extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
     	RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/customer_registration.jsp");
-    	if (!customerRegistered) {
+    	if (customerRegistered == false && filesuploaded == false) {
     		rd.forward(request, response);			
-		} else {
-			RequestDispatcher rdr = getServletContext().getRequestDispatcher("/com/kjjcsoft/controllers/customeruploads");
+		} else if(customerRegistered == true && filesuploaded == false) {
+			RequestDispatcher rdr = getServletContext().getRequestDispatcher("/view/customer_credentials.jsp");
 			rdr.forward(request, response);
+		} else {
+			response.sendRedirect("/KJJCSoft/com/kjjcsoft/controllers/registered");
 		}
     }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -450,9 +467,101 @@ public class CustomerRegistrationController extends HttpServlet {
 			}
 			if (!isError) {
 					customerRegistered = customerdbo.registerCustomer(applicantInfo);
-					request.setAttribute("registeredCustomerId", customerdbo.getIdofLastInsertion(ses_user.getUser_id()));
 			}
 		}
+		if(request.getContentType()!=null && request.getContentType().indexOf("multipart/form-data")>=0){
+			String relativeUploadPath=getServletConfig().getServletContext().getRealPath("/")+"upload/";
+			String contentType=request.getContentType();
+			/*CustomerBean forUpObj = new CustomerBean();
+			Customer uploadFiles = new Customer();*/
+			String photoUpPath;
+			String fingerPrintUpPath;
+			File customerFile=null, fingerprintFile=null;
+			isError = false;
+			/*Starting to process the data from the form*/
+			if (contentType.indexOf("multipart/form-data")>=0) {
+				/*creating a factory for disk-based file items*/
+				DiskFileItemFactory factory = new DiskFileItemFactory();
+				/*Defining the threshhold size of the file that will be kept in memory*/
+				factory.setSizeThreshold(MEMORY_THRESHOLD);
+				/*defining directory to temporary store file which are larger than the threshhold memory*/
+				factory.setRepository(new File(relativeUploadPath+TMP));
+				/*creating a file upload handler*/
+				ServletFileUpload upload= new ServletFileUpload(factory);
+				/*defining the maximum size of the file that can be uploaded to the form*/
+				upload.setFileSizeMax(MAX_FILE_SIZE);
+				/*defining the maximum size of the request(form-data+upload file)*/
+				upload.setFileSizeMax(MAX_REQUEST_SIZE);
+				/*defining the path for the directory to upload the customer photo*/
+				photoUpPath=relativeUploadPath+PHOTO_UPLOAD_DIRECTORY;
+				/*defining the path for the directory to upload the finger print of the customers*/
+				fingerPrintUpPath=relativeUploadPath+FINGER_PRINT_UPLOAD_DIRECTORY;
+				try{
+					//parse the request objects content to extract the file data
+					List<FileItem> formItems = upload.parseRequest(request);
+					Iterator<FileItem> itr = formItems.iterator();
+					while (itr.hasNext()) {
+						FileItem item = (FileItem) itr.next();
+						if (!item.isFormField()) {
+							String fieldName=item.getFieldName();
+							if (fieldName.equals("upload_photo")) {
+								if(item.getName().equals("")){
+									isError = true;
+									request.setAttribute("errorp", "*No files Selected");
+									return;
+								} else {
+									String fileName=item.getName();
+									String mimeType = getServletContext().getMimeType(fileName);
+									if (mimeType.startsWith("image/")) {
+										if (fileName.lastIndexOf("\\")>0) {
+											customerFile = new File(photoUpPath+File.separator+fileName.substring(fileName.lastIndexOf("\\")+1));
+											applicantInfo.setPhotoPath(PHOTO_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
+										} else {
+											customerFile = new File(photoUpPath+File.separator+fileName.substring(fileName.lastIndexOf("\\")+1));
+											applicantInfo.setPhotoPath(PHOTO_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
+										}
+									} else {
+										isError = true;
+										request.setAttribute("errorp", "*Selected file is not an image file");
+									}
+									item.write(customerFile);
+								}
+							}
+							if (fieldName.equals("upload_fingerprints")) {
+								if(item.getName().equals("")){
+									isError = true;
+									request.setAttribute("errorfp", "*No files selected");
+									return;
+								} else {
+									String fileName=item.getName();
+									String mimeType = getServletContext().getMimeType(fileName);
+									if (mimeType.startsWith("image/")) {
+										if (fileName.lastIndexOf("\\")>0) {
+											fingerprintFile = new File(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
+											applicantInfo.setFingerPrintPath(FINGER_PRINT_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
+										} else {
+											fingerprintFile = new File(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
+											applicantInfo.setFingerPrintPath(FINGER_PRINT_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
+										}
+									} else {
+										isError = true;
+										request.setAttribute("errorfp", "*Selected file is not an image file");
+										return;
+									}
+									item.write(fingerprintFile);
+								}
+							}
+						}
+					}
+				} catch(Exception ex){
+					System.out.println(ex);
+				}
+			}
+			applicantInfo.setCustomerId(customerdbo.getIdofLastInsertion(ses_user.getUser_id()));
+			if (!isError) {
+				filesuploaded = customerdbo.uploadCredentials(applicantInfo);
+			} 
+			}
 		doGet(request, response);
 		}
 }

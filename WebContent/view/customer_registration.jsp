@@ -124,11 +124,14 @@
                     </li>
                 </ul>
 			</div>
-                <h1 class="page-def">Dashboard</h1>
+                <h1 class="page-def">Register</h1>
 		</div>
 		<ul class="nav-show">
 			<li class="main-page">Dashboard<span class="divider">></span></li>
-			<li class="active">Home</li>
+			<li class="active">Home<span class="divider">></span></li>
+			<li class="">Customers<span class="divider">></span></li>
+			<li class="">Manage<span class="divider">></span></li>
+			<li class="active">Register</li>
 		</ul>
 			<h3>Customer Registration</h3>
 			<form action="/KJJCSoft/com/kjjcsoft/controllers/registration" method="post">

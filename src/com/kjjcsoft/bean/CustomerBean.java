@@ -496,7 +496,7 @@ public class CustomerBean {
 		customerName = WordUtils.capitalizeFully(customerName);
 		if (customerName.length() < 1) {
 			return 11;
-		} else if (customerName.matches(".*\\W+.*") || customerName.matches(".*\\d+.*")) {
+		} else if (customerName.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*") || customerName.matches(".*\\d+.*")) {
 			return 12;
 		} else {
 			return 0;
@@ -507,7 +507,7 @@ public class CustomerBean {
 		customerAge = customerAge.replaceAll("\\s+", " ").trim();
 		if (customerAge.length() < 1) {
 			return 21;
-		} else if (customerAge.matches("\\d{3}")) {
+		} else if (customerAge.matches("\\d{1,3}")) {
 			return 0;
 		} else {
 			return 22;
@@ -516,7 +516,7 @@ public class CustomerBean {
 
 	public int validatedob() {
 		dob = dob.replaceAll("\\s+", " ").trim();
-		if (dob.matches("\\d{3}/^(0?[1-9]|1[012])$/^([012]?[1-9]|3[01])$")) {
+		if (dob.matches("((19|20)\\d\\d)/(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])")) {
 			return 0;
 		} else if (dob.length() < 1) {
 			return 31;
@@ -537,7 +537,7 @@ public class CustomerBean {
 	public int validateNationality() {
 		nationality = nationality.replaceAll("\\s+", " ").trim();
 		nationality = WordUtils.capitalizeFully(nationality);
-		if (nationality.matches("^\\d+.*") || nationality.matches("^\\W+.*")) {
+		if (nationality.matches(".*\\d+.*") || nationality.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*")) {
 			return 52;
 		} else if (nationality.length() < 1) {
 			return 51;
@@ -548,14 +548,14 @@ public class CustomerBean {
 
 	public int validateCitizenshipNo() {
 		citizenShipNo = citizenShipNo.replaceAll("\\s+", " ").trim();
-		if (nationality.equals("Nepali") && citizenShipNo.matches("^\\d+") || citizenShipNo.matches("^\\d+/\\d+")) {
+		if (nationality.equals("Nepali") && (citizenShipNo.matches("^\\d+") || citizenShipNo.matches("^\\d+/\\d+"))) {
 			return 0;
-		} else if (!nationality.equals("Nepali") && (citizenShipNo.length() < 1 || citizenShipNo == null)) {
+		} else if ((!nationality.equals("Nepali") && citizenShipNo.length() < 1 ) || (nationality.equals("Nepali") && !customerAge.equals("") && !customerAge.matches("[^\\d]+") && Integer.parseInt(customerAge)<16 && citizenShipNo.length() < 1)) {
 			citizenShipNo = "";
 			return 0;
-		} else if (nationality.equals("Nepali") && citizenShipNo.length() < 1) {
+		} else if (nationality.equals("Nepali") && !customerAge.equals("") && !customerAge.matches("[^\\d]+") && Integer.parseInt(customerAge)>16 && citizenShipNo.length() < 1) {
 			return 61;
-		} else {
+		} else  {
 			return 62;
 		}
 	}
@@ -570,10 +570,10 @@ public class CustomerBean {
 
 	public int validateSpouseName() {
 		spouseName = spouseName.replaceAll("\\s+", " ").trim();
+		spouseName = WordUtils.capitalizeFully(spouseName);
 		if (maritalStatus.equals("Married") && spouseName.length() < 1) {
 			return 81;
-		} else
-			if (maritalStatus.equals("Married") && (spouseName.matches("^\\d+.*") || spouseName.matches("^\\W+.*"))) {
+		} else if (maritalStatus.equals("Married") && (spouseName.matches(".*\\d+.*") || spouseName.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*"))) {
 			return 82;
 		} else if (maritalStatus.equals("Married") && spouseName.matches("^\\w+.*")) {
 			return 0;
@@ -585,9 +585,10 @@ public class CustomerBean {
 
 	public int validateOccupation() {
 		occupation = occupation.replaceAll("\\s+", " ").trim();
+		occupation = WordUtils.capitalizeFully(occupation);
 		if (occupation.length() < 1) {
 			return 91;
-		} else if (occupation.matches("^\\d+.*") || occupation.matches("^\\W+.*")) {
+		} else if (occupation.matches(".*\\d+.*") || occupation.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*")) {
 			return 92;
 		} else {
 			return 0;
@@ -703,7 +704,7 @@ public class CustomerBean {
 	public int validateTempVMp() {
 		tempVdcMunicipality = tempVdcMunicipality.replaceAll("\\s+", " ").trim();
 		tempVdcMunicipality = WordUtils.capitalizeFully(tempVdcMunicipality);
-		if (tempVdcMunicipality.matches("([^\\W]+\\s?-{1}\\s?[^\\W]*|[^\\W]+)") && tempVdcMunicipality.length()>1) {
+		if (tempDistrict.length() > 1 && tempVdcMunicipality.matches("([^\\W]+\\s?-{1}\\s?[^\\W]*|[^\\W]+)") && tempVdcMunicipality.length()>1) {
 			return 0;
 		} else if (tempVdcMunicipality.length() < 1 && tempDistrict.length() < 1) {
 			tempVdcMunicipality = "";
@@ -720,22 +721,23 @@ public class CustomerBean {
 	public int validateTempExtra() {
 		tempExtrainfo = tempExtrainfo.replaceAll("\\s+", " ").trim();
 		tempExtrainfo = WordUtils.capitalizeFully(tempExtrainfo);
-		if (tempExtrainfo.length() < 1 && tempVdcMunicipality.length() < 1 && tempDistrict.length() < 1) {
+		if (tempExtrainfo.length() > 1 && tempVdcMunicipality.length() > 1 && tempDistrict.length() < 1) {
 			tempExtrainfo = "";
 			return 0;
-		} else if (tempExtrainfo.matches("[^\\W]+")) {
-			return 0;
+		} else if (tempDistrict.length() > 1 && tempVdcMunicipality.length() > 1 && tempExtrainfo.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*")) {
+			return 202;
 		} else if(tempDistrict.length() > 1 && tempVdcMunicipality.length() >1 && tempExtrainfo.length()<1){
 			tempExtrainfo = "";
 			return 0;
 		} else if (tempDistrict.length()<1 && tempVdcMunicipality.length() <1 && tempExtrainfo.length()>1) {
 			return 201;
 		} else if(tempDistrict.length()<1 && tempVdcMunicipality.length()>1 && tempExtrainfo.length()<1){
-			return 201;
-		}else if((tempDistrict.length()>1 && tempVdcMunicipality.length()<1 && tempExtrainfo.length()<1)||(tempDistrict.length()>1 && tempVdcMunicipality.length()<1 && tempExtrainfo.length()>1)){
+			tempExtrainfo = "";
+			return 0;
+		}else if((tempDistrict.length()>1 && tempVdcMunicipality.length()<1 && tempExtrainfo.length()>1)){
 			return 201;
 		}else{
-			return 202;
+			return 0;
 		}
 	}
 
@@ -744,7 +746,7 @@ public class CustomerBean {
 		fathersName = WordUtils.capitalizeFully(fathersName);
 		if (fathersName.length() < 1) {
 			return 211;
-		} else if (fathersName.matches(".*\\W+.*") || (fathersName.matches(".*\\d+.*"))) {
+		} else if (fathersName.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*") || (fathersName.matches(".*\\d+.*"))) {
 			return 212;
 		} else {
 			return 0;
@@ -759,7 +761,7 @@ public class CustomerBean {
 		} else if (grandFathersName.length()<1 && gender.equals("Female") && maritalStatus.equals("Married")) {
 			grandFathersName = "";
 			return 0;
-		} else if (grandFathersName.matches(".*\\W+.*") || (grandFathersName.matches(".*\\d+.*"))) {
+		} else if (grandFathersName.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*") || (grandFathersName.matches(".*\\d+.*"))) {
 			return 222;
 		} else {
 			return 0;
@@ -773,7 +775,7 @@ public class CustomerBean {
 		} else if (fatherInLawsName.length()<1 && gender.equals("Male")) {
 			fatherInLawsName = "";
 			return 0;
-		} else if (fatherInLawsName.matches(".*\\W+.*") || (fatherInLawsName.matches(".*\\d+.*"))) {
+		} else if (fatherInLawsName.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*") || (fatherInLawsName.matches(".*\\d+.*"))) {
 			return 232;
 		} else {
 			return 0;
@@ -784,7 +786,7 @@ public class CustomerBean {
 		nomineesName = WordUtils.capitalizeFully(nomineesName);
 		if (nomineesName.length() < 1) {
 			return 241;
-		} else if (nomineesName.matches(".*\\W+.*") || (nomineesName.matches(".*\\d+.*"))) {
+		} else if (nomineesName.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*") || (nomineesName.matches(".*\\d+.*"))) {
 			return 242;
 		} else {
 			return 0;
@@ -792,9 +794,10 @@ public class CustomerBean {
 	}
 	public int validateNomineeRelation(){
 		nomineeRelation = nomineeRelation.replaceAll("\\s+", " ").trim();
+		nomineeRelation = WordUtils.capitalizeFully(nomineeRelation);
 		if (nomineeRelation.length() < 1) {
 			return 251;
-		} else if (nomineeRelation.matches(".*\\W+.*") || (nomineeRelation.matches(".*\\d+.*"))) {
+		} else if (nomineeRelation.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*") || (nomineeRelation.matches(".*\\d+.*"))) {
 			return 252;
 		} else {
 			return 0;
@@ -909,7 +912,7 @@ public class CustomerBean {
 	public int validateNTempVMp() {
 		nTempVdcMunicipality = nTempVdcMunicipality.replaceAll("\\s+", " ").trim();
 		nTempVdcMunicipality = WordUtils.capitalizeFully(nTempVdcMunicipality);
-		if (nTempVdcMunicipality.matches("([^\\W]+\\s?-{1}\\s?[^\\W]*|[^\\W]+)")) {
+		if (nTempDistrict.length() > 1 && nTempVdcMunicipality.matches("([^\\W]+\\s?-{1}\\s?[^\\W]*|[^\\W]+)")) {
 			return 0;
 		} else if (nTempVdcMunicipality.length() < 1 && nTempDistrict.length() < 1) {
 			nTempVdcMunicipality = "";
@@ -929,15 +932,20 @@ public class CustomerBean {
 		if (nTempExtraInfo.length() < 1 && nTempVdcMunicipality.length() < 1 && nTempDistrict.length() < 1) {
 			nTempExtraInfo = "";
 			return 0;
-		} else if (nTempExtraInfo.matches("[^\\W]+")) {
-			return 0;
-		} else if(nTempDistrict.length()>1 && nTempVdcMunicipality.length()>1 && nTempExtraInfo.length()<1) {
-			nTempExtraInfo = "";
-			return 0;
-		} else if (nTempDistrict.length()<1 && nTempVdcMunicipality.length()<1 && nTempExtraInfo.length()>1) {
-			return 361;			
-		} else {
+		} else if (nTempDistrict.length() > 1 && nTempVdcMunicipality.length() > 1 && nTempExtraInfo.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*")) {
 			return 362;
+		} else if(nTempDistrict.length() > 1 && nTempVdcMunicipality.length() >1 && nTempExtraInfo.length()<1){
+			tempExtrainfo = "";
+			return 0;
+		} else if (nTempDistrict.length()<1 && nTempVdcMunicipality.length() <1 && nTempExtraInfo.length()>1) {
+			return 361;
+		} else if(nTempDistrict.length()<1 && nTempVdcMunicipality.length()>1 && nTempExtraInfo.length()<1){
+			tempExtrainfo = "";
+			return 0;
+		}else if((nTempDistrict.length()>1 && nTempVdcMunicipality.length()<1 && nTempExtraInfo.length()>1)){
+			return 361;
+		}else{
+			return 0;
 		}
 	}
 	public int validateGuardianName(){
@@ -946,7 +954,7 @@ public class CustomerBean {
 			guardianName = WordUtils.capitalizeFully(guardianName);
 			if (guardianName.length() < 1) {
 				return 371;
-			} else if (guardianName.matches(".*\\W+.*")  || (guardianName.matches(".*\\d+.*"))) {
+			} else if (guardianName.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*")  || (guardianName.matches(".*\\d+.*"))) {
 				return 372;
 			} else {
 				return 0;
@@ -959,9 +967,10 @@ public class CustomerBean {
 	public int validateGuardianRelation(){
 		if ((!customerAge.equals("") && !customerAge.matches("[^\\d]+")) && Integer.parseInt(customerAge)<16) {
 			gRelation = gRelation.replaceAll("\\s+", " ").trim();
+			gRelation = WordUtils.capitalizeFully(gRelation);
 			if (gRelation.length() < 1) {
 				return 381;
-			} else if (gRelation.matches(".*\\W+.*") || (gRelation.matches(".*\\d+.*"))) {
+			} else if (gRelation.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*") || (gRelation.matches(".*\\d+.*"))) {
 				return 382;
 			} else {
 				return 0;
@@ -1125,7 +1134,7 @@ public class CustomerBean {
 		if ((!customerAge.equals("") && !customerAge.matches("[^\\d]+")) && Integer.parseInt(customerAge)<16) {
 			gTempVdcMunicipality = gTempVdcMunicipality.replaceAll("\\s+", " ").trim();
 			gTempVdcMunicipality = WordUtils.capitalizeFully(gTempVdcMunicipality);
-			if (gTempVdcMunicipality.matches("([^\\W]+\\s?-{1}\\s?[^\\W]*|[^\\W]+)")) {
+			if (gTempDistrict.length() > 1 && gTempVdcMunicipality.matches("([^\\W]+\\s?-{1}\\s?[^\\W]*|[^\\W]+)")) {
 				return 0;
 			} else if (gTempVdcMunicipality.length() < 1 && gTempDistrict.length() < 1) {
 				gTempVdcMunicipality = "";
@@ -1147,18 +1156,23 @@ public class CustomerBean {
 		if ((!customerAge.equals("") && !customerAge.matches("[^\\d]+")) && Integer.parseInt(customerAge)<16) {
 			gTempExtraInfo = gTempExtraInfo.replaceAll("\\s+", " ").trim();
 			gTempExtraInfo = WordUtils.capitalizeFully(gTempExtraInfo);
-			if (gTempExtraInfo.length() < 1 && gTempVdcMunicipality.length() < 1 && gTempDistrict.length() < 1) {
+			if (gTempExtraInfo.length() > 1 && gTempVdcMunicipality.length() > 1 && gTempDistrict.length() < 1) {
 				gTempExtraInfo = "";
 				return 0;
-			} else if (gTempExtraInfo.matches("[^\\W]+")) {
-				return 0;
-			} else if(gTempDistrict.length()>1 && gTempVdcMunicipality.length()>1 && gTempExtraInfo.length()<1) {
-				gTempExtraInfo ="";
-				return 0;
-			} else if (gTempDistrict.length()<1 && gTempVdcMunicipality.length()<1 && gTempExtraInfo.length()>1) {
-				return 491;
-			} else {
+			} else if (gTempDistrict.length() > 1 && gTempVdcMunicipality.length() > 1 && gTempExtraInfo.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*")) {
 				return 492;
+			} else if(gTempDistrict.length() > 1 && gTempVdcMunicipality.length() >1 && gTempExtraInfo.length()<1){
+				tempExtrainfo = "";
+				return 0;
+			} else if (gTempDistrict.length()<1 && gTempVdcMunicipality.length() <1 && gTempExtraInfo.length()>1) {
+				return 491;
+			} else if(gTempDistrict.length()<1 && gTempVdcMunicipality.length()>1 && gTempExtraInfo.length()<1){
+				tempExtrainfo = "";
+				return 0;
+			}else if((gTempDistrict.length()>1 && gTempVdcMunicipality.length()<1 && gTempExtraInfo.length()>1)){
+				return 491;
+			}else{
+				return 0;
 			}
 		} else {
 			gTempExtraInfo = "";
@@ -1172,7 +1186,7 @@ public class CustomerBean {
 			Date dt= new Date();
 			jDate = sdf.format(dt);
 			return 0;
-		} else if(jDate.matches("\\d{3}/^(0?[1-9]|1[012])$/^([012]?[1-9]|3[01])$")){
+		} else if(jDate.matches("((19|20)\\d\\d)/(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])")){
 			return 0;
 		} else {
 			return 501;
@@ -1184,7 +1198,7 @@ public class CustomerBean {
 		if (refferedBy.length() < 1) {
 			refferedBy = "";
 			return 0;
-		} else if (refferedBy.matches(".*\\W+.*") || refferedBy.matches("^\\d+.*")) {
+		} else if (refferedBy.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*") || refferedBy.matches("^\\d+.*")) {
 			return 511;
 		} else {
 			return 0;
@@ -1195,7 +1209,7 @@ public class CustomerBean {
 		approvedBy = WordUtils.capitalizeFully(approvedBy);
 		if (approvedBy.length() < 1) {
 			return 521;
-		} else if (approvedBy.matches(".*\\W+.*") || approvedBy.matches("^\\d+.*")) {
+		} else if (approvedBy.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*") || approvedBy.matches("^\\d+.*")) {
 			return 522;
 		} else {
 			return 0;

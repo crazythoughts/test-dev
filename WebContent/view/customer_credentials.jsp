@@ -119,16 +119,19 @@
                     </li>
                 </ul>
 			</div>
-                <h1 class="page-def">Dashboard</h1>
+                <h1 class="page-def">Credentials Uploads</h1>
 		</div>
 		<ul class="nav-show">
 			<li class="main-page">Dashboard<span class="divider">></span></li>
-			<li class="active">Home</li>
+			<li class="active">Home<span class="divider">></span></li>
+			<li class= "">Customers<span class="divider">></span></li>
+			<li class="">Register<span class="divider">></span></li>
+			<li class="active">Credentials</li>
 		</ul>
 		<div class="main-contain-content clearfix">
 			<div class="all-content">
 				<div class="form-container">
-					<form method="post" enctype="multipart/form-data" action ="/KJJCSoft/com/kjjcsoft/controllers/customeruploads">
+					<form method="post" action ="/KJJCSoft/com/kjjcsoft/controllers/registration" enctype="multipart/form-data">
 						<label for="upload_photo">Upload Photo:</label>
 						<input type="file" name="upload_photo"/>
 						<c:out value="${requestScope.errorp}"/>
@@ -137,7 +140,7 @@
 						<input type="file" name="upload_fingerprints"/>
 						<c:out value="${requestScope.errorfp }"/>
 						<c:remove var="errorfp" scope="request"/>
-						<c:input type="submit" value="Upload" name="upload-files"
+						<input type="submit" value="Upload" name="uploadFiles"/>
 					</form>
 				</div>
 			</div>

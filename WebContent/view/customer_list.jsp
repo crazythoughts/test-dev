@@ -18,9 +18,9 @@
 <body>
 <c:set var="now" value="<%=new java.util.Date()%>"/>
 <div class="container">
-<div style="background : white; width : 100 %" >
+
 		<jsp:include page="header.jsp"/>
-	</div>
+	
 	<div class="sidebar f-left clearfix">
 		<c:choose>
 			<c:when test="${sessionScope.AdminLogin==true}">

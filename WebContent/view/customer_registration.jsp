@@ -18,14 +18,7 @@
 <body>
 <c:set var="now" value="<%=new java.util.Date()%>"/>
 <div class="container">
-	<div style="background : white; width : 100 %" >
-		<div style="width : 15%;">
-			KJJCSoft
-		</div>
-		<div style="width :85%;">
-			<a href="/KJJCSoft/view/home.jsp"><img alt="User profile picture" src="/KJJCSoft/upload/${sessionScope.Userinfo.getEmployeePhotoPath()}" class="home-img"></a>
-		</div>
-	</div>
+		<jsp:include page="header.jsp"/>
 	<div class="sidebar f-left clearfix">
 		<c:choose>
 			<c:when test="${sessionScope.AdminLogin==true}">
@@ -97,7 +90,9 @@
 			</div>
 		</form>
 	</div>
-		<div class="main-contain clearfix">
+
+
+	<div class="main-contain clearfix">
 		<div class="main-contain-header clearfix">
 			<div class="to-right">
 			<ul class="stats">
@@ -132,76 +127,77 @@
 			<li class="">Manage<span class="divider">></span></li>
 			<li class="active">Register</li>
 		</ul>
+
 		<div class="main-contain-content clearfix">
 		<div class="all-content">
 			<form action="/KJJCSoft/com/kjjcsoft/controllers/registration" method="post">
-				<label for="fullname">Full Name:</label>
-				<input type="text" name="fullname" value="${param.fullname}"/>
-				<c:out value="${requestScope.errorfn}"/>
-				<c:remove var="errorfn" scope="request"/>
-				<br>
-				<label for="age">Age</label>
-				<input type="text" name="age" value = "${param.age}">
-				<c:out value="${requestScope.errora}"/>
-				<c:remove var="errora" scope="request"/>
-				<br>
-				<label for="dob">Date of birth</label>
-				<input type="text" name="dob" value = "${param.dob}"/>
-				<c:out value="${requestScope.errordob }"/>
-				<c:remove var="errordob" scope="request"/>
-				<br>
-				<label for="gender">Gender :</label>
-				<input type="radio" name="gender" value="Male" checked/>Male
-				<input type="radio" name="gender" value="Female"/>Female
-				<c:out value="${requestScope.errorg }"/>
-				<c:remove var="errorg" scope="request"/>
-				<br>
-				<label for="nationality">Nationality</label>
-				<input type="text" name="nationality" value ="${param.nationality}"/>
-				<c:out value="${requestScope.errorn }"/>
-				<c:remove var="errorn" scope="request"/>
-				<br>
-				<label for="citizenship_no">Citizenship number:</label>
-				<input type="text" name="citizenship_no" value="${param.citizenship_no}" />
-				<c:out value="${requestScope.errorcs }"/>
-				<c:remove var="errorcs" scope="request"/>
-				<br>
-				<label for="marital_status">Marital Status:</label>
-				<input type="radio" name="marital_status" value="Single" checked/>Single
-				<input type="radio" name="marital_status" value="Married"/>Married
-				<c:out value="${requestScope.errorms }"/>
-				<c:remove var="errorms" scope="request"/>
-				<br>
-				<label for="spouse_name">Spouse Name:</label>
-				<input type="text" name="spouse_name" value="${param.spouse_name}"/>
-				<c:out value="${requestScope.errorsn }"/>
-				<c:remove var="errorsn" scope="request"/>
-				<br>
-				<label for="occupation">Occupation</label>
-				<input type="text" name="occupation" value="${param.occupation}"/>
-				<c:out value="${requestScope.erroro }"/>
-				<c:remove var="erroro" scope="request"/>
-				<br>
-				<label for="cellnumber_first">Mobile 1:</label>
-				<input type="text" name="cellnumber_first" value="${param.cellnumber_first}" />
-				<c:out value="${requestScope.errorcn}"/>
-				<c:remove var="errorcn" scope="request"/>
-				<br>
-				<label for="cellnumber_second">Mobile 2:</label>
-				<input type="text" name="cellnumber_second" value="${param.cellnumber_second}"/>
-				<c:out value="${requestScope.errorcs}"/>
-				<c:remove var="errorcs" scope="request"/>
-				<br>
-				<label for="landline">Landline</label>
-				<input type="text" name="landline" value="${param.landline}" />
-				<c:out value="${requestScope.errorll}"/>
-				<c:remove var="errorll" scope="request"/>
-				<br>
-				<label for="customer_email">Email</label>
-				<input type="text" name="customer_email" value="${param.customer_email}"/>
-				<c:out value="${requestScope.erroreid}"/>
-				<c:remove var="erroreid" scope="request"/>
-				<br>
+				<div class="registration-one clearfix">
+					<div class="info-personal f-left">
+						<label for="fullname">Full Name</label>
+						<input type="text" name="fullname" value="${param.fullname}"/>
+						<c:out value="${requestScope.errorfn}"/>
+						<c:remove var="errorfn" scope="request"/>
+						<br>
+						<label for="age">Age</label>
+						<input type="text" name="age" value = "${param.age}">
+						<c:out value="${requestScope.errora}"/>
+						<c:remove var="errora" scope="request"/>
+						<br>
+						<label for="dob">Date of birth</label>
+						<input type="text" name="dob" value = "${param.dob}"/>
+						<c:out value="${requestScope.errordob }"/>
+						<c:remove var="errordob" scope="request"/>
+						<div class="form-radio">
+							<label for="gender">Gender</label>
+							<input type="radio" name="gender" value="Male" checked/><span>Male</span>
+							<input type="radio" name="gender" value="Female"/><span>Female</span>
+							<c:out value="${requestScope.errorg }"/>
+							<c:remove var="errorg" scope="request"/>
+						</div>
+						<label for="nationality">Nationality</label>
+						<input type="text" name="nationality" value ="${param.nationality}"/>
+						<c:out value="${requestScope.errorn }"/>
+						<c:remove var="errorn" scope="request"/>
+						<br>
+						<label for="citizenship_no">Citizenship no.</label>
+						<input type="text" name="citizenship_no" value="${param.citizenship_no}" />
+						<c:out value="${requestScope.errorcs }"/>
+						<c:remove var="errorcs" scope="request"/>
+					</div>
+					<div class="info-status f-right">
+						<div class="form-radio">
+							<label for="marital_status">Marital Status</label>
+							<input type="radio" name="marital_status" value="Single" checked/><span>Single</span>
+							<input type="radio" name="marital_status" value="Married"/><span>Married</span>
+							<c:out value="${requestScope.errorms }"/>
+							<c:remove var="errorms" scope="request"/>
+						</div>
+						<label for="spouse_name">Spouse Name</label>
+						<input type="text" name="spouse_name" value="${param.spouse_name}"/>
+						<c:out value="${requestScope.errorsn }"/>
+						<c:remove var="errorsn" scope="request"/>
+						<br>
+						<label for="occupation">Occupation</label>
+						<input type="text" name="occupation" value="${param.occupation}"/>
+						<c:out value="${requestScope.erroro }"/>
+						<c:remove var="erroro" scope="request"/>
+						<br>
+						<label for="cellnumber_first">Mobile</label>
+						<input type="text" name="cellnumber_first" value="${param.cellnumber_first}" />
+						<c:out value="${requestScope.errorcn}"/>
+						<c:remove var="errorcn" scope="request"/>
+						<br>
+						<label for="landline">Phone</label>
+						<input type="text" name="landline" value="${param.landline}" />
+						<c:out value="${requestScope.errorll}"/>
+						<c:remove var="errorll" scope="request"/>
+						<br>
+						<label for="customer_email">Email</label>
+						<input type="text" name="customer_email" value="${param.customer_email}"/>
+						<c:out value="${requestScope.erroreid}"/>
+						<c:remove var="erroreid" scope="request"/>
+					</div>
+				</div>	
 				<fieldset>
 					<legend>Permanent Address</legend>
 					<label for="perm_dist">District</label>
@@ -232,20 +228,25 @@
 					<c:out value="${requestScope.errorte}"/>
 					<c:remove var="errorte" scope="request"/>
 				</fieldset>
-				<label for="fathers_name">Father's Name:</label>
-				<input type="text" name="fathers_name"  value="${param.fathers_name}"/>
-				<c:out value="${requestScope.errorf }"/>
-				<c:remove var="errorf" scope="request"/>
-				<br>
-				<label for="grandfathers_name">Grandfather's Name</label>
-				<input type="text" name="grandfathers_name" value="${param.grandfathers_name}" />
-				<c:out value="${requestScope.errorgfn }"/>
-				<c:remove var="errorgfn" scope="request"/>
-				<br>
-				<label for="father_in_law_name">Father-in-Law's Name</label>
-				<input type="text" name="father_in_law_name" value="${param.father_in_law_name}"/>
-				<c:out value="${requestScope.errorfln }"/>
-				<c:remove var="errorfln" scope="request"/>
+				<div class="registration-one clearfix">
+					<div class="info-personal f-left">
+						<label for="fathers_name">Father's Name:</label>
+						<input type="text" name="fathers_name"  value="${param.fathers_name}"/>
+						<c:out value="${requestScope.errorf }"/>
+						<c:remove var="errorf" scope="request"/>
+						<br>
+						<label for="grandfathers_name">Grandfather's Name</label>
+						<input type="text" name="grandfathers_name" value="${param.grandfathers_name}" />
+						<c:out value="${requestScope.errorgfn }"/>
+						<c:remove var="errorgfn" scope="request"/>
+					</div>
+					<div class="info-status f-right">					
+						<label for="father_in_law_name">Father-in-Law's</label>
+						<input type="text" name="father_in_law_name" value="${param.father_in_law_name}"/>
+						<c:out value="${requestScope.errorfln }"/>
+						<c:remove var="errorfln" scope="request"/>
+					</div>
+				</div>
 				<fieldset>
 					<legend>Nominee</legend>
 					<label for="nominee_name">Nominee's Name</label>

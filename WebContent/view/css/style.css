@@ -75,7 +75,7 @@ ul{
     font-family: sans-serif;
     font-size: 14px;
 }
-.login-title {
+.login-title{
     background:-moz-linear-gradient(center bottom , #efefef 0%, #fafafa 100%) repeat scroll 0 0;
     border-bottom: 1px solid #ccc;
     box-shadow: 0 1px 1px white inset;
@@ -85,13 +85,15 @@ ul{
     padding: 10px;
     text-align: left;
 }
-.soft-logo {
+.main-header {
     background:-moz-linear-gradient(center bottom , #4d5b76 0%, #6f80a1 100%) repeat scroll 0 0;
     box-sizing: border-box;
     color: #f0f0e8;
     font-size: 24px;
     padding: 10px 20px;
     width: 100%;
+    position:fixed;
+    z-index:99999;
 }
 .kform input {
     border: 1px solid #ccc;
@@ -154,6 +156,7 @@ ul{
 .main-contain{
 	width: 85%;
 	float:right;
+	margin:60px 0 0;
 }
 .main-contain-content{
 	padding : 0px 18px;
@@ -172,6 +175,7 @@ ul{
     height: 100%;
     position: fixed;
     width: 15%;
+    margin:60px 0 0;
 }
 .sidebar ul li {
     box-sizing: border-box;
@@ -342,5 +346,30 @@ ul > li.green {
 	background-color: #f9f9f9;
 }
 /* account information end */
+
+
+/**************************************** customer registration page css start ********************************/
+.info-personal, .info-status {
+    width: 50%;
+}
+
+.info-personal > label ,.info-status > label ,.form-radio > label{
+    display: inline-block;
+    font-size: 16px;
+    text-align: right;
+    width: 25%;
+    padding-right:10px;
+}
+
+.info-personal > input ,.info-status >input{
+    height: 40px;
+    margin: 0 0 10px;
+    width: 74%;
+}
+.form-radio > input {
+    margin: 0 0 10px;
+    width: 34px;
+}
+/**************************************** customer registration page css end********************************/
 
 

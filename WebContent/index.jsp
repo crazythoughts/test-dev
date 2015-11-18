@@ -10,7 +10,7 @@
 </head>
 <body class="loginpage01 clearfix">
 <section id="loginpage">
-<div class="soft-logo">KJJC Soft</div>
+<div class="main-header">KJJC Soft</div>
 <div class="login">
 	<div class="login-title">LOGIN</div>
 	<form class="kform" action="/KJJCSoft/com/kjjcsoft/controllers/UserLogin" method="post">

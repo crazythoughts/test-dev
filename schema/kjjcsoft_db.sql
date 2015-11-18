@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2015 at 02:04 AM
+-- Generation Time: Nov 18, 2015 at 05:48 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `tbl_customer` (
   `customer_grandfather_name` varchar(100) DEFAULT NULL,
   `customer_father_in_law_name` varchar(100) DEFAULT NULL,
   `nominee_name` varchar(200) NOT NULL,
+  `nominee_relation` varchar(100) NOT NULL,
   `nominee_perm_district` varchar(100) NOT NULL,
   `nominee_perm_vdc_municipality` varchar(200) NOT NULL,
   `nominee_perm_extrainfo` varchar(200) DEFAULT NULL,
@@ -73,26 +74,28 @@ CREATE TABLE IF NOT EXISTS `tbl_customer` (
   `guardian_cell_number_second` varchar(50) DEFAULT NULL,
   `guardian_landline` varchar(50) DEFAULT NULL,
   `guardian_email` varchar(100) DEFAULT NULL,
-  `customer_photo` varchar(2000) NOT NULL,
-  `customer_thumb_print` varchar(2000) NOT NULL,
+  `customer_photo` varchar(2000) DEFAULT NULL,
+  `customer_thumb_print` varchar(2000) DEFAULT NULL,
   `customer_joined_date` date NOT NULL,
   `customer_refferedby` varchar(100) DEFAULT NULL,
+  `customer_approved_by` varchar(100) NOT NULL,
   `entry_by` int(11) NOT NULL,
   PRIMARY KEY (`customer_id`),
   KEY `user_id` (`entry_by`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `tbl_customer`
 --
 
-INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_age`, `customer_gender`, `customer_dob`, `customer_nationality`, `customer_citizenshipno`, `customer_perm_district`, `customer_perm_vdc_municipality`, `customer_perm_extrainfo`, `customer_temp_district`, `customer_temp_vdc_municipality`, `customer_temp_extrainfo`, `customer_cell_number_first`, `customer_cell_number_second`, `customer_landline`, `customer_email`, `customer_marital_status`, `customer_spouse_name`, `customer_occupation`, `customer_father_name`, `customer_grandfather_name`, `customer_father_in_law_name`, `nominee_name`, `nominee_perm_district`, `nominee_perm_vdc_municipality`, `nominee_perm_extrainfo`, `nominee_temp_district`, `nominee_temp_vdc_municipality`, `nominee_temp_extrainfo`, `nominee_cell_number_first`, `nominee_cell_number_second`, `nominee_landline`, `nominee_email`, `guardian_name`, `guardian_relation`, `guardian_perm_district`, `guardian_perm_vdc_municipality`, `guardian_perm_extrainfo`, `guardian_temp_district`, `guardian_temp_vdc_municipality`, `guardian_temp_extrainfo`, `guardian_cell_number_one`, `guardian_cell_number_second`, `guardian_landline`, `guardian_email`, `customer_photo`, `customer_thumb_print`, `customer_joined_date`, `customer_refferedby`, `entry_by`) VALUES
-(1, 'Ram Bahadur Shrestha', 20, 'Male', '2014-04-01', 'Nepali', '1256/120', 'Kathmandu', 'Jorpati', NULL, '', '', NULL, '9841152345', NULL, NULL, NULL, 'Single', NULL, 'Student', 'Shyam Bahadur Shrestha', 'Gyan Bahadur Shrestha', NULL, 'Ravi Bahadur Shrestha', 'Kathmandu', 'Jorpati - 4', NULL, '', '', NULL, '9841525354', NULL, NULL, NULL, '', NULL, '', '', NULL, '', '', NULL, NULL, NULL, NULL, NULL, 'adfasdfasdf', 'adsfdasdfsadf', '2015-11-04', NULL, 1),
-(2, 'Hari Subedi', 20, 'Male', '1995-01-01', 'Nepali', '9874/214', 'Kathmandu', 'Jorpati - 2', '', '', '', '', '9845124632', '9841256325', '012458796', 'hari@gmail.com', 'Married', 'Hari Maya Subedi', 'Officer', 'Ramesh Subedi', 'Mahesh Subedi', '', 'Hari Maya Subedi', 'Kathmandu', 'Jorpati - 4', '', 'Kathmandu', 'Jorpati - 2', '', '9841576235', '9841563725', '', 'harimaya@gmail.com', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/avatar.jpg', 'customer_finger_prints/f.jpg', '2015-11-06', 'Prana Subedi', 1),
-(3, 'adfasdf', 20, 'Male', '1995-01-01', 'afdasf', 'adsfasfd', 'asdfasf', 'asfdasf', '', '', '', '', 'asdfasf', '', '', '', 'Single', '', 'asdfasdf', 'asdfas', 'asdfasdf', '', 'asdfasfd', 'afdsaf', 'asdfasfd', '', '', '', '', 'sadfasfd', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/DSC_0167.JPG', 'customer_finger_prints/DSC_0207.JPG', '2015-11-06', 'adfas', 1),
-(4, 'adfasfd', 22, 'Male', '1987-12-27', 'adfasf', 'asdfsaf', 'asdfasf', 'sadfasf', '', '', '', '', 'asfdasf', '', '', '', 'Single', '', 'afsaf', 'asfdasf', 'asfdasf', '', 'asdfasf', 'asdfasf', 'asdfasf', '', '', '', '', 'asfasf', 'asdfasfd', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/DSC_0168.JPG', 'customer_finger_prints/download (3).jpg', '2015-11-06', 'asfdasfd', 1),
-(5, 'adfasfd', 21, 'Male', '1989-12-31', 'afaasdf', 'asdfasfd', 'asfdasf', 'asfdasf', '', 'afdsa', 'asfdasfd', '', 'asfdsaf', '', '', '', 'Single', '', 'afdasf', 'aasdfsaf', 'asdfasf', '', 'afdasf', 'asdfasfd', 'asdfsdf', '', '', '', '', 'asfdasfd', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/rawseek.png', 'customer_finger_prints/seanrow.jpg', '2015-11-06', 'asddfsaf', 1),
-(6, 'afasdfas', 22, 'Female', '1989-12-31', 'adfsafaf', 'asdfasf', 'afdasdf', 'asfasf', '', 'asfdasf', 'saddfsafd', '', 'adsfasf', 'asfasfd', '', '', 'Single', '', 'afdasdfasf', 'sadfsaf', 'asdfasf', '', 'dsfasdf', 'asfdasf', 'asdfasfd', '', 'asdfasf', 'asdfsafd', '', 'adsfasdf', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/seanrow.jpg', 'customer_finger_prints/rawseek.png', '2015-11-06', 'asdfasfd', 1);
+INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_age`, `customer_gender`, `customer_dob`, `customer_nationality`, `customer_citizenshipno`, `customer_perm_district`, `customer_perm_vdc_municipality`, `customer_perm_extrainfo`, `customer_temp_district`, `customer_temp_vdc_municipality`, `customer_temp_extrainfo`, `customer_cell_number_first`, `customer_cell_number_second`, `customer_landline`, `customer_email`, `customer_marital_status`, `customer_spouse_name`, `customer_occupation`, `customer_father_name`, `customer_grandfather_name`, `customer_father_in_law_name`, `nominee_name`, `nominee_relation`, `nominee_perm_district`, `nominee_perm_vdc_municipality`, `nominee_perm_extrainfo`, `nominee_temp_district`, `nominee_temp_vdc_municipality`, `nominee_temp_extrainfo`, `nominee_cell_number_first`, `nominee_cell_number_second`, `nominee_landline`, `nominee_email`, `guardian_name`, `guardian_relation`, `guardian_perm_district`, `guardian_perm_vdc_municipality`, `guardian_perm_extrainfo`, `guardian_temp_district`, `guardian_temp_vdc_municipality`, `guardian_temp_extrainfo`, `guardian_cell_number_one`, `guardian_cell_number_second`, `guardian_landline`, `guardian_email`, `customer_photo`, `customer_thumb_print`, `customer_joined_date`, `customer_refferedby`, `customer_approved_by`, `entry_by`) VALUES
+(1, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1),
+(2, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1),
+(3, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1),
+(4, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1),
+(5, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1),
+(6, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/1.jpg', 'customer_finger_prints/2.jpg', '2015-11-18', '', 'Asdfsadfsa', 1),
+(7, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/11.jpg', 'customer_finger_prints/avatar.jpg', '2015-11-18', '', 'Asdfsadfsa', 1);
 
 -- --------------------------------------------------------
 
@@ -110,14 +113,7 @@ CREATE TABLE IF NOT EXISTS `tbl_c_fixed_deposit` (
   `entry_by` int(11) NOT NULL,
   PRIMARY KEY (`cfd_id`),
   KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `tbl_c_fixed_deposit`
---
-
-INSERT INTO `tbl_c_fixed_deposit` (`cfd_id`, `customer_id`, `interest_rate`, `maturity_date`, `creation_date`, `approved_by`, `entry_by`) VALUES
-(1, 1, 11, '2018-11-06', '2015-11-06', 'sabin', 1);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -134,16 +130,7 @@ CREATE TABLE IF NOT EXISTS `tbl_daily_savings` (
   `entry_by` int(11) NOT NULL,
   PRIMARY KEY (`ds_id`),
   KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `tbl_daily_savings`
---
-
-INSERT INTO `tbl_daily_savings` (`ds_id`, `customer_id`, `interest_rate`, `creation_date`, `approved_by`, `entry_by`) VALUES
-(1, 3, 11, '2015-11-06', 'afdasf', 1),
-(2, 4, 11, '2015-11-06', 'asdfasf', 1),
-(3, 5, 11, '2015-11-06', 'adfasdf', 1);
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -183,8 +170,8 @@ CREATE TABLE IF NOT EXISTS `tbl_employee` (
 --
 
 INSERT INTO `tbl_employee` (`employee_id`, `employee_name`, `employee_age`, `employee_gender`, `employee_dob`, `employee_marital_status`, `employee_perm_district`, `employee_perm_vdc_municipality`, `employee_perm_extrainfo`, `employee_temp_district`, `employee_temp_vdc_municipality`, `employee_temp_extrainfo`, `employee_cell_number_first`, `employee_cell_number_second`, `employee_landline`, `employee_joined_date`, `employee_retired_date`, `employee_email`, `employee_fathers_name`, `employee_designation`, `employee_access_level`, `employee_photo`, `entry_by`) VALUES
-(1, 'John Doe', 30, 'Male', '2015-10-01', 'Single', 'somewhere', '', '', 'somewhere', '', NULL, '', '', '', '2015-10-14', '2015-10-15', 'example@example.com', 'John D', 'CEO', 'admin', '', NULL),
-(2, 'jane doe', 25, 'Female', '2014-12-01', 'Married', 'somewhere', '', '', 'somewhere', '', NULL, '', '', '', '2015-09-07', NULL, 'someone@example.com', 'john doe', 'Data Entry operator', 'user', '', NULL);
+(1, 'John Doe', 30, 'Male', '2015-10-01', 'Single', 'somewhere', '', '', 'somewhere', '', NULL, '', '', '', '2015-10-14', '2015-10-15', 'example@example.com', 'John D', 'CEO', 'admin', 'employee/dummy-person.jpg', NULL),
+(2, 'jane doe', 25, 'Female', '2014-12-01', 'Married', 'somewhere', '', '', 'somewhere', '', NULL, '', '', '', '2015-09-07', NULL, 'someone@example.com', 'john doe', 'Data Entry operator', 'user', 'employee/dummy-person.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -203,19 +190,7 @@ CREATE TABLE IF NOT EXISTS `tbl_fixed_deposit` (
   `entry_by` int(11) NOT NULL,
   PRIMARY KEY (`fds_id`),
   KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `tbl_fixed_deposit`
---
-
-INSERT INTO `tbl_fixed_deposit` (`fds_id`, `customer_id`, `interest_rate`, `fd_amount`, `maturity_date`, `creation_date`, `approved_by`, `entry_by`) VALUES
-(1, 1, 11, 250000, '2018-11-06', '2015-11-06', 'adfasdf', 1),
-(2, 2, 23, 26000, '2019-11-06', '2015-11-06', 'adfasdf', 2),
-(3, 3, 12, 560000, '2019-11-06', '2015-11-06', 'ram', 2),
-(4, 5, 14, 300000, '2018-11-06', '2015-11-06', 'ram', 1),
-(5, 3, 14, 260000, '2019-11-06', '2015-11-06', 'sabin', 1),
-(6, 1, 16, 400000, '2020-11-06', '2015-11-06', 'sabin', 1);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -232,17 +207,7 @@ CREATE TABLE IF NOT EXISTS `tbl_monthly_savings` (
   `entry_by` int(11) NOT NULL,
   PRIMARY KEY (`ms_id`),
   KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `tbl_monthly_savings`
---
-
-INSERT INTO `tbl_monthly_savings` (`ms_id`, `customer_id`, `interest_rate`, `creation_date`, `approved_by`, `entry_by`) VALUES
-(1, 6, 11, '2015-11-06', 'adfsafd', 1),
-(2, 1, 11, '2015-11-06', 'assdfasdf', 1),
-(3, 1, 11, '2015-11-06', 'adfdsf', 2),
-(4, 2, 12, '2015-11-06', 'dafasdf', 2);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -260,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `Username` (`username`),
   KEY `employee_id` (`employee_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `tbl_user`
@@ -268,7 +233,41 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 
 INSERT INTO `tbl_user` (`user_id`, `username`, `password`, `role`, `employee_id`, `user_enabled`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', 1, 1),
-(2, 'dummy', '275876e34cf609db118f3d84b799a790', 'User', 2, 1);
+(2, 'dummy', '275876e34cf609db118f3d84b799a790', 'User', 2, 1),
+(3, 'nothing', '827ccb0eea8a706c4c34a16891f84e7b', 'User', 2, 1),
+(4, 'hariram', '62ee25ba9eba3ed2b071b06a7a4fc1e9', 'User', 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user_log`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_user_log` (
+  `log_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `last_login` datetime NOT NULL,
+  `last_logout` datetime DEFAULT NULL,
+  PRIMARY KEY (`log_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `tbl_user_log`
+--
+
+INSERT INTO `tbl_user_log` (`log_id`, `user_id`, `last_login`, `last_logout`) VALUES
+(1, 1, '2015-11-18 02:36:21', '2015-11-18 02:37:13'),
+(2, 1, '2015-11-18 03:03:09', '2015-11-18 03:05:30'),
+(3, 1, '2015-11-18 03:05:55', '2015-11-18 03:09:09'),
+(4, 1, '2015-11-18 03:09:33', '2015-11-18 03:11:14'),
+(5, 1, '2015-11-18 03:12:34', NULL),
+(6, 1, '2015-11-18 03:17:32', '2015-11-18 03:19:19'),
+(7, 1, '2015-11-18 03:31:46', '2015-11-18 03:32:43'),
+(8, 1, '2015-11-18 03:33:46', '2015-11-18 03:40:09'),
+(9, 1, '2015-11-18 03:43:54', '2015-11-18 03:53:32'),
+(10, 1, '2015-11-18 10:22:11', '2015-11-18 10:22:44'),
+(11, 1, '2015-11-18 10:25:13', '2015-11-18 10:26:53');
 
 --
 -- Constraints for dumped tables
@@ -303,6 +302,12 @@ ALTER TABLE `tbl_monthly_savings`
 --
 ALTER TABLE `tbl_user`
   ADD CONSTRAINT `FOREIGN_KEY` FOREIGN KEY (`employee_id`) REFERENCES `tbl_employee` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_user_log`
+--
+ALTER TABLE `tbl_user_log`
+  ADD CONSTRAINT `tbl_user_log_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `tbl_user` (`user_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

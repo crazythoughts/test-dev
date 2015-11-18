@@ -116,4 +116,12 @@
     <servlet-name>RegisteredCustomer</servlet-name>
     <url-pattern>/com/kjjcsoft/controllers/registered</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>CustomerSearch</servlet-name>
+  	<servlet-class>com.kjjcsoft.controllers.CustomerSearchController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CustomerSearch</servlet-name>
+  	<url-pattern>/com/kjjcsoft/controllers/customersearch</url-pattern>
+  </servlet-mapping>
 </web-app>

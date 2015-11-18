@@ -109,19 +109,11 @@
     <url-pattern>/com/kjjcsoft/controllers/usersearch</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>CustomerCredentialUploads</servlet-name>
-    <servlet-class>com.kjjcsoft.controllers.CustomerRegUploadController</servlet-class>
+    <servlet-name>RegisteredCustomer</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.CustomerRegisteredController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>CustomerCredentialUploads</servlet-name>
-    <url-pattern>/com/kjjcsoft/controllers/customeruploads</url-pattern>
-  </servlet-mapping>
-  <servlet>
-  	<servlet-name>RegisteredCustomer</servlet-name>
-  	<servlet-class>com.kjjcsoft.controllers.CustomerRegisteredController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>RegisteredCustomer</servlet-name>
-  	<url-pattern>/com/kjjcsoft/controllers/registered</url-pattern>
+    <servlet-name>RegisteredCustomer</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/registered</url-pattern>
   </servlet-mapping>
 </web-app>

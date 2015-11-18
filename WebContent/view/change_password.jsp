@@ -24,14 +24,14 @@
 						<ul>
 							<li><a href="/KJJCSoft/view/home.jsp">Main</a></li>
 							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/AccountInformation">My Account</a></li>
-							<li>Manage User</li>
+							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/users">Users</a></li>
 						</ul>
 					</li>
 					<li>Employee</li>
 					<li>Customer
 						<ul>
-						<li><a href="/KJJCSoft/view/customer_registration.jsp">Manage Customer</a></li>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/FrontController">All Customers</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Manage Customer</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
 						</ul>
 					</li>
 					<li>Accounts
@@ -60,8 +60,8 @@
 					<li>Employee</li>
 					<li>Customer
 						<ul>
-						<li><a href="/KJJCSoft/view/customer_registration.jsp">Manage Customer</a></li>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/FrontController">All Customers</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Manage Customer</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
 						</ul>
 					</li>
 					<li>Accounts

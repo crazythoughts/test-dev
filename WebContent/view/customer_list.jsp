@@ -28,14 +28,14 @@
 					<li>Dashboard
 						<ul>
 							<li><a href="/KJJCSoft/view/home.jsp">Main</a></li>
-							<li>Manage Profile</li>
-							<li>Manage User</li>
+							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/AccountInformation">My Account</a></li>
+							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/users">Users</a></li>
 						</ul>
 					</li>
 					<li>Employee</li>
 					<li>Customer
 						<ul>
-						<li><a href="/KJJCSoft/view/registration">Manage Customer</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Manage Customer</a></li>
 						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
 						</ul>
 					</li>
@@ -65,8 +65,8 @@
 					<li>Employee</li>
 					<li>Customer
 						<ul>
-						<li><a href="/KJJCSoft/view/customer_registration.jsp">Manage Customer</a></li>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/FrontController">All Customers</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Manage Customer</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
 						</ul>
 					</li>
 					<li>Accounts
@@ -124,8 +124,19 @@
 		<ul class="nav-show">
 			<li class="main-page">Dashboard<span class="divider">></span></li>
 			<li class="">Customer<span class="divider">></span></li>
-			<li class="path-active">All Customers</li>
+			<li class="active">All Customers</li>
 		</ul>
+		<div class="main-contain-content clearfix">
+		<div class="main-content-container-search">
+			<div class="search-bar">
+				<form action="/KJJCsoft/com/kjjcsoft/controllers/customersearch" method = "post">
+					<input type="text" name = "query_string"/>
+					<input type="submit" value="Search" name ="search">
+				</form>
+			</div>
+		</div>
+		<div class="all-content">
+		<div class="customer-list-container">
 		<table class="customer-list">
 			<tr>
 				<th>Customer ID</th>
@@ -141,6 +152,7 @@
 				<th>Joined On</th>
 				<th>Reffered By</th>
 				<th>Entry By</th>
+				<th>Details</th>
 			</tr>
 			<c:forEach items="${customerAll}" var="member">
 				<tr>
@@ -157,10 +169,19 @@
 					<td>${member.jDate}</td>
 					<td>${member.refferedBy}</td>
 					<td>${member.entryBy}</td>
+					<td>
+						<form action="/KJJCSoft/com/kjjcsoft/controllers/customers">
+							<input type="hidden" name="customerId" value="${member.customerId}"/>
+							<input type="submit" name="view" value="View">
+						</form>
+					</td>
 				</tr>
 			</c:forEach>
 		</table>
+		</div>
+		</div>
 		<c:remove var="customerAll" scope="request"/>
+		</div>
 	<jsp:include page="footer.jsp"/>
 	</div>
 	</div>

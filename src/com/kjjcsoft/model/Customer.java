@@ -308,4 +308,100 @@ public class Customer {
 		}
 		return list;
 	}
+	public ArrayList<CustomerBean> searchCustomer(String queryString){
+		ArrayList<CustomerBean> list = new ArrayList<CustomerBean>();
+		try{
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement("SELECT customer_id, customer_name, customer_age, customer_gender, customer_citizenshipno, customer_perm_vdc_municipality, customer_cell_number_first, customer_marital_status, customer_occupation, customer_father_name, customer_joined_date, customer_refferedby, entry_by FROM tbl_customer WHERE customer_name=?");
+			ps.setString(1, queryString);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				CustomerBean storeInfo = new CustomerBean();
+				storeInfo.setCustomerId(rs.getInt("customer_id"));
+				storeInfo.setCustomerName(rs.getString("customer_name"));
+				storeInfo.setCustomerAge(rs.getString("customer_age"));
+				storeInfo.setGender(rs.getString("customer_gender"));
+				storeInfo.setCitizenShipNo(rs.getString("customer_citizenshipno"));
+				storeInfo.setPermVdcMunicipality(rs.getString("customer_perm_vdc_municipality"));
+				storeInfo.setCellNumberFirst(rs.getString("customer_cell_number_first"));
+				storeInfo.setMaritalStatus(rs.getString("customer_marital_status"));
+				storeInfo.setOccupation(rs.getString("customer_occupation"));
+				storeInfo.setFathersName(rs.getString("customer_father_name"));
+				storeInfo.setjDate(rs.getString("customer_joined_date"));
+				storeInfo.setRefferedBy(rs.getString("customer_refferedby"));
+				storeInfo.setEntryBy(rs.getInt("entry_by"));
+				list.add(storeInfo);
+			}
+		} catch (SQLException ex){
+			ex.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	public ArrayList<CustomerBean> searchCustomer(int customerId){
+		ArrayList<CustomerBean> list = new ArrayList<CustomerBean>();
+		try{
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement("SELECT customer_id, customer_name, customer_age, customer_gender, customer_citizenshipno, customer_perm_vdc_municipality, customer_cell_number_first, customer_marital_status, customer_occupation, customer_father_name, customer_joined_date, customer_refferedby, entry_by FROM tbl_customer WHERE customer_name=?");
+			ps.setInt(1, customerId);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				CustomerBean storeInfo = new CustomerBean();
+				storeInfo.setCustomerId(rs.getInt("customer_id"));
+				storeInfo.setCustomerName(rs.getString("customer_name"));
+				storeInfo.setCustomerAge(rs.getString("customer_age"));
+				storeInfo.setGender(rs.getString("customer_gender"));
+				storeInfo.setCitizenShipNo(rs.getString("customer_citizenshipno"));
+				storeInfo.setPermVdcMunicipality(rs.getString("customer_perm_vdc_municipality"));
+				storeInfo.setCellNumberFirst(rs.getString("customer_cell_number_first"));
+				storeInfo.setMaritalStatus(rs.getString("customer_marital_status"));
+				storeInfo.setOccupation(rs.getString("customer_occupation"));
+				storeInfo.setFathersName(rs.getString("customer_father_name"));
+				storeInfo.setjDate(rs.getString("customer_joined_date"));
+				storeInfo.setRefferedBy(rs.getString("customer_refferedby"));
+				storeInfo.setEntryBy(rs.getInt("entry_by"));
+				list.add(storeInfo);
+			}
+		} catch (SQLException ex){
+			ex.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 }

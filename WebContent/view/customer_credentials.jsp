@@ -122,8 +122,7 @@
                 <h1 class="page-def">Credentials Uploads</h1>
 		</div>
 		<ul class="nav-show">
-			<li class="main-page">Dashboard<span class="divider">></span></li>
-			<li class="active">Home<span class="divider">></span></li>
+			<li class="main-page">Home<span class="divider">></span></li>
 			<li class= "">Customers<span class="divider">></span></li>
 			<li class="">Register<span class="divider">></span></li>
 			<li class="active">Credentials</li>

@@ -1,7 +1,6 @@
 package com.kjjcsoft.controllers;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,16 +13,16 @@ import com.kjjcsoft.bean.CustomerBean;
 import com.kjjcsoft.model.Customer;
 
 /**
- * Servlet implementation class FrontControllerServlet
+ * Servlet implementation class CustomerDetailsController
  */
-@WebServlet(description = "for fetching all the customer data", urlPatterns = { "/customers" })
-public class CustomerList extends HttpServlet {
+@WebServlet(description = "for the details extracted", urlPatterns = { "/details" })
+public class CustomerDetailsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CustomerList() {
+    public CustomerDetailsController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +31,25 @@ public class CustomerList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Customer fetchCustomer =new Customer();
-		List<CustomerBean> customers = fetchCustomer.getAllUserList();
-		request.setAttribute("customerAll", customers);
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/customer_list.jsp");
-		rd.forward(request, response);
+		if (request.getSession().getAttribute("CustomerDetails")!=null) {
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/customer_details.jsp");
+			rd.forward(request, response);			
+		} else {
+			response.sendRedirect("/KJJCSoft/view/error.jsp");
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);			
+		if (request.getParameter("view")!=null) {
+			Customer getDetails = new Customer();
+			CustomerBean details = new CustomerBean();
+			details = getDetails.getDetails(Integer.parseInt(request.getParameter("customerId")));
+			request.getSession().setAttribute("CustomerDetails", details);
+		}
+		doGet(request, response);
 	}
 
 }

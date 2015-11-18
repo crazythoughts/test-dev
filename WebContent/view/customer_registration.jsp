@@ -127,13 +127,13 @@
                 <h1 class="page-def">Register</h1>
 		</div>
 		<ul class="nav-show">
-			<li class="main-page">Dashboard<span class="divider">></span></li>
-			<li class="active">Home<span class="divider">></span></li>
+			<li class="main-page">Home<span class="divider">></span></li>
 			<li class="">Customers<span class="divider">></span></li>
 			<li class="">Manage<span class="divider">></span></li>
 			<li class="active">Register</li>
 		</ul>
-			<h3>Customer Registration</h3>
+		<div class="main-contain-content clearfix">
+		<div class="all-content">
 			<form action="/KJJCSoft/com/kjjcsoft/controllers/registration" method="post">
 				<label for="fullname">Full Name:</label>
 				<input type="text" name="fullname" value="${param.fullname}"/>
@@ -386,6 +386,8 @@
 				<br>
 				<input type="submit" value="Save" name="normField"/>
 			</form>
+			</div>
+		</div>
 		<jsp:include page="footer.jsp"/>
 	</div>
 </div>

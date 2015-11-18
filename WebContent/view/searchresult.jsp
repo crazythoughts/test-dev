@@ -122,8 +122,7 @@
                 <h1 class="page-def">Search Results</h1>
 		</div>
 		<ul class="nav-show">
-			<li class="main-page">Dashboard<span class="divider">></span></li>
-			<li class="">Home<span class="divider">></span></li>
+			<li class="main-page">Home<span class="divider">></span></li>
 			<li class="">Users<span class="divider">></span></li>
 			<li class="active">Search Results</li>
 		</ul>

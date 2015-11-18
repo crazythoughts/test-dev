@@ -117,8 +117,7 @@
                 <h1 class="page-def">Change Password</h1>
 		</div>
 		<ul class="nav-show">
-			<li class="main-page">Dashboard<span class="divider">></span></li>
-			<li class="">Home<span class="divider">></span></li>
+			<li class="main-page">Home<span class="divider">></span></li>
 			<li class="">My Account<span class="divider">></span></li>
 			<li class="active">Change Password</li>
 		</ul>

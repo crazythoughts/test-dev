@@ -122,14 +122,14 @@
                 <h1 class="page-def">All Customers</h1>
 		</div>
 		<ul class="nav-show">
-			<li class="main-page">Dashboard<span class="divider">></span></li>
+			<li class="main-page">Home<span class="divider">></span></li>
 			<li class="">Customer<span class="divider">></span></li>
 			<li class="active">All Customers</li>
 		</ul>
 		<div class="main-contain-content clearfix">
 		<div class="main-content-container-search">
 			<div class="search-bar">
-				<form action="/KJJCsoft/com/kjjcsoft/controllers/customersearch" method = "post">
+				<form action="/KJJCSoft/com/kjjcsoft/controllers/customersearch" method = "post">
 					<input type="text" name = "query_string"/>
 					<input type="submit" value="Search" name ="search">
 				</form>
@@ -168,9 +168,9 @@
 					<td>${member.fathersName}</td>
 					<td>${member.jDate}</td>
 					<td>${member.refferedBy}</td>
-					<td>${member.entryBy}</td>
+					<td>${member.enteredBy}</td>
 					<td>
-						<form action="/KJJCSoft/com/kjjcsoft/controllers/customers">
+						<form action="/KJJCSoft/com/kjjcsoft/controllers/details" method="post" target="_blank">
 							<input type="hidden" name="customerId" value="${member.customerId}"/>
 							<input type="submit" name="view" value="View">
 						</form>

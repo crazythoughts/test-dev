@@ -118,7 +118,7 @@
 		</div>
 		<ul class="nav-show">
 			<li class="main-page">Home<span class="divider">></span></li>
-			<li class="active">Customer<span class="divider">></span></li>
+			<li class="active">Customers<span class="divider">></span></li>
 			<li class ="">Manage<span class="divider">></span></li>
 			<li class="">Register<span class="divider">></span></li>
 			<li class="">Success</li>
@@ -461,8 +461,9 @@
 		</c:otherwise>
 	</c:choose>
 	Approved By : <c:out value="${requestScope.newCustomer.getApprovedBy()}"/>
+	Entry By : <c:out value="${requestScope.newCustomer.getEnteredBy() }"/>
 	Finger Prints : <img src="/KJJCSoft/upload/<c:out value="${requestScope.newCustomer.getFingerPrintPath()}"/>" height="100px" width="100px"/>
-	<c:remove var="newCustomer" scope="session"/>
+	<c:remove var="newCustomer" scope="request"/>
 	<b>Open Saving Account</b>
 	<a href="/KJJCSoft/view/open_ds_account.jsp"><input type="button" value="Daily Savings"></a>
 	<a href="/KJJCSoft/view/open_ms_account.jsp"><input type="button" value="Monthly Savings"></a>

@@ -122,8 +122,7 @@
                 <h1 class="page-def">Users</h1>
 		</div>
 		<ul class="nav-show">
-			<li class="main-page">Dashboard<span class="divider">></span></li>
-			<li class="">Home<span class="divider">></span></li>
+			<li class="main-page">Home<span class="divider">></span></li>
 			<li class="active">Users</li>
 		</ul>
 		<div class="main-contain-content clearfix">

@@ -16,9 +16,10 @@ import com.kjjcsoft.bean.CustomerBean;
  *
  */
 public class Customer {
-	private Connection con;
-	private PreparedStatement ps;
-	private ResultSet rs;
+	private Connection con = null;
+	private PreparedStatement ps = null;
+	private ResultSet rs = null;
+	private ResultSet rsNext= null;
 	public Customer(){
 		con = null;
 		ps = null;
@@ -221,11 +222,44 @@ public class Customer {
 				lastInsertedCustomer.setRefferedBy(rs.getString("customer_refferedby"));
 				lastInsertedCustomer.setApprovedBy(rs.getString("customer_approved_by"));
 				lastInsertedCustomer.setEntryBy(rs.getInt("entry_by"));
-			} else {
-				
+				rsNext = con.prepareStatement("SELECT username from tbl_user WHERE user_id =" + lastInsertedCustomer.getEntryBy()).executeQuery();
+				if (rsNext.next()) {
+					lastInsertedCustomer.setEnteredBy(rsNext.getString("username"));
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				rsNext.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				rs.next();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				rsNext.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return lastInsertedCustomer;
 	}
@@ -285,11 +319,21 @@ public class Customer {
 				storeInfo.setjDate(rs.getString("customer_joined_date"));
 				storeInfo.setRefferedBy(rs.getString("customer_refferedby"));
 				storeInfo.setEntryBy(rs.getInt("entry_by"));
+				rsNext = con.prepareStatement("SELECT username from tbl_user WHERE user_id =" + storeInfo.getEntryBy()).executeQuery();
+				if (rsNext.next()) {
+					storeInfo.setEnteredBy(rsNext.getString("username"));
+				}
 				list.add(storeInfo);
 			}
 		} catch(SQLException ex) {
 			ex.printStackTrace();
 		} finally {
+			try {
+				rsNext.close();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			try {
 				rs.close();
 			} catch (SQLException e) {
@@ -330,11 +374,21 @@ public class Customer {
 				storeInfo.setjDate(rs.getString("customer_joined_date"));
 				storeInfo.setRefferedBy(rs.getString("customer_refferedby"));
 				storeInfo.setEntryBy(rs.getInt("entry_by"));
+				rsNext = con.prepareStatement("SELECT username from tbl_user WHERE user_id =" + storeInfo.getEntryBy()).executeQuery();
+				if (rsNext.next()) {
+					storeInfo.setEnteredBy(rsNext.getString("username"));
+				}
 				list.add(storeInfo);
 			}
 		} catch (SQLException ex){
 			ex.printStackTrace();
 		} finally {
+			try {
+				rsNext.close();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			try {
 				rs.close();
 			} catch (SQLException e) {
@@ -360,7 +414,7 @@ public class Customer {
 		ArrayList<CustomerBean> list = new ArrayList<CustomerBean>();
 		try{
 			con = ConnectionProvider.getConnection();
-			ps = con.prepareStatement("SELECT customer_id, customer_name, customer_age, customer_gender, customer_citizenshipno, customer_perm_vdc_municipality, customer_cell_number_first, customer_marital_status, customer_occupation, customer_father_name, customer_joined_date, customer_refferedby, entry_by FROM tbl_customer WHERE customer_name=?");
+			ps = con.prepareStatement("SELECT customer_id, customer_name, customer_age, customer_gender, customer_citizenshipno, customer_perm_vdc_municipality, customer_cell_number_first, customer_marital_status, customer_occupation, customer_father_name, customer_joined_date, customer_refferedby, entry_by FROM tbl_customer WHERE customer_id=?");
 			ps.setInt(1, customerId);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -378,11 +432,21 @@ public class Customer {
 				storeInfo.setjDate(rs.getString("customer_joined_date"));
 				storeInfo.setRefferedBy(rs.getString("customer_refferedby"));
 				storeInfo.setEntryBy(rs.getInt("entry_by"));
+				rsNext = con.prepareStatement("SELECT username from tbl_user WHERE user_id =" + storeInfo.getEntryBy()).executeQuery();
+				if (rsNext.next()) {
+					storeInfo.setEnteredBy(rsNext.getString("username"));
+				}
 				list.add(storeInfo);
 			}
 		} catch (SQLException ex){
 			ex.printStackTrace();
 		} finally {
+			try {
+				rsNext.close();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			try {
 				rs.close();
 			} catch (SQLException e) {
@@ -403,5 +467,101 @@ public class Customer {
 			}
 		}
 		return list;
+	}
+	public CustomerBean getDetails(int customerID){
+		CustomerBean lastInsertedCustomer= new CustomerBean();
+		try {
+			con=ConnectionProvider.getConnection();
+			ps=con.prepareStatement("SELECT * FROM tbl_customer WHERE customer_id = ?");
+			ps.setInt(1, customerID);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				lastInsertedCustomer.setCustomerId(rs.getInt("customer_id"));
+				lastInsertedCustomer.setCustomerName(rs.getString("customer_name"));
+				lastInsertedCustomer.setCustomerAge(rs.getString("customer_age"));
+				lastInsertedCustomer.setGender(rs.getString("customer_gender"));
+				lastInsertedCustomer.setDob(rs.getString("customer_dob"));
+				lastInsertedCustomer.setNationality(rs.getString("customer_nationality"));
+				lastInsertedCustomer.setCitizenShipNo(rs.getString("customer_citizenshipno"));
+				lastInsertedCustomer.setPermDistrict(rs.getString("customer_perm_district"));
+				lastInsertedCustomer.setPermVdcMunicipality(rs.getString("customer_perm_vdc_municipality"));
+				lastInsertedCustomer.setPermExtrainfo(rs.getString("customer_perm_extrainfo"));
+				lastInsertedCustomer.setTempDistrict(rs.getString("customer_temp_district"));
+				lastInsertedCustomer.setTempVdcMunicipality(rs.getString("customer_temp_vdc_municipality"));
+				lastInsertedCustomer.setTempExtrainfo(rs.getString("customer_temp_extrainfo"));
+				lastInsertedCustomer.setCellNumberFirst(rs.getString("customer_cell_number_first"));
+				lastInsertedCustomer.setCellNumberSecond(rs.getString("customer_cell_number_second"));
+				lastInsertedCustomer.setLandLine(rs.getString("customer_landline"));
+				lastInsertedCustomer.setEmailId(rs.getString("customer_email"));
+				lastInsertedCustomer.setMaritalStatus(rs.getString("customer_marital_status"));
+				lastInsertedCustomer.setSpouseName(rs.getString("customer_spouse_name"));
+				lastInsertedCustomer.setOccupation(rs.getString("customer_occupation"));
+				lastInsertedCustomer.setFathersName(rs.getString("customer_father_name"));
+				lastInsertedCustomer.setGrandFathersName(rs.getString("customer_grandfather_name"));
+				lastInsertedCustomer.setFatherInLawsName(rs.getString("customer_father_in_law_name"));
+				lastInsertedCustomer.setNomineesName(rs.getString("nominee_name"));
+				lastInsertedCustomer.setNomineeRelation(rs.getString("nominee_relation"));
+				lastInsertedCustomer.setnPermDistrict(rs.getString("nominee_perm_district"));
+				lastInsertedCustomer.setnPermVdcMunicipality(rs.getString("nominee_perm_vdc_municipality"));
+				lastInsertedCustomer.setnPermExtraInfo(rs.getString("nominee_perm_extrainfo"));
+				lastInsertedCustomer.setnTempDistrict(rs.getString("nominee_temp_district"));
+				lastInsertedCustomer.setnTempVdcMunicipality(rs.getString("nominee_temp_vdc_municipality"));
+				lastInsertedCustomer.setnTempExtraInfo(rs.getString("nominee_temp_extrainfo"));
+				lastInsertedCustomer.setnCellNumberFirst(rs.getString("nominee_cell_number_first"));
+				lastInsertedCustomer.setnCellNumberSecond(rs.getString("nominee_cell_number_second"));
+				lastInsertedCustomer.setnLandLine(rs.getString("nominee_landline"));
+				lastInsertedCustomer.setnEmailId(rs.getString("nominee_email"));
+				lastInsertedCustomer.setGuardianName(rs.getString("guardian_name"));
+				lastInsertedCustomer.setgRelation(rs.getString("guardian_relation"));
+				lastInsertedCustomer.setgPermDistrict(rs.getString("guardian_perm_district"));
+				lastInsertedCustomer.setgPermVdcMunicipality(rs.getString("guardian_perm_vdc_municipality"));
+				lastInsertedCustomer.setgPermExtraInfo(rs.getString("guardian_perm_extrainfo"));
+				lastInsertedCustomer.setgTempDistrict(rs.getString("guardian_temp_district"));
+				lastInsertedCustomer.setgTempVdcMunicipality(rs.getString("guardian_temp_vdc_municipality"));
+				lastInsertedCustomer.setgTempExtraInfo(rs.getString("guardian_temp_extrainfo"));
+				lastInsertedCustomer.setgCellNumberFirst(rs.getString("guardian_cell_number_one"));
+				lastInsertedCustomer.setgCellNumberSecond(rs.getString("guardian_cell_number_second"));
+				lastInsertedCustomer.setgLandLine(rs.getString("guardian_landline"));
+				lastInsertedCustomer.setgEmailId(rs.getString("guardian_email"));
+				lastInsertedCustomer.setPhotoPath(rs.getString("customer_photo"));
+				lastInsertedCustomer.setFingerPrintPath(rs.getString("customer_thumb_print"));
+				lastInsertedCustomer.setjDate(rs.getString("customer_joined_date"));
+				lastInsertedCustomer.setRefferedBy(rs.getString("customer_refferedby"));
+				lastInsertedCustomer.setApprovedBy(rs.getString("customer_approved_by"));
+				lastInsertedCustomer.setEntryBy(rs.getInt("entry_by"));
+				rsNext = con.prepareStatement("SELECT username from tbl_user WHERE user_id =" + lastInsertedCustomer.getEntryBy()).executeQuery();
+				if (rsNext.next()) {
+					lastInsertedCustomer.setEnteredBy(rsNext.getString("username"));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rsNext.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return lastInsertedCustomer;
 	}
 }

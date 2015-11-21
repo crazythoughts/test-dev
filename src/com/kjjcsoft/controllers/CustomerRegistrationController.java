@@ -54,6 +54,7 @@ public class CustomerRegistrationController extends HttpServlet {
 			RequestDispatcher rdr = getServletContext().getRequestDispatcher("/view/customer_credentials.jsp");
 			rdr.forward(request, response);
 		} else {
+			
 			response.sendRedirect("/KJJCSoft/com/kjjcsoft/controllers/registered");
 		}
     }

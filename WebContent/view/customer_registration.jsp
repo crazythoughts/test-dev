@@ -187,6 +187,11 @@
 						<c:out value="${requestScope.errorcn}"/>
 						<c:remove var="errorcn" scope="request"/>
 						<br>
+						<label for="cellnumber_second">Mobile</label>
+						<input type="text" name="cellnumber_second" value="${param.cellnumber_second}" />
+						<c:out value="${requestScope.errorcs}"/>
+						<c:remove var="errorcs" scope="request"/>
+						<br>
 						<label for="landline">Phone</label>
 						<input type="text" name="landline" value="${param.landline}" />
 						<c:out value="${requestScope.errorll}"/>

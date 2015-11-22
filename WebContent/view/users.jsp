@@ -22,7 +22,7 @@
 		<jsp:include page="header.jsp"/>
 	</div>
 	<div class="sidebar f-left clearfix">
-		<c:choose>
+				<c:choose>
 			<c:when test="${sessionScope.AdminLogin==true}">
 				<ul>
 					<li>Dashboard
@@ -35,8 +35,8 @@
 					<li>Employee</li>
 					<li>Customer
 						<ul>
-						<li><a href="/KJJCSoft/view/customer_registration.jsp">Manage Customer</a></li>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/FrontController">All Customers</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Manage Customer</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
 						</ul>
 					</li>
 					<li>Accounts
@@ -52,7 +52,12 @@
 							<li>Office</li>
 						</ul>
 					</li>
-					<li>Reports</li>
+					<li>Reports
+						<ul>
+							<li>EMI</li>
+							<li>Account Statement</li>
+						</ul>
+					</li>
 				</ul>
 			</c:when>
 			<c:otherwise>
@@ -65,8 +70,8 @@
 					<li>Employee</li>
 					<li>Customer
 						<ul>
-						<li><a href="/KJJCSoft/view/customer_registration.jsp">Manage Customer</a></li>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/FrontController">All Customers</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Manage Customer</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
 						</ul>
 					</li>
 					<li>Accounts
@@ -82,7 +87,12 @@
 							<li>Office</li>
 						</ul>
 					</li>
-					<li>Reports</li>
+					<li>Reports
+						<ul>
+							<li>EMI</li>
+							<li>Account Statement</li>
+						</ul>
+					</li>
 				</ul>
 			</c:otherwise>
 		</c:choose>

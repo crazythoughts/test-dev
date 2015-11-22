@@ -125,11 +125,11 @@
     <url-pattern>/com/kjjcsoft/controllers/customersearch</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>DetailsofCustomer</servlet-name>
-  	<servlet-class>com.kjjcsoft.controllers.CustomerDetailsController</servlet-class>
+    <servlet-name>DetailsofCustomer</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.CustomerDetailsController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>DetailsofCustomer</servlet-name>
-  	<url-pattern>/com/kjjcsoft/controllers/details</url-pattern>
+    <servlet-name>DetailsofCustomer</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/details</url-pattern>
   </servlet-mapping>
 </web-app>

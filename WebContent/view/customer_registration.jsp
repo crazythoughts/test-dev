@@ -50,7 +50,12 @@
 							<li>Office</li>
 						</ul>
 					</li>
-					<li>Reports</li>
+					<li>Reports
+						<ul>
+							<li>EMI</li>
+							<li>Account Statement</li>
+						</ul>
+					</li>
 				</ul>
 			</c:when>
 			<c:otherwise>
@@ -80,7 +85,12 @@
 							<li>Office</li>
 						</ul>
 					</li>
-					<li>Reports</li>
+					<li>Reports
+						<ul>
+							<li>EMI</li>
+							<li>Account Statement</li>
+						</ul>
+					</li>
 				</ul>
 			</c:otherwise>
 		</c:choose>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2015 at 05:48 AM
+-- Generation Time: Nov 23, 2015 at 08:53 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -80,22 +80,26 @@ CREATE TABLE IF NOT EXISTS `tbl_customer` (
   `customer_refferedby` varchar(100) DEFAULT NULL,
   `customer_approved_by` varchar(100) NOT NULL,
   `entry_by` int(11) NOT NULL,
+  `customer_status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`customer_id`),
   KEY `user_id` (`entry_by`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `tbl_customer`
 --
 
-INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_age`, `customer_gender`, `customer_dob`, `customer_nationality`, `customer_citizenshipno`, `customer_perm_district`, `customer_perm_vdc_municipality`, `customer_perm_extrainfo`, `customer_temp_district`, `customer_temp_vdc_municipality`, `customer_temp_extrainfo`, `customer_cell_number_first`, `customer_cell_number_second`, `customer_landline`, `customer_email`, `customer_marital_status`, `customer_spouse_name`, `customer_occupation`, `customer_father_name`, `customer_grandfather_name`, `customer_father_in_law_name`, `nominee_name`, `nominee_relation`, `nominee_perm_district`, `nominee_perm_vdc_municipality`, `nominee_perm_extrainfo`, `nominee_temp_district`, `nominee_temp_vdc_municipality`, `nominee_temp_extrainfo`, `nominee_cell_number_first`, `nominee_cell_number_second`, `nominee_landline`, `nominee_email`, `guardian_name`, `guardian_relation`, `guardian_perm_district`, `guardian_perm_vdc_municipality`, `guardian_perm_extrainfo`, `guardian_temp_district`, `guardian_temp_vdc_municipality`, `guardian_temp_extrainfo`, `guardian_cell_number_one`, `guardian_cell_number_second`, `guardian_landline`, `guardian_email`, `customer_photo`, `customer_thumb_print`, `customer_joined_date`, `customer_refferedby`, `customer_approved_by`, `entry_by`) VALUES
-(1, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1),
-(2, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1),
-(3, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1),
-(4, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1),
-(5, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1),
-(6, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/1.jpg', 'customer_finger_prints/2.jpg', '2015-11-18', '', 'Asdfsadfsa', 1),
-(7, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/11.jpg', 'customer_finger_prints/avatar.jpg', '2015-11-18', '', 'Asdfsadfsa', 1);
+INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_age`, `customer_gender`, `customer_dob`, `customer_nationality`, `customer_citizenshipno`, `customer_perm_district`, `customer_perm_vdc_municipality`, `customer_perm_extrainfo`, `customer_temp_district`, `customer_temp_vdc_municipality`, `customer_temp_extrainfo`, `customer_cell_number_first`, `customer_cell_number_second`, `customer_landline`, `customer_email`, `customer_marital_status`, `customer_spouse_name`, `customer_occupation`, `customer_father_name`, `customer_grandfather_name`, `customer_father_in_law_name`, `nominee_name`, `nominee_relation`, `nominee_perm_district`, `nominee_perm_vdc_municipality`, `nominee_perm_extrainfo`, `nominee_temp_district`, `nominee_temp_vdc_municipality`, `nominee_temp_extrainfo`, `nominee_cell_number_first`, `nominee_cell_number_second`, `nominee_landline`, `nominee_email`, `guardian_name`, `guardian_relation`, `guardian_perm_district`, `guardian_perm_vdc_municipality`, `guardian_perm_extrainfo`, `guardian_temp_district`, `guardian_temp_vdc_municipality`, `guardian_temp_extrainfo`, `guardian_cell_number_one`, `guardian_cell_number_second`, `guardian_landline`, `guardian_email`, `customer_photo`, `customer_thumb_print`, `customer_joined_date`, `customer_refferedby`, `customer_approved_by`, `entry_by`, `customer_status`) VALUES
+(1, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1, 1),
+(2, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1, 1),
+(3, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1, 1),
+(4, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1, 1),
+(5, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, '2015-11-18', '', 'Asdfsadfsa', 1, 1),
+(6, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/1.jpg', 'customer_finger_prints/2.jpg', '2015-11-18', '', 'Asdfsadfsa', 1, 1),
+(7, 'Adfasdf', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/11.jpg', 'customer_finger_prints/avatar.jpg', '2015-11-18', '', 'Asdfsadfsa', 1, 1),
+(8, 'Wqerwerwqer', 17, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Asdfasdf', 'Asddfasdf', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Asfasdf', 'Asddfasdf', '', 'Asddfasdf', 'Asdfasdf', 'Asdfasdf', 'Asdfsadf', '', '', '', '', '9845632102', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/1.jpg', 'customer_finger_prints/DSC_0089.jpg', '2015-11-21', '', 'Asdfsadfsa', 1, 1),
+(9, 'Rajesh Lam', 20, 'Male', '1990-10-10', 'Nepali', '489756', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '9841257896', '', '', 'rajesh@gmail.com', 'Single', '', 'Student', 'Mahesh Lama', 'Ganesh Lama', '', 'Mahesh Lama', 'Father', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '9874562356', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/1.jpg', 'customer_finger_prints/2.jpg', '2015-11-22', 'Hari Kumar Basnet', 'Sabin Kaji Shrestha', 1, 1),
+(10, 'Rajesh Lam', 22, 'Male', '1990-10-10', 'Asdfasdfsdaf', '', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '9874563210', '', '', '', 'Single', '', 'Assdffsad', 'Mahesh Lama', 'Ganesh Lama', '', 'Mahesh Lama', 'Asdfasdf', 'Asdfasdf', 'Jorpati - 4', '', '', '', '', '9874562356', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/1.jpg', 'customer_finger_prints/2.jpg', '2015-11-22', 'Hari Kumar Basnet', 'Sabin Kaji Shrestha', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -130,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `tbl_daily_savings` (
   `entry_by` int(11) NOT NULL,
   PRIMARY KEY (`ds_id`),
   KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -250,7 +254,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user_log` (
   `last_logout` datetime DEFAULT NULL,
   PRIMARY KEY (`log_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Dumping data for table `tbl_user_log`
@@ -267,7 +271,32 @@ INSERT INTO `tbl_user_log` (`log_id`, `user_id`, `last_login`, `last_logout`) VA
 (8, 1, '2015-11-18 03:33:46', '2015-11-18 03:40:09'),
 (9, 1, '2015-11-18 03:43:54', '2015-11-18 03:53:32'),
 (10, 1, '2015-11-18 10:22:11', '2015-11-18 10:22:44'),
-(11, 1, '2015-11-18 10:25:13', '2015-11-18 10:26:53');
+(11, 1, '2015-11-18 10:25:13', '2015-11-18 10:26:53'),
+(12, 1, '2015-11-18 11:23:29', '2015-11-18 11:23:41'),
+(13, 1, '2015-11-18 11:24:33', '2015-11-18 11:25:20'),
+(14, 1, '2015-11-18 11:26:21', '2015-11-18 11:32:27'),
+(15, 1, '2015-11-18 11:34:09', '2015-11-18 11:35:01'),
+(16, 1, '2015-11-18 12:01:58', '2015-11-18 12:02:16'),
+(17, 1, '2015-11-18 12:06:12', NULL),
+(18, 1, '2015-11-18 12:10:37', '2015-11-18 12:15:08'),
+(19, 1, '2015-11-18 12:20:30', '2015-11-18 12:21:05'),
+(20, 1, '2015-11-18 12:23:43', '2015-11-18 12:26:18'),
+(21, 1, '2015-11-18 12:41:01', '2015-11-18 12:41:32'),
+(22, 1, '2015-11-18 12:42:26', '2015-11-18 12:43:29'),
+(23, 1, '2015-11-18 13:15:34', '2015-11-18 13:15:47'),
+(24, 1, '2015-11-21 07:03:01', '2015-11-21 07:03:57'),
+(25, 1, '2015-11-21 07:04:28', '2015-11-21 07:04:51'),
+(26, 1, '2015-11-21 07:06:26', '2015-11-21 07:07:18'),
+(27, 1, '2015-11-21 07:08:13', '2015-11-21 07:08:39'),
+(28, 1, '2015-11-21 07:21:59', '2015-11-21 07:22:13'),
+(29, 1, '2015-11-21 07:52:17', '2015-11-21 07:52:38'),
+(30, 1, '2015-11-21 08:05:21', '2015-11-21 08:07:26'),
+(31, 1, '2015-11-21 11:53:16', NULL),
+(32, 1, '2015-11-21 11:59:00', '2015-11-21 12:17:05'),
+(33, 1, '2015-11-21 12:38:25', NULL),
+(34, 1, '2015-11-22 12:50:56', '2015-11-22 12:55:57'),
+(35, 1, '2015-11-22 12:56:28', '2015-11-22 12:58:11'),
+(36, 1, '2015-11-22 13:01:12', '2015-11-22 13:28:18');
 
 --
 -- Constraints for dumped tables

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kjjcsoft.model.Customer;
+
 /**
  * Servlet implementation class CustomerOverviewController
  */
@@ -29,6 +31,8 @@ public class CustomerOverviewController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/customer_overview.jsp");
+		Customer customerOverview = new Customer();
+		
 		rd.forward(request, response);
 	}
 

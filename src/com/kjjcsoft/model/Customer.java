@@ -19,17 +19,20 @@ public class Customer {
 	private Connection con = null;
 	private PreparedStatement ps = null;
 	private ResultSet rs = null;
-	private ResultSet rsNext= null;
-	public Customer(){
+	private ResultSet rsNext = null;
+
+	public Customer() {
 		con = null;
 		ps = null;
 		rs = null;
 	}
-	public boolean registerCustomer(CustomerBean paramIn){
+
+	public boolean registerCustomer(CustomerBean paramIn) {
 		boolean customerCreated = false;
-		try{
-			con=ConnectionProvider.getConnection();
-			ps=con.prepareStatement("INSERT into tbl_customer (customer_name, customer_age, customer_gender, customer_dob, customer_nationality, customer_citizenshipno, customer_perm_district, customer_perm_vdc_municipality, customer_perm_extrainfo, customer_temp_district, customer_temp_vdc_municipality, customer_temp_extrainfo, customer_cell_number_first, customer_cell_number_second, customer_landline, customer_email, customer_marital_status, customer_spouse_name, customer_occupation, customer_father_name, customer_grandfather_name, customer_father_in_law_name, nominee_name, nominee_relation, nominee_perm_district, nominee_perm_vdc_municipality, nominee_perm_extrainfo, nominee_temp_district, nominee_temp_vdc_municipality, nominee_temp_extrainfo, nominee_cell_number_first, nominee_cell_number_second, nominee_landline, nominee_email, guardian_name, guardian_relation, guardian_perm_district, guardian_perm_vdc_municipality, guardian_perm_extrainfo, guardian_temp_district, guardian_temp_vdc_municipality, guardian_temp_extrainfo, guardian_cell_number_one, guardian_cell_number_second, guardian_landline, guardian_email, customer_joined_date, customer_refferedby, customer_approved_by, entry_by) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
+		try {
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement(
+					"INSERT into tbl_customer (customer_name, customer_age, customer_gender, customer_dob, customer_nationality, customer_citizenshipno, customer_perm_district, customer_perm_vdc_municipality, customer_perm_extrainfo, customer_temp_district, customer_temp_vdc_municipality, customer_temp_extrainfo, customer_cell_number_first, customer_cell_number_second, customer_landline, customer_email, customer_marital_status, customer_spouse_name, customer_occupation, customer_father_name, customer_grandfather_name, customer_father_in_law_name, nominee_name, nominee_relation, nominee_perm_district, nominee_perm_vdc_municipality, nominee_perm_extrainfo, nominee_temp_district, nominee_temp_vdc_municipality, nominee_temp_extrainfo, nominee_cell_number_first, nominee_cell_number_second, nominee_landline, nominee_email, guardian_name, guardian_relation, guardian_perm_district, guardian_perm_vdc_municipality, guardian_perm_extrainfo, guardian_temp_district, guardian_temp_vdc_municipality, guardian_temp_extrainfo, guardian_cell_number_one, guardian_cell_number_second, guardian_landline, guardian_email, customer_joined_date, customer_refferedby, customer_approved_by, entry_by) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ");
 			ps.setString(1, paramIn.getCustomerName());
 			ps.setString(2, paramIn.getCustomerAge());
 			ps.setString(3, paramIn.getGender());
@@ -79,10 +82,10 @@ public class Customer {
 			ps.setString(47, paramIn.getjDate());
 			ps.setString(48, paramIn.getRefferedBy());
 			ps.setString(49, paramIn.getApprovedBy());
-			ps.setInt(50, paramIn.getEntryBy()	);
+			ps.setInt(50, paramIn.getEntryBy());
 			ps.executeUpdate();
 			customerCreated = true;
-		}catch (SQLException ex) {
+		} catch (SQLException ex) {
 			customerCreated = false;
 			System.out.println(ex);
 		} finally {
@@ -97,77 +100,82 @@ public class Customer {
 				e.printStackTrace();
 			}
 		}
-			return customerCreated;
+		return customerCreated;
 	}
-	public int getIdofLastInsertion(int userID){
+
+	public int getIdofLastInsertion(int userID) {
 		int customerId = 0;
-		try{
+		try {
 			con = ConnectionProvider.getConnection();
-			ps = con.prepareStatement("SELECT customer_id FROM tbl_customer WHERE entry_by = ? ORDER BY customer_id DESC LIMIT 1");
+			ps = con.prepareStatement(
+					"SELECT customer_id FROM tbl_customer WHERE entry_by = ? ORDER BY customer_id DESC LIMIT 1");
 			ps.setInt(1, userID);
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				customerId = rs.getInt("customer_id");
 			}
-		}catch (SQLException ex){
+		} catch (SQLException ex) {
 			ex.printStackTrace();
-		} finally{
+		} finally {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			try {
 				ps.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			try {
 				con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
 		return customerId;
 	}
-	public boolean uploadCredentials(CustomerBean photoPurp){
+
+	public boolean uploadCredentials(CustomerBean photoPurp) {
 		boolean credentialInserted = false;
-		try{
+		try {
 			con = ConnectionProvider.getConnection();
-			ps = con.prepareStatement("UPDATE tbl_customer SET customer_photo=?, customer_thumb_print=? WHERE customer_id = ? ");
+			ps = con.prepareStatement(
+					"UPDATE tbl_customer SET customer_photo=?, customer_thumb_print=? WHERE customer_id = ? ");
 			ps.setString(1, photoPurp.getPhotoPath());
 			ps.setString(2, photoPurp.getFingerPrintPath());
 			ps.setInt(3, photoPurp.getCustomerId());
 			ps.executeUpdate();
 			credentialInserted = true;
-		} catch (SQLException ex){
+		} catch (SQLException ex) {
 			credentialInserted = false;
 			ex.printStackTrace();
 		} finally {
 			try {
 				ps.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			try {
 				con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
 		return credentialInserted;
 	}
-	public CustomerBean lastInsertion(){
-		CustomerBean lastInsertedCustomer= new CustomerBean();
+
+	public CustomerBean lastInsertion() {
+		CustomerBean lastInsertedCustomer = new CustomerBean();
 		try {
-			con=ConnectionProvider.getConnection();
-			ps=con.prepareStatement("SELECT * FROM tbl_customer ORDER BY customer_id DESC LIMIT 1");
-			rs=ps.executeQuery();
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement("SELECT * FROM tbl_customer ORDER BY customer_id DESC LIMIT 1");
+			rs = ps.executeQuery();
 			if (rs.next()) {
 				lastInsertedCustomer.setCustomerId(rs.getInt("customer_id"));
 				lastInsertedCustomer.setCustomerName(rs.getString("customer_name"));
@@ -222,7 +230,10 @@ public class Customer {
 				lastInsertedCustomer.setRefferedBy(rs.getString("customer_refferedby"));
 				lastInsertedCustomer.setApprovedBy(rs.getString("customer_approved_by"));
 				lastInsertedCustomer.setEntryBy(rs.getInt("entry_by"));
-				rsNext = con.prepareStatement("SELECT username from tbl_user WHERE user_id =" + lastInsertedCustomer.getEntryBy()).executeQuery();
+				rsNext = con
+						.prepareStatement(
+								"SELECT username from tbl_user WHERE user_id =" + lastInsertedCustomer.getEntryBy())
+						.executeQuery();
 				if (rsNext.next()) {
 					lastInsertedCustomer.setEnteredBy(rsNext.getString("username"));
 				}
@@ -233,52 +244,53 @@ public class Customer {
 			try {
 				rsNext.close();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			try {
 				rs.next();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			try {
 				rsNext.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			try {
 				ps.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			try {
 				con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
 		return lastInsertedCustomer;
 	}
-	public String checkIfExists(int ID){
+
+	public String checkIfExists(int ID) {
 		String retMsg;
-		try{
-			con=ConnectionProvider.getConnection();
-			ps=con.prepareStatement("SELECT customer_name FROM tbl_customer WHERE customer_id=?");
+		try {
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement("SELECT customer_name FROM tbl_customer WHERE customer_id=?");
 			ps.setInt(1, ID);
-			rs=ps.executeQuery();
+			rs = ps.executeQuery();
 			if (rs.next()) {
-				retMsg=rs.getString("customer_name");
+				retMsg = rs.getString("customer_name");
 			} else {
-				retMsg="No Match";
+				retMsg = "No Match";
 			}
-		} catch (SQLException ex){
-			retMsg="error";
+		} catch (SQLException ex) {
+			retMsg = "error";
 			ex.printStackTrace();
-		} finally{
+		} finally {
 			try {
 				rs.close();
 			} catch (SQLException e) {
@@ -297,12 +309,13 @@ public class Customer {
 		}
 		return retMsg;
 	}
-	
-	public  ArrayList<CustomerBean> getAllUserList(){
+
+	public ArrayList<CustomerBean> getAllUserList() {
 		ArrayList<CustomerBean> list = new ArrayList<CustomerBean>();
-		try{
-			con=ConnectionProvider.getConnection();
-			ps=con.prepareStatement("SELECT customer_id, customer_name, customer_age, customer_gender, customer_citizenshipno, customer_perm_vdc_municipality, customer_cell_number_first, customer_marital_status, customer_occupation, customer_father_name, customer_joined_date, customer_refferedby, entry_by FROM tbl_customer");
+		try {
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement(
+					"SELECT customer_id, customer_name, customer_age, customer_gender, customer_citizenshipno, customer_perm_vdc_municipality, customer_cell_number_first, customer_marital_status, customer_occupation, customer_father_name, customer_joined_date, customer_refferedby, entry_by FROM tbl_customer");
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				CustomerBean storeInfo = new CustomerBean();
@@ -319,19 +332,20 @@ public class Customer {
 				storeInfo.setjDate(rs.getString("customer_joined_date"));
 				storeInfo.setRefferedBy(rs.getString("customer_refferedby"));
 				storeInfo.setEntryBy(rs.getInt("entry_by"));
-				rsNext = con.prepareStatement("SELECT username from tbl_user WHERE user_id =" + storeInfo.getEntryBy()).executeQuery();
+				rsNext = con.prepareStatement("SELECT username from tbl_user WHERE user_id =" + storeInfo.getEntryBy())
+						.executeQuery();
 				if (rsNext.next()) {
 					storeInfo.setEnteredBy(rsNext.getString("username"));
 				}
 				list.add(storeInfo);
 			}
-		} catch(SQLException ex) {
+		} catch (SQLException ex) {
 			ex.printStackTrace();
 		} finally {
 			try {
 				rsNext.close();
 			} catch (SQLException e2) {
-				// TODO Auto-generated catch block
+
 				e2.printStackTrace();
 			}
 			try {
@@ -352,11 +366,13 @@ public class Customer {
 		}
 		return list;
 	}
-	public ArrayList<CustomerBean> searchCustomer(String queryString){
+
+	public ArrayList<CustomerBean> searchCustomer(String queryString) {
 		ArrayList<CustomerBean> list = new ArrayList<CustomerBean>();
-		try{
+		try {
 			con = ConnectionProvider.getConnection();
-			ps = con.prepareStatement("SELECT customer_id, customer_name, customer_age, customer_gender, customer_citizenshipno, customer_perm_vdc_municipality, customer_cell_number_first, customer_marital_status, customer_occupation, customer_father_name, customer_joined_date, customer_refferedby, entry_by FROM tbl_customer WHERE customer_name=?");
+			ps = con.prepareStatement(
+					"SELECT customer_id, customer_name, customer_age, customer_gender, customer_citizenshipno, customer_perm_vdc_municipality, customer_cell_number_first, customer_marital_status, customer_occupation, customer_father_name, customer_joined_date, customer_refferedby, entry_by FROM tbl_customer WHERE customer_name=?");
 			ps.setString(1, queryString);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -374,47 +390,50 @@ public class Customer {
 				storeInfo.setjDate(rs.getString("customer_joined_date"));
 				storeInfo.setRefferedBy(rs.getString("customer_refferedby"));
 				storeInfo.setEntryBy(rs.getInt("entry_by"));
-				rsNext = con.prepareStatement("SELECT username from tbl_user WHERE user_id =" + storeInfo.getEntryBy()).executeQuery();
+				rsNext = con.prepareStatement("SELECT username from tbl_user WHERE user_id =" + storeInfo.getEntryBy())
+						.executeQuery();
 				if (rsNext.next()) {
 					storeInfo.setEnteredBy(rsNext.getString("username"));
 				}
 				list.add(storeInfo);
 			}
-		} catch (SQLException ex){
+		} catch (SQLException ex) {
 			ex.printStackTrace();
 		} finally {
 			try {
 				rsNext.close();
 			} catch (SQLException e2) {
-				// TODO Auto-generated catch block
+
 				e2.printStackTrace();
 			}
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			try {
 				ps.close();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			try {
 				con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
 		return list;
 	}
-	public ArrayList<CustomerBean> searchCustomer(int customerId){
+
+	public ArrayList<CustomerBean> searchCustomer(int customerId) {
 		ArrayList<CustomerBean> list = new ArrayList<CustomerBean>();
-		try{
+		try {
 			con = ConnectionProvider.getConnection();
-			ps = con.prepareStatement("SELECT customer_id, customer_name, customer_age, customer_gender, customer_citizenshipno, customer_perm_vdc_municipality, customer_cell_number_first, customer_marital_status, customer_occupation, customer_father_name, customer_joined_date, customer_refferedby, entry_by FROM tbl_customer WHERE customer_id=?");
+			ps = con.prepareStatement(
+					"SELECT customer_id, customer_name, customer_age, customer_gender, customer_citizenshipno, customer_perm_vdc_municipality, customer_cell_number_first, customer_marital_status, customer_occupation, customer_father_name, customer_joined_date, customer_refferedby, entry_by FROM tbl_customer WHERE customer_id=?");
 			ps.setInt(1, customerId);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -432,50 +451,52 @@ public class Customer {
 				storeInfo.setjDate(rs.getString("customer_joined_date"));
 				storeInfo.setRefferedBy(rs.getString("customer_refferedby"));
 				storeInfo.setEntryBy(rs.getInt("entry_by"));
-				rsNext = con.prepareStatement("SELECT username from tbl_user WHERE user_id =" + storeInfo.getEntryBy()).executeQuery();
+				rsNext = con.prepareStatement("SELECT username from tbl_user WHERE user_id =" + storeInfo.getEntryBy())
+						.executeQuery();
 				if (rsNext.next()) {
 					storeInfo.setEnteredBy(rsNext.getString("username"));
 				}
 				list.add(storeInfo);
 			}
-		} catch (SQLException ex){
+		} catch (SQLException ex) {
 			ex.printStackTrace();
 		} finally {
 			try {
 				rsNext.close();
 			} catch (SQLException e2) {
-				// TODO Auto-generated catch block
+
 				e2.printStackTrace();
 			}
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			try {
 				ps.close();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			try {
 				con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
 		return list;
 	}
-	public CustomerBean getDetails(int customerID){
-		CustomerBean lastInsertedCustomer= new CustomerBean();
+
+	public CustomerBean getDetails(int customerID) {
+		CustomerBean lastInsertedCustomer = new CustomerBean();
 		try {
-			con=ConnectionProvider.getConnection();
-			ps=con.prepareStatement("SELECT * FROM tbl_customer WHERE customer_id = ?");
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement("SELECT * FROM tbl_customer WHERE customer_id = ?");
 			ps.setInt(1, customerID);
-			rs=ps.executeQuery();
-			while(rs.next()) {
+			rs = ps.executeQuery();
+			while (rs.next()) {
 				lastInsertedCustomer.setCustomerId(rs.getInt("customer_id"));
 				lastInsertedCustomer.setCustomerName(rs.getString("customer_name"));
 				lastInsertedCustomer.setCustomerAge(rs.getString("customer_age"));
@@ -529,7 +550,10 @@ public class Customer {
 				lastInsertedCustomer.setRefferedBy(rs.getString("customer_refferedby"));
 				lastInsertedCustomer.setApprovedBy(rs.getString("customer_approved_by"));
 				lastInsertedCustomer.setEntryBy(rs.getInt("entry_by"));
-				rsNext = con.prepareStatement("SELECT username from tbl_user WHERE user_id =" + lastInsertedCustomer.getEntryBy()).executeQuery();
+				rsNext = con
+						.prepareStatement(
+								"SELECT username from tbl_user WHERE user_id =" + lastInsertedCustomer.getEntryBy())
+						.executeQuery();
 				if (rsNext.next()) {
 					lastInsertedCustomer.setEnteredBy(rsNext.getString("username"));
 				}
@@ -540,9 +564,140 @@ public class Customer {
 			try {
 				rsNext.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
+			try {
+				rs.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+		}
+		return lastInsertedCustomer;
+	}
+
+	public int getTotalCustomerCount() {
+		int totalCount = 0;
+		try {
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement("SELECT COUNT(cutomer_id) as totalCount FROM tbl_customer");
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				totalCount = rs.getInt("totalCount");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+		}
+		return totalCount;
+	}
+
+	public int getActiveCustomers() {
+		int activeCustomers = 0;
+		try {
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement(
+					"SELECT COUNT(customer_id) AS activeCustomers FROM tbl_customer WHERE customer_status = 1");
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				activeCustomers = rs.getInt("activeCustomers");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return activeCustomers;
+	}
+
+	public int getInactiveCustomers() {
+		int inactiveCustomers = 0;
+		try {
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement(
+					"SELECT COUNT(*) AS inactiveCustomers FROM tbl_customer WHERE customer_status = 0");
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				inactiveCustomers = rs.getInt("inactiveCustomers");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return inactiveCustomers;
+	}
+	public int getMaleCustomers(){
+		int maleCustomers = 0;
+		try{
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement("SELECT COUNT (customer_id) AS maleCustomers FROM tbl_customers WHERE customer_gender='Male'");
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				maleCustomers = rs.getInt("maleCustomers");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			try {
 				rs.close();
 			} catch (SQLException e) {
@@ -562,6 +717,6 @@ public class Customer {
 				e.printStackTrace();
 			}
 		}
-		return lastInsertedCustomer;
+		return maleCustomers;
 	}
 }

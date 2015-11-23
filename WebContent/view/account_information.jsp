@@ -8,6 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="/KJJCSoft/view/css/style.css" type="text/css"/>
 <link href="/KJJCSoft/view/fonts/font-awesome/css/font-awesome.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="/KJJCSoft/view/js/main.js"></script>
+
 <title>KJJCSoft</title>
 </head>
 <body>
@@ -134,11 +136,11 @@
 			<!-- <div class="alert-info">
 			</div> -->
 		<ul class="list-my-account">
-			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/AccountInformation">Summary</a></li>
+			<li class="summary-active"><a href="/KJJCSoft/com/kjjcsoft/controllers/AccountInformation">Summary</a></li>
 			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/ChangePassword">Change Password</a></li>
 		</ul>
 		<div class="all-content">
-			<div class="account-information">
+			<div class="account-information clearfix">
 			<p>My Information</p>
 			<div class="profile-pic">
 				<img alt="User profile picture" src="/KJJCSoft/upload/${sessionScope.Userinfo.getEmployeePhotoPath()}" class="success-profile-img">
@@ -182,36 +184,38 @@
 				</tr>
 				</table>
 			</div>
-			</div>
 			<div class="myLogs">
-			<c:set var="counter" scope="page" value="${0}"/>
-				<p>My Logs</p>
-				<div class="log-table-container">
-					<table class="log-table">
-						<tr>
-							<th>
-								S.N
-							</th>
-							<th>
-								Login Time
-							</th>
-							<th>
-								Logout Time
-							</th>
-						</tr>
-						<c:forEach items="${mylogs}" var="members">
+				<c:set var="counter" scope="page" value="${0}"/>
+					<p>My Logs</p>
+					<div class="log-table-container">
+						<table class="log-table">
 							<tr>
-								<c:set var="counter" scope="page" value="${counter+1}"/>
-								<td><c:out value="${counter}"/></td>
-								<td>${members.loginTime}</td>
-								<td>${members.logoutTime}</td>
+								<th>
+									S.N
+								</th>
+								<th>
+									Login Time
+								</th>
+								<th>
+									Logout Time
+								</th>
 							</tr>
-						</c:forEach>
-					</table>
-				</div>
-				<c:remove var="counter" scope="page"/>
-				<c:remove var="mylogs" scope="request"/>
+							<c:forEach items="${mylogs}" var="members">
+								<tr>
+									<c:set var="counter" scope="page" value="${counter+1}"/>
+									<td><c:out value="${counter}"/></td>
+									<td>${members.loginTime}</td>
+									<td>${members.logoutTime}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+					<c:remove var="counter" scope="page"/>
+					<c:remove var="mylogs" scope="request"/>
 			</div>
+
+			</div>
+
 		</div>
 		</div>
 		<jsp:include page="footer.jsp"/>

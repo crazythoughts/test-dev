@@ -371,8 +371,7 @@ public class Customer {
 		ArrayList<CustomerBean> list = new ArrayList<CustomerBean>();
 		try {
 			con = ConnectionProvider.getConnection();
-			ps = con.prepareStatement(
-					"SELECT customer_id, customer_name, customer_age, customer_gender, customer_citizenshipno, customer_perm_vdc_municipality, customer_cell_number_first, customer_marital_status, customer_occupation, customer_father_name, customer_joined_date, customer_refferedby, entry_by FROM tbl_customer WHERE customer_name=?");
+			ps = con.prepareStatement("SELECT customer_id, customer_name, customer_age, customer_gender, customer_citizenshipno, customer_perm_vdc_municipality, customer_cell_number_first, customer_marital_status, customer_occupation, customer_father_name, customer_joined_date, customer_refferedby, entry_by FROM tbl_customer WHERE customer_name=?");
 			ps.setString(1, queryString);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -390,8 +389,7 @@ public class Customer {
 				storeInfo.setjDate(rs.getString("customer_joined_date"));
 				storeInfo.setRefferedBy(rs.getString("customer_refferedby"));
 				storeInfo.setEntryBy(rs.getInt("entry_by"));
-				rsNext = con.prepareStatement("SELECT username from tbl_user WHERE user_id =" + storeInfo.getEntryBy())
-						.executeQuery();
+				rsNext = con.prepareStatement("SELECT username FROM tbl_user WHERE user_id =" + storeInfo.getEntryBy()).executeQuery();
 				if (rsNext.next()) {
 					storeInfo.setEnteredBy(rsNext.getString("username"));
 				}
@@ -403,7 +401,6 @@ public class Customer {
 			try {
 				rsNext.close();
 			} catch (SQLException e2) {
-
 				e2.printStackTrace();
 			}
 			try {
@@ -593,7 +590,7 @@ public class Customer {
 		int totalCount = 0;
 		try {
 			con = ConnectionProvider.getConnection();
-			ps = con.prepareStatement("SELECT COUNT(cutomer_id) as totalCount FROM tbl_customer");
+			ps = con.prepareStatement("SELECT COUNT(customer_id) AS totalCount FROM tbl_customer");
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				totalCount = rs.getInt("totalCount");
@@ -690,7 +687,7 @@ public class Customer {
 		int maleCustomers = 0;
 		try{
 			con = ConnectionProvider.getConnection();
-			ps = con.prepareStatement("SELECT COUNT (customer_id) AS maleCustomers FROM tbl_customers WHERE customer_gender='Male'");
+			ps = con.prepareStatement("SELECT COUNT(customer_id) AS maleCustomers FROM tbl_customer WHERE customer_gender='Male'");
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				maleCustomers = rs.getInt("maleCustomers");
@@ -718,5 +715,104 @@ public class Customer {
 			}
 		}
 		return maleCustomers;
+	}
+	public int getFemaleCustomers(){
+		int femaleCustomers = 0;
+		try{
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement("SELECT COUNT(customer_id) AS femaleCustomers FROM tbl_customer WHERE customer_gender = 'Female'");
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				femaleCustomers = rs.getInt("femaleCustomers");
+		}
+		} catch (SQLException e){
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return femaleCustomers;
+	}
+	public int getAdultCustomers(){
+		int adultCustomers = 0;
+		try {
+			con = ConnectionProvider.getConnection();
+			ps =  con.prepareStatement("SELECT COUNT(customer_id) AS adultCustomers FROM tbl_customer WHERE customer_age > 15");
+			rs = ps.executeQuery();
+			while(rs.next()){
+				adultCustomers = rs.getInt("adultCustomers");
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return adultCustomers;
+	}
+	public int getChildrenCustomers(){
+		int childrenCustomers = 0;
+		try{
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement("SELECT COUNT(customer_id) as childrenCustomers FROM tbl_customer WHERE customer_age < 16");
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				childrenCustomers = rs.getInt("childrenCustomers");
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}finally{
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return childrenCustomers;
 	}
 }

@@ -132,4 +132,12 @@
     <servlet-name>DetailsofCustomer</servlet-name>
     <url-pattern>/com/kjjcsoft/controllers/details</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>CustomerOverview</servlet-name>
+  	<servlet-class>com.kjjcsoft.controllers.CustomerOverviewController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CustomerOverview</servlet-name>
+  	<url-pattern>/com/kjjcsoft/controllers/overview</url-pattern>
+  </servlet-mapping>
 </web-app>

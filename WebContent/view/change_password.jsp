@@ -147,16 +147,22 @@
 			<form method="post" action="/KJJCSoft/com/kjjcsoft/controllers/ChangePassword">
 				<label for="old_password">Old Password</label>
 				<input type="password" name="old_password" value=""/>
-				<c:out value="${requestScope.errorOld}"/>
-				<c:remove var="errorOld" scope="request"/>
+				<c:if test="${!empty requestScope.errorOld}">
+					<c:out value="${requestScope.errorOld}"/>
+					<c:remove var="errorOld" scope="request"/>
+				</c:if>
 				<label for="new_password">New Password</label>
 				<input type="password" name="new_password"/>
-				<c:out value="${requestScope.errorNewPwd}"/>
-				<c:remove var="errorNewPwd" scope="request"/>
+				<c:if test="${!empty requestScope.errorNewPwd}">
+					<c:out value="${requestScope.errorNewPwd}"/>
+					<c:remove var="errorNewPwd" scope="request"/>
+				</c:if>
 				<label for="repeat_password">Repeat New Password</label>
 				<input type="password" name="repeat_password"/>
+				<c:if test="${!empty requestScope.errorRepPwd}">
 				<c:out value="${requestScope.errorRepPwd}"/>
 				<c:remove var="errorRepPwd" scope="request"/>
+				</c:if>
 				<input type="submit" value="Change"/>
 			</form>
 		</div>

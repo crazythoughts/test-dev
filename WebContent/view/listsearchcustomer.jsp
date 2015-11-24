@@ -164,6 +164,8 @@
 				<th>Entry By</th>
 				<th>Details</th>
 			</tr>
+			<c:choose>
+			<c:when test="${!empty resultSearch}">
 			<c:forEach items="${resultSearch}" var="member">
 				<tr>
 					<td>${member.customerId}</td>
@@ -187,6 +189,13 @@
 					</td>
 				</tr>
 			</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<tr>
+					<td colspan="14">No results found!</td>
+				</tr>
+			</c:otherwise>
+			</c:choose>
 		</table>
 		</div>
 		</div>

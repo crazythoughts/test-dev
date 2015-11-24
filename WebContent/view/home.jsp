@@ -35,7 +35,7 @@
 					<li>Employee</li>
 					<li>Customer
 						<ul>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Manage Customer</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/overview">Manage Customer</a></li>
 						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
 						</ul>
 					</li>
@@ -70,7 +70,7 @@
 					<li>Employee</li>
 					<li>Customer
 						<ul>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Manage Customer</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/overview">Manage Customer</a></li>
 						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
 						</ul>
 					</li>

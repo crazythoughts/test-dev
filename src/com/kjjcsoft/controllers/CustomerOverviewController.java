@@ -32,7 +32,15 @@ public class CustomerOverviewController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/customer_overview.jsp");
 		Customer customerOverview = new Customer();
-		
+		int[] overviewData = new int[7];
+		overviewData[0] = customerOverview.getTotalCustomerCount();
+		overviewData[1] = customerOverview.getActiveCustomers();
+		overviewData[2] = customerOverview.getInactiveCustomers();
+		overviewData[3] = customerOverview.getAdultCustomers();
+		overviewData[4] = customerOverview.getChildrenCustomers();
+		overviewData[5] = customerOverview.getMaleCustomers();
+		overviewData[6] = customerOverview.getFemaleCustomers();
+		request.setAttribute("overview", overviewData);		
 		rd.forward(request, response);
 	}
 

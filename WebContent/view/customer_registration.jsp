@@ -129,16 +129,21 @@
                     </li>
                 </ul>
 			</div>
-                <h1 class="page-def">Register</h1>
+                <h1 class="page-def">Add</h1>
 		</div>
 		<ul class="nav-show">
 			<li class="main-page">Home<span class="divider">></span></li>
 			<li class="">Customers<span class="divider">></span></li>
 			<li class="">Manage<span class="divider">></span></li>
-			<li class="active">Register</li>
+			<li class="active">Add</li>
 		</ul>
 
 		<div class="main-contain-content clearfix">
+		<ul class="manage-customer-navigation">
+				<li><a href="/KJJCSoft/com/kjjcsoft/controllers/overview">Overview</a></li>
+				<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Add</a></li>
+				<li><a href="">Edit</a></li>
+			</ul>
 		<div class="all-content">
 			<form action="/KJJCSoft/com/kjjcsoft/controllers/registration" method="post">
 				<div class="registration-one clearfix">

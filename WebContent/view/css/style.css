@@ -64,9 +64,11 @@ ul{
 .login-error {
     border: 1px solid #f00;
     color: #f00;
+    font-size: 12px;
     margin: 0 10px 10px;
     padding: 5px 20px;
     text-align: center;
+    text-transform: uppercase;
 }
 .kform {
     padding: 10px;
@@ -162,10 +164,7 @@ ul{
 	padding : 0px 18px;
 	content : "";
 }
-.alert-info{
-	margin: 14px 0;
-	display: block;
-}
+
 /* costumer registration css end */
 
 
@@ -184,6 +183,13 @@ ul{
     list-style:none;
 }
 
+.sidebar ul li ul {
+    display: none;
+}
+
+.sidebar ul li:hover ul {
+    display: block;
+}
 
 
 
@@ -285,13 +291,9 @@ ul > li.green {
 	text-align: right;
 }
 /* home */
-.account-information{
-	width : 48%;
-	border : 1px solid;
-	float: left;
-}
-.user-info-container{
-	margin: 10px 0 0;
+.user-info-container {
+    float: left;
+    width: 50%;
 }
 .profile-pic{
 	margin : 10px 0;
@@ -315,17 +317,15 @@ ul > li.green {
 /* home end */
 /* account information */
 
-.myLogs{
-    border: 1px solid;
+.myLogs {
     float: left;
-    margin-left: 3.7%;
-    min-height: 402px;
-    max-height: 402px;
+    height: 180px;
+    margin-left: 2%;
+    overflow: hidden;
     width: 48%;
 }
 .log-table-container{
 	height: 100%;
-    margin: 10px 0 0;
     max-height: 350px;
     overflow-y: scroll;
 }
@@ -371,5 +371,73 @@ ul > li.green {
     width: 34px;
 }
 /**************************************** customer registration page css end********************************/
+/**************************************** home page css end********************************/
+
+.alert-info {
+    background: rgba(0, 135, 0, 0.2) none repeat scroll 0 0;
+    border: 1px solid #339933;
+    display: block;
+    margin: 14px 0;
+    padding: 5px 10px;
+}
+.account-information {
+    border: 1px solid #ccc;
+    text-align: center;
+    width: 100%;
+}
+.account-information p {
+    background: rgba(0, 0, 0, 0) -moz-linear-gradient(center bottom , #efefef 0%, #fafafa 100%) repeat scroll 0 0;
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+    padding: 10px;
+}
+
+/**************************************** home page css end********************************/
+
+ul.list-my-account {
+    margin: 0 0 10px;
+}
+
+.list-my-account > li:first-child {
+    border-right: 3px solid;
+}
+.list-my-account > li {
+    display: inline-block;
+    padding:5px 10px;
+}
+.list-my-account li a {
+    color: #444;
+    text-decoration: none;
+}
+.summary-active {
+    background: #ccc none repeat scroll 0 0;
+}
+
+.summary-active.change {
+    margin-left: -4px;
+}
 
 
+
+
+
+.form-password-change {
+    padding: 10px 0;
+    width: 500px;
+}
+.form-password-change div {
+    margin: 0 0 20px;
+}
+.form-password-change div label {
+    display: inline-block;
+    padding-right: 5%;
+    width: 35%;
+}
+.form-password-change input {
+    height: 40px;
+    padding: 10px;
+    width: 64%;
+}
+.form-password-change .login-error {
+    margin: 10px 0 0;
+}

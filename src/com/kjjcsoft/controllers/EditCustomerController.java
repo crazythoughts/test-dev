@@ -13,15 +13,15 @@ import com.kjjcsoft.bean.CustomerBean;
 import com.kjjcsoft.bean.SearchBean;
 import com.kjjcsoft.model.Customer;
 /**
- * Servlet implementation class CustomerSearchController
+ * Servlet implementation class EditCustomerController
  */
-@WebServlet(description = "for searching customers", urlPatterns = {"/customersearch"})
-public class CustomerSearchController extends HttpServlet {
+@WebServlet(description = "to edit the details of customers", urlPatterns = {"/edit"})
+public class EditCustomerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public CustomerSearchController() {
+	public EditCustomerController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -30,7 +30,7 @@ public class CustomerSearchController extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/listsearchcustomer.jsp");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/editInfo.jsp");
 		rd.forward(request, response);
 	}
 	/**
@@ -44,13 +44,13 @@ public class CustomerSearchController extends HttpServlet {
 			SearchBean customerQuery = new SearchBean();
 			customerQuery.setCustomerListSearch(request.getParameter("query_string"));
 			if (customerQuery.validateListSearch() == 0) {
-				list = queryCustomer.searchCustomer(customerQuery.getCustomerListSearch());
+				list = queryCustomer.searchForEdit(customerQuery.getCustomerListSearch());
 			} else if (customerQuery.validateListSearch() == 1) {
-				list = queryCustomer.searchCustomer(Integer.parseInt(customerQuery.getCustomerListSearch()));
+				list = queryCustomer.searchForEdit(Integer.parseInt(customerQuery.getCustomerListSearch()));
 			} else if (customerQuery.validateListSearch() == 2) {
 				request.setAttribute("errormsgcs", "No keywords entered");
 			}
-			request.setAttribute("resultSearch", list);
+			request.setAttribute("editList", list);
 		}
 		doGet(request, response);
 	}

@@ -14,8 +14,8 @@
 						<span>
 							<c:choose>
 								<c:when test="${sessionScope.AdminLogin==true}">
-                                		Admin
-                                	</c:when>
+							Admin
+						</c:when>
 								<c:otherwise>User</c:otherwise>
 							</c:choose>
 						</span>
@@ -31,70 +31,90 @@
 					</div></li>
 			</ul>
 		</div>
-		<h1 class="page-def">All Customers</h1>
+		<h1 class="page-def">Edit</h1>
 	</div>
 	<ul class="nav-show">
 		<li class="main-page">Home<span class="divider">></span></li>
 		<li class="">Customer<span class="divider">></span></li>
-		<li class="active">All Customers</li>
+		<li class="">Manage<span class="divider">></span></li>
+		<li class="active">Edit</li>
 	</ul>
 	<div class="main-contain-content clearfix">
+		<ul class="manage-customer-navigation">
+			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/overview">Overview</a></li>
+			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Add</a></li>
+			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/edit">Edit</a></li>
+		</ul>
 		<div class="main-content-container-search">
 			<div class="search-bar">
-				<form action="/KJJCSoft/com/kjjcsoft/controllers/customersearch" method="post">
+				<form action="/KJJCSoft/com/kjjcsoft/controllers/edit" method="post">
 					<input type="text" name="query_string" />
 					<input type="submit" value="Search" name="search">
 				</form>
 			</div>
 		</div>
 		<div class="all-content">
-			<div class="customer-list-container">
-				<table class="customer-list">
-					<tr>
-						<th>Customer ID</th>
-						<th>Name</th>
-						<th>Age</th>
-						<th>Gender</th>
-						<th>CitizenShip No</th>
-						<th>Address</th>
-						<th>Cell Number</th>
-						<th>Marital Status</th>
-						<th>Occupation</th>
-						<th>Father's Name</th>
-						<th>Joined On</th>
-						<th>Reffered By</th>
-						<th>Entry By</th>
-						<th>Details</th>
-					</tr>
-					<c:forEach items="${customerAll}" var="member">
-						<tr>
+			<table>
+				<tr>
+					<th>Customer ID</th>
+					<th>Customer Name</th>
+					<th>Age</th>
+					<th>Gender</th>
+					<th>Citizenship No</th>
+					<th>Address</th>
+					<th>Joined Date</th>
+					<th>Entry By</th>
+					<th>Status</th>
+					<th>Change Status</th>
+					<th>Edit</th>
+				</tr>
+				<c:choose>
+					<c:when test="${!empty requestScope.editList}">
+						<c:forEach items="${editList}" var="member">
+							<tr>
 							<td>${member.customerId}</td>
 							<td>${member.customerName}</td>
 							<td>${member.customerAge}</td>
 							<td>${member.gender}</td>
 							<td>${member.citizenShipNo}</td>
 							<td>${member.permVdcMunicipality}</td>
-							<td>${member.cellNumberFirst}</td>
-							<td>${member.maritalStatus}</td>
-							<td>${member.occupation}</td>
-							<td>${member.fathersName}</td>
 							<td>${member.jDate}</td>
-							<td>${member.refferedBy}</td>
 							<td>${member.enteredBy}</td>
 							<td>
-								<form action="/KJJCSoft/com/kjjcsoft/controllers/details" method="post" target="_blank">
-									<input type="hidden" name="customerId" value="${member.customerId}" />
-									<input type="submit" name="view" value="View">
-								</form>
+							<c:choose>
+								<c:when test="${member.status = true }">
+									Active
+								</c:when>
+								<c:otherwise>
+									Inactive
+								</c:otherwise>
+							</c:choose>
+							</td>
+							<td>Enable</td>
+							<td>Edit</td>
+							</tr>
+						</c:forEach>
+					</c:when>
+					<c:when test="${empty requestScope.editList and empty requestScope.errormsg}">
+					<tr>
+						<td colspan="10">
+							No related customers available.
+						</td>
+					</tr>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td colspan="10">
+								<c:out value="${requestScope.errormsg}"/>
+								<c:remove var="errormsg" scope="request"/>
 							</td>
 						</tr>
-					</c:forEach>
-				</table>
-			</div>
+					</c:otherwise>
+				</c:choose>
+			</table>
 		</div>
-		<c:remove var="customerAll" scope="request" />
 	</div>
-	<jsp:include page="footer.jsp" />
+<jsp:include page="footer.jsp" />
 </div>
 </div>
 </body>

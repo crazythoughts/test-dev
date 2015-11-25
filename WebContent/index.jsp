@@ -8,12 +8,12 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/view/css/style.css" type="text/css" />
 <title>Login Page</title>
 </head>
-<body class="loginpage01 clearfix">
+<body class="loginpage01 clearfix" id="loginpage01">
 <section id="loginpage">
 <div class="main-header">KJJC Soft</div>
 <div class="login">
 	<div class="login-title">LOGIN</div>
-	<form class="kform" action="/KJJCSoft/com/kjjcsoft/controllers/UserLogin" method="post">
+	<form class="kform" action="/KJJCSoft/com/kjjcsoft/controllers/login" method="post">
 	<div>
 		<label for="username"> Username </label> <input type="text"
 			placeholder="Username" name="username" class="username_input"

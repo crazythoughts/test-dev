@@ -10,7 +10,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/com/kjjcsoft/controllers/UserLogin</url-pattern>
+    <url-pattern>/com/kjjcsoft/controllers/login</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>Logout</servlet-name>
@@ -133,11 +133,19 @@
     <url-pattern>/com/kjjcsoft/controllers/details</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>CustomerOverview</servlet-name>
-  	<servlet-class>com.kjjcsoft.controllers.CustomerOverviewController</servlet-class>
+    <servlet-name>CustomerOverview</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.CustomerOverviewController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>CustomerOverview</servlet-name>
-  	<url-pattern>/com/kjjcsoft/controllers/overview</url-pattern>
+    <servlet-name>CustomerOverview</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/overview</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>EditCustomerInfo</servlet-name>
+  	<servlet-class>com.kjjcsoft.controllers.EditCustomerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EditCustomerInfo</servlet-name>
+  	<url-pattern>/com/kjjcsoft/controllers/edit</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -1,15 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="/KJJCSoft/view/css/style.css" type="text/css"/>
-<title>Open Fixed Deposit Savings account</title>
-</head>
-<body>
-<jsp:include page="sidebar.jsp"/>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<jsp:useBean id="now" class="java.util.Date" />
+<jsp:include page="header.jsp" />
+<jsp:include page="sidebar.jsp" />
+<div class="main-contain clearfix">
 	<form action="/KJJCSoft/com/kjjcsoft/controllers/OpenFdsAccount" method="post">
 		<label for="customer_id">Customer Id</label>
 		<c:choose>
@@ -35,5 +30,7 @@
 		<input type="submit" value="Create" name="create"/>
 	</form>
 	<jsp:include page="footer.jsp"/>
+	</div>
+	</div>
 </body>
 </html>

@@ -67,6 +67,7 @@ public class CustomerBean {
 	private int entryBy;
 	private String approvedBy;
 	private String enteredBy;
+	private boolean status;
 
 	public String getCustomerName() {
 		return customerName;
@@ -498,6 +499,13 @@ public class CustomerBean {
 
 	public void setEnteredBy(String enteredBy) {
 		this.enteredBy = enteredBy;
+	}
+	public boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	public int validateCustomerName() {

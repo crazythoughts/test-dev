@@ -21,7 +21,7 @@ import com.kjjcsoft.bean.UserBean;
 /**
  * Servlet implementation class UserLoginController
  */
-@WebServlet(description = "Login Page Controller", urlPatterns = { "/UserLogin" })
+@WebServlet(description = "Login Page Controller", urlPatterns = { "/login" })
 public class UserLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public UserLoginController(){

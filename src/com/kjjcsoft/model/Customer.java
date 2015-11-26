@@ -457,7 +457,7 @@ public class Customer {
 		}
 		return list;
 	}
-	public ArrayList<CustomerBean> searchForEdit(int customerId){
+	public ArrayList<CustomerBean> searchForEdit(int customerId) {
 		ArrayList<CustomerBean> list = new ArrayList<CustomerBean>();
 		boolean rsNextStats = false;
 		try {
@@ -473,7 +473,7 @@ public class Customer {
 				storeInfo.setCustomerAge(rs.getString("customer_age"));
 				storeInfo.setGender(rs.getString("customer_gender"));
 				storeInfo.setCitizenShipNo(rs.getString("customer_citizenshipno"));
-				storeInfo.setPermVdcMunicipality(rs.getString("customer_perm_vdc_municipality"));				
+				storeInfo.setPermVdcMunicipality(rs.getString("customer_perm_vdc_municipality"));
 				storeInfo.setjDate(rs.getString("customer_joined_date"));
 				storeInfo.setEntryBy(rs.getInt("entry_by"));
 				storeInfo.setStatus(rs.getBoolean("customer_status"));
@@ -512,7 +512,7 @@ public class Customer {
 		}
 		return list;
 	}
-	public ArrayList<CustomerBean> searchForEdit(String customerName){
+	public ArrayList<CustomerBean> searchForEdit(String customerName) {
 		ArrayList<CustomerBean> list = new ArrayList<CustomerBean>();
 		boolean rsNextStats = false;
 		try {
@@ -528,7 +528,7 @@ public class Customer {
 				storeInfo.setCustomerAge(rs.getString("customer_age"));
 				storeInfo.setGender(rs.getString("customer_gender"));
 				storeInfo.setCitizenShipNo(rs.getString("customer_citizenshipno"));
-				storeInfo.setPermVdcMunicipality(rs.getString("customer_perm_vdc_municipality"));				
+				storeInfo.setPermVdcMunicipality(rs.getString("customer_perm_vdc_municipality"));
 				storeInfo.setjDate(rs.getString("customer_joined_date"));
 				storeInfo.setEntryBy(rs.getInt("entry_by"));
 				storeInfo.setStatus(rs.getBoolean("customer_status"));
@@ -872,5 +872,47 @@ public class Customer {
 			}
 		}
 		return childrenCustomers;
+	}
+	public void changeToInactive(int customerId) {
+		try {
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement("UPDATE tbl_customer SET customer_status = 0 WHERE customer_id=?");
+			ps.setInt(1, customerId);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	public void changeToActive(int customerId) {
+		try {
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement("UPDATE tbl_customer SET customer_status = 1 WHERE customer_id = ?");
+			ps.setInt(1, customerId);
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

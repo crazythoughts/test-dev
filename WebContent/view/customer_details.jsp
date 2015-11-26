@@ -16,7 +16,7 @@
 <body>
 	<div class="container">
 		<div class="main-header clearfix">KJJC Soft</div>
-		<div class="clearfix">
+		<div class="details-container clearfix">
 		<div class="details">
 			<img src="<c:out value="/KJJCSoft/upload/${sessionScope.CustomerDetails.getPhotoPath()}"/>" height="50px" width="50px" />
 			Customer ID:

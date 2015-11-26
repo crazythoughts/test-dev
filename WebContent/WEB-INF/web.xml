@@ -141,11 +141,19 @@
     <url-pattern>/com/kjjcsoft/controllers/overview</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>EditCustomerInfo</servlet-name>
-  	<servlet-class>com.kjjcsoft.controllers.EditCustomerController</servlet-class>
+    <servlet-name>EditCustomerInfo</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.EditCustomerController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>EditCustomerInfo</servlet-name>
-  	<url-pattern>/com/kjjcsoft/controllers/edit</url-pattern>
+    <servlet-name>EditCustomerInfo</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/edit</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>ChangeInfo</servlet-name>
+  	<servlet-class>com.kjjcsoft.controllers.ChangeCustomerInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ChangeInfo</servlet-name>
+  	<url-pattern>/com/kjjcsoft/controllers/change</url-pattern>
   </servlet-mapping>
 </web-app>

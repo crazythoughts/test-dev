@@ -72,41 +72,54 @@
 					<c:when test="${!empty requestScope.editList}">
 						<c:forEach items="${editList}" var="member">
 							<tr>
-							<td>${member.customerId}</td>
-							<td>${member.customerName}</td>
-							<td>${member.customerAge}</td>
-							<td>${member.gender}</td>
-							<td>${member.citizenShipNo}</td>
-							<td>${member.permVdcMunicipality}</td>
-							<td>${member.jDate}</td>
-							<td>${member.enteredBy}</td>
-							<td>
-							<c:choose>
-								<c:when test="${member.status = true }">
+								<td>${member.customerId}</td>
+								<td>${member.customerName}</td>
+								<td>${member.customerAge}</td>
+								<td>${member.gender}</td>
+								<td>${member.citizenShipNo}</td>
+								<td>${member.permVdcMunicipality}</td>
+								<td>${member.jDate}</td>
+								<td>${member.enteredBy}</td>
+								<td>
+									<c:choose>
+										<c:when test="${member.status == true }">
 									Active
 								</c:when>
-								<c:otherwise>
+										<c:otherwise>
 									Inactive
 								</c:otherwise>
-							</c:choose>
-							</td>
-							<td>Enable</td>
-							<td>Edit</td>
+									</c:choose>
+								</td>
+								<td>
+								<form method="post" action="/KJJCSoft/com/kjjcsoft/controllers/edit">
+									<input type="hidden" name="customerid" value="${member.customerId}"/>
+									<c:choose>
+										<c:when test="${member.status == true }">
+											<input type="submit" value="Disable" name="disable"/>
+										</c:when>
+										<c:otherwise>
+												<input type="submit" value="Enable" name="enable"/>
+										</c:otherwise>
+									</c:choose>
+								</form>
+								</td>
+								<td>
+									<a href="/KJJCSoft/com/kjjcsoft/controllers/edit?customerid=${member.customerId}&edit=true"> Edit</a>
+								</td>
 							</tr>
 						</c:forEach>
+						<c:remove var="editList" scope="request"/>
 					</c:when>
 					<c:when test="${empty requestScope.editList and empty requestScope.errormsg}">
-					<tr>
-						<td colspan="10">
-							No related customers available.
-						</td>
-					</tr>
+						<tr>
+							<td colspan="10">No related customers available.</td>
+						</tr>
 					</c:when>
 					<c:otherwise>
 						<tr>
 							<td colspan="10">
-								<c:out value="${requestScope.errormsg}"/>
-								<c:remove var="errormsg" scope="request"/>
+								<c:out value="${requestScope.errormsg}" />
+								<c:remove var="errormsg" scope="request" />
 							</td>
 						</tr>
 					</c:otherwise>
@@ -114,7 +127,7 @@
 			</table>
 		</div>
 	</div>
-<jsp:include page="footer.jsp" />
+	<jsp:include page="footer.jsp" />
 </div>
 </div>
 </body>

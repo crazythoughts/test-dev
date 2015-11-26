@@ -31,6 +31,14 @@ public class EditCustomerController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/editInfo.jsp");
+		if (request.getParameter("edit")!=null && request.getParameter("edit").equals("true")) {
+			Customer changeInfo = new Customer();
+			CustomerBean fromDbInfo = new CustomerBean();
+			fromDbInfo = (CustomerBean)changeInfo.getDetails(Integer.parseInt(request.getParameter("customerid")));
+			request.getSession().setAttribute("storedInfo", fromDbInfo);
+			response.sendRedirect("/KJJCSoft/com/kjjcsoft/controllers/change");
+			return;
+		}
 		rd.forward(request, response);
 	}
 	/**
@@ -38,9 +46,9 @@ public class EditCustomerController extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Customer queryCustomer = new Customer();
+		List<CustomerBean> list = null;
 		if (request.getParameter("search") != null) {
-			Customer queryCustomer = new Customer();
-			List<CustomerBean> list = null;
 			SearchBean customerQuery = new SearchBean();
 			customerQuery.setCustomerListSearch(request.getParameter("query_string"));
 			if (customerQuery.validateListSearch() == 0) {
@@ -50,6 +58,16 @@ public class EditCustomerController extends HttpServlet {
 			} else if (customerQuery.validateListSearch() == 2) {
 				request.setAttribute("errormsgcs", "No keywords entered");
 			}
+			request.setAttribute("editList", list);
+		}
+		if (request.getParameter("disable")!=null) {			
+			queryCustomer.changeToInactive(Integer.parseInt(request.getParameter("customerid")));
+			list=queryCustomer.searchForEdit(Integer.parseInt(request.getParameter("customerid")));
+			request.setAttribute("editList", list);
+		}
+		if (request.getParameter("enable")!=null) {
+			queryCustomer.changeToActive(Integer.parseInt(request.getParameter("customerid")));
+			list=queryCustomer.searchForEdit(Integer.parseInt(request.getParameter("customerid")));
 			request.setAttribute("editList", list);
 		}
 		doGet(request, response);

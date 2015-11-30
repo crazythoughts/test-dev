@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -64,6 +65,7 @@ public class CustomerRegistrationController extends HttpServlet {
 		RetrivedUserBean ses_user = new RetrivedUserBean();
 		ses_user = (RetrivedUserBean)request.getSession().getAttribute("Userinfo");
 		Customer customerdbo = new Customer();
+		Random numberGenerator = new Random();
 		boolean isError = false;
 		if (request.getParameter("normField")!=null) {
 			applicantInfo.setCustomerName(request.getParameter("fullname"));
@@ -517,10 +519,26 @@ public class CustomerRegistrationController extends HttpServlet {
 									if (mimeType.startsWith("image/")) {
 										if (fileName.lastIndexOf("\\")>0) {
 											customerFile = new File(photoUpPath+File.separator+fileName.substring(fileName.lastIndexOf("\\")+1));
-											applicantInfo.setPhotoPath(PHOTO_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
+											if (customerFile.exists()) {
+												while (customerFile.exists()) {
+													customerFile=new File(photoUpPath+File.separator+numberGenerator.nextInt(1000)+fileName.substring(fileName.lastIndexOf("\\")+1));
+												}
+												String nameTosave = customerFile.getName();
+												applicantInfo.setPhotoPath(PHOTO_UPLOAD_DIRECTORY+nameTosave);
+											} else {
+												applicantInfo.setPhotoPath(PHOTO_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
+											}
 										} else {
 											customerFile = new File(photoUpPath+File.separator+fileName.substring(fileName.lastIndexOf("\\")+1));
-											applicantInfo.setPhotoPath(PHOTO_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
+											if (customerFile.exists()) {
+												while (customerFile.exists()) {
+													customerFile = new File(photoUpPath+File.separator+numberGenerator.nextInt(1000)+fileName.substring(fileName.lastIndexOf("\\")+1));
+												}
+												String nameTosave = customerFile.getName();
+												applicantInfo.setPhotoPath(PHOTO_UPLOAD_DIRECTORY+nameTosave);
+											} else {
+												applicantInfo.setPhotoPath(PHOTO_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
+											}
 										}
 									} else {
 										isError = true;
@@ -540,10 +558,26 @@ public class CustomerRegistrationController extends HttpServlet {
 									if (mimeType.startsWith("image/")) {
 										if (fileName.lastIndexOf("\\")>0) {
 											fingerprintFile = new File(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
-											applicantInfo.setFingerPrintPath(FINGER_PRINT_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
+											if (fingerprintFile.exists()) {
+												while (fingerprintFile.exists()) {
+													fingerprintFile = new File(fingerPrintUpPath+File.separator+numberGenerator.nextInt(1000)+fileName.substring(fileName.lastIndexOf("\\")+1));
+												}
+												String nameTosave = fingerprintFile.getName();
+												applicantInfo.setFingerPrintPath(FINGER_PRINT_UPLOAD_DIRECTORY+nameTosave);
+											} else {
+												applicantInfo.setFingerPrintPath(FINGER_PRINT_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
+											}
 										} else {
 											fingerprintFile = new File(fingerPrintUpPath+fileName.substring(fileName.lastIndexOf("\\")+1));
-											applicantInfo.setFingerPrintPath(FINGER_PRINT_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
+											if (fingerprintFile.exists()) {
+												while (fingerprintFile.exists()) {
+													fingerprintFile=new File(fingerPrintUpPath+File.separator+numberGenerator.nextInt(1000)+fileName.substring(fileName.lastIndexOf("\\")+1));
+												}
+												String nameTosave = fingerprintFile.getName();
+												applicantInfo.setFingerPrintPath(FINGER_PRINT_UPLOAD_DIRECTORY+nameTosave);
+											} else {
+												applicantInfo.setFingerPrintPath(FINGER_PRINT_UPLOAD_DIRECTORY+fileName.substring(fileName.lastIndexOf("\\")+1));
+											}
 										}
 									} else {
 										isError = true;

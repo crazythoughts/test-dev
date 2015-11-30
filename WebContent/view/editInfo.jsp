@@ -40,6 +40,10 @@
 		<li class="active">Edit</li>
 	</ul>
 	<div class="main-contain-content clearfix">
+	<c:if test="${sessionScope.successMsg == true }">
+		Customer Information updated successfully.
+		<c:remove var="successMsg" scope="session"/>
+	</c:if>
 		<ul class="manage-customer-navigation">
 			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/overview">Overview</a></li>
 			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/registration">Add</a></li>

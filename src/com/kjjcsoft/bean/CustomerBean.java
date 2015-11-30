@@ -533,7 +533,7 @@ public class CustomerBean {
 
 	public int validatedob() {
 		dob = dob.replaceAll("\\s+", " ").trim();
-		if (dob.matches("((19|20)\\d\\d)/(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])")) {
+		if (dob.matches("((19|20)\\d\\d)/(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])") || dob.matches("((19|20)\\d\\d)-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])")) {
 			return 0;
 		} else if (dob.length() < 1) {
 			return 31;
@@ -1224,7 +1224,7 @@ public class CustomerBean {
 			Date dt = new Date();
 			jDate = sdf.format(dt);
 			return 0;
-		} else if (jDate.matches("((19|20)\\d\\d)/(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])")) {
+		} else if (jDate.matches("((19|20)\\d\\d)/(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])") || jDate.matches("((19|20)\\d\\d)-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])") ) {
 			return 0;
 		} else {
 			return 501;

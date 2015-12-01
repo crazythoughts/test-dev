@@ -30,39 +30,39 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>DailySavings</servlet-name>
-    <servlet-class>com.kjjcsoft.controllers.OpenDsAccountServlet</servlet-class>
+    <servlet-class>com.kjjcsoft.controllers.OpenDsController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DailySavings</servlet-name>
-    <url-pattern>/com/kjjcsoft/controllers/OpenDsAccount</url-pattern>
+    <url-pattern>/com/kjjcsoft/controllers/opendaily</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>MonthlySavings</servlet-name>
-    <servlet-class>com.kjjcsoft.controllers.OpenMsAccountServlet</servlet-class>
+    <servlet-class>com.kjjcsoft.controllers.OpenMsController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>MonthlySavings</servlet-name>
-    <url-pattern>/com/kjjcsoft/controllers/OpenMsAccount</url-pattern>
+    <url-pattern>/com/kjjcsoft/controllers/openmonthly</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>FixedDepositSavings</servlet-name>
-    <servlet-class>com.kjjcsoft.controllers.OpenFdsAccountServlet</servlet-class>
+    <servlet-class>com.kjjcsoft.controllers.OpenFdsController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>FixedDepositSavings</servlet-name>
-    <url-pattern>/com/kjjcsoft/controllers/OpenFdsAccount</url-pattern>
+    <url-pattern>/com/kjjcsoft/controllers/openfixedt</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>CFixedDepositSavings</servlet-name>
-    <servlet-class>com.kjjcsoft.controllers.OpenCfdAccountServlet</servlet-class>
+    <servlet-class>com.kjjcsoft.controllers.OpenCfdController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CFixedDepositSavings</servlet-name>
-    <url-pattern>/com/kjjcsoft/controllers/OpenCfdAccount</url-pattern>
+    <url-pattern>/com/kjjcsoft/controllers/opencfixed</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>CustomerList</servlet-name>
-    <servlet-class>com.kjjcsoft.controllers.CustomerList</servlet-class>
+    <servlet-class>com.kjjcsoft.controllers.CustomerListController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CustomerList</servlet-name>
@@ -149,11 +149,51 @@
     <url-pattern>/com/kjjcsoft/controllers/edit</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>ChangeInfo</servlet-name>
-  	<servlet-class>com.kjjcsoft.controllers.ChangeCustomerInfo</servlet-class>
+    <servlet-name>ChangeInfo</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.ChangeCustomerInfo</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>ChangeInfo</servlet-name>
-  	<url-pattern>/com/kjjcsoft/controllers/change</url-pattern>
+    <servlet-name>ChangeInfo</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/change</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AccountsSummary</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.SavingAccountsDetailsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AccountsSummary</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/savingdetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DailySaving</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.DailySavingsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DailySaving</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/dailysaving</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>MonthlySaving</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.MonthlySavingsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MonthlySaving</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/monthlysaving</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>FixedDeposit</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.FixedDepositController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FixedDeposit</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/fixeddeposit</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CFixedDeposit</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.ContFixedDepositController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CFixedDeposit</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/cfixeddeposit</url-pattern>
   </servlet-mapping>
 </web-app>

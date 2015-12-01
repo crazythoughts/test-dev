@@ -17,14 +17,14 @@ import com.kjjcsoft.model.Customer;
 /**
  * Servlet implementation class OpenCfdAccountServlet
  */
-@WebServlet(description = "continuous fixed deposit ac opening", urlPatterns = { "/OpenCfdAccount" })
-public class OpenCfdAccountServlet extends HttpServlet {
+@WebServlet(description = "continuous fixed deposit ac opening", urlPatterns = { "/opencfixed" })
+public class OpenCfdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OpenCfdAccountServlet() {
+    public OpenCfdController() {
         super();
         // TODO Auto-generated constructor stub
     }

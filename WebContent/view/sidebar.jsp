@@ -16,7 +16,6 @@
 						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/users">Users</a></li>
 					</ul>
 				</li>
-				<li>Employee</li>
 				<li>Customer
 					<ul>
 						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/overview">Manage Customer</a></li>
@@ -25,9 +24,7 @@
 				</li>
 				<li>Accounts
 					<ul>
-						<li>Manage Accounts</li>
-						<li>Saving Accounts</li>
-						<li>Loan Accounts</li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/savingdetails">Saving Accounts</a></li>
 					</ul>
 				</li>
 				<li>Transactions
@@ -51,7 +48,6 @@
 						<li><a href="/KJJCSoft/view/home.jsp">Main</a></li>
 					</ul>
 				</li>
-				<li>Employee</li>
 				<li>Customer
 					<ul>
 						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/overview">Manage Customer</a></li>
@@ -60,9 +56,7 @@
 				</li>
 				<li>Accounts
 					<ul>
-						<li>Manage Accounts</li>
-						<li>Saving Accounts</li>
-						<li>Loan Accounts</li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/savingdetails">Saving Accounts</a></li>
 					</ul>
 				</li>
 				<li>Transactions

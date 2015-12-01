@@ -15,16 +15,16 @@ import com.kjjcsoft.model.Accounts;
 import com.kjjcsoft.model.Customer;
 
 /**
- * Servlet implementation class OpenFdsAccountServlet
+ * Servlet implementation class OpenMsAccountServlet
  */
-@WebServlet(description = "fixed deposit saving account opening", urlPatterns = { "/OpenFdsAccount" })
-public class OpenFdsAccountServlet extends HttpServlet {
+@WebServlet(description = "monthly saving account", urlPatterns = { "/openmonthly" })
+public class OpenMsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OpenFdsAccountServlet() {
+    public OpenMsController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +32,19 @@ public class OpenFdsAccountServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    	RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/openMS.jsp");
+    	rd.forward(request, response);
+    }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountBean creationInfo = new AccountBean();
-		Accounts fdsAccount = new Accounts();
+		Accounts msAccount = new Accounts();
 		RetrivedUserBean ses_usr= new RetrivedUserBean();
-		ses_usr= (RetrivedUserBean)request.getSession().getAttribute("Userinfo");
+		ses_usr=(RetrivedUserBean)request.getSession().getAttribute("Userinfo");
 		Customer checkCustomer = new Customer();
 		String cNamefDb;
-		RequestDispatcher rd = request.getRequestDispatcher("/view/open_fds_account.jsp");
-		if (request.getParameter("check")!=null) {
+		RequestDispatcher rd = request.getRequestDispatcher("/view/open_ms_account.jsp");
+		if (request.getParameter("check") != null) {
 			cNamefDb = checkCustomer.checkIfExists(Integer.parseInt(request.getParameter("customer_id")));
 			if (cNamefDb.equals("No Match")) {
 				request.setAttribute("customerError", "*Given Customer ID doesnot exists in the system");
@@ -54,50 +58,36 @@ public class OpenFdsAccountServlet extends HttpServlet {
 				rd.forward(request, response);
 			}
 		}
-		if (request.getParameter("create")!=null) {
+		if (request.getParameter("create") != null) {
 			if (request.getParameter("customer_id").equals("")) {
 				rd.forward(request, response);
-				return;
 			} else {
 				creationInfo.setCustomerId(Integer.parseInt(request.getParameter("customer_id")));
 			}
-			if (request.getParameter("interest_rate").equals("")) {
-				creationInfo.setInterestRate(10.5f);
-			} else {
-				creationInfo.setInterestRate(Float.parseFloat(request.getParameter("interest_rate")));
-			}
-			if (request.getParameter("fd_amount").equals("")) {
-				rd.forward(request, response);
-				return;
-			} else {
-				creationInfo.setFixedDepositAmount(Double.parseDouble(request.getParameter("fd_amount")));
-			}
-			if (request.getParameter("maturity_period").equals("")) {
-				rd.forward(request, response);
-				return;
-			} else {
-				creationInfo.setYears(Integer.parseInt(request.getParameter("maturity_period")));
-			}
 			if (request.getParameter("account_type").equals("")) {
 				rd.forward(request, response);
-				return;
 			} else {
 				creationInfo.setAccountType(request.getParameter("account_type"));
 			}
+			if (request.getParameter("interest_rate").equals("")) {
+				creationInfo.setInterestRate(8.5f);
+			} else {
+				creationInfo.setInterestRate(Float.parseFloat(request.getParameter("interest_rate")));
+			}
 			if (request.getParameter("approved_by").equals("")) {
 				rd.forward(request, response);
-				return;
 			} else {
 				creationInfo.setApprovedBy(request.getParameter("approved_by"));
 			}
 			creationInfo.setEntryBy(ses_usr.getUser_id());
 			request.getSession().removeAttribute("Id");
-			if (fdsAccount.createFdsAccount(creationInfo)) {
-				AccountBean recBean= fdsAccount.retLastFdsAcCreated(creationInfo.getCustomerId());
-				request.getSession().setAttribute("fdsAcInfo", recBean);
-				response.sendRedirect("/KJJCSoft/view/fds_ac_created.jsp");
-			} else {
-
+			if(msAccount.createMsAccount(creationInfo)){
+				AccountBean recBean =msAccount.retLastMsAcCreated(creationInfo.getCustomerId());
+				/*if (!request.getParameter("starting_amount".equals(""))) {
+					
+				}*/
+				request.getSession().setAttribute("msAcInfo", recBean);
+				response.sendRedirect("/KJJCSoft/view/ms_ac_created.jsp");
 			}
 		}
 	}

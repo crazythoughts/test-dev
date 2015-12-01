@@ -17,14 +17,14 @@ import com.kjjcsoft.model.Customer;
 /**
  * Servlet implementation class OpenDsAccountServlet
  */
-@WebServlet(description = "Open daily saving account", urlPatterns = { "/OpenDsAccount" })
-public class OpenDsAccountServlet extends HttpServlet {
+@WebServlet(description = "Open daily saving account", urlPatterns = { "/opendaily" })
+public class OpenDsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OpenDsAccountServlet() {
+    public OpenDsController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,6 +32,11 @@ public class OpenDsAccountServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    	RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/openDS.jsp");
+    	rd.forward(request, response);
+    }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountBean creationInfo = new AccountBean();
 		Accounts dsAccount = new Accounts();
@@ -39,7 +44,7 @@ public class OpenDsAccountServlet extends HttpServlet {
 		ses_usr=(RetrivedUserBean)request.getSession().getAttribute("Userinfo");
 		Customer checkCustomer = new Customer();
 		String cNamefDb;
-		RequestDispatcher rd = request.getRequestDispatcher("/view/open_ds_account.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/view/openDS.jsp");
 		if (request.getParameter("check") != null) {
 			cNamefDb = checkCustomer.checkIfExists(Integer.parseInt(request.getParameter("customer_id")));
 			if (cNamefDb.equals("No Match")) {

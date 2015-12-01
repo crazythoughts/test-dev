@@ -1,5 +1,4 @@
 package com.kjjcsoft.controllers;
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -13,35 +12,32 @@ import com.kjjcsoft.bean.AccountBean;
 import com.kjjcsoft.bean.RetrivedUserBean;
 import com.kjjcsoft.model.Accounts;
 import com.kjjcsoft.model.Customer;
-
 /**
  * Servlet implementation class OpenDsAccountServlet
  */
-@WebServlet(description = "Open daily saving account", urlPatterns = { "/opendaily" })
+@WebServlet(description = "Open daily saving account", urlPatterns = {"/opendaily"})
 public class OpenDsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public OpenDsController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-    
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-    	RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/openDS.jsp");
-    	rd.forward(request, response);
-    }
+	public OpenDsController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/openDS.jsp");
+		rd.forward(request, response);
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountBean creationInfo = new AccountBean();
 		Accounts dsAccount = new Accounts();
-		RetrivedUserBean ses_usr= new RetrivedUserBean();
-		ses_usr=(RetrivedUserBean)request.getSession().getAttribute("Userinfo");
+		RetrivedUserBean ses_usr = new RetrivedUserBean();
+		ses_usr = (RetrivedUserBean) request.getSession().getAttribute("Userinfo");
 		Customer checkCustomer = new Customer();
 		String cNamefDb;
 		RequestDispatcher rd = request.getRequestDispatcher("/view/openDS.jsp");
@@ -50,7 +46,7 @@ public class OpenDsController extends HttpServlet {
 			if (cNamefDb.equals("No Match")) {
 				request.setAttribute("customerError", "*Given Customer ID doesnot exists in the system");
 				rd.forward(request, response);
-			} else if(cNamefDb.equals("error")) {
+			} else if (cNamefDb.equals("error")) {
 				request.setAttribute("Error", "Something went wrong");
 				rd.forward(request, response);
 			} else {
@@ -85,15 +81,18 @@ public class OpenDsController extends HttpServlet {
 			}
 			creationInfo.setEntryBy(ses_usr.getUser_id());
 			request.getSession().removeAttribute("Id");
-			if(dsAccount.createDsAccount(creationInfo)){
-				AccountBean recBean=dsAccount.retLastDsAcCreated(creationInfo.getCustomerId());
-				/*if (!request.getParameter("starting_amount".equals(""))) {
-					
-				}*/
+			if (dsAccount.createDsAccount(creationInfo)) {
+				AccountBean recBean = dsAccount.retLastDsAcCreated(creationInfo.getCustomerId());
+				/*
+				 * if (!request.getParameter("starting_amount".equals(""))) { }
+				 */
 				request.getSession().setAttribute("dsAcInfo", recBean);
-				response.sendRedirect("/KJJCSoft/view/ds_ac_created.jsp");
+				response.sendRedirect("/KJJCSoft/view/DScreated.jsp");
 			}
 		}
+		if (request.getParameter("cancel") != null) {
+			response.sendRedirect("/KJJCSoft/com/kjjcsoft/controllers/savingdetails");
+			return;
+		}
 	}
-
 }

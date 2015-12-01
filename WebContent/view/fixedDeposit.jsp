@@ -47,7 +47,7 @@
 			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/fixeddeposit">Fixed Deposits</a></li>
 			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/cfixeddeposit">Continuous Fixed Deposit</a></li>
 		</ul>
-		<a href="/KJJCSoft/com/kjjcsoft/controllers/openmonthly">Add</a>
+		<a href="/KJJCSoft/com/kjjcsoft/controllers/openfixed">Add</a>
 		<div class="all-content">
 			<div class="table-list">
 				<table>

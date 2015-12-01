@@ -5,29 +5,78 @@
 <jsp:include page="header.jsp" />
 <jsp:include page="sidebar.jsp" />
 <div class="main-contain clearfix">
-	<form action="/KJJCSoft/com/kjjcsoft/controllers/OpenMsAccount" method="post">
-		<label for="customer_id">Customer Id</label>
-		<c:choose>
-			<c:when test="${sessionScope.Id!=null }">
-				<input type="text" name="customer_id" value="<c:out value="${sessionScope.Id }"/>" />
-			</c:when>
-			<c:otherwise>
-				<input type="text" name="customer_id" value="<c:out value="${param.customer_id}"/>" />
-			</c:otherwise>
-		</c:choose>
-		<input type="hidden" name="account_type" value="ms" />
-		<input type="submit" value="check" name="check" />
-		<label for="customer_name">Customer Name</label>
-		<input type="text" name="customer_name" value="<c:out value="${requestScope.cName}"/>" />
-		<c:out value="${requestScope.customerError}" />
-		<label for="interest_rate">Interest Rate</label>
-		<input type="text" name="interest_rate" placeholder="eg. 15.5" />
-		<label for="approved_by">Approved By</label>
-		<input type="text" name="approved_by" placeholder="John Doe" />
-		<label for="starting_amount">Starting Amount</label>
-		<input type="text" name="starting_amount" />
-		<input type="submit" value="Create" name="create" />
-	</form>
+	<div class="main-contain-header clearfix">
+		<div class="to-right">
+			<ul class="stats">
+				<li class="green"><i class="icon-briefcase"></i>
+					<div class="details">
+						<span class="big">Account Status</span>
+						<span>
+							<c:choose>
+								<c:when test="${sessionScope.AdminLogin==true}">
+                                		Admin
+                                	</c:when>
+								<c:otherwise>User</c:otherwise>
+							</c:choose>
+						</span>
+					</div></li>
+				<li class="orange"><i class="icon-calendar"></i>
+					<div class="details">
+						<span class="big">
+							<fmt:formatDate type="date" value="${now}" dateStyle="long" />
+						</span>
+						<span>
+							<fmt:formatDate type="date" value="${now}" dateStyle="long" pattern="EEEE" />
+						</span>
+					</div></li>
+			</ul>
+		</div>
+		<h1 class="page-def">Add</h1>
+	</div>
+	<ul class="nav-show">
+		<li class="main-page">Home<span class="divider">></span></li>
+		<li class="">Accounts<span class="divider">></span></li>
+		<li class="">Savings<span class="divider">></span></li>
+		<li class="">Monthly Saving<span class="divider">></span></li>
+		<li class="active">Add</li>
+	</ul>
+	<div class="main-contain-content clearfix">
+		<ul class="saving-accounts-navigation">
+			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/savingdetails">Summary</a></li>
+			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/dailysaving">Daily Savings</a></li>
+			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/monthlysaving">Monthly Savings</a></li>
+			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/fixeddeposit">Fixed Deposits</a></li>
+			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/cfixeddeposit">Continuous Fixed Deposit</a></li>
+		</ul>
+		<div class="all-content">
+			<div class="form-container">
+				<form action="/KJJCSoft/com/kjjcsoft/controllers/openmonthly" method="post">
+					<label for="customer_id">Customer Id</label>
+					<c:choose>
+						<c:when test="${sessionScope.Id!=null }">
+							<input type="text" name="customer_id" value="<c:out value="${sessionScope.Id }"/>" />
+						</c:when>
+						<c:otherwise>
+							<input type="text" name="customer_id" value="<c:out value="${param.customer_id}"/>" />
+						</c:otherwise>
+					</c:choose>
+					<input type="hidden" name="account_type" value="ms" />
+					<input type="submit" value="check" name="check" />
+					<label for="customer_name">Customer Name</label>
+					<input type="text" name="customer_name" value="<c:out value="${requestScope.cName}"/>" />
+					<c:out value="${requestScope.customerError}" />
+					<label for="interest_rate">Interest Rate</label>
+					<input type="text" name="interest_rate" placeholder="eg. 15.5" />
+					<label for="approved_by">Approved By</label>
+					<input type="text" name="approved_by" placeholder="John Doe" />
+					<label for="starting_amount">Starting Amount</label>
+					<input type="text" name="starting_amount" />
+					<input type="submit" value="Create" name="create" />
+					<input type="submit" value="Cancel" name="cancel"/>
+				</form>
+			</div>
+		</div>
+	</div>
 	<jsp:include page="footer.jsp" />
 </div>
 </div>

@@ -32,6 +32,10 @@ public class OpenFdsController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+    	RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/openFDS.jsp");
+    	rd.forward(request, response);
+    }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountBean creationInfo = new AccountBean();
 		Accounts fdsAccount = new Accounts();
@@ -39,7 +43,7 @@ public class OpenFdsController extends HttpServlet {
 		ses_usr= (RetrivedUserBean)request.getSession().getAttribute("Userinfo");
 		Customer checkCustomer = new Customer();
 		String cNamefDb;
-		RequestDispatcher rd = request.getRequestDispatcher("/view/open_fds_account.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/view/openFDS.jsp.jsp");
 		if (request.getParameter("check")!=null) {
 			cNamefDb = checkCustomer.checkIfExists(Integer.parseInt(request.getParameter("customer_id")));
 			if (cNamefDb.equals("No Match")) {
@@ -95,10 +99,14 @@ public class OpenFdsController extends HttpServlet {
 			if (fdsAccount.createFdsAccount(creationInfo)) {
 				AccountBean recBean= fdsAccount.retLastFdsAcCreated(creationInfo.getCustomerId());
 				request.getSession().setAttribute("fdsAcInfo", recBean);
-				response.sendRedirect("/KJJCSoft/view/fds_ac_created.jsp");
+				response.sendRedirect("/KJJCSoft/view/FDScreated.jsp");
 			} else {
 
 			}
+		}
+		if (request.getParameter("cancel")!=null) {
+			response.sendRedirect("/KJJCSoft/com/kjjcsoft/controllers/savingdetails");
+			return;
 		}
 	}
 

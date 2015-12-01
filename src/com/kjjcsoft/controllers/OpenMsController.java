@@ -43,7 +43,7 @@ public class OpenMsController extends HttpServlet {
 		ses_usr=(RetrivedUserBean)request.getSession().getAttribute("Userinfo");
 		Customer checkCustomer = new Customer();
 		String cNamefDb;
-		RequestDispatcher rd = request.getRequestDispatcher("/view/open_ms_account.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/view/openMS.jsp");
 		if (request.getParameter("check") != null) {
 			cNamefDb = checkCustomer.checkIfExists(Integer.parseInt(request.getParameter("customer_id")));
 			if (cNamefDb.equals("No Match")) {
@@ -89,6 +89,10 @@ public class OpenMsController extends HttpServlet {
 				request.getSession().setAttribute("msAcInfo", recBean);
 				response.sendRedirect("/KJJCSoft/view/ms_ac_created.jsp");
 			}
+		}
+		if (request.getParameter("cancel")!=null) {
+			response.sendRedirect("/KJJCSoft/com/kjjcsoft/controllers/savingdetails");
+			return;
 		}
 	}
 

@@ -39,7 +39,6 @@ public class CustomerRegistrationController extends HttpServlet {
 	 */
 	public CustomerRegistrationController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -55,7 +54,7 @@ public class CustomerRegistrationController extends HttpServlet {
 		} else {
 			customerRegistered = false;
 			filesuploaded = false;
-			request.setAttribute("accessedFromCustomer", "false");
+			request.getSession().setAttribute("accessedFromCustomer", "true");
 			response.sendRedirect("/KJJCSoft/com/kjjcsoft/controllers/registered");
 		}
 	}
@@ -665,6 +664,7 @@ public class CustomerRegistrationController extends HttpServlet {
 				}
 			}
 			applicantInfo.setCustomerId(customerdbo.getIdofLastInsertion(ses_user.getUser_id()));
+			request.getSession().setAttribute("Id", customerdbo.getIdofLastInsertion(ses_user.getUser_id()));
 			if (!isError) {
 				filesuploaded = customerdbo.uploadCredentials(applicantInfo);
 			}

@@ -572,7 +572,9 @@ public class CustomerBean {
 						&& Integer.parseInt(customerAge) < 16 && citizenShipNo.length() < 1)) {
 			citizenShipNo = "";
 			return 0;
-		} else if (nationality.equals("Nepali") && !customerAge.equals("") && !customerAge.matches("[^\\d]+")
+		} else if(!nationality.equals("Nepali") && (citizenShipNo.matches("^\\d+") || citizenShipNo.matches("^\\d+/\\d+"))){
+			return 0;
+		}else if (nationality.equals("Nepali") && !customerAge.equals("") && !customerAge.matches("[^\\d]+")
 				&& Integer.parseInt(customerAge) > 16 && citizenShipNo.length() < 1) {
 			return 61;
 		} else {
@@ -1249,7 +1251,7 @@ public class CustomerBean {
 		approvedBy = WordUtils.capitalizeFully(approvedBy);
 		if (approvedBy.length() < 1) {
 			return 521;
-		} else if (approvedBy.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*") || approvedBy.matches("^\\d+.*")) {
+		} else if (approvedBy.matches(".*[!@#$%^&*()_+=-><,.;~`:\"\'].*") || approvedBy.matches("^\\d+.*")|| approvedBy.matches(".*\\d+.*")) {
 			return 522;
 		} else {
 			return 0;

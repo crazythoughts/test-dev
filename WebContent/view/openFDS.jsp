@@ -50,6 +50,10 @@
 		</ul>
 		<div class="all-content">
 			<div class="form-container">
+				<c:if test="${!empty errormain}">
+					<c:out value="${errormain}" />
+					<c:remove var="errormain" scope="request" />
+				</c:if>
 				<form action="/KJJCSoft/com/kjjcsoft/controllers/openfixed" method="post">
 					<label for="customer_id">Customer Id</label>
 					<c:choose>
@@ -58,6 +62,10 @@
 						</c:when>
 						<c:otherwise>
 							<input type="text" name="customer_id" value="<c:out value="${param.customer_id}"/>" />
+							<c:if test="${!empty errorcid}">
+								<c:out value="${errorcid}" />
+								<c:remove var="errorcid" scope="request" />
+							</c:if>
 						</c:otherwise>
 					</c:choose>
 					<input type="hidden" name="account_type" value="fds" />
@@ -67,14 +75,30 @@
 					<c:out value="${requestScope.customerError}" />
 					<label for="interest_rate">Interest Rate</label>
 					<input type="text" name="interest_rate" placeholder="eg. 15.5" />
+					<c:if test="${!empty errorir}">
+						<c:out value="${errorir}" />
+						<c:remove var="errorir" scope="request" />
+					</c:if>
 					<label for="fd_amount">Fixed Deposit Amount</label>
-					<input type="text" name="fd_amount" />
+					<input type="text" name="fd_amount" value="${param.fd_amount}" />
+					<c:if test="${!empty errorfd}">
+						<c:out value="${errorfd}" />
+						<c:remove var="errorfd" scope="request" />
+					</c:if>
 					<label for="maturity_period">Maturity Period</label>
-					<input type="text" name="maturity_period" value="" />
+					<input type="text" name="maturity_period" value="${param.maturity_period}" />
+					<c:if test="${!empty errory}">
+						<c:out value="${errory}" />
+						<c:remove var="errory" scope="request" />
+					</c:if>
 					<label for="approved_by">Approved By</label>
 					<input type="text" name="approved_by" placeholder="John Doe" />
+					<c:if test="${!empty errorapb}">
+						<c:out value="${errorapb}" />
+						<c:remove var="errorapb" scope="request" />
+					</c:if>
 					<input type="submit" value="Create" name="create" />
-					<input type="submit" value="Cancel" name="cancel"/>
+					<input type="submit" value="Cancel" name="cancel" />
 				</form>
 			</div>
 		</div>

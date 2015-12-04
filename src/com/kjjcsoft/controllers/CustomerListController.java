@@ -17,13 +17,13 @@ import com.kjjcsoft.model.Customer;
  * Servlet implementation class FrontControllerServlet
  */
 @WebServlet(description = "for fetching all the customer data", urlPatterns = { "/customers" })
-public class CustomerList extends HttpServlet {
+public class CustomerListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CustomerList() {
+    public CustomerListController() {
         super();
         // TODO Auto-generated constructor stub
     }

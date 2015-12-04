@@ -49,31 +49,47 @@
 			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/cfixeddeposit">Continuous Fixed Deposit</a></li>
 		</ul>
 		<div class="all-content">
-		<div class="form-container">
-			<form action="/KJJCSoft/com/kjjcsoft/controllers/opendaily" method="post">
-				<label for="customer_id">Customer Id</label>
-				<c:choose>
-					<c:when test="${sessionScope.Id!=null }">
-						<input type="text" name="customer_id" value="<c:out value="${sessionScope.Id }"/>" />
-					</c:when>
-					<c:otherwise>
-						<input type="text" name="customer_id" value="<c:out value="${param.customer_id}"/>" />
-					</c:otherwise>
-				</c:choose>
-				<input type="hidden" name="account_type" value="ds" />
-				<input type="submit" value="check" name="check" />
-				<label for="customer_name">Customer Name</label>
-				<input type="text" name="customer_name" value="<c:out value="${requestScope.cName}"/>" />
-				<c:out value="${requestScope.customerError}" />
-				<label for="interest_rate">Interest Rate</label>
-				<input type="text" name="interest_rate" />
-				<label for="approved_by">Approved By</label>
-				<input type="text" name="approved_by" />
-				<label for="starting_amount">Starting Amount</label>
-				<input type="text" name="starting_amount" />
-				<input type="submit" value="Create" name="create" />
-				<input type="submit" value="Cancel" name="cancel"/>
-			</form>
+			<div class="form-container">
+				<c:if test="${!empty errormain}">
+					<c:out value="${errormain}" />
+					<c:remove var="errormain" scope="request" />
+				</c:if>
+				<form action="/KJJCSoft/com/kjjcsoft/controllers/opendaily" method="post">
+					<label for="customer_id">Customer Id</label>
+					<c:choose>
+						<c:when test="${sessionScope.Id!=null }">
+							<input type="text" name="customer_id" value="<c:out value="${sessionScope.Id }"/>" />
+						</c:when>
+						<c:otherwise>
+							<input type="text" name="customer_id" value="<c:out value="${param.customer_id}"/>" />
+							<c:if test="${!empty errorcid}">
+								<c:out value="${errorcid}" />
+								<c:remove var="errorcid" scope="request" />
+							</c:if>
+						</c:otherwise>
+					</c:choose>
+					<input type="hidden" name="account_type" value="ds" />
+					<input type="submit" value="check" name="check" />
+					<label for="customer_name">Customer Name</label>
+					<input type="text" name="customer_name" value="<c:out value="${requestScope.cName}"/>" />
+					<c:out value="${requestScope.customerError}" />
+					<label for="interest_rate">Interest Rate</label>
+					<input type="text" name="interest_rate" value="<c:out value="${param.interest_rate}"/>" />
+					<c:if test="${!empty errorir}">
+						<c:out value="${errorir}" />
+						<c:remove var="errorir" scope="request" />
+					</c:if>
+					<label for="approved_by">Approved By</label>
+					<input type="text" name="approved_by" value="<c:out value="${param.approved_by}"/>" />
+					<c:if test="${!empty errorapb}">
+						<c:out value="${errorapb}" />
+						<c:remove var="errorapb" scope="request" />
+					</c:if>
+					<label for="starting_amount">Starting Amount</label>
+					<input type="text" name="starting_amount" />
+					<input type="submit" value="Create" name="create" />
+					<input type="submit" value="Cancel" name="cancel" />
+				</form>
 			</div>
 		</div>
 	</div>

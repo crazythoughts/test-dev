@@ -18,13 +18,14 @@
 				</li>
 				<li>Customer
 					<ul>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/overview">Manage Customer</a></li>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/overview">Manage</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All</a></li>
 					</ul>
 				</li>
 				<li>Accounts
 					<ul>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/savingdetails">Saving Accounts</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/savingdetails">Saving</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/manageaccount">Manage</a></li>
 					</ul>
 				</li>
 				<li>Transactions
@@ -50,13 +51,14 @@
 				</li>
 				<li>Customer
 					<ul>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/overview">Manage Customer</a></li>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All Customers</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/overview">Manage</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/customers">All</a></li>
 					</ul>
 				</li>
 				<li>Accounts
 					<ul>
-						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/savingdetails">Saving Accounts</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/savingdetails">Saving</a></li>
+						<li><a href="/KJJCSoft/com/kjjcsoft/controllers/manageaccount">Manage</a></li>
 					</ul>
 				</li>
 				<li>Transactions

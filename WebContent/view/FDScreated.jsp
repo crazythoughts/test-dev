@@ -37,7 +37,7 @@
 		<li class="main-page">Home<span class="divider">></span></li>
 		<li class="">Accounts<span class="divider">></span></li>
 		<li class="">Savings<span class="divider">></span></li>
-		<li class="">Monthly Saving<span class="divider">></span></li>
+		<li class="">Fixed Deposit<span class="divider">></span></li>
 		<li class="active">Success</li>
 	</ul>
 	<div class="main-contain-content clearfix">
@@ -51,14 +51,16 @@
 		<a href="/KJJCSoft/com/kjjcsoft/controllers/opendaily">Add</a>
 		<div class="all-content">
 			<c:choose>
-				<c:when test="${sessionScope.msAcInfo.getAccountId()!=0 and sessionScope.msAcInfo.getAccountId() != null}">
-					Monthly Savings Account created successfully!
-					Account number : <c:out value="${sessionScope.msAcInfo.getAccountId()}" />
-					Account holders ID : <c:out value="${sessionScope.msAcInfo.getCustomerId()}" />
-					Account Holder's Name: <c:out value="${sessionScope.cName}" />
+				<c:when test="${sessionScope.fdsAcInfo.getAccountId()!=0}">
+	Fixed Deposit Account created successfully!
+	Account number : <c:out value="${sessionScope.fdsAcInfo.getAccountId()}" />
+	Account holders ID : <c:out value="${sessionScope.fdsAcInfo.getCustomerId()}" />
+	Account Holder's Name: <c:out value="${sessionScope.cName}" />
 					<c:remove var="cName" scope="session" />
-					Interest Rate : <c:out value="${sessionScope.msAcInfo.getInterestRate()}" />
-					<c:remove var="msAcInfo" scope="session" />
+	Deposited Amount : <c:out value="${sessionScope.fdsAcInfo.getFixedDepositAmount()}" />
+	Interest Rate : <c:out value="${sessionScope.fdsAcInfo.getInterestRate()}" />
+	Maturity Time : <c:out value="${sessionScope.fdsAcInfo.getMaturityPeriod()}" />
+					<c:remove var="fdsAcInfo" scope="session" />
 					<c:choose>
 						<c:when test="${sessionScope.accessedFromCustomer==true}">
 							<a href="/KJJCSoft/com/kjjcsoft/controllers/customers">
@@ -67,16 +69,16 @@
 							<c:remove var="accessedFromCustomer" scope="session" />
 						</c:when>
 						<c:otherwise>
-							<a href="/KJJCSoft/com/kjjcsoft/controllers/monthlysaving">
+							<a href="/KJJCSoft/com/kjjcsoft/controllers/fixeddeposit">
 								<input type="button" name="" value="Ok">
 							</a>
 						</c:otherwise>
 					</c:choose>
 				</c:when>
-				<c:when test="${sessionScope.msAcInfo.getAccountId()==0 or sessionScope.msAcInfo.getAccountId() == null }">
-					<c:remove var="msAcInfo" scope="session" />
-					Something went wrong. The account for the customer was not created. Please try again from Accounts
-					<c:choose>
+				<c:when test="${sessionScope.fdsAcInfo.getAccountId()==0}">
+					<c:remove var="fdsAcInfo" scope="session" />
+		Something went wrong. The account for the customer was not created. Please try again from Accounts
+		<c:choose>
 						<c:when test="${sessionScope.accessedFromCustomer==true}">
 							<a href="/KJJCSoft/com/kjjcsoft/controllers/customers">
 								<input type="button" name="" value="Ok">
@@ -84,7 +86,7 @@
 							<c:remove var="accessedFromCustomer" scope="session" />
 						</c:when>
 						<c:otherwise>
-							<a href="/KJJCSoft/com/kjjcsoft/controllers/monthlysaving">
+							<a href="/KJJCSoft/com/kjjcsoft/controllers/fixeddeposit">
 								<input type="button" name="" value="Ok">
 							</a>
 						</c:otherwise>

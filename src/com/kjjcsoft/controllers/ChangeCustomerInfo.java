@@ -1140,8 +1140,9 @@ public class ChangeCustomerInfo extends HttpServlet {
 						return;
 					}
 					
-				} else {	
+				} else if (!isError && edited == false){	
 					request.getSession().removeAttribute("storedInfo");
+					request.getSession().setAttribute("successMsg", "true");
 					response.sendRedirect("/KJJCSoft/com/kjjcsoft/controllers/edit");
 					return;
 				}

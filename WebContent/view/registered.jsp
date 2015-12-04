@@ -397,26 +397,28 @@
 		Finger Prints :
 		<img src="/KJJCSoft/upload/<c:out value="${requestScope.newCustomer.getFingerPrintPath()}"/>" height="100px" width="100px" />
 		<c:remove var="newCustomer" scope="request" />
+		<br>
 		<b>Open Saving Account</b>
-		<a href="/KJJCSoft/view/open_ds_account.jsp">
+		<br>
+		<a href="/KJJCSoft/com/kjjcsoft/controllers/opendaily">
 			<input type="button" value="Daily Savings" />
 		</a>
-		<a href="/KJJCSoft/view/open_ms_account.jsp">
+		<a href="/KJJCSoft/com/kjjcsoft/controllers/openmonthly">
 			<input type="button" value="Monthly Savings" />
 		</a>
-		<a href="/KJJCSoft/view/open_fds_account.jsp">
+		<a href="/KJJCSoft/com/kjjcsoft/controllers/openfixed">
 			<input type="button" value="Fixed Deposit" />
 		</a>
-		<a href="/KJJCSoft/view/open_cfd_account.jsp">
+		<a href="/KJJCSoft/com/kjjcsoft/controllers/opencfixed">
 			<input type="button" value="Continious Fixed Deposit" />
 		</a>
-		<b>Loan Account</b>
+	<!-- 	<b>Loan Account</b>
 		<a href="">
 			<input type="button" value="Bussiness Loan" />
 		</a>
 		<a href="">
 			<input type="button" value="Agricultural Loan">
-		</a>
+		</a> -->
 	</div>
 	<jsp:include page="footer.jsp" />
 </div>

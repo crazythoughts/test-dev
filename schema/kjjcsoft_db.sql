@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2015 at 06:42 AM
+-- Generation Time: Dec 05, 2015 at 04:07 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `tbl_customer` (
   `customer_status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`customer_id`),
   KEY `user_id` (`entry_by`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `tbl_customer`
@@ -107,7 +107,11 @@ INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_age`, `cus
 (15, 'Adfasdf Shrestha', 19, 'Male', '1990-10-14', 'Nepali', '124875', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '9874561235', '', '', '', 'Single', '', 'Student', 'Adfsdf', 'Adfsdaf', '', 'Ssdfsdf', 'Adfdsf', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '3214569871', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/1.jpg', 'customer_finger_prints/dummy-person.jpg', '2015-11-29', '', 'Sabin Kaji Shrestha', 1, 1),
 (16, 'Adfasdf Shrestha', 19, 'Male', '1990-10-14', 'Nepali', '124875', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '9874561235', '', '', '', 'Single', '', 'Student', 'Adfsdf', 'Adfsdaf', '', 'Ssdfsdf', 'Adfdsf', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '3214569871', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/1.jpg', 'customer_finger_prints/dummy-person.jpg', '2015-11-29', '', 'Sabin Kaji Shrestha', 1, 1),
 (17, 'Adfasdf Shrestha', 19, 'Male', '1990-10-14', 'Nepali', '124875', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '9874561235', '', '', '', 'Single', '', 'Student', 'Adfsdf', 'Adfsdaf', '', 'Ssdfsdf', 'Adfdsf', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '3214569871', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/4411.jpg', 'customer_finger_prints/dummy-person.jpg', '2015-11-29', '', 'Sabin Kaji Shrestha', 1, 1),
-(18, 'Aman Shrestha', 19, 'Male', '1990-10-14', 'Nepali', '124875', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '9874561235', '', '', '', 'Single', '', 'Student', 'Adfsdf', 'Adfsdaf', '', 'Ssdfsdf', 'Adfdsf', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '3214569871', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/9391.jpg', 'customer_finger_prints/276dummy-person.jpg', '2015-11-29', '', 'Sabin Kaji Shrestha', 1, 1);
+(18, 'Aman Shrestha', 19, 'Male', '1990-10-14', 'Nepali', '124875', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '9874561235', '', '', '', 'Single', '', 'Student', 'Adfsdf', 'Adfsdaf', '', 'Ssdfsdf', 'Adfdsf', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '3214569871', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/9391.jpg', 'customer_finger_prints/276dummy-person.jpg', '2015-11-29', '', 'Sabin Kaji Shrestha', 1, 1),
+(19, 'Adfasdf Shrestha', 19, 'Male', '1990-10-14', 'Nepali', '124875', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '9874561235', '', '', '', 'Single', '', 'Student', 'Adfsdf', 'Adfsdaf', '', 'Ssdfsdf', 'Adfdsf', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '3214569871', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/47511.jpg', 'customer_finger_prints/116DSC_0089.jpg', '2015-12-03', 'Bam Kaji Shrestha', 'Sabin Kaji Shrestha', 1, 1),
+(20, 'Aman Shrestha', 19, 'Male', '1990-10-14', 'Nepali', '124875', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '9874561235', '', '', '', 'Single', '', 'Student', 'Adfsdf', 'Adfsdaf', '', 'Ssdfsdf', 'Adfdsf', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '3214569871', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/39311.jpg', 'customer_finger_prints/729DSC_0089.jpg', '2015-12-03', 'Bam Kaji Shrestha', 'Sabin Kaji Shrestha', 1, 1),
+(21, 'Aman Shrestha', 19, 'Male', '1990-10-14', 'Nepali', '124875', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '9874561235', '', '', '', 'Single', '', 'Student', 'Adfsdf', 'Adfsdaf', '', 'Ssdfsdf', 'Adfdsf', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '3214569871', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/7981.jpg', 'customer_finger_prints/11.jpg', '2015-12-03', 'Bam Kaji Shrestha', 'Sabin Kaji Shrestha', 1, 1),
+(22, 'Aman Shrestha', 19, 'Male', '1990-10-14', 'Nepali', '124875', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '9874561235', '', '', '', 'Single', '', 'Student', 'Adfsdf', 'Adfsdaf', '', 'Ssdfsdf', 'Adfdsf', 'Kathmandu', 'Jorpati - 4', '', '', '', '', '3214569871', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 'customer_photos/1661.jpg', 'customer_finger_prints/90711.jpg', '2015-12-03', 'Bam Kaji Shrestha', 'Sabin Kaji Shrestha', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -123,9 +127,20 @@ CREATE TABLE IF NOT EXISTS `tbl_c_fixed_deposit` (
   `creation_date` date NOT NULL,
   `approved_by` varchar(500) NOT NULL,
   `entry_by` int(11) NOT NULL,
+  `ac_status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`cfd_id`),
-  KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `customer_id` (`customer_id`),
+  KEY `entry_by` (`entry_by`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `tbl_c_fixed_deposit`
+--
+
+INSERT INTO `tbl_c_fixed_deposit` (`cfd_id`, `customer_id`, `interest_rate`, `maturity_date`, `creation_date`, `approved_by`, `entry_by`, `ac_status`) VALUES
+(1, 8, 10.5, '2018-12-04', '2015-12-01', 'Sabin Kaji Shrestha', 1, 1),
+(2, 1, 10.5, '2018-12-02', '2015-12-02', 'sabin kaji shrestha', 1, 1),
+(3, 16, 10.5, '2019-12-03', '2015-12-03', 'Sabin Kaji Shrestha', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -140,9 +155,23 @@ CREATE TABLE IF NOT EXISTS `tbl_daily_savings` (
   `creation_date` date NOT NULL,
   `approved_by` varchar(500) NOT NULL,
   `entry_by` int(11) NOT NULL,
+  `ac_status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ds_id`),
-  KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `customer_id` (`customer_id`),
+  KEY `entry_by` (`entry_by`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `tbl_daily_savings`
+--
+
+INSERT INTO `tbl_daily_savings` (`ds_id`, `customer_id`, `interest_rate`, `creation_date`, `approved_by`, `entry_by`, `ac_status`) VALUES
+(1, 2, 15, '2015-12-01', 'Sabin Kaji Shrestha', 1, 1),
+(2, 1, 15, '2015-12-02', 'sabin kaji shrestha', 1, 1),
+(3, 18, 18, '2015-12-02', 'Sabin Kaji Shrestha', 1, 1),
+(4, 1, 10.5, '2015-12-03', 'Sabin Kaji Shrestha', 1, 1),
+(5, 21, 11, '2015-12-03', 'Sabin Kaji Shrestha', 1, 1),
+(6, 22, 10.5, '2015-12-03', 'Sabin Kaji Shrestha', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -200,9 +229,20 @@ CREATE TABLE IF NOT EXISTS `tbl_fixed_deposit` (
   `creation_date` date NOT NULL,
   `approved_by` varchar(500) NOT NULL,
   `entry_by` int(11) NOT NULL,
+  `ac_status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`fds_id`),
-  KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `customer_id` (`customer_id`),
+  KEY `entry_by` (`entry_by`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `tbl_fixed_deposit`
+--
+
+INSERT INTO `tbl_fixed_deposit` (`fds_id`, `customer_id`, `interest_rate`, `fd_amount`, `maturity_date`, `creation_date`, `approved_by`, `entry_by`, `ac_status`) VALUES
+(1, 2, 10, 500000, '2021-12-04', '2015-12-01', 'Sabin Kaji Shrestha', 1, 1),
+(2, 6, 10.5, 40000, '2020-12-02', '2015-12-02', 'sabin kaji shrestha', 1, 1),
+(3, 11, 10.5, 450000, '2018-12-02', '2015-12-02', 'sabin kaji shrestha', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -217,9 +257,20 @@ CREATE TABLE IF NOT EXISTS `tbl_monthly_savings` (
   `creation_date` date NOT NULL,
   `approved_by` varchar(500) NOT NULL,
   `entry_by` int(11) NOT NULL,
+  `ac_status` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ms_id`),
-  KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `customer_id` (`customer_id`),
+  KEY `entry_by` (`entry_by`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `tbl_monthly_savings`
+--
+
+INSERT INTO `tbl_monthly_savings` (`ms_id`, `customer_id`, `interest_rate`, `creation_date`, `approved_by`, `entry_by`, `ac_status`) VALUES
+(1, 18, 50, '2015-12-01', 'Sabin Kaji Shrestha', 1, 1),
+(2, 4, 11, '2015-12-01', 'sabin kaji shrestha', 1, 1),
+(3, 17, 15, '2015-12-03', 'Sabin Kaji Shrestha', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -262,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user_log` (
   `last_logout` datetime DEFAULT NULL,
   PRIMARY KEY (`log_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=135 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=231 ;
 
 --
 -- Dumping data for table `tbl_user_log`
@@ -402,7 +453,103 @@ INSERT INTO `tbl_user_log` (`log_id`, `user_id`, `last_login`, `last_logout`) VA
 (131, 1, '2015-11-30 11:14:53', '2015-11-30 11:15:16'),
 (132, 1, '2015-11-30 11:15:48', '2015-11-30 11:19:28'),
 (133, 1, '2015-11-30 11:20:04', '2015-11-30 11:22:12'),
-(134, 1, '2015-11-30 11:23:24', '2015-11-30 11:25:17');
+(134, 1, '2015-11-30 11:23:24', '2015-11-30 11:25:17'),
+(135, 1, '2015-12-01 02:22:08', '2015-12-01 02:22:18'),
+(136, 1, '2015-12-01 02:23:19', '2015-12-01 02:24:31'),
+(137, 1, '2015-12-01 03:58:12', '2015-12-01 03:58:19'),
+(138, 1, '2015-12-01 03:59:39', '2015-12-01 04:00:04'),
+(139, 1, '2015-12-01 04:14:24', '2015-12-01 04:14:46'),
+(140, 1, '2015-12-01 05:52:07', '2015-12-01 05:52:24'),
+(141, 1, '2015-12-01 05:56:19', '2015-12-01 05:56:48'),
+(142, 1, '2015-12-01 05:58:12', '2015-12-01 05:58:36'),
+(143, 1, '2015-12-01 05:59:22', '2015-12-01 05:59:54'),
+(144, 1, '2015-12-01 06:00:05', '2015-12-01 06:00:31'),
+(145, 1, '2015-12-01 06:49:36', '2015-12-01 06:50:04'),
+(146, 1, '2015-12-01 06:50:57', '2015-12-01 06:53:46'),
+(147, 1, '2015-12-01 07:22:35', '2015-12-01 07:22:57'),
+(148, 1, '2015-12-01 07:24:30', '2015-12-01 07:25:08'),
+(149, 1, '2015-12-01 07:28:11', '2015-12-01 07:28:54'),
+(150, 1, '2015-12-01 07:31:18', '2015-12-01 07:33:32'),
+(151, 1, '2015-12-01 08:33:51', '2015-12-01 08:34:05'),
+(152, 1, '2015-12-01 08:36:43', '2015-12-01 08:37:03'),
+(153, 1, '2015-12-01 08:38:46', '2015-12-01 08:39:14'),
+(154, 1, '2015-12-01 08:42:18', '2015-12-01 08:42:40'),
+(155, 1, '2015-12-01 09:08:13', '2015-12-01 09:14:26'),
+(156, 1, '2015-12-01 09:20:22', '2015-12-01 09:20:31'),
+(157, 1, '2015-12-01 09:21:35', '2015-12-01 09:21:50'),
+(158, 1, '2015-12-01 09:23:24', '2015-12-01 09:24:21'),
+(159, 1, '2015-12-01 10:22:36', '2015-12-01 10:23:38'),
+(160, 1, '2015-12-01 10:25:45', '2015-12-01 10:26:04'),
+(161, 1, '2015-12-01 10:27:24', NULL),
+(162, 1, '2015-12-01 10:29:07', '2015-12-01 10:30:48'),
+(163, 1, '2015-12-01 10:31:19', NULL),
+(164, 1, '2015-12-01 11:00:42', NULL),
+(165, 1, '2015-12-02 09:29:06', '2015-12-02 09:29:31'),
+(166, 1, '2015-12-02 12:36:46', '2015-12-02 12:38:49'),
+(167, 1, '2015-12-02 12:44:08', '2015-12-02 12:48:20'),
+(168, 1, '2015-12-02 12:56:13', '2015-12-02 12:58:05'),
+(169, 1, '2015-12-02 12:58:45', '2015-12-02 13:04:43'),
+(170, 1, '2015-12-02 15:28:11', '2015-12-02 15:28:42'),
+(171, 1, '2015-12-02 15:30:21', '2015-12-02 15:30:46'),
+(172, 1, '2015-12-02 16:08:51', '2015-12-02 16:09:25'),
+(173, 1, '2015-12-02 16:41:24', '2015-12-02 16:43:24'),
+(174, 1, '2015-12-02 16:43:44', '2015-12-02 16:44:51'),
+(175, 1, '2015-12-02 16:45:48', '2015-12-02 16:48:30'),
+(176, 1, '2015-12-03 13:49:51', '2015-12-03 13:52:21'),
+(177, 1, '2015-12-03 14:06:44', '2015-12-03 14:07:54'),
+(178, 1, '2015-12-03 14:10:51', '2015-12-03 14:17:36'),
+(179, 1, '2015-12-03 14:55:33', '2015-12-03 14:58:44'),
+(180, 1, '2015-12-03 15:00:34', '2015-12-03 15:09:50'),
+(181, 1, '2015-12-03 17:38:58', '2015-12-03 17:39:21'),
+(182, 1, '2015-12-03 17:40:15', '2015-12-03 17:41:12'),
+(183, 1, '2015-12-03 17:41:29', NULL),
+(184, 1, '2015-12-03 17:43:38', '2015-12-03 17:44:21'),
+(185, 1, '2015-12-04 09:00:09', '2015-12-04 09:01:06'),
+(186, 1, '2015-12-04 09:44:59', '2015-12-04 09:46:47'),
+(187, 1, '2015-12-04 09:47:07', '2015-12-04 09:47:34'),
+(188, 1, '2015-12-04 09:50:34', '2015-12-04 09:50:56'),
+(189, 1, '2015-12-04 11:50:46', '2015-12-04 11:51:23'),
+(190, 1, '2015-12-04 11:52:08', '2015-12-04 11:53:37'),
+(191, 1, '2015-12-04 11:54:05', '2015-12-04 11:56:27'),
+(192, 1, '2015-12-04 11:57:23', '2015-12-04 11:58:43'),
+(193, 1, '2015-12-04 11:59:42', '2015-12-04 12:01:07'),
+(194, 1, '2015-12-04 12:01:22', '2015-12-04 12:02:51'),
+(195, 1, '2015-12-04 12:03:05', '2015-12-04 12:03:45'),
+(196, 1, '2015-12-04 12:03:51', '2015-12-04 12:06:34'),
+(197, 1, '2015-12-04 12:08:02', '2015-12-04 12:10:22'),
+(198, 1, '2015-12-04 12:10:40', '2015-12-04 12:12:02'),
+(199, 1, '2015-12-04 12:13:10', NULL),
+(200, 1, '2015-12-04 12:16:08', '2015-12-04 12:16:42'),
+(201, 1, '2015-12-04 13:20:06', '2015-12-04 13:21:29'),
+(202, 1, '2015-12-04 13:21:42', '2015-12-04 13:22:07'),
+(203, 1, '2015-12-04 13:23:40', NULL),
+(204, 1, '2015-12-04 13:25:29', '2015-12-04 13:25:52'),
+(205, 1, '2015-12-04 13:27:14', NULL),
+(206, 1, '2015-12-04 13:28:34', '2015-12-04 13:29:16'),
+(207, 1, '2015-12-04 13:32:16', '2015-12-04 13:35:28'),
+(208, 1, '2015-12-04 13:36:08', '2015-12-04 13:37:57'),
+(209, 1, '2015-12-04 13:47:09', '2015-12-04 13:48:06'),
+(210, 1, '2015-12-04 13:48:21', '2015-12-04 13:49:23'),
+(211, 1, '2015-12-04 13:55:41', '2015-12-04 13:56:44'),
+(212, 1, '2015-12-04 13:56:59', '2015-12-04 13:57:13'),
+(213, 1, '2015-12-04 13:58:58', NULL),
+(214, 1, '2015-12-04 14:05:27', '2015-12-04 14:05:56'),
+(215, 1, '2015-12-04 15:35:10', '2015-12-04 15:36:31'),
+(216, 1, '2015-12-04 15:36:49', '2015-12-04 15:37:22'),
+(217, 1, '2015-12-04 15:38:29', '2015-12-04 15:38:53'),
+(218, 1, '2015-12-04 15:44:23', NULL),
+(219, 1, '2015-12-04 15:46:10', NULL),
+(220, 1, '2015-12-04 15:48:13', '2015-12-04 15:59:15'),
+(221, 1, '2015-12-04 16:00:17', '2015-12-04 16:01:52'),
+(222, 1, '2015-12-04 16:02:47', NULL),
+(223, 1, '2015-12-04 16:04:30', NULL),
+(224, 1, '2015-12-04 16:05:46', NULL),
+(225, 1, '2015-12-04 16:09:05', NULL),
+(226, 1, '2015-12-04 16:12:59', '2015-12-04 16:13:26'),
+(227, 1, '2015-12-04 16:13:42', '2015-12-04 16:16:18'),
+(228, 1, '2015-12-04 16:16:43', '2015-12-04 16:17:25'),
+(229, 1, '2015-12-04 16:19:49', '2015-12-04 16:20:12'),
+(230, 1, '2015-12-04 16:24:56', '2015-12-04 16:25:31');
 
 --
 -- Constraints for dumped tables
@@ -412,25 +559,29 @@ INSERT INTO `tbl_user_log` (`log_id`, `user_id`, `last_login`, `last_logout`) VA
 -- Constraints for table `tbl_c_fixed_deposit`
 --
 ALTER TABLE `tbl_c_fixed_deposit`
-  ADD CONSTRAINT `tbl_c_fixed_deposit_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_c_fixed_deposit_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_c_fixed_deposit_ibfk_2` FOREIGN KEY (`entry_by`) REFERENCES `tbl_user` (`user_id`);
 
 --
 -- Constraints for table `tbl_daily_savings`
 --
 ALTER TABLE `tbl_daily_savings`
-  ADD CONSTRAINT `tbl_daily_savings_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_daily_savings_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_daily_savings_ibfk_2` FOREIGN KEY (`entry_by`) REFERENCES `tbl_user` (`user_id`);
 
 --
 -- Constraints for table `tbl_fixed_deposit`
 --
 ALTER TABLE `tbl_fixed_deposit`
-  ADD CONSTRAINT `tbl_fixed_deposit_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_fixed_deposit_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_fixed_deposit_ibfk_2` FOREIGN KEY (`entry_by`) REFERENCES `tbl_user` (`user_id`);
 
 --
 -- Constraints for table `tbl_monthly_savings`
 --
 ALTER TABLE `tbl_monthly_savings`
-  ADD CONSTRAINT `tbl_monthly_savings_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_monthly_savings_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_monthly_savings_ibfk_2` FOREIGN KEY (`entry_by`) REFERENCES `tbl_user` (`user_id`);
 
 --
 -- Constraints for table `tbl_user`

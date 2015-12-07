@@ -6,11 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/view/css/style.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/KJJCSoft/view/css/bootstrap.css">
 <title>Login Page</title>
 </head>
 <body class="loginpage01 clearfix" id="loginpage01">
 <section id="loginpage">
-<div class="main-header">KJJC Soft</div>
+<div class="main-header">KJJCSoft</div>
 <div class="login">
 	<div class="login-title">LOGIN</div>
 	<form class="kform" action="/KJJCSoft/com/kjjcsoft/controllers/login" method="post">

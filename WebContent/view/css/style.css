@@ -13,9 +13,11 @@ body {
 
 #loginpage01 {
 	background: url("../images/money-img.png"),
+		url("../images/falling-money.png"),
 		url("../images/extra_clean_paper.png");
-	background-repeat: no-repeat, repeat;
-	position: relative;
+	background-repeat: no-repeat, no-repeat, repeat;
+	background-position: left top, right top, center;
+	/* position: relative; */
 	margin: 0;
 	color: #333;
 }
@@ -30,8 +32,8 @@ ul {
 }
 
 .home-img {
-	height: 40px;
-	width: 40px;
+	height: 30px;
+	width: 30px;
 	border-radius: 50%;
 }
 
@@ -116,12 +118,13 @@ ul {
 }
 
 .main-header {
-	background: -moz-linear-gradient(center bottom, #4d5b76 0%, #6f80a1 100%)
-		repeat scroll 0 0;
+	background: rgba(0, 0, 0, 0)
+		-moz-linear-gradient(center bottom, #666 0%, #888 100%) repeat scroll
+		0 0;
 	box-sizing: border-box;
 	color: #f0f0e8;
 	font-size: 24px;
-	padding: 10px 20px;
+	padding: 8px 20px;
 	width: 100%;
 	position: fixed;
 	z-index: 99999;
@@ -159,9 +162,6 @@ ul {
 	text-align: center;
 }
 /* costumer registration css start */
-.customer-menu {
-	background: #ddd none repeat scroll 0 0;
-}
 
 .customer-menu ul {
 	text-align: center;
@@ -196,7 +196,7 @@ ul {
 .main-contain {
 	width: 85%;
 	float: right;
-	margin: 60px 0 0;
+	margin: 45px 0 0;
 }
 
 .main-contain-content {
@@ -208,55 +208,122 @@ ul {
 
 /*sidebar css start*/
 .sidebar {
-	background: #c0e8d1 none repeat scroll 0 0;
+	background: url("../images/white_wall.png");
+	background-repeat: repeat;
 	height: 100%;
 	position: fixed;
 	width: 15%;
-	margin: 60px 0 0;
-	padding-left: 12px;
+	margin: 45px 0 0;
+	border-right: 2px solid #999;
 }
-.company-logo{
-	width:100%;
+
+.company-logo {
+	width: 100%;
 	height: 200px;
 	padding: 25px 25px 25px 12px;
 }
 
 #logo {
 	height: 120px;
-	width:170px;
+	width: 170px;
 	border: 1px dotted;
 }
 
-.sidebar ul li {
+.sidebar-nav ul li:first-child {
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+}
+.sidebar-nav ul {
+	height: auto;
+}
+.sidebar-nav ul li {
 	box-sizing: border-box;
 	font-size: 15px;
-	padding: 10px;
 	list-style: none;
+	border-bottom: 1px solid #aaa;
 }
-
-.sidebar ul li ul {
-	display: none;
+.non-col-li{
+	background: rgba(0, 0, 0, 0)
+		-moz-linear-gradient(center bottom, #efefef 0%, #fafafa 100%) repeat
+		scroll 0 0;
+	
 }
-
-.sidebar ul li:hover ul {
+.sidebar-nav ul li a{
+	padding: 10px;
+	text-decoration:none;
+	color : #444;
 	display: block;
 }
-
+.sidebar-nav ul li a:hover,
+.sidebar-nav ul li a:focus {
+  color: #234;
+}
+.sidebar-nav ul li ul{
+	background: rgba(225, 225, 225, 0);
+}
+.sidebar-nav ul li ul li a {
+	text-decoration: none;
+	color : #444;
+}
+.sidebar-nav ul li ul li a:hover {
+	background: rgba(100,100, 100,0.5);
+	color : #fff;
+}
+.col-li{
+	background: rgba(225,225,225,0);
+}
+.logout input{
+	border: medium none;
+	border-radius: 1px;
+	cursor: pointer;
+	margin: 0;
+	padding: 0;
+}
+.logout-button{
+	width: 100%;
+}
+.logout{
+	width: 100%;
+}
+#logout-button{
+	background: rgba(0, 0, 0, 0)
+		-moz-linear-gradient(center bottom, #efefef 0%, #fafafa 100%) repeat
+		scroll 0 0;
+	color : #333;
+	width: 100%;
+	height: 40px;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	text-align: left;
+	padding: 10px;
+}
+#logout-button:hover{
+	background: rgba(0, 0, 0, 0)
+		-moz-linear-gradient(center bottom, #9a9a9a 0%, #d8d8d8 100%) repeat
+		scroll 0 0;
+	color : #fff;
+	width: 100%;
+	height: 40px;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	padding: 10px;
+}
 /*sidebar css end*/
 /* footer css start  */
 .footer {
 	background: #ebebeb none repeat scroll 0 0;
 	padding: 10px 20px;
-	border : 1px groove;
+	border-top: 2px solid #999;
 }
 /* footer css end */
 /* inside main containers header css */
 .main-contain-header {
-	background: #aaa none repeat scroll 0 0;
+	background: url("../images/white_wall.png"); background-repeat : repeat;
 	padding: 12px 18px;
 	border-bottom: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
 	border-top: 1px solid #cccccc;
+	background-repeat: repeat;
 }
 
 .to-right {
@@ -332,11 +399,13 @@ ul>li.green {
 .nav-show {
 	list-style: none;
 	padding: 5px 18px;
-	background: #aaa none repeat scroll 0 0;
-	border-left: 1px solid #cccccc;
+	background: rgba(0, 0, 0, 0)
+		-moz-linear-gradient(center bottom, #efefef 0%, #fafafa 100%) repeat
+		scroll 0 0; border-left : 1px solid #cccccc;
 	border-top: 1px solid #cccccc;
 	border-bottom: 1px solid #cccccc;
 	margin-bottom: 10px;
+	border-left: 1px solid #cccccc
 }
 
 .nav-show li {
@@ -344,7 +413,7 @@ ul>li.green {
 }
 
 .divider {
-	color: #ddd;
+	color: #999;
 	padding: 0px 5px;
 }
 
@@ -452,6 +521,7 @@ ul>li.green {
 	display: block;
 	margin: 14px 0;
 	padding: 5px 10px;
+	color: #31708f;
 }
 
 .account-information {

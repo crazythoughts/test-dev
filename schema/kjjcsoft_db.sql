@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2015 at 04:07 AM
+-- Generation Time: Dec 09, 2015 at 09:16 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -19,6 +19,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `kjjcsoft_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_collector`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_collector` (
+  `collector_id` int(11) NOT NULL AUTO_INCREMENT,
+  `employee_id` int(11) NOT NULL,
+  `collector_status` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`collector_id`),
+  KEY `employee_id` (`employee_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `tbl_collector`
+--
+
+INSERT INTO `tbl_collector` (`collector_id`, `employee_id`, `collector_status`) VALUES
+(1, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -159,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `tbl_daily_savings` (
   PRIMARY KEY (`ds_id`),
   KEY `customer_id` (`customer_id`),
   KEY `entry_by` (`entry_by`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `tbl_daily_savings`
@@ -171,7 +192,8 @@ INSERT INTO `tbl_daily_savings` (`ds_id`, `customer_id`, `interest_rate`, `creat
 (3, 18, 18, '2015-12-02', 'Sabin Kaji Shrestha', 1, 1),
 (4, 1, 10.5, '2015-12-03', 'Sabin Kaji Shrestha', 1, 1),
 (5, 21, 11, '2015-12-03', 'Sabin Kaji Shrestha', 1, 1),
-(6, 22, 10.5, '2015-12-03', 'Sabin Kaji Shrestha', 1, 1);
+(6, 22, 10.5, '2015-12-03', 'Sabin Kaji Shrestha', 1, 1),
+(7, 16, 10, '2015-12-05', 'Sabin Kaji Shrestha', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -203,8 +225,9 @@ CREATE TABLE IF NOT EXISTS `tbl_employee` (
   `employee_access_level` enum('admin','user') DEFAULT NULL,
   `employee_photo` varchar(2000) NOT NULL,
   `entry_by` int(11) DEFAULT NULL,
-  PRIMARY KEY (`employee_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  PRIMARY KEY (`employee_id`),
+  KEY `entry_by` (`entry_by`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `tbl_employee`
@@ -212,7 +235,8 @@ CREATE TABLE IF NOT EXISTS `tbl_employee` (
 
 INSERT INTO `tbl_employee` (`employee_id`, `employee_name`, `employee_age`, `employee_gender`, `employee_dob`, `employee_marital_status`, `employee_perm_district`, `employee_perm_vdc_municipality`, `employee_perm_extrainfo`, `employee_temp_district`, `employee_temp_vdc_municipality`, `employee_temp_extrainfo`, `employee_cell_number_first`, `employee_cell_number_second`, `employee_landline`, `employee_joined_date`, `employee_retired_date`, `employee_email`, `employee_fathers_name`, `employee_designation`, `employee_access_level`, `employee_photo`, `entry_by`) VALUES
 (1, 'John Doe', 30, 'Male', '2015-10-01', 'Single', 'somewhere', '', '', 'somewhere', '', NULL, '', '', '', '2015-10-14', '2015-10-15', 'example@example.com', 'John D', 'CEO', 'admin', 'employee/dummy-person.jpg', NULL),
-(2, 'jane doe', 25, 'Female', '2014-12-01', 'Married', 'somewhere', '', '', 'somewhere', '', NULL, '', '', '', '2015-09-07', NULL, 'someone@example.com', 'john doe', 'Data Entry operator', 'user', 'employee/dummy-person.jpg', NULL);
+(2, 'jane doe', 25, 'Female', '2014-12-01', 'Married', 'somewhere', '', '', 'somewhere', '', NULL, '', '', '', '2015-09-07', NULL, 'someone@example.com', 'john doe', 'Data Entry operator', 'user', 'employee/dummy-person.jpg', NULL),
+(3, 'Ram Bahadur Thapa', 22, 'Male', '1988-10-11', 'Single', 'Kathmandu', 'Sano Gaun 04', NULL, 'Kathmandu', 'Sano Gaun 04', NULL, '9845125632', NULL, NULL, '2015-10-04', NULL, NULL, 'Shree Ram Thapa', 'Collector', NULL, 'customer_photos/1661.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -275,6 +299,32 @@ INSERT INTO `tbl_monthly_savings` (`ms_id`, `customer_id`, `interest_rate`, `cre
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_saving_transactions`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_saving_transactions` (
+  `transaction_id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `account_type` enum('ds','ms','fds','cfd') NOT NULL,
+  `account_number` int(11) NOT NULL,
+  `deposit_amount` double NOT NULL,
+  `withdrawal_amount` double NOT NULL,
+  `reference` varchar(500) NOT NULL,
+  `principal_amount` double NOT NULL,
+  `interest_for_next` double NOT NULL,
+  `total_interest` double NOT NULL,
+  `total_amount` double NOT NULL,
+  `collector_id` int(11) DEFAULT NULL,
+  `entry_by` int(11) NOT NULL,
+  PRIMARY KEY (`transaction_id`),
+  KEY `entry_by` (`entry_by`),
+  KEY `customer_id` (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_user`
 --
 
@@ -313,7 +363,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user_log` (
   `last_logout` datetime DEFAULT NULL,
   PRIMARY KEY (`log_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=231 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=309 ;
 
 --
 -- Dumping data for table `tbl_user_log`
@@ -549,11 +599,95 @@ INSERT INTO `tbl_user_log` (`log_id`, `user_id`, `last_login`, `last_logout`) VA
 (227, 1, '2015-12-04 16:13:42', '2015-12-04 16:16:18'),
 (228, 1, '2015-12-04 16:16:43', '2015-12-04 16:17:25'),
 (229, 1, '2015-12-04 16:19:49', '2015-12-04 16:20:12'),
-(230, 1, '2015-12-04 16:24:56', '2015-12-04 16:25:31');
+(230, 1, '2015-12-04 16:24:56', '2015-12-04 16:25:31'),
+(231, 1, '2015-12-05 09:12:46', '2015-12-05 09:13:17'),
+(232, 1, '2015-12-05 10:18:01', '2015-12-05 10:19:37'),
+(233, 1, '2015-12-05 13:41:09', '2015-12-05 13:50:41'),
+(234, 1, '2015-12-05 13:50:52', '2015-12-05 14:12:55'),
+(235, 1, '2015-12-05 14:13:11', '2015-12-05 15:06:29'),
+(236, 1, '2015-12-05 15:06:46', '2015-12-05 15:06:58'),
+(237, 1, '2015-12-05 15:07:05', '2015-12-05 15:10:21'),
+(238, 1, '2015-12-07 01:02:27', '2015-12-07 01:03:32'),
+(239, 1, '2015-12-07 01:07:46', '2015-12-07 01:08:07'),
+(240, 1, '2015-12-07 01:56:54', '2015-12-07 01:57:13'),
+(241, 1, '2015-12-07 01:58:25', '2015-12-07 01:58:48'),
+(242, 1, '2015-12-07 01:58:55', '2015-12-07 02:03:16'),
+(243, 1, '2015-12-07 02:05:24', '2015-12-07 02:06:07'),
+(244, 1, '2015-12-07 02:13:57', '2015-12-07 02:26:58'),
+(245, 1, '2015-12-07 02:32:21', '2015-12-07 03:05:59'),
+(246, 1, '2015-12-07 03:07:25', '2015-12-07 03:11:59'),
+(247, 1, '2015-12-07 03:14:53', '2015-12-07 03:16:02'),
+(248, 1, '2015-12-07 03:16:09', '2015-12-07 03:16:16'),
+(249, 1, '2015-12-07 03:17:47', '2015-12-07 03:19:02'),
+(250, 1, '2015-12-07 03:19:13', '2015-12-07 03:19:16'),
+(251, 1, '2015-12-07 03:21:46', '2015-12-07 03:30:11'),
+(252, 1, '2015-12-07 03:33:55', '2015-12-07 03:37:35'),
+(253, 1, '2015-12-07 03:38:02', '2015-12-07 03:38:21'),
+(254, 1, '2015-12-07 07:11:29', '2015-12-07 07:11:43'),
+(255, 1, '2015-12-07 08:57:25', '2015-12-07 09:05:55'),
+(256, 1, '2015-12-07 09:30:03', '2015-12-07 09:32:20'),
+(257, 1, '2015-12-07 11:23:54', NULL),
+(258, 1, '2015-12-07 11:26:23', NULL),
+(259, 1, '2015-12-07 11:27:49', '2015-12-07 11:28:36'),
+(260, 1, '2015-12-07 11:29:12', '2015-12-07 11:29:23'),
+(261, 1, '2015-12-07 11:30:00', '2015-12-07 11:30:12'),
+(262, 1, '2015-12-07 11:30:49', '2015-12-07 11:31:12'),
+(263, 1, '2015-12-07 11:35:17', '2015-12-07 11:35:32'),
+(264, 1, '2015-12-07 11:36:25', '2015-12-07 11:36:49'),
+(265, 1, '2015-12-07 11:37:28', '2015-12-07 11:38:32'),
+(266, 1, '2015-12-07 11:38:46', '2015-12-07 11:40:03'),
+(267, 1, '2015-12-07 11:40:19', '2015-12-07 11:40:42'),
+(268, 1, '2015-12-07 11:41:28', '2015-12-07 11:42:42'),
+(269, 1, '2015-12-07 11:43:05', '2015-12-07 11:43:59'),
+(270, 1, '2015-12-07 11:45:58', '2015-12-07 11:47:42'),
+(271, 1, '2015-12-07 11:48:18', NULL),
+(272, 1, '2015-12-07 11:50:18', NULL),
+(273, 1, '2015-12-07 11:51:47', '2015-12-07 11:52:13'),
+(274, 1, '2015-12-07 11:56:38', '2015-12-07 11:56:56'),
+(275, 1, '2015-12-07 11:57:37', '2015-12-07 11:59:45'),
+(276, 1, '2015-12-07 15:48:02', '2015-12-07 15:49:08'),
+(277, 1, '2015-12-09 12:08:44', '2015-12-09 12:09:43'),
+(278, 1, '2015-12-09 12:15:07', '2015-12-09 12:20:00'),
+(279, 1, '2015-12-09 12:24:02', '2015-12-09 12:24:30'),
+(280, 1, '2015-12-09 12:25:45', '2015-12-09 12:27:31'),
+(281, 1, '2015-12-09 12:31:31', '2015-12-09 12:34:38'),
+(282, 1, '2015-12-09 12:35:05', '2015-12-09 12:36:32'),
+(283, 1, '2015-12-09 12:36:56', '2015-12-09 12:38:12'),
+(284, 1, '2015-12-09 12:39:02', '2015-12-09 12:40:34'),
+(285, 1, '2015-12-09 12:40:52', NULL),
+(286, 1, '2015-12-10 12:42:38', '2015-12-09 12:44:29'),
+(287, 1, '2015-12-09 12:46:35', NULL),
+(288, 1, '2015-12-10 12:47:34', '2015-12-10 12:48:11'),
+(289, 1, '2015-12-13 12:48:44', '2015-12-13 12:52:05'),
+(290, 1, '2015-12-16 12:52:57', NULL),
+(291, 1, '2015-12-16 12:54:28', '2015-12-09 12:56:04'),
+(292, 1, '2015-12-09 12:57:21', '2015-12-09 12:57:46'),
+(293, 1, '2015-12-10 12:58:08', '2015-12-10 12:59:06'),
+(294, 1, '2015-12-11 12:59:28', '2015-12-11 13:00:32'),
+(295, 1, '2015-12-09 13:03:56', NULL),
+(296, 1, '2015-12-10 13:04:33', '2015-12-10 13:04:53'),
+(297, 1, '2015-12-11 13:05:15', '2015-12-11 13:10:16'),
+(298, 1, '2015-12-13 13:10:43', '2015-12-13 13:13:35'),
+(299, 1, '2015-12-09 13:16:44', '2015-12-09 13:17:03'),
+(300, 1, '2015-12-10 13:17:26', '2015-12-10 13:18:05'),
+(301, 1, '2015-12-13 13:21:04', '2015-12-13 13:22:14'),
+(302, 1, '2015-12-09 13:26:00', '2015-12-09 13:29:54'),
+(303, 1, '2015-12-09 13:29:58', '2015-12-09 13:33:03'),
+(304, 1, '2015-12-09 13:34:57', '2015-12-09 13:36:22'),
+(305, 1, '2015-12-09 13:37:34', '2015-12-09 13:37:45'),
+(306, 1, '2015-12-09 13:38:44', '2015-12-09 13:39:49'),
+(307, 1, '2015-12-09 13:41:01', '2015-12-09 13:42:59'),
+(308, 1, '2015-12-09 13:54:54', '2015-12-09 13:56:32');
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `tbl_collector`
+--
+ALTER TABLE `tbl_collector`
+  ADD CONSTRAINT `tbl_collector_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `tbl_employee` (`employee_id`);
 
 --
 -- Constraints for table `tbl_c_fixed_deposit`
@@ -570,6 +704,12 @@ ALTER TABLE `tbl_daily_savings`
   ADD CONSTRAINT `tbl_daily_savings_ibfk_2` FOREIGN KEY (`entry_by`) REFERENCES `tbl_user` (`user_id`);
 
 --
+-- Constraints for table `tbl_employee`
+--
+ALTER TABLE `tbl_employee`
+  ADD CONSTRAINT `tbl_employee_ibfk_1` FOREIGN KEY (`entry_by`) REFERENCES `tbl_user` (`user_id`);
+
+--
 -- Constraints for table `tbl_fixed_deposit`
 --
 ALTER TABLE `tbl_fixed_deposit`
@@ -582,6 +722,13 @@ ALTER TABLE `tbl_fixed_deposit`
 ALTER TABLE `tbl_monthly_savings`
   ADD CONSTRAINT `tbl_monthly_savings_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_monthly_savings_ibfk_2` FOREIGN KEY (`entry_by`) REFERENCES `tbl_user` (`user_id`);
+
+--
+-- Constraints for table `tbl_saving_transactions`
+--
+ALTER TABLE `tbl_saving_transactions`
+  ADD CONSTRAINT `tbl_saving_transactions_ibfk_1` FOREIGN KEY (`entry_by`) REFERENCES `tbl_user` (`user_id`),
+  ADD CONSTRAINT `tbl_saving_transactions_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `tbl_customer` (`customer_id`);
 
 --
 -- Constraints for table `tbl_user`

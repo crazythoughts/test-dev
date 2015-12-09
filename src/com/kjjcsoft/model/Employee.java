@@ -91,4 +91,38 @@ public class Employee {
 		}
 		return empBean;
 	}
+	public boolean exists(int collectorId){
+		boolean exists = false;
+		try{
+			con= ConnectionProvider.getConnection();
+			ps = con.prepareStatement("SELECT collector_id FROM tbl_collector WHERE collector_id = ?");
+			ps.setInt(1, collectorId);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				exists = true;
+			}
+		} catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return exists;
+	}
 }

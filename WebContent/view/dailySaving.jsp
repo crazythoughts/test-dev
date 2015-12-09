@@ -53,6 +53,7 @@
 				<table>
 					<tr>
 						<th>Account ID</th>
+						<th>Customer ID</th>
 						<th>Customer Name</th>
 						<th>Interest Rate</th>
 						<th>Created On</th>
@@ -70,6 +71,7 @@
 							<c:forEach items="${list}" var="members">
 								<tr>
 									<td>${members.accountId}</td>
+									<td>${members.customerId}</td>
 									<td>${members.customerName}</td>
 									<td>${members.interestRate}</td>
 									<td>${members.creationDate}</td>

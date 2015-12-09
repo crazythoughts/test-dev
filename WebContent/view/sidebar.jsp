@@ -72,7 +72,7 @@
 					<li class="non-col-li"><a href="#" data-target=".transaction-menu" class="nav-header collapsed" data-toggle="collapse">Transactions</a></li>
 					<li class="col-li">
 						<ul class="transaction-menu nav nav-list collapse">
-							<li><a href="">Collector</a></li>
+							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/ctransaction">Collector</a></li>
 							<li><a href="">Office</a></li>
 						</ul>
 					</li>

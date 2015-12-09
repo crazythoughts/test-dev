@@ -35,7 +35,7 @@ public class Accounts {
 		Date dt = new Date();
 		try {
 			con = ConnectionProvider.getConnection();
-			ps = con.prepareStatement("INSERT into tbl_daily_savings (customer_id, interest_rate, creation_date, approved_by, entry_by) VALUES (?,?,?,?,?)");
+			ps = con.prepareStatement("INSERT INTO tbl_daily_savings (customer_id, interest_rate, creation_date, approved_by, entry_by) VALUES (?,?,?,?,?)");
 			ps.setString(1, newDsAc.getCustomerId());
 			ps.setString(2, newDsAc.getInterestRate());
 			ps.setDate(3, DBFunctions.convertToSqlDate(dt));
@@ -1674,5 +1674,95 @@ public class Accounts {
 			}
 		}
 		return edited;
+	}
+	public boolean exists(String acType, int accountId, int customerId){
+		boolean exists = false;
+		try{
+			con = ConnectionProvider.getConnection();
+			if (acType.equals("ds")) {
+				ps = con.prepareStatement("SELECT ds_id from tbl_daily_savings WHERE (ds_id=? AND customer_id=?)");
+				ps.setInt(1, accountId);
+				ps.setInt(2, customerId);
+				rs = ps.executeQuery();
+				if (rs.next()) {
+					exists = true;
+				}
+			} else if (acType.equals("ms")) {
+				ps = con.prepareStatement("SELECT ms_id from tbl_monthly_savings WHERE (ms_id=? AND customer_id=?)");
+				ps.setInt(1, accountId);
+				ps.setInt(2, customerId);
+				rs = ps.executeQuery();
+				if (rs.next()) {
+					exists = true;
+				}
+			} else if (acType.equals("cfd")) {
+				ps = con.prepareStatement("SELECT cfd_id from tbl_c_fixed_deposit WHERE (cfd_id=? AND customer_id=?)");
+				ps.setInt(1, accountId);
+				ps.setInt(2, customerId);
+				rs = ps.executeQuery();
+				if (rs.next()) {
+					exists = true;
+				}
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return exists;
+	}
+	public float getInterestRate(String acType, int accountId){
+		float interestRate = 0;
+		try{
+			con = ConnectionProvider.getConnection();
+		if (acType.equals("ds")) {
+			ps = con.prepareStatement("SELECT interest_rate FROM tbl_daily_savings WHERE ds_id=? ");
+			ps.setInt(1, accountId);
+			rs = ps.executeQuery();
+		} else if (acType.equals("ms")) {
+			ps = con.prepareStatement("SELECT interest_rate FROM tbl_monthly_savings WHERE ms_id=? ");
+			ps.setInt(1, accountId);
+			rs = ps.executeQuery();
+		} else if (acType.equals("cfd")) {
+			ps = con.prepareStatement("SELECT interest_rate FROM tbl_c_fixed_deposit WHERE cfd_id=? ");
+			ps.setInt(1, accountId);
+			rs = ps.executeQuery();
+		} else if (acType.equals("fds")) {
+			ps = con.prepareStatement("SELECT interest_rate FROM tbl_fixed_deposit WHERE fds_id=? ");
+			ps.setInt(1, accountId);
+			rs = ps.executeQuery();
+		}
+		if (rs.next()) {
+			interestRate = rs.getFloat("interest_rate");
+		}
+		} catch (SQLException e){
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return interestRate;
 	}
 }

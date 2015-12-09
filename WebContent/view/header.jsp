@@ -20,8 +20,6 @@
 	<script type="text/javascript">
 		$(function() {
 			var uls = $('.sidebar-nav > ul > *').clone();
-			uls.addClass('visible-xs');
-			$('#main-menu').append(uls.clone());
 		});
 	</script>
 	<div class="container">

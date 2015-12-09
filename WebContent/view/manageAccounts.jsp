@@ -283,6 +283,7 @@
 			<c:remove var="acType" scope="request"/>
 		</div>
 	</div>
+	<jsp:include page="footer.jsp"/>
 </div>
 </div>
 </body>

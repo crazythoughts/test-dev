@@ -20,12 +20,14 @@ public class Transaction {
 	Connection con = null;
 	PreparedStatement ps = null;
 	ResultSet rs = null;
-	public boolean collectorTransactionInsertion(TransactionBean recBean){
+
+	public boolean collectorTransactionInsertion(TransactionBean recBean) {
 		boolean inserted = false;
-		
-		try{
+
+		try {
 			con = ConnectionProvider.getConnection();
-			ps = con.prepareStatement("INSERT INTO tbl_saving_transactions (date, customer_id, account_type, account_number, deposit_amount, withdrawal_amount, reference, principal_amount, interest_for_next, total_interest, total_amount, collector_id, entry_by ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			ps = con.prepareStatement(
+					"INSERT INTO tbl_saving_transactions (date, customer_id, account_type, account_number, deposit_amount, withdrawal_amount, reference, principal_amount, interest_for_next, total_interest, total_amount, collector_id, entry_by ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			ps.setString(1, recBean.getDate());
 			ps.setString(2, recBean.getCustomerId());
 			ps.setString(3, recBean.getAccoutType());
@@ -41,30 +43,32 @@ public class Transaction {
 			ps.setInt(13, recBean.getEntryBy());
 			ps.executeUpdate();
 			inserted = true;
-		} catch (SQLException ex){
+		} catch (SQLException ex) {
 			ex.printStackTrace();
 		} finally {
 			try {
 				ps.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			try {
 				con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
 		return inserted;
 	}
-	public String lastInsertedDate(String acType, int accountId){
+
+	public String lastInsertedDate(String acType, int accountId) {
 		String lastDate = null;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		try{
+		try {
 			con = ConnectionProvider.getConnection();
-			ps = con.prepareStatement("SELECT date FROM tbl_saving_transactions WHERE (account_type= ? AND account_number=?) ORDER BY date DESC LIMIT 1");
+			ps = con.prepareStatement(
+					"SELECT date FROM tbl_saving_transactions WHERE (account_type= ? AND account_number=?) ORDER BY date DESC LIMIT 1");
 			ps.setString(1, acType);
 			ps.setInt(2, accountId);
 			rs = ps.executeQuery();
@@ -74,35 +78,37 @@ public class Transaction {
 				Date dt = new Date();
 				lastDate = sdf.format(dt);
 			}
-		}catch (SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			try {
 				ps.close();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+
 				e1.printStackTrace();
 			}
 			try {
 				con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
 		return lastDate;
 	}
-	public TransactionBean getLastInsertedData(String acType, int accountId){
+
+	public TransactionBean getLastInsertedData(String acType, int accountId) {
 		TransactionBean lastData = new TransactionBean();
-		try{
+		try {
 			con = ConnectionProvider.getConnection();
-			ps = con.prepareStatement("SELECT * FROM tbl_saving_transactions WHERE account_type=? AND account_number=? ORDER BY date DESC LIMIT 1");
+			ps = con.prepareStatement(
+					"SELECT * FROM tbl_saving_transactions WHERE account_type=? AND account_number=? ORDER BY date DESC LIMIT 1");
 			ps.setString(1, acType);
 			ps.setInt(2, accountId);
 			rs = ps.executeQuery();
@@ -127,28 +133,67 @@ public class Transaction {
 				lastData.setTotalInterest(0);
 				lastData.setTotalAmount(0);
 			}
-		} catch (SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				rs.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			try {
 				ps.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 			try {
 				con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}
 		return lastData;
+	}
+	public boolean officeTransactionInsertion(TransactionBean recBean) {
+		boolean inserted = false;
+
+		try {
+			con = ConnectionProvider.getConnection();
+			ps = con.prepareStatement(
+					"INSERT INTO tbl_saving_transactions (date, customer_id, account_type, account_number, deposit_amount, withdrawal_amount, reference, principal_amount, interest_for_next, total_interest, total_amount, entry_by ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+			ps.setString(1, recBean.getDate());
+			ps.setString(2, recBean.getCustomerId());
+			ps.setString(3, recBean.getAccoutType());
+			ps.setString(4, recBean.getAccountId());
+			ps.setString(5, recBean.getDeposit());
+			ps.setString(6, recBean.getWithdrawal());
+			ps.setString(7, recBean.getReferences());
+			ps.setDouble(8, recBean.getPrincipalAmount());
+			ps.setDouble(9, recBean.getInterestForNext());
+			ps.setDouble(10, recBean.getTotalInterest());
+			ps.setDouble(11, recBean.getTotalAmount());
+			ps.setInt(12, recBean.getEntryBy());
+			ps.executeUpdate();
+			inserted = true;
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+		}
+		return inserted;
 	}
 }

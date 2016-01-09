@@ -1,9 +1,11 @@
 package com.kjjcsoft.controllers;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,31 +21,32 @@ import com.kjjcsoft.bean.RetrivedUserBean;
 import com.kjjcsoft.bean.TransactionBean;
 import com.kjjcsoft.model.Accounts;
 import com.kjjcsoft.model.Customer;
-import com.kjjcsoft.model.Employee;
 import com.kjjcsoft.model.Transaction;
+
 /**
- * Servlet implementation class CollectorTransactionController
+ * Servlet implementation class OfficeTransactionController
  */
-@WebServlet(description = "for recording the transactions through collector", urlPatterns = {"/ctransaction"})
-public class CollectorTransactionController extends HttpServlet {
+@WebServlet(description = "for office transaction", urlPatterns = { "/otransaction" })
+public class OfficeTransactionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public OfficeTransactionController() {
+        super();
+    }
+
 	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public CollectorTransactionController() {
-		super();
-	}
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/transactionC.jsp");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/transactionO.jsp");
 		rd.forward(request, response);
 	}
+
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getParameter("check") != null) {
@@ -85,7 +88,6 @@ public class CollectorTransactionController extends HttpServlet {
 			ses_user = (RetrivedUserBean) request.getSession().getAttribute("Userinfo");
 			Date dt = null;
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			Employee emp = new Employee();
 			boolean error = false;
 			String customerId = request.getParameter("customerId");
 			String accountType = request.getParameter("accountType");
@@ -93,7 +95,6 @@ public class CollectorTransactionController extends HttpServlet {
 			String depositAmount = request.getParameter("depositAmount");
 			String withdrawalAmount = request.getParameter("withdrawalAmount");
 			String references = request.getParameter("references");
-			String collectorId = request.getParameter("collectorId");
 			if (!customerId.matches("\\d+")) {
 				request.setAttribute("errorcid", "Invalid CustomerId");
 				error = true;
@@ -126,17 +127,9 @@ public class CollectorTransactionController extends HttpServlet {
 				request.setAttribute("errorR", "Invalid name");
 				error = true;
 			}
-			if (!collectorId.matches("\\d+")) {
-				request.setAttribute("errorCid", "Invalid Id");
-				error = true;
-			}
-			if (!emp.exists(Integer.parseInt(collectorId))) {
-				request.setAttribute("errorCid", "Doesnot exists");
-				error = true;
-			}
 			dt = new Date();
 			if (!error) {
-				if (validateAndInsert(customerId, accountType, accountNumber, depositAmount, withdrawalAmount, references, collectorId, sdf.format(dt), ses_user.getUser_id())) {
+				if (validateAndInsert(customerId, accountType, accountNumber, depositAmount, withdrawalAmount, references, sdf.format(dt), ses_user.getUser_id())) {
 					response.sendRedirect("/KJJCSoft/com/kjjcsoft/controllers/ctransaction");
 					request.getSession().setAttribute("successMsg", true);
 					return;
@@ -148,7 +141,7 @@ public class CollectorTransactionController extends HttpServlet {
 		}
 		doGet(request, response);
 	}
-	private boolean validateAndInsert(String customerId, String acType, String accountNumber, String depositAmount, String withdrawalAmount, String references, String collectorId, String dt,
+	private boolean validateAndInsert(String customerId, String acType, String accountNumber, String depositAmount, String withdrawalAmount, String references, String dt,
 			int userid) {
 		boolean transactionDone = false;
 		TransactionBean trBean = new TransactionBean();
@@ -180,7 +173,7 @@ public class CollectorTransactionController extends HttpServlet {
 				cal.setTime(now);
 				cal.add(Calendar.DATE, -1);
 				Date newdt = cal.getTime();
-				validateAndInsert(customerId, acType, accountNumber, "0", "0", "", "0", sdf.format(newdt), userid);
+				validateAndInsert(customerId, acType, accountNumber, "0", "0", "", sdf.format(newdt), userid);
 			}
 		} else if (acType.equals("ms")) {
 			try {
@@ -197,7 +190,7 @@ public class CollectorTransactionController extends HttpServlet {
 				cal.setTime(now);
 				cal.add(Calendar.MONTH, -1);
 				Date newdt = cal.getTime();
-				validateAndInsert(customerId, acType, accountNumber, "0", "0", "", "0" , sdf.format(newdt), userid);
+				validateAndInsert(customerId, acType, accountNumber, "0", "0", "", sdf.format(newdt), userid);
 			}
 		}
 		lastData = trLog.getLastInsertedData(acType, Integer.parseInt(accountNumber));
@@ -222,14 +215,13 @@ public class CollectorTransactionController extends HttpServlet {
 		trBean.setDeposit(depositAmount);
 		trBean.setWithdrawal(withdrawalAmount);
 		trBean.setReferences(references);
-		trBean.setCollectorId(collectorId);
 		trBean.setDate(dt);
 		trBean.setInterestForNext(nextInterest);
 		trBean.setPrincipalAmount(principalAmount);
 		trBean.setTotalInterest(totalInterest);
 		trBean.setTotalAmount(totalAmount);
 		trBean.setEntryBy(userid);
-		transactionDone = trLog.collectorTransactionInsertion(trBean);
+		transactionDone = trLog.officeTransactionInsertion(trBean);
 		return transactionDone;
 	}
 }

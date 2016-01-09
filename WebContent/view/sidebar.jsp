@@ -35,7 +35,7 @@
 					<li class="col-li">
 						<ul class="transaction-menu nav nav-list collapse">
 							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/ctransaction">Collector</a></li>
-							<li><a href="">Office</a></li>
+							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/otransaction">Office</a></li>
 						</ul>
 					</li>
 					<li class="non-col-li"><a href="#" data-target=".report-menu" class="nav-header collapsed" data-toggle="collapse">Reports</a></li>

@@ -141,48 +141,60 @@
 						</c:if>
 					</div>
 				</div>
-				<fieldset>
+				<div class="contact-address">
 					<legend>Permanent Address</legend>
+					<div class="address">
 					<label for="perm_dist">District</label>
 					<input type="text" name="perm_dist" value="${param.perm_dist}" />
 					<c:if test="${!empty requestScope.errorpd}">
 						<c:out value="${requestScope.errorpd }" />
 						<c:remove var="errorpd" scope="request" />
 					</c:if>
-					<label for="perm_vdc_mp">VDC/Municipality</label>
+					</div>
+					<div class="address">
+					<label for="perm_vdc_mp">VDC/MP</label>
 					<input type="text" name="perm_vdc_mp" value="${param.perm_vdc_mp}" />
 					<c:if test="${!empty requestScope.errorpvm}">
 						<c:out value="${requestScope.errorpvm }" />
 						<c:remove var="errorpvm" scope="request" />
 					</c:if>
-					<label for="perm_other">Other Information</label>
+					</div>
+					<div class="address">
+					<label for="perm_other">Other Info</label>
 					<input type="text" name="perm_other" value="${param.perm_other }" />
 					<c:if test="${!empty requestScope.errorpe}">
 						<c:out value="${requestScope.errorpe}" />
 						<c:remove var="errorpe" scope="request" />
 					</c:if>
-				</fieldset>
-				<fieldset>
+					</div>
+				</div>
+				<div class="contact-address">
 					<legend>Temporary Address</legend>
+					<div class="address">
 					<label for="temp_dist">District</label>
 					<input type="text" name="temp_dist" value="${param.temp_dist}" />
 					<c:if test="${!empty requestScope.errortd}">
 						<c:out value="${requestScope.errortd}" />
 						<c:remove var="errortd" scope="request" />
 					</c:if>
-					<label for="temp_vdc_mp">VDC/Municipality</label>
+					</div>
+					<div class="address">
+					<label for="temp_vdc_mp">VDC/MP</label>
 					<input type="text" name="temp_vdc_mp" value="${param.temp_vdc_mp}" />
 					<c:if test="${!empty requestScope.errortvm}">
 						<c:out value="${requestScope.errortvm}" />
 						<c:remove var="errortvm" scope="request" />
 					</c:if>
-					<label for="temp_other">Other Information</label>
+					</div>
+					<div class="address">
+					<label for="temp_other">Other Info</label>
 					<input type="text" name="temp_other" value="${param.temp_other}" />
 					<c:if test="${!empty requestScope.errorte}">
 						<c:out value="${requestScope.errorte}" />
 						<c:remove var="errorte" scope="request" />
 					</c:if>
-				</fieldset>
+					</div>
+				</div>
 				<div class="registration-one clearfix">
 					<div class="info-personal f-left">
 						<label for="fathers_name">Father's Name:</label>
@@ -207,7 +219,7 @@
 						</c:if>
 					</div>
 				</div>
-				<fieldset>
+				<div class="info-personal">
 					<legend>Nominee</legend>
 					<label for="nominee_name">Nominee's Name</label>
 					<input type="text" name="nominee_name" value="${param.nominee_name}" />
@@ -287,8 +299,8 @@
 							<c:remove var="errornte" scope="request" />
 						</c:if>
 					</fieldset>
-				</fieldset>
-				<fieldset>
+				</div>
+				<div class="info-personal">
 					<legend>For Under Age</legend>
 					<label for="guardian_name">Guardian Name</label>
 					<input type="text" name="guardian_name" value="${param.guardian_name}" />
@@ -368,7 +380,8 @@
 							<c:remove var="errorgte" scope="request" />
 						</c:if>
 					</fieldset>
-				</fieldset>
+				</div>
+				<div class="info-personal">
 				<label for="creation_date">Account Creation Date</label>
 				<input type="text" name="creation_date" value="${param.creation_date}" />
 				<c:if test="${!empty requestScope.errorcd}">
@@ -388,7 +401,10 @@
 					<c:remove var="errorapb" scope="request" />
 				</c:if>
 				<br>
+				<div class="btn">
 				<input type="submit" value="Save" name="normField" />
+				</div>
+				</div>
 			</form>
 		</div>
 	</div>

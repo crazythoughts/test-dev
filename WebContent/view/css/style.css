@@ -202,6 +202,7 @@ ul {
 .main-contain-content {
 	padding: 0px 18px;
 	content: "";
+	min-height:420px;
 }
 
 /* costumer registration css end */
@@ -495,7 +496,7 @@ ul>li.green {
 	width: 50%;
 }
 
-.info-personal>label, .info-status>label, .form-radio>label {
+.info-personal>label, .info-status>label, .form-radio>label ,.address>label{
 	display: inline-block;
 	font-size: 16px;
 	text-align: right;
@@ -503,7 +504,7 @@ ul>li.green {
 	padding-right: 10px;
 }
 
-.info-personal>input, .info-status>input {
+.info-personal>input, .info-status>input ,.address>input{
 	height: 40px;
 	margin: 0 0 10px;
 	width: 74%;
@@ -589,4 +590,49 @@ ul.list-my-account {
 
 .form-password-change .login-error {
 	margin: 10px 0 0;
+}
+
+
+
+.overview-circle {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 800;
+    margin: 20px 5px;
+    text-align: center;
+    vertical-align: top;
+    width: 12%;
+}
+.circle-num {
+    border: 2px solid #ccc;
+    border-radius: 100%;
+    font-size: 30px;
+    height: 100px;
+    line-height: 100px;
+    margin: 0 auto 15px;
+    vertical-align: top;
+    width: 100px;
+}
+.manage-customer-navigation > li {
+    background: #ccc none repeat scroll 0 0;
+    border-right: 3px solid;
+    display: inline-block;
+    margin-left: -4px;
+    text-align: center;
+}
+.manage-customer-navigation > li:first-child {
+    margin-left: 0;
+}
+.manage-customer-navigation > li a {
+    color: #fff;
+    font-size: 14px;
+    padding: 0 10px;
+    text-transform: uppercase;
+}
+.contact-address div {
+    display: inline-block;
+    width: 33%;
+}
+.address > label {
+    text-align: left;
 }

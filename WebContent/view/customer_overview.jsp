@@ -46,35 +46,35 @@
 			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/edit">Edit</a></li>
 		</ul>
 		<div class="all-content">
-			<div class="customer-stats">
+			<div class="customer-stats account-information">
 				<p>Overview Data</p>
 				<div class="customer-stats-display">
-					<div>
-						<c:out value="${requestScope.overview[0]}" />
+					<div class="overview-circle">
+						<div class="circle-num"><c:out value="${requestScope.overview[0]}" /></div>
 						Total number of customer registered.
 					</div>
-					<div>
-						<c:out value="${requestScope.overview[1]}" />
+					<div class="overview-circle">
+						<div class="circle-num"><c:out value="${requestScope.overview[1]}" /></div>
 						Active Customers.
 					</div>
-					<div>
-						<c:out value="${requestScope.overview[2]}" />
+					<div class="overview-circle">
+						<div class="circle-num"><c:out value="${requestScope.overview[2]}" /></div>
 						Inactive Customers.
 					</div>
-					<div>
-						<c:out value="${requestScope.overview[3]}" />
+					<div class="overview-circle">
+						<div class="circle-num"><c:out value="${requestScope.overview[3]}" /></div>
 						Adult Customers.
 					</div>
-					<div>
-						<c:out value="${requestScope.overview[4]}" />
+					<div class="overview-circle">
+						<div class="circle-num"><c:out value="${requestScope.overview[4]}" /></div>
 						Children Customers.
 					</div>
-					<div>
-						<c:out value="${requestScope.overview[5]}" />
+					<div class="overview-circle">
+						<div class="circle-num"><c:out value="${requestScope.overview[5]}" /></div>
 						Male Customers.
 					</div>
-					<div>
-						<c:out value="${requestScope.overview[6]}" />
+					<div class="overview-circle">
+						<div class="circle-num"><c:out value="${requestScope.overview[6]}" /></div>
 						Female Customers.
 					</div>
 				</div>

@@ -48,6 +48,7 @@
 		<div class="all-content">
 			<div class="add-user-form">
 				<form action="/KJJCSoft/com/kjjcsoft/controllers/adduser" method="post">
+				<div class="info-personal">
 					<label for="username">Username</label>
 					<input type="text" name="username" value="${param.username}" />
 					<c:out value="${errorUname}" />
@@ -91,6 +92,7 @@
 						<option value="User">User</option>
 					</select>
 					<input type="submit" value="Add" name="addUser" />
+					</div>
 				</form>
 			</div>
 		</div>

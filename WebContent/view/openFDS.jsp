@@ -41,7 +41,7 @@
 		<li class="active">Add</li>
 	</ul>
 	<div class="main-contain-content clearfix">
-		<ul class="saving-accounts-navigation">
+		<ul class="saving-accounts-navigation manage-customer-navigation">
 			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/savingdetails">Summary</a></li>
 			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/dailysaving">Daily Savings</a></li>
 			<li><a href="/KJJCSoft/com/kjjcsoft/controllers/monthlysaving">Monthly Savings</a></li>

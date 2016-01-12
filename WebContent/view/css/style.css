@@ -636,3 +636,32 @@ ul.list-my-account {
 .address > label {
     text-align: left;
 }
+
+table {
+    width: 100%;
+}
+table tbody tr:first-child {
+    background: #ccc none repeat scroll 0 0;
+    padding: 10px 0;
+}
+table th {
+    border: 1px solid #777;
+    color: #dfffdb;
+    padding: 10px 0;
+    text-align: center;
+}
+table td {
+    border: 1px solid #777;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 5px 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+.user-table input {
+    border: medium none;
+    color: red;
+    font-weight: 700;
+    text-decoration: underline;
+}
+

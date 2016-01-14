@@ -85,8 +85,8 @@
 						<c:out value="${errorapb}" />
 						<c:remove var="errorapb" scope="request" />
 					</c:if>
-					<label for="starting_amount">Starting Amount</label>
-					<input type="text" name="starting_amount" />
+					<!-- <label for="starting_amount">Starting Amount</label>
+					<input type="text" name="starting_amount" /> -->
 					<input type="submit" value="Create" name="create" />
 					<input type="submit" value="Cancel" name="cancel" />
 				</form>

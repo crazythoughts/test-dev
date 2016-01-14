@@ -79,8 +79,8 @@
 						<c:out value="${errorir}" />
 						<c:remove var="errorir" scope="request" />
 					</c:if>
-					<label for="starting_amount">Starting Amount</label>
-					<input type="text" name="starting_amount" />
+					<!-- <label for="starting_amount">Starting Amount</label>
+					<input type="text" name="starting_amount" /> -->
 					<label for="maturity_period">Maturity Period</label>
 					<input type="text" name="maturity_period" value="" />
 					<c:if test="${!empty errory}">

@@ -79,8 +79,8 @@
 						<c:out value="${errorir}" />
 						<c:remove var="errorir" scope="request" />
 					</c:if>
-					<label for="fd_amount">Fixed Deposit Amount</label>
-					<input type="text" name="fd_amount" value="${param.fd_amount}" />
+					<%-- <label for="fd_amount">Fixed Deposit Amount</label>
+					<input type="text" name="fd_amount" value="${param.fd_amount}" /> --%>
 					<c:if test="${!empty errorfd}">
 						<c:out value="${errorfd}" />
 						<c:remove var="errorfd" scope="request" />

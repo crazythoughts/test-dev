@@ -41,7 +41,7 @@
 					<li class="non-col-li"><a href="#" data-target=".report-menu" class="nav-header collapsed" data-toggle="collapse">Reports</a></li>
 					<li class="col-li">
 						<ul class="report-menu nav nav-list collapse">
-							<li><a href="">EMI</a></li>
+							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/EMIGenerator">EMI</a></li>
 							<li><a href="">Account Statement</a></li>
 						</ul>
 					</li>
@@ -79,7 +79,7 @@
 					<li class="non-col-li"><a href="#" data-target=".report-menu" class="nav-header collapsed" data-toggle="collapse">Reports</a></li>
 					<li class="col-li">
 						<ul class="report-menu nav nav-list collapse">
-							<li><a href="">EMI</a></li>
+							<li><a href="/KJJCSoft/com/kjjcsoft/controllers/EMIGenerator">EMI</a></li>
 							<li><a href="">Account Statement</a></li>
 						</ul>
 					</li>

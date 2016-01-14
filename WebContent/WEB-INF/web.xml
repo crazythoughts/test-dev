@@ -221,11 +221,19 @@
     <url-pattern>/com/kjjcsoft/controllers/ctransaction</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>OfficeTransaction</servlet-name>
-  	<servlet-class>com.kjjcsoft.controllers.OfficeTransactionController</servlet-class>
+    <servlet-name>OfficeTransaction</servlet-name>
+    <servlet-class>com.kjjcsoft.controllers.OfficeTransactionController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>OfficeTransaction</servlet-name>
-  	<url-pattern>/com/kjjcsoft/controllers/otransaction</url-pattern>
+    <servlet-name>OfficeTransaction</servlet-name>
+    <url-pattern>/com/kjjcsoft/controllers/otransaction</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>EMI</servlet-name>
+  	<servlet-class>com.kjjcsoft.controllers.EMIGeneratorController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>EMI</servlet-name>
+  	<url-pattern>/com/kjjcsoft/controllers/EMIGenerator</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -214,7 +214,11 @@ public class CollectorTransactionController extends HttpServlet {
 		}
 		interestRate = interestInfo.getInterestRate(acType, Integer.parseInt(accountNumber));
 		nextInterest = (principalAmount * interestRate) / (100 * 365);
-		totalInterest = lastData.getInterestForNext() + lastData.getTotalInterest();
+		if (diff<1) {
+			totalInterest = lastData.getTotalInterest();
+		}else{
+			totalInterest = lastData.getInterestForNext() + lastData.getTotalInterest();
+		}
 		totalAmount = totalInterest + principalAmount;
 		trBean.setCustomerId(customerId);
 		trBean.setAccoutType(acType);

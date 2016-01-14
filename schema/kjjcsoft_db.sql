@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2015 at 09:16 AM
+-- Generation Time: Jan 14, 2016 at 01:55 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -315,12 +315,20 @@ CREATE TABLE IF NOT EXISTS `tbl_saving_transactions` (
   `interest_for_next` double NOT NULL,
   `total_interest` double NOT NULL,
   `total_amount` double NOT NULL,
-  `collector_id` int(11) DEFAULT NULL,
+  `collector_id` int(11) NOT NULL DEFAULT '0',
   `entry_by` int(11) NOT NULL,
   PRIMARY KEY (`transaction_id`),
   KEY `entry_by` (`entry_by`),
   KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `tbl_saving_transactions`
+--
+
+INSERT INTO `tbl_saving_transactions` (`transaction_id`, `date`, `customer_id`, `account_type`, `account_number`, `deposit_amount`, `withdrawal_amount`, `reference`, `principal_amount`, `interest_for_next`, `total_interest`, `total_amount`, `collector_id`, `entry_by`) VALUES
+(1, '2016-01-14', 1, 'ds', 2, 100, 0, '', 100, 0.0410958904109589, 0, 100, 1, 1),
+(2, '2016-01-14', 1, 'ds', 2, 300, 0, '', 400, 0.1643835616438356, 0, 400, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -363,7 +371,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user_log` (
   `last_logout` datetime DEFAULT NULL,
   PRIMARY KEY (`log_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=309 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=323 ;
 
 --
 -- Dumping data for table `tbl_user_log`
@@ -677,7 +685,21 @@ INSERT INTO `tbl_user_log` (`log_id`, `user_id`, `last_login`, `last_logout`) VA
 (305, 1, '2015-12-09 13:37:34', '2015-12-09 13:37:45'),
 (306, 1, '2015-12-09 13:38:44', '2015-12-09 13:39:49'),
 (307, 1, '2015-12-09 13:41:01', '2015-12-09 13:42:59'),
-(308, 1, '2015-12-09 13:54:54', '2015-12-09 13:56:32');
+(308, 1, '2015-12-09 13:54:54', '2015-12-09 13:56:32'),
+(309, 1, '2016-01-13 23:11:56', '2016-01-13 23:13:06'),
+(310, 1, '2016-01-14 02:38:38', '2016-01-14 02:38:53'),
+(311, 1, '2016-01-14 02:41:15', '2016-01-14 02:41:26'),
+(312, 1, '2016-01-14 05:48:36', '2016-01-14 05:49:35'),
+(313, 1, '2016-01-14 05:49:55', '2016-01-14 05:50:35'),
+(314, 1, '2016-01-14 05:50:55', '2016-01-14 05:52:29'),
+(315, 1, '2016-01-14 05:54:34', '2016-01-14 05:58:19'),
+(316, 1, '2016-01-14 06:06:40', NULL),
+(317, 1, '2016-01-14 06:07:47', NULL),
+(318, 1, '2016-01-14 06:10:10', '2016-01-14 06:10:30'),
+(319, 1, '2016-01-14 06:21:30', '2016-01-14 06:23:16'),
+(320, 1, '2016-01-14 06:24:30', '2016-01-14 06:25:36'),
+(321, 1, '2016-01-14 06:28:32', '2016-01-14 06:28:54'),
+(322, 1, '2016-01-14 06:37:46', NULL);
 
 --
 -- Constraints for dumped tables
